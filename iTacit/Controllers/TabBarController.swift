@@ -18,6 +18,8 @@ class TabBarController: UIViewController {
 
 	private var selectedTabBarButton: TabBarButton?
 
+	// MARK: - Lifecycle
+
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		navigationController?.navigationBarHidden = true
@@ -57,6 +59,8 @@ class TabBarController: UIViewController {
 		child.view.frame = containerView.bounds
 	}
 
+	// MARK: - IBActions
+
 	@IBAction func switchTab(sender: TabBarButton) {
 		if let selectedTabBarButton = selectedTabBarButton where selectedTabBarButton == sender {
 			return
@@ -70,7 +74,6 @@ class TabBarController: UIViewController {
 		}
 
 		selectedTabBarButton = sender
-
 	}
 
 }
