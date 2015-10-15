@@ -10,8 +10,8 @@
 		40EA82001BCFA3360029228F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EA81FF1BCFA3360029228F /* AppDelegate.swift */; };
 		40EA82021BCFA3360029228F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EA82011BCFA3360029228F /* ViewController.swift */; };
 		40EA82051BCFA3360029228F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40EA82031BCFA3360029228F /* Main.storyboard */; };
-		40EA82071BCFA3360029228F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40EA82061BCFA3360029228F /* Assets.xcassets */; };
 		40EA820A1BCFA3360029228F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40EA82081BCFA3360029228F /* LaunchScreen.storyboard */; };
+		40EA82151BCFB8E10029228F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40EA82131BCFB8E10029228F /* Assets.xcassets */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,9 +19,9 @@
 		40EA81FF1BCFA3360029228F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40EA82011BCFA3360029228F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		40EA82041BCFA3360029228F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
-		40EA82061BCFA3360029228F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		40EA82091BCFA3360029228F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
-		40EA820B1BCFA3360029228F /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40EA82131BCFB8E10029228F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		40EA82141BCFB8E10029228F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -57,11 +57,19 @@
 				40EA81FF1BCFA3360029228F /* AppDelegate.swift */,
 				40EA82011BCFA3360029228F /* ViewController.swift */,
 				40EA82031BCFA3360029228F /* Main.storyboard */,
-				40EA82061BCFA3360029228F /* Assets.xcassets */,
-				40EA82081BCFA3360029228F /* LaunchScreen.storyboard */,
-				40EA820B1BCFA3360029228F /* Info.plist */,
+				40EA82121BCFB8E10029228F /* Supporting Files */,
 			);
 			path = iTacit;
+			sourceTree = "<group>";
+		};
+		40EA82121BCFB8E10029228F /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				40EA82081BCFA3360029228F /* LaunchScreen.storyboard */,
+				40EA82131BCFB8E10029228F /* Assets.xcassets */,
+				40EA82141BCFB8E10029228F /* Info.plist */,
+			);
+			path = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -122,7 +130,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				40EA820A1BCFA3360029228F /* LaunchScreen.storyboard in Resources */,
-				40EA82071BCFA3360029228F /* Assets.xcassets in Resources */,
+				40EA82151BCFB8E10029228F /* Assets.xcassets in Resources */,
 				40EA82051BCFA3360029228F /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -156,6 +164,7 @@
 				40EA82091BCFA3360029228F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
+			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
@@ -197,7 +206,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = iphoneos;
@@ -236,7 +245,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -248,10 +257,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = iTacit/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/iTacit/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iTacit.iTacit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -259,10 +269,11 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				INFOPLIST_FILE = iTacit/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/iTacit/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iTacit.iTacit;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};
@@ -285,6 +296,7 @@
 				40EA82101BCFA3360029228F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
