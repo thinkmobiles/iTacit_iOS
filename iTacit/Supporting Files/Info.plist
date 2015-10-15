@@ -2,6 +2,19 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>UIAppFonts</key>
+	<array>
+		<string>OPENSANSLIGHT-ITALIC.TTF</string>
+		<string>OPENSANS-SEMIBOLDITALIC.TTF</string>
+		<string>OPENSANS-LIGHT.TTF</string>
+		<string>OPENSANS-SEMIBOLD.TTF</string>
+		<string>OPENSANS-ITALIC.TTF</string>
+		<string>OPENSANS-BOLDITALIC.TTF</string>
+		<string>OPENSANS.TTF</string>
+		<string>OPENSANS-BOLD.TTF</string>
+		<string>OPENSANS-EXTRABOLD.TTF</string>
+		<string>OPENSANS-EXTRABOLDITALIC.TTF</string>
+	</array>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>en</string>
 	<key>CFBundleExecutable</key>

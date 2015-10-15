@@ -8,20 +8,60 @@
 
 /* Begin PBXBuildFile section */
 		40EA82001BCFA3360029228F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EA81FF1BCFA3360029228F /* AppDelegate.swift */; };
-		40EA82021BCFA3360029228F /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EA82011BCFA3360029228F /* ViewController.swift */; };
 		40EA82051BCFA3360029228F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40EA82031BCFA3360029228F /* Main.storyboard */; };
 		40EA820A1BCFA3360029228F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40EA82081BCFA3360029228F /* LaunchScreen.storyboard */; };
 		40EA82151BCFB8E10029228F /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 40EA82131BCFB8E10029228F /* Assets.xcassets */; settings = {ASSET_TAGS = (); }; };
+		40EA822B1BCFC4760029228F /* OPENSANS-BOLD.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 40EA82211BCFC4760029228F /* OPENSANS-BOLD.TTF */; settings = {ASSET_TAGS = (); }; };
+		40EA822C1BCFC4760029228F /* OPENSANS-BOLDITALIC.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 40EA82221BCFC4760029228F /* OPENSANS-BOLDITALIC.TTF */; settings = {ASSET_TAGS = (); }; };
+		40EA822D1BCFC4760029228F /* OPENSANS-EXTRABOLD.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 40EA82231BCFC4760029228F /* OPENSANS-EXTRABOLD.TTF */; settings = {ASSET_TAGS = (); }; };
+		40EA822E1BCFC4760029228F /* OPENSANS-EXTRABOLDITALIC.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 40EA82241BCFC4760029228F /* OPENSANS-EXTRABOLDITALIC.TTF */; settings = {ASSET_TAGS = (); }; };
+		40EA822F1BCFC4760029228F /* OPENSANS-ITALIC.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 40EA82251BCFC4760029228F /* OPENSANS-ITALIC.TTF */; settings = {ASSET_TAGS = (); }; };
+		40EA82301BCFC4760029228F /* OPENSANS-LIGHT.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 40EA82261BCFC4760029228F /* OPENSANS-LIGHT.TTF */; settings = {ASSET_TAGS = (); }; };
+		40EA82311BCFC4760029228F /* OPENSANS-SEMIBOLD.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 40EA82271BCFC4760029228F /* OPENSANS-SEMIBOLD.TTF */; settings = {ASSET_TAGS = (); }; };
+		40EA82321BCFC4760029228F /* OPENSANS-SEMIBOLDITALIC.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 40EA82281BCFC4760029228F /* OPENSANS-SEMIBOLDITALIC.TTF */; settings = {ASSET_TAGS = (); }; };
+		40EA82331BCFC4760029228F /* OPENSANS.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 40EA82291BCFC4760029228F /* OPENSANS.TTF */; settings = {ASSET_TAGS = (); }; };
+		40EA82341BCFC4760029228F /* OPENSANSLIGHT-ITALIC.TTF in Resources */ = {isa = PBXBuildFile; fileRef = 40EA822A1BCFC4760029228F /* OPENSANSLIGHT-ITALIC.TTF */; settings = {ASSET_TAGS = (); }; };
+		40EA82371BCFC8A40029228F /* AppColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EA82361BCFC8A40029228F /* AppColors.swift */; settings = {ASSET_TAGS = (); }; };
+		40EA823F1BCFCCBE0029228F /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EA823C1BCFCCBE0029228F /* Extensions.swift */; settings = {ASSET_TAGS = (); }; };
+		40EA82471BCFCD690029228F /* TabsContainerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EA82461BCFCD690029228F /* TabsContainerView.swift */; settings = {ASSET_TAGS = (); }; };
+		40EA824B1BCFCD720029228F /* TabBarButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EA82491BCFCD720029228F /* TabBarButton.swift */; settings = {ASSET_TAGS = (); }; };
+		40EA824C1BCFCD720029228F /* TabBarButton.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40EA824A1BCFCD720029228F /* TabBarButton.xib */; settings = {ASSET_TAGS = (); }; };
+		40EA824E1BCFCDEC0029228F /* TabBarControllerSegue.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EA824D1BCFCDEC0029228F /* TabBarControllerSegue.swift */; settings = {ASSET_TAGS = (); }; };
+		40EA82501BCFCE120029228F /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EA824F1BCFCE120029228F /* TabBarController.swift */; settings = {ASSET_TAGS = (); }; };
+		40EA82521BCFD05F0029228F /* DashboardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EA82511BCFD05F0029228F /* DashboardViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		40EA82541BCFD06F0029228F /* NewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EA82531BCFD06F0029228F /* NewsViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		40EA82561BCFD07B0029228F /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EA82551BCFD07B0029228F /* MessagesViewController.swift */; settings = {ASSET_TAGS = (); }; };
+		40EA82581BCFD09A0029228F /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EA82571BCFD09A0029228F /* TrainingViewController.swift */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		40EA81FC1BCFA3360029228F /* iTacit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTacit.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		40EA81FF1BCFA3360029228F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		40EA82011BCFA3360029228F /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		40EA81FF1BCFA3360029228F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
 		40EA82041BCFA3360029228F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		40EA82091BCFA3360029228F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		40EA82131BCFB8E10029228F /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		40EA82141BCFB8E10029228F /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		40EA82211BCFC4760029228F /* OPENSANS-BOLD.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OPENSANS-BOLD.TTF"; sourceTree = "<group>"; };
+		40EA82221BCFC4760029228F /* OPENSANS-BOLDITALIC.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OPENSANS-BOLDITALIC.TTF"; sourceTree = "<group>"; };
+		40EA82231BCFC4760029228F /* OPENSANS-EXTRABOLD.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OPENSANS-EXTRABOLD.TTF"; sourceTree = "<group>"; };
+		40EA82241BCFC4760029228F /* OPENSANS-EXTRABOLDITALIC.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OPENSANS-EXTRABOLDITALIC.TTF"; sourceTree = "<group>"; };
+		40EA82251BCFC4760029228F /* OPENSANS-ITALIC.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OPENSANS-ITALIC.TTF"; sourceTree = "<group>"; };
+		40EA82261BCFC4760029228F /* OPENSANS-LIGHT.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OPENSANS-LIGHT.TTF"; sourceTree = "<group>"; };
+		40EA82271BCFC4760029228F /* OPENSANS-SEMIBOLD.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OPENSANS-SEMIBOLD.TTF"; sourceTree = "<group>"; };
+		40EA82281BCFC4760029228F /* OPENSANS-SEMIBOLDITALIC.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OPENSANS-SEMIBOLDITALIC.TTF"; sourceTree = "<group>"; };
+		40EA82291BCFC4760029228F /* OPENSANS.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = OPENSANS.TTF; sourceTree = "<group>"; };
+		40EA822A1BCFC4760029228F /* OPENSANSLIGHT-ITALIC.TTF */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OPENSANSLIGHT-ITALIC.TTF"; sourceTree = "<group>"; };
+		40EA82361BCFC8A40029228F /* AppColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppColors.swift; sourceTree = "<group>"; };
+		40EA823C1BCFCCBE0029228F /* Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		40EA82461BCFCD690029228F /* TabsContainerView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabsContainerView.swift; sourceTree = "<group>"; };
+		40EA82491BCFCD720029228F /* TabBarButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarButton.swift; sourceTree = "<group>"; };
+		40EA824A1BCFCD720029228F /* TabBarButton.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TabBarButton.xib; sourceTree = "<group>"; };
+		40EA824D1BCFCDEC0029228F /* TabBarControllerSegue.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarControllerSegue.swift; sourceTree = "<group>"; };
+		40EA824F1BCFCE120029228F /* TabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
+		40EA82511BCFD05F0029228F /* DashboardViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardViewController.swift; sourceTree = "<group>"; };
+		40EA82531BCFD06F0029228F /* NewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsViewController.swift; sourceTree = "<group>"; };
+		40EA82551BCFD07B0029228F /* MessagesViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessagesViewController.swift; sourceTree = "<group>"; };
+		40EA82571BCFD09A0029228F /* TrainingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TrainingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -54,9 +94,13 @@
 		40EA81FE1BCFA3360029228F /* iTacit */ = {
 			isa = PBXGroup;
 			children = (
-				40EA81FF1BCFA3360029228F /* AppDelegate.swift */,
-				40EA82011BCFA3360029228F /* ViewController.swift */,
-				40EA82031BCFA3360029228F /* Main.storyboard */,
+				40EA821C1BCFC40C0029228F /* Resources */,
+				40EA82351BCFC8710029228F /* Utils */,
+				40EA823A1BCFCCBE0029228F /* Classes */,
+				40EA821B1BCFC40C0029228F /* Model */,
+				40EA821E1BCFC40C0029228F /* Views */,
+				40EA82171BCFC40C0029228F /* Controllers */,
+				40EA82201BCFC4170029228F /* Storyboard */,
 				40EA82121BCFB8E10029228F /* Supporting Files */,
 			);
 			path = iTacit;
@@ -65,11 +109,163 @@
 		40EA82121BCFB8E10029228F /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
-				40EA82081BCFA3360029228F /* LaunchScreen.storyboard */,
+				40EA81FF1BCFA3360029228F /* AppDelegate.swift */,
 				40EA82131BCFB8E10029228F /* Assets.xcassets */,
 				40EA82141BCFB8E10029228F /* Info.plist */,
 			);
 			path = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		40EA82171BCFC40C0029228F /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				40EA824F1BCFCE120029228F /* TabBarController.swift */,
+				40EA82511BCFD05F0029228F /* DashboardViewController.swift */,
+				40EA82531BCFD06F0029228F /* NewsViewController.swift */,
+				40EA82551BCFD07B0029228F /* MessagesViewController.swift */,
+				40EA82571BCFD09A0029228F /* TrainingViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		40EA821B1BCFC40C0029228F /* Model */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		40EA821C1BCFC40C0029228F /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				40EA821D1BCFC40C0029228F /* Fonts */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		40EA821D1BCFC40C0029228F /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				40EA82211BCFC4760029228F /* OPENSANS-BOLD.TTF */,
+				40EA82221BCFC4760029228F /* OPENSANS-BOLDITALIC.TTF */,
+				40EA82231BCFC4760029228F /* OPENSANS-EXTRABOLD.TTF */,
+				40EA82241BCFC4760029228F /* OPENSANS-EXTRABOLDITALIC.TTF */,
+				40EA82251BCFC4760029228F /* OPENSANS-ITALIC.TTF */,
+				40EA82261BCFC4760029228F /* OPENSANS-LIGHT.TTF */,
+				40EA82271BCFC4760029228F /* OPENSANS-SEMIBOLD.TTF */,
+				40EA82281BCFC4760029228F /* OPENSANS-SEMIBOLDITALIC.TTF */,
+				40EA82291BCFC4760029228F /* OPENSANS.TTF */,
+				40EA822A1BCFC4760029228F /* OPENSANSLIGHT-ITALIC.TTF */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		40EA821E1BCFC40C0029228F /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				40EA82441BCFCCEA0029228F /* DirectSubclasses */,
+				40EA82451BCFCD150029228F /* Controls */,
+				40EA82401BCFCCEA0029228F /* Cells */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		40EA82201BCFC4170029228F /* Storyboard */ = {
+			isa = PBXGroup;
+			children = (
+				40EA82031BCFA3360029228F /* Main.storyboard */,
+				40EA82081BCFA3360029228F /* LaunchScreen.storyboard */,
+			);
+			name = Storyboard;
+			sourceTree = "<group>";
+		};
+		40EA82351BCFC8710029228F /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				40EA82361BCFC8A40029228F /* AppColors.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		40EA823A1BCFCCBE0029228F /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				40EA823B1BCFCCBE0029228F /* Extensions */,
+				40EA823D1BCFCCBE0029228F /* Managers */,
+				40EA823E1BCFCCBE0029228F /* Segues */,
+			);
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		40EA823B1BCFCCBE0029228F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				40EA823C1BCFCCBE0029228F /* Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		40EA823D1BCFCCBE0029228F /* Managers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		40EA823E1BCFCCBE0029228F /* Segues */ = {
+			isa = PBXGroup;
+			children = (
+				40EA824D1BCFCDEC0029228F /* TabBarControllerSegue.swift */,
+			);
+			path = Segues;
+			sourceTree = "<group>";
+		};
+		40EA82401BCFCCEA0029228F /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				40EA82411BCFCCEA0029228F /* CollectionViewCells */,
+				40EA82421BCFCCEA0029228F /* TableViewCells */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		40EA82411BCFCCEA0029228F /* CollectionViewCells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = CollectionViewCells;
+			sourceTree = "<group>";
+		};
+		40EA82421BCFCCEA0029228F /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = TableViewCells;
+			sourceTree = "<group>";
+		};
+		40EA82441BCFCCEA0029228F /* DirectSubclasses */ = {
+			isa = PBXGroup;
+			children = (
+				40EA82461BCFCD690029228F /* TabsContainerView.swift */,
+			);
+			path = DirectSubclasses;
+			sourceTree = "<group>";
+		};
+		40EA82451BCFCD150029228F /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				40EA82481BCFCD720029228F /* TabBarButton */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
+		40EA82481BCFCD720029228F /* TabBarButton */ = {
+			isa = PBXGroup;
+			children = (
+				40EA82491BCFCD720029228F /* TabBarButton.swift */,
+				40EA824A1BCFCD720029228F /* TabBarButton.xib */,
+			);
+			path = TabBarButton;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -129,9 +325,20 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				40EA822E1BCFC4760029228F /* OPENSANS-EXTRABOLDITALIC.TTF in Resources */,
+				40EA82341BCFC4760029228F /* OPENSANSLIGHT-ITALIC.TTF in Resources */,
+				40EA82301BCFC4760029228F /* OPENSANS-LIGHT.TTF in Resources */,
+				40EA824C1BCFCD720029228F /* TabBarButton.xib in Resources */,
+				40EA822F1BCFC4760029228F /* OPENSANS-ITALIC.TTF in Resources */,
+				40EA82331BCFC4760029228F /* OPENSANS.TTF in Resources */,
 				40EA820A1BCFA3360029228F /* LaunchScreen.storyboard in Resources */,
 				40EA82151BCFB8E10029228F /* Assets.xcassets in Resources */,
+				40EA822B1BCFC4760029228F /* OPENSANS-BOLD.TTF in Resources */,
+				40EA822D1BCFC4760029228F /* OPENSANS-EXTRABOLD.TTF in Resources */,
 				40EA82051BCFA3360029228F /* Main.storyboard in Resources */,
+				40EA82311BCFC4760029228F /* OPENSANS-SEMIBOLD.TTF in Resources */,
+				40EA822C1BCFC4760029228F /* OPENSANS-BOLDITALIC.TTF in Resources */,
+				40EA82321BCFC4760029228F /* OPENSANS-SEMIBOLDITALIC.TTF in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,8 +349,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				40EA82021BCFA3360029228F /* ViewController.swift in Sources */,
+				40EA82561BCFD07B0029228F /* MessagesViewController.swift in Sources */,
+				40EA824E1BCFCDEC0029228F /* TabBarControllerSegue.swift in Sources */,
+				40EA82501BCFCE120029228F /* TabBarController.swift in Sources */,
+				40EA82471BCFCD690029228F /* TabsContainerView.swift in Sources */,
+				40EA82371BCFC8A40029228F /* AppColors.swift in Sources */,
 				40EA82001BCFA3360029228F /* AppDelegate.swift in Sources */,
+				40EA823F1BCFCCBE0029228F /* Extensions.swift in Sources */,
+				40EA82541BCFD06F0029228F /* NewsViewController.swift in Sources */,
+				40EA824B1BCFCD720029228F /* TabBarButton.swift in Sources */,
+				40EA82581BCFD09A0029228F /* TrainingViewController.swift in Sources */,
+				40EA82521BCFD05F0029228F /* DashboardViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,7 +380,6 @@
 				40EA82091BCFA3360029228F /* Base */,
 			);
 			name = LaunchScreen.storyboard;
-			path = ..;
 			sourceTree = "<group>";
 		};
 /* End PBXVariantGroup section */
