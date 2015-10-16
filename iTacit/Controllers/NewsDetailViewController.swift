@@ -9,42 +9,41 @@
 import UIKit
 
 class NewsDetailViewController: UIViewController {
+    
+    private struct Constants {
+        static let heightOfUserCell: CGFloat = 47
+        static let numberOfCells: Int = 5
+    }
 
+    @IBOutlet weak var tableView: UITableView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        tableView.estimatedRowHeight = 89
+        tableView.rowHeight = UITableViewAutomaticDimension
+        self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0)
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
+    var someText: String {
+        return "// MARK: - Navigation\n// In a storyboard-based application, you will often want to do a little preparation before navigation\noverride func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {\n// Get the new view controller using segue.destinationViewController.\n// Pass the selected object to the new view controller."
     }
-    
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
 
 }
-
 
 // MARK: - UITableViewDelegate
 
 extension NewsDetailViewController: UITableViewDelegate {
-    
-//    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-//        return 100
-//    }
-    
+ 
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 47
+        if indexPath.row == 0 {
+            return CGRectGetMaxX(UIScreen.mainScreen().bounds) * 360 / 640
+        } else if indexPath.row == 4 {
+            return Constants.heightOfUserCell
+        } else {
+            return UITableViewAutomaticDimension
+        }
     }
 }
 
@@ -52,14 +51,35 @@ extension NewsDetailViewController: UITableViewDelegate {
 
 extension NewsDetailViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return Constants.numberOfCells
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("UserTableViewCell", forIndexPath: indexPath) as! UserTableViewCell
         
-        cell.selectable = false
-        
-        return cell
+        if indexPath.row == 0 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("NewsDetailImageTableViewCell", forIndexPath: indexPath) as! NewsDetailImageTableViewCell
+            
+            return cell
+        } else if indexPath.row == 1 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("NewsDetailTitleTableViewCell", forIndexPath: indexPath) as! NewsDetailTitleTableViewCell
+            cell.newsdetailTitleLabel.text = someText
+            
+            return cell
+        } else if indexPath.row == 2 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("NewsDetailDescriptionTableViewCell", forIndexPath: indexPath) as! NewsDetailDescriptionTableViewCell
+            cell.newsDetailDescriptionLabel.text = someText
+            return cell
+        } else if indexPath.row == 3 {
+            let cell = tableView.dequeueReusableCellWithIdentifier("HashtagAndTimeTableViewCell", forIndexPath: indexPath) as! HashtagAndTimeTableViewCell
+            
+            cell.hashtagLabel.text = someText
+            return cell
+        } else {
+            let cell = tableView.dequeueReusableCellWithIdentifier("UserTableViewCell", forIndexPath: indexPath) as! UserTableViewCell
+            //        cell.selectable = false
+            
+            return cell
+        }
     }
 }
+
