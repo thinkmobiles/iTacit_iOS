@@ -52,6 +52,7 @@ class TabBarController: UIViewController {
 		if let currentViewController = currentViewController {
 			removeViewController(currentViewController)
 		}
+		UIControlEvents
 		currentViewController = child
 		addChildViewController(child)
 		child.didMoveToParentViewController(self)
