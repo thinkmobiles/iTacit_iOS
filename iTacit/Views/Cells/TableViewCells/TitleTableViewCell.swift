@@ -8,9 +8,9 @@
 
 import UIKit
 
-class NewsDetailTitleTableViewCell: UITableViewCell {
+class TitleTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var newsdetailTitleLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

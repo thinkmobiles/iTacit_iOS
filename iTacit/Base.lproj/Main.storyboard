@@ -302,7 +302,7 @@
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NewsDetailImageTableViewCell" rowHeight="157" id="7UG-7L-sRf" customClass="NewsDetailImageTableViewCell" customModule="iTacit" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ImageTableViewCell" rowHeight="157" id="7UG-7L-sRf" customClass="ImageTableViewCell" customModule="iTacit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="320" height="157"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="7UG-7L-sRf" id="gac-1m-A4V">
@@ -327,10 +327,10 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <outlet property="newsDetailImageView" destination="ct7-3s-o0F" id="p93-06-QLc"/>
+                                            <outlet property="mewsImageView" destination="gac-1m-A4V" id="flF-qZ-gCD"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NewsDetailTitleTableViewCell" rowHeight="75" id="8Th-ux-LuA" customClass="NewsDetailTitleTableViewCell" customModule="iTacit" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TitleTableViewCell" rowHeight="75" id="8Th-ux-LuA" customClass="TitleTableViewCell" customModule="iTacit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="185" width="320" height="75"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="8Th-ux-LuA" id="6Cr-w8-s8Y">
@@ -356,10 +356,10 @@
                                         <animations/>
                                         <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <outlet property="newsdetailTitleLabel" destination="MZP-DT-Jcq" id="MBA-JQ-hiT"/>
+                                            <outlet property="titleLabel" destination="MZP-DT-Jcq" id="tcK-Dy-UPi"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="NewsDetailDescriptionTableViewCell" rowHeight="56" id="rSc-gN-smU" customClass="NewsDetailDescriptionTableViewCell" customModule="iTacit" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="DescriptionTableViewCell" rowHeight="56" id="rSc-gN-smU" customClass="DescriptionTableViewCell" customModule="iTacit" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="260" width="320" height="56"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="rSc-gN-smU" id="Ljw-uH-plh">
@@ -386,7 +386,7 @@
                                         <animations/>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
-                                            <outlet property="newsDetailDescriptionLabel" destination="g8H-su-ra1" id="HRl-8V-mwA"/>
+                                            <outlet property="descriptionLabel" destination="g8H-su-ra1" id="KRE-Nl-tkv"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="HashtagAndTimeTableViewCell" rowHeight="106" id="UF7-Qv-LSf" customClass="HashtagAndTimeTableViewCell" customModule="iTacit" customModuleProvider="target">

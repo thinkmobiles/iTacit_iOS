@@ -8,9 +8,9 @@
 
 import UIKit
 
-class NewsDetailDescriptionTableViewCell: UITableViewCell {
+class DescriptionTableViewCell: UITableViewCell {
 
-    @IBOutlet weak var newsDetailDescriptionLabel: UILabel!
+    @IBOutlet weak var descriptionLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -22,5 +22,4 @@ class NewsDetailDescriptionTableViewCell: UITableViewCell {
 
         // Configure the view for the selected state
     }
-
 }

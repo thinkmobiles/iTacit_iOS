@@ -57,17 +57,17 @@ extension NewsDetailViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         
         if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("NewsDetailImageTableViewCell", forIndexPath: indexPath) as! NewsDetailImageTableViewCell
+            let cell = tableView.dequeueReusableCellWithIdentifier("ImageTableViewCell", forIndexPath: indexPath) as! ImageTableViewCell
             
             return cell
         } else if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("NewsDetailTitleTableViewCell", forIndexPath: indexPath) as! NewsDetailTitleTableViewCell
-            cell.newsdetailTitleLabel.text = someText
+            let cell = tableView.dequeueReusableCellWithIdentifier("TitleTableViewCell", forIndexPath: indexPath) as! TitleTableViewCell
+            cell.titleLabel.text = someText
             
             return cell
         } else if indexPath.row == 2 {
-            let cell = tableView.dequeueReusableCellWithIdentifier("NewsDetailDescriptionTableViewCell", forIndexPath: indexPath) as! NewsDetailDescriptionTableViewCell
-            cell.newsDetailDescriptionLabel.text = someText
+            let cell = tableView.dequeueReusableCellWithIdentifier("DescriptionTableViewCell", forIndexPath: indexPath) as! DescriptionTableViewCell
+            cell.descriptionLabel.text = someText
             return cell
         } else if indexPath.row == 3 {
             let cell = tableView.dequeueReusableCellWithIdentifier("HashtagAndTimeTableViewCell", forIndexPath: indexPath) as! HashtagAndTimeTableViewCell
