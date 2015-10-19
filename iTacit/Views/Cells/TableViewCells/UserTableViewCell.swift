@@ -40,12 +40,8 @@ class UserTableViewCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        if selected {
-            selectAuthorButton.setImage(UIImage(named: "btn_close"), forState: .Normal)
-        } else {
-            selectAuthorButton.setImage(UIImage(named: "btn_more"), forState: .Normal)
-        }
+
+        selectAuthorButton.selected = selected
     }
 
 }
