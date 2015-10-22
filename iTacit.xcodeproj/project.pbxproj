@@ -7,6 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		350644C31BD7783300D51D5C /* ListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350644C21BD7783300D51D5C /* ListHeaderView.swift */; settings = {ASSET_TAGS = (); }; };
+		350644C61BD7788400D51D5C /* ListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 350644C51BD7788400D51D5C /* ListHeaderView.xib */; settings = {ASSET_TAGS = (); }; };
+		350644C81BD784A800D51D5C /* DateHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350644C71BD784A800D51D5C /* DateHeaderView.swift */; settings = {ASSET_TAGS = (); }; };
+		350644CA1BD784B300D51D5C /* DateHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 350644C91BD784B300D51D5C /* DateHeaderView.xib */; settings = {ASSET_TAGS = (); }; };
 		3563B9981BD117BE009BE696 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563B9971BD117BE009BE696 /* UserTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		3563B99A1BD11B43009BE696 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563B9991BD11B43009BE696 /* NewsDetailViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		3563B99C1BD11EE5009BE696 /* images.jpeg in Resources */ = {isa = PBXBuildFile; fileRef = 3563B99B1BD11EE5009BE696 /* images.jpeg */; settings = {ASSET_TAGS = (); }; };
@@ -17,8 +21,6 @@
 		3DEFA79D1BD5040A00596A2B /* FilterNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFA79C1BD5040A00596A2B /* FilterNewsViewController.swift */; settings = {ASSET_TAGS = (); }; };
 		3DEFA79F1BD5056E00596A2B /* DatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFA79E1BD5056E00596A2B /* DatePickerTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		3DEFA7A11BD50B7100596A2B /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFA7A01BD50B7100596A2B /* CategoryTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
-		3DEFA7A51BD50F9E00596A2B /* ListHeaderCellTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFA7A41BD50F9E00596A2B /* ListHeaderCellTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
-		3DEFA7A91BD50FD900596A2B /* DateHeaderTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFA7A81BD50FD900596A2B /* DateHeaderTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		4014E4EC1BD0FD4F00837B3E /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4014E4EB1BD0FD4F00837B3E /* NewsTableViewCell.swift */; settings = {ASSET_TAGS = (); }; };
 		40EA82001BCFA3360029228F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EA81FF1BCFA3360029228F /* AppDelegate.swift */; };
 		40EA82051BCFA3360029228F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40EA82031BCFA3360029228F /* Main.storyboard */; };
@@ -48,6 +50,10 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		350644C21BD7783300D51D5C /* ListHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = ListHeaderView.swift; path = HeaderViews/ListHeaderView.swift; sourceTree = "<group>"; };
+		350644C51BD7788400D51D5C /* ListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListHeaderView.xib; sourceTree = "<group>"; };
+		350644C71BD784A800D51D5C /* DateHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHeaderView.swift; sourceTree = "<group>"; };
+		350644C91BD784B300D51D5C /* DateHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateHeaderView.xib; sourceTree = "<group>"; };
 		3563B9971BD117BE009BE696 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		3563B9991BD11B43009BE696 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 		3563B99B1BD11EE5009BE696 /* images.jpeg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = images.jpeg; sourceTree = "<group>"; };
@@ -58,8 +64,6 @@
 		3DEFA79C1BD5040A00596A2B /* FilterNewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterNewsViewController.swift; sourceTree = "<group>"; };
 		3DEFA79E1BD5056E00596A2B /* DatePickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerTableViewCell.swift; sourceTree = "<group>"; };
 		3DEFA7A01BD50B7100596A2B /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
-		3DEFA7A41BD50F9E00596A2B /* ListHeaderCellTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListHeaderCellTableViewCell.swift; sourceTree = "<group>"; };
-		3DEFA7A81BD50FD900596A2B /* DateHeaderTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHeaderTableViewCell.swift; sourceTree = "<group>"; };
 		4014E4EB1BD0FD4F00837B3E /* NewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		40EA81FC1BCFA3360029228F /* iTacit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTacit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40EA81FF1BCFA3360029228F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = ../AppDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +105,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		350644C41BD7783D00D51D5C /* HeaderViews */ = {
+			isa = PBXGroup;
+			children = (
+				350644C21BD7783300D51D5C /* ListHeaderView.swift */,
+				350644C51BD7788400D51D5C /* ListHeaderView.xib */,
+				350644C71BD784A800D51D5C /* DateHeaderView.swift */,
+				350644C91BD784B300D51D5C /* DateHeaderView.xib */,
+			);
+			name = HeaderViews;
+			sourceTree = "<group>";
+		};
 		40EA81F31BCFA3360029228F = {
 			isa = PBXGroup;
 			children = (
@@ -195,6 +210,7 @@
 				40EA82441BCFCCEA0029228F /* DirectSubclasses */,
 				40EA82451BCFCD150029228F /* Controls */,
 				40EA82401BCFCCEA0029228F /* Cells */,
+				350644C41BD7783D00D51D5C /* HeaderViews */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -268,8 +284,6 @@
 				3563B9A31BD12FAE009BE696 /* HashtagAndTimeTableViewCell.swift */,
 				3DEFA79E1BD5056E00596A2B /* DatePickerTableViewCell.swift */,
 				3DEFA7A01BD50B7100596A2B /* CategoryTableViewCell.swift */,
-				3DEFA7A41BD50F9E00596A2B /* ListHeaderCellTableViewCell.swift */,
-				3DEFA7A81BD50FD900596A2B /* DateHeaderTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -359,6 +373,7 @@
 				40EA822E1BCFC4760029228F /* OPENSANS-EXTRABOLDITALIC.TTF in Resources */,
 				40EA82341BCFC4760029228F /* OPENSANSLIGHT-ITALIC.TTF in Resources */,
 				40EA82301BCFC4760029228F /* OPENSANS-LIGHT.TTF in Resources */,
+				350644C61BD7788400D51D5C /* ListHeaderView.xib in Resources */,
 				40EA824C1BCFCD720029228F /* TabBarButton.xib in Resources */,
 				40EA822F1BCFC4760029228F /* OPENSANS-ITALIC.TTF in Resources */,
 				40EA82331BCFC4760029228F /* OPENSANS.TTF in Resources */,
@@ -368,6 +383,7 @@
 				40EA822D1BCFC4760029228F /* OPENSANS-EXTRABOLD.TTF in Resources */,
 				40EA82051BCFA3360029228F /* Main.storyboard in Resources */,
 				3563B99C1BD11EE5009BE696 /* images.jpeg in Resources */,
+				350644CA1BD784B300D51D5C /* DateHeaderView.xib in Resources */,
 				40EA82311BCFC4760029228F /* OPENSANS-SEMIBOLD.TTF in Resources */,
 				40EA822C1BCFC4760029228F /* OPENSANS-BOLDITALIC.TTF in Resources */,
 				40EA82321BCFC4760029228F /* OPENSANS-SEMIBOLDITALIC.TTF in Resources */,
@@ -388,7 +404,6 @@
 				40EA82501BCFCE120029228F /* TabBarController.swift in Sources */,
 				3563B9A21BD12E40009BE696 /* DescriptionTableViewCell.swift in Sources */,
 				3563B9981BD117BE009BE696 /* UserTableViewCell.swift in Sources */,
-				3DEFA7A51BD50F9E00596A2B /* ListHeaderCellTableViewCell.swift in Sources */,
 				40EA82471BCFCD690029228F /* TabsContainerView.swift in Sources */,
 				40EA82371BCFC8A40029228F /* AppColors.swift in Sources */,
 				40EA82001BCFA3360029228F /* AppDelegate.swift in Sources */,
@@ -396,14 +411,15 @@
 				3DEFA7A11BD50B7100596A2B /* CategoryTableViewCell.swift in Sources */,
 				40EA82541BCFD06F0029228F /* NewsViewController.swift in Sources */,
 				3563B9A01BD12CCB009BE696 /* TitleTableViewCell.swift in Sources */,
+				350644C81BD784A800D51D5C /* DateHeaderView.swift in Sources */,
 				3563B99A1BD11B43009BE696 /* NewsDetailViewController.swift in Sources */,
 				40EA824B1BCFCD720029228F /* TabBarButton.swift in Sources */,
-				3DEFA7A91BD50FD900596A2B /* DateHeaderTableViewCell.swift in Sources */,
 				40EA82581BCFD09A0029228F /* TrainingViewController.swift in Sources */,
 				3563B9A41BD12FAE009BE696 /* HashtagAndTimeTableViewCell.swift in Sources */,
 				40EA82521BCFD05F0029228F /* DashboardViewController.swift in Sources */,
 				3563B99E1BD1288A009BE696 /* ImageTableViewCell.swift in Sources */,
 				3DEFA79F1BD5056E00596A2B /* DatePickerTableViewCell.swift in Sources */,
+				350644C31BD7783300D51D5C /* ListHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

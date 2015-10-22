@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="8191" systemVersion="15A284" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="8154"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OPENSANS-SEMIBOLD.TTF">
+            <string>OpenSans-Semibold</string>
+            <string>OpenSans-Semibold</string>
+        </mutableArray>
+        <mutableArray key="OPENSANS.TTF">
+            <string>OpenSans</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="DateHeaderView" customModule="iTacit" customModuleProvider="target">
+            <connections>
+                <outlet property="addEndDateButton" destination="DUG-hK-bzZ" id="8Pc-Kx-DpQ"/>
+                <outlet property="addStartDateButton" destination="Ecw-rc-XA7" id="39a-d1-eyw"/>
+                <outlet property="dateLabel" destination="Kev-jC-EeL" id="s7X-Tk-SL5"/>
+                <outlet property="expandButton" destination="Zus-vt-TIV" id="1FB-80-WV3"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="600" height="93"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oq0-0a-TYH" userLabel="SeparatorView">
+                    <rect key="frame" x="0.0" y="93" width="600" height="0.0"/>
+                    <animations/>
+                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="0.5" id="ee1-dk-r4w"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUG-hK-bzZ">
+                    <rect key="frame" x="313" y="54" width="264" height="27"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="13"/>
+                    <state key="normal" title="Add Date">
+                        <color key="titleColor" red="0.35294117650000001" green="0.35686274509999999" blue="0.3803921569" alpha="1" colorSpace="calibratedRGB"/>
+                    </state>
+                    <connections>
+                        <action selector="addEndDateButtonAction:" destination="-1" eventType="touchUpInside" id="1WC-HS-1to"/>
+                    </connections>
+                </button>
+                <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8ui-yq-OgC">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="39"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Date: Change Date" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kev-jC-EeL">
+                            <rect key="frame" x="19" y="11" width="114" height="18"/>
+                            <animations/>
+                            <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
+                            <color key="textColor" red="0.61568627450000002" green="0.61568627450000002" blue="0.63529411759999999" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zus-vt-TIV" userLabel="ExpandButton">
+                            <rect key="frame" x="8" y="8" width="584" height="23"/>
+                            <animations/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="23" id="JQz-re-jWP"/>
+                            </constraints>
+                            <connections>
+                                <action selector="expandButtonAction:" destination="-1" eventType="touchUpInside" id="lh5-tJ-svV"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <animations/>
+                    <color key="backgroundColor" red="0.96078431369999995" green="0.96470588239999999" blue="0.97647058819999999" alpha="1" colorSpace="calibratedRGB"/>
+                    <constraints>
+                        <constraint firstAttribute="trailing" secondItem="Zus-vt-TIV" secondAttribute="trailing" constant="8" id="JAX-dd-lCE"/>
+                        <constraint firstItem="Kev-jC-EeL" firstAttribute="centerY" secondItem="8ui-yq-OgC" secondAttribute="centerY" id="L1l-Hz-FL3"/>
+                        <constraint firstAttribute="height" constant="39" id="NhT-5x-gzP"/>
+                        <constraint firstAttribute="bottom" secondItem="Zus-vt-TIV" secondAttribute="bottom" constant="8" id="SA3-bX-Wk8"/>
+                        <constraint firstItem="Zus-vt-TIV" firstAttribute="top" secondItem="8ui-yq-OgC" secondAttribute="top" constant="8" id="bCk-se-Hep"/>
+                        <constraint firstItem="Zus-vt-TIV" firstAttribute="leading" secondItem="8ui-yq-OgC" secondAttribute="leading" constant="8" id="eX8-it-X2Q"/>
+                        <constraint firstItem="Kev-jC-EeL" firstAttribute="leading" secondItem="8ui-yq-OgC" secondAttribute="leading" constant="19" id="uFI-u0-fJ1"/>
+                    </constraints>
+                </view>
+                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ecw-rc-XA7">
+                    <rect key="frame" x="23" y="54" width="264" height="27"/>
+                    <animations/>
+                    <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="13"/>
+                    <color key="tintColor" red="0.0" green="0.68235294120000001" blue="0.93725490199999995" alpha="1" colorSpace="calibratedRGB"/>
+                    <state key="normal" title="Add Date"/>
+                    <connections>
+                        <action selector="addStartDateButtonAction:" destination="-1" eventType="touchUpInside" id="yPN-pw-BG7"/>
+                    </connections>
+                </button>
+            </subviews>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="8ui-yq-OgC" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="1wt-AE-pIG"/>
+                <constraint firstItem="oq0-0a-TYH" firstAttribute="trailing" secondItem="8ui-yq-OgC" secondAttribute="trailing" id="HM7-73-CMD"/>
+                <constraint firstAttribute="trailing" secondItem="oq0-0a-TYH" secondAttribute="trailing" id="LNC-HI-pTN"/>
+                <constraint firstItem="DUG-hK-bzZ" firstAttribute="leading" secondItem="Ecw-rc-XA7" secondAttribute="trailing" constant="26" id="QSb-hL-qZM"/>
+                <constraint firstItem="oq0-0a-TYH" firstAttribute="leading" secondItem="8ui-yq-OgC" secondAttribute="leading" id="Qum-1S-sXa"/>
+                <constraint firstAttribute="bottom" secondItem="oq0-0a-TYH" secondAttribute="bottom" id="SjX-tV-RXi"/>
+                <constraint firstItem="oq0-0a-TYH" firstAttribute="top" secondItem="Ecw-rc-XA7" secondAttribute="bottom" constant="12" id="Ycm-OI-Xkv"/>
+                <constraint firstItem="Ecw-rc-XA7" firstAttribute="top" secondItem="8ui-yq-OgC" secondAttribute="bottom" constant="15" id="d6b-Sh-WXC"/>
+                <constraint firstItem="Ecw-rc-XA7" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="23" id="i9Q-dc-WsX"/>
+                <constraint firstItem="DUG-hK-bzZ" firstAttribute="width" secondItem="Ecw-rc-XA7" secondAttribute="width" id="k7Q-9d-drN"/>
+                <constraint firstItem="DUG-hK-bzZ" firstAttribute="height" secondItem="Ecw-rc-XA7" secondAttribute="height" id="kp1-4V-M9q"/>
+                <constraint firstItem="oq0-0a-TYH" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" id="n00-IY-lCj"/>
+                <constraint firstAttribute="trailing" secondItem="DUG-hK-bzZ" secondAttribute="trailing" constant="23" id="rYA-G8-HYx"/>
+                <constraint firstItem="DUG-hK-bzZ" firstAttribute="centerY" secondItem="Ecw-rc-XA7" secondAttribute="centerY" id="yNF-bs-DeX"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="314" y="133.5"/>
+        </view>
+    </objects>
+</document>
