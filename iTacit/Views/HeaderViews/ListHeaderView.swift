@@ -16,11 +16,25 @@ class ListHeaderView: UIView {
     
     @IBOutlet weak var expandButton: UIButton!
     @IBOutlet weak var headerTitleLabel: UILabel!
+    @IBOutlet weak var numberOfCellsLabel: UILabel!
+    @IBOutlet weak var disclosureImageView: UIImageView!
     
     var delegate: ListHeaderViewDelegate?
+    
     var section: Int? {
         didSet {
             headerTitleLabel.text = section == 0 ? "Author: " : "Category: "
+        }
+    }
+    
+    var isExpanded: Bool? {
+        didSet {
+            if isExpanded == true {
+                //TODO: replace images names
+                disclosureImageView.image = UIImage(named: "btn_drop_show")
+            } else  {
+                disclosureImageView.image = UIImage(named: "btn_drop_hide")
+            }
         }
     }
 

@@ -92,6 +92,12 @@ extension FilterNewsViewController: UITableViewDelegate {
             header.section = section
             header.delegate = self
             
+            if indexPathesArray.contains(section) {
+                header.isExpanded = false
+            } else {
+                header.isExpanded = true
+            }
+            
             return header
         } else {
             let header = DateHeaderView(frame: CGRect(x: 0, y: 0, width: CGRectGetMaxX(self.view.frame), height: Constants.dateHeaderViewHeight))
