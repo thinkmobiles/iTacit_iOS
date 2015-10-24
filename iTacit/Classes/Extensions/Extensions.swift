@@ -3,7 +3,7 @@
 //  Sensei
 //
 //  Created by Sauron Black on 6/8/15.
-//  Copyright (c) 2015 ThinkMobiles. All rights reserved.
+//  Copyright (c) 2015 iTacit. All rights reserved.
 //
 
 import UIKit
@@ -49,4 +49,26 @@ func + <K,V>(left: [K:V], right: [K:V]) -> [K:V] {
         map[k] = v
     }
     return map
+}
+
+// MARK: - String
+
+extension String {
+
+	func rangeFromNSRange(nsRange: NSRange) -> Range<String.Index>? {
+		let from16 = utf16.startIndex.advancedBy(nsRange.location, limit: utf16.endIndex)
+		if let from = String.Index(from16, within: self),
+			let to = String.Index(from16.advancedBy(nsRange.length, limit: utf16.endIndex), within: self) {
+				return from ..< to
+		}
+		return nil
+	}
+
+	var isEmptyOrWhitespaces: Bool {
+		if isEmpty {
+			return true
+		}
+
+		return stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).isEmpty
+	}
 }

@@ -3,7 +3,7 @@
 //  TabBarController
 //
 //  Created by Sauron Black on 10/14/15.
-//  Copyright © 2015 Mordor. All rights reserved.
+//  Copyright © 2015 iTacit. All rights reserved.
 //
 
 import UIKit

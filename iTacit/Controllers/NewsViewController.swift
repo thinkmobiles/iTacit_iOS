@@ -9,6 +9,24 @@
 import UIKit
 
 class NewsViewController: UIViewController {
+
+	@IBOutlet weak var tableView: UITableView!
+	@IBOutlet weak var tagSearchControl: TagSearchControl! {
+		didSet {
+			tagSearchControl.delegate = self
+		}
+	}
+
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		clearSelection()
+	}
+
+	private func clearSelection() {
+		if let selectedIndexPath = tableView.indexPathForSelectedRow {
+			tableView.deselectRowAtIndexPath(selectedIndexPath, animated: false)
+		}
+	}
 	
 }
 
@@ -34,4 +52,12 @@ extension NewsViewController: UITableViewDataSource {
         
         return cell
     }
+}
+
+extension NewsViewController: TagSearchControlDelegate {
+
+	func tagsSearchControl(tagsSearchControl: TagSearchControl, needsAutocompletionWithCompletion completion: (strings: [String]) -> Void) {
+		let strings = ["lorem ipsum", "lorem", "lorem ipsum", "Lorem ipsum dolor"]
+		return completion(strings: strings)
+	}
 }
