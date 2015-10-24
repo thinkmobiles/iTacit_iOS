@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <deployment identifier="iOS"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <mutableArray key="OPENSANS.TTF">
+            <string>OpenSans</string>
+        </mutableArray>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="InputCollectionViewCell" id="gTV-IL-0wX" customClass="InputCollectionViewCell" customModule="iTacit" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="88" height="27"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="88" height="27"/>
+                <subviews>
+                    <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="VNo-4T-v4p" customClass="ExtendedTextField" customModule="iTacit" customModuleProvider="target">
+                        <rect key="frame" x="0.0" y="0.0" width="88" height="27"/>
+                        <animations/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <color key="tintColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <gestureRecognizers/>
+                        <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                        <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="14"/>
+                        <textInputTraits key="textInputTraits"/>
+                        <connections>
+                            <action selector="didChangeText" destination="gTV-IL-0wX" eventType="editingChanged" id="Csp-S6-Om9"/>
+                            <outlet property="delegate" destination="gTV-IL-0wX" id="Een-VJ-fgP"/>
+                        </connections>
+                    </textField>
+                </subviews>
+                <animations/>
+                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            </view>
+            <animations/>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="VNo-4T-v4p" secondAttribute="bottom" id="0le-ze-pzu"/>
+                <constraint firstAttribute="trailing" secondItem="VNo-4T-v4p" secondAttribute="trailing" id="S3V-iM-Tvf"/>
+                <constraint firstItem="VNo-4T-v4p" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Tmb-Fj-ZMI"/>
+                <constraint firstItem="VNo-4T-v4p" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="sLX-WT-xXk"/>
+            </constraints>
+            <size key="customSize" width="88" height="31"/>
+            <connections>
+                <outlet property="textField" destination="VNo-4T-v4p" id="Akc-xh-hx5"/>
+            </connections>
+            <point key="canvasLocation" x="177" y="174.5"/>
+        </collectionViewCell>
+    </objects>
+</document>
