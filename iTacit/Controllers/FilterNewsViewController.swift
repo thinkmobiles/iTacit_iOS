@@ -16,7 +16,7 @@ class FilterNewsViewController: UIViewController {
     }
     
     var showFirstSection: Bool = true;
-    var indexPathesArray: [Int] = []
+    var indexPathesArray: [Int] = [2]
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -63,6 +63,8 @@ extension FilterNewsViewController: UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("DatePickerTableViewCell") as! DatePickerTableViewCell
+            cell.delegate = self
+            
             return cell
         }
     }
@@ -124,5 +126,17 @@ extension FilterNewsViewController: ListHeaderViewDelegate {
                 manageCellsInSections(section)
             }
         }
+    }
+}
+
+// MARK: - DatePickerCellDelegate
+
+extension FilterNewsViewController: DatePickerCellDelegate {
+    func didPressedDoneButton() {
+        
+    }
+    
+    func didPressedCancelButton() {
+        manageCellsInSections(2)
     }
 }

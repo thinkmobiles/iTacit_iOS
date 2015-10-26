@@ -46,10 +46,12 @@ class DateHeaderView: UIView {
     // MARK: - IBAction
     
     @IBAction func expandButtonAction(sender: UIButton) {
-        delegate?.didSelectHeaderWithSection(self)
     }
     
     @IBAction func addStartDateButtonAction(sender: UIButton) {
+        if addStartDateButton.titleLabel?.text == Constants.ButtonText {
+            delegate?.didSelectHeaderWithSection(self)
+        }
     }
     
     @IBAction func addEndDateButtonAction(sender: UIButton) {

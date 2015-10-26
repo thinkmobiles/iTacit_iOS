@@ -8,7 +8,14 @@
 
 import UIKit
 
+protocol DatePickerCellDelegate {
+    func didPressedCancelButton()
+    func didPressedDoneButton()
+}
+
 class DatePickerTableViewCell: UITableViewCell {
+    
+    var delegate: DatePickerCellDelegate?
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -21,4 +28,14 @@ class DatePickerTableViewCell: UITableViewCell {
         // Configure the view for the selected state
     }
 
+    // MARK: - IBAction
+    
+    @IBAction func camcelButtonAction(sender: UIButton) {
+        delegate?.didPressedCancelButton()
+    }
+    
+    @IBAction func doneButtonAction(sender: UIButton) {
+        delegate?.didPressedDoneButton()
+    }
+    
 }

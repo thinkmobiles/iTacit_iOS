@@ -353,7 +353,7 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <outlet property="mewsImageView" destination="gac-1m-A4V" id="flF-qZ-gCD"/>
+                                            <outlet property="mewsImageView" destination="ct7-3s-o0F" id="WXW-et-5Fk"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="TitleTableViewCell" rowHeight="75" id="8Th-ux-LuA" customClass="TitleTableViewCell" customModule="iTacit" customModuleProvider="target">
@@ -755,6 +755,9 @@
                                                     <state key="normal" title="CANCEL">
                                                         <color key="titleColor" red="0.67843137254901964" green="0.67843137254901964" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="camcelButtonAction:" destination="aSX-Bl-mGt" eventType="touchUpInside" id="uO6-xT-kMb"/>
+                                                    </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="U56-Ft-77M">
                                                     <rect key="frame" x="203" y="149" width="194" height="30"/>
@@ -786,6 +789,9 @@
                                                     <state key="normal" title="DONE">
                                                         <color key="titleColor" red="0.0" green="0.68235294117647061" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                                     </state>
+                                                    <connections>
+                                                        <action selector="doneButtonAction:" destination="aSX-Bl-mGt" eventType="touchUpInside" id="dye-yF-ZjD"/>
+                                                    </connections>
                                                 </button>
                                             </subviews>
                                             <animations/>
