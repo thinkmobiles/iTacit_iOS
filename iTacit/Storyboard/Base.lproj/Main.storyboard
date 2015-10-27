@@ -817,6 +817,9 @@
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
+                                        <connections>
+                                            <outlet property="datePicker" destination="2y5-qt-AYX" id="dRv-gg-J2L"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <connections>

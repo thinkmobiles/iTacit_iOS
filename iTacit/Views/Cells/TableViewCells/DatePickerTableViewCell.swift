@@ -9,14 +9,16 @@
 import UIKit
 
 protocol DatePickerCellDelegate {
-    func didPressedCancelButton()
-    func didPressedDoneButton()
+    func didPressCancelButton()
+    func didPressDoneButtonWithDate(date: NSDate)
 }
 
 class DatePickerTableViewCell: UITableViewCell {
     
     var delegate: DatePickerCellDelegate?
 
+    @IBOutlet weak var datePicker: UIDatePicker!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
@@ -31,11 +33,10 @@ class DatePickerTableViewCell: UITableViewCell {
     // MARK: - IBAction
     
     @IBAction func camcelButtonAction(sender: UIButton) {
-        delegate?.didPressedCancelButton()
+        delegate?.didPressCancelButton()
     }
     
     @IBAction func doneButtonAction(sender: UIButton) {
-        delegate?.didPressedDoneButton()
+        delegate?.didPressDoneButtonWithDate(datePicker.date)
     }
-    
 }

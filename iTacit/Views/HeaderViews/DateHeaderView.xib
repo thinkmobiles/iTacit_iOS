@@ -35,7 +35,7 @@
                         <constraint firstAttribute="height" constant="0.5" id="ee1-dk-r4w"/>
                     </constraints>
                 </view>
-                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUG-hK-bzZ">
+                <button opaque="NO" clipsSubviews="YES" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DUG-hK-bzZ">
                     <rect key="frame" x="313" y="54" width="264" height="27"/>
                     <animations/>
                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="13"/>
@@ -79,7 +79,7 @@
                         <constraint firstItem="Kev-jC-EeL" firstAttribute="leading" secondItem="8ui-yq-OgC" secondAttribute="leading" constant="19" id="uFI-u0-fJ1"/>
                     </constraints>
                 </view>
-                <button opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ecw-rc-XA7">
+                <button opaque="NO" clipsSubviews="YES" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ecw-rc-XA7">
                     <rect key="frame" x="23" y="54" width="264" height="27"/>
                     <animations/>
                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="13"/>

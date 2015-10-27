@@ -10,6 +10,8 @@ import UIKit
 
 protocol ListHeaderViewDelegate {
     func didSelectHeaderWithSection(headerView: UIView)
+    func didSelectHeaderWithSection(headerView: UIView, button: UIButton)
+
 }
 
 class ListHeaderView: UIView {
@@ -30,7 +32,6 @@ class ListHeaderView: UIView {
     var isExpanded: Bool? {
         didSet {
             if isExpanded == true {
-                //TODO: replace images names
                 disclosureImageView.image = UIImage(named: "btn_drop_show")
             } else  {
                 disclosureImageView.image = UIImage(named: "btn_drop_hide")

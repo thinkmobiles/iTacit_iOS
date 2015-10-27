@@ -17,6 +17,9 @@ class FilterNewsViewController: UIViewController {
     
     var showFirstSection: Bool = true;
     var indexPathesArray: [Int] = [2]
+    var selectedDateButtonTag: Int!
+    
+    var searchModel = SearchNewsModel()
 
     @IBOutlet weak var tableView: UITableView!
     
@@ -26,9 +29,23 @@ class FilterNewsViewController: UIViewController {
     
     // MARK: - Private
     
-    func manageCellsInSections(section: Int) {
+    func showOrHideCellsIn(section section: Int) {
         if indexPathesArray.contains(section) {
             indexPathesArray.removeAtIndex(indexPathesArray.indexOf(section)!)
+            if section == 2 {
+                CATransaction.begin()
+                
+                CATransaction.setCompletionBlock { [weak self] () -> Void in
+                    let indexPath = NSIndexPath(forRow:0, inSection: section)
+                    self?.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
+                }
+                
+                tableView.beginUpdates()
+                tableView.reloadSections(NSIndexSet(index: section), withRowAnimation: .None)
+                tableView.endUpdates()
+                
+                CATransaction.commit()
+            }
         } else {
             indexPathesArray.append(section)
         }
@@ -105,6 +122,7 @@ extension FilterNewsViewController: UITableViewDelegate {
             let header = DateHeaderView(frame: CGRect(x: 0, y: 0, width: CGRectGetMaxX(self.view.frame), height: Constants.dateHeaderViewHeight))
             header.section = section
             header.delegate = self
+            header.searchNewsModel = searchModel
             
             return header
         }
@@ -118,25 +136,38 @@ extension FilterNewsViewController: ListHeaderViewDelegate {
     func didSelectHeaderWithSection(headerView: UIView) {
         if headerView is ListHeaderView {
             if let section = (headerView as! ListHeaderView).section {
-                manageCellsInSections(section)
+                showOrHideCellsIn(section: section)
             }
         }
         if headerView is DateHeaderView {
             if let section = (headerView as! DateHeaderView).section {
-                manageCellsInSections(section)
+                showOrHideCellsIn(section: section)
             }
         }
+    }
+    
+    func didSelectHeaderWithSection(headerView: UIView, button: UIButton) {
+        didSelectHeaderWithSection(headerView)
+        selectedDateButtonTag = button.tag
     }
 }
 
 // MARK: - DatePickerCellDelegate
 
 extension FilterNewsViewController: DatePickerCellDelegate {
-    func didPressedDoneButton() {
-        
+    
+    func didPressDoneButtonWithDate(date: NSDate) {
+
+        if selectedDateButtonTag == 1 {
+            searchModel.startDate = date
+            didPressCancelButton()
+        } else {
+            searchModel.endDate = date
+            didPressCancelButton()
+        }
     }
     
-    func didPressedCancelButton() {
-        manageCellsInSections(2)
+    func didPressCancelButton() {
+        showOrHideCellsIn(section: 2)
     }
 }
