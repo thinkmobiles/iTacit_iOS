@@ -22,9 +22,16 @@ class FilterNewsViewController: UIViewController {
     var searchModel = SearchNewsModel()
 
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var searchButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    }
+    
+    override func loadView() {
+        super.loadView()
+        
+        searchButton.setTitle(LocalizationService.LocalizedString("SEARCH"), forState: .Normal)
     }
     
     // MARK: - Private

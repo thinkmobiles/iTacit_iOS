@@ -10,6 +10,7 @@ import UIKit
 
 class NewsViewController: UIViewController {
 
+    @IBOutlet weak var newsTitle: UILabel!
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var tagSearchControl: TagSearchControl! {
 		didSet {
@@ -20,6 +21,8 @@ class NewsViewController: UIViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		clearSelection()
+        
+        newsTitle.text = LocalizationService.LocalizedString("News")
 	}
 
 	private func clearSelection() {
@@ -27,7 +30,6 @@ class NewsViewController: UIViewController {
 			tableView.deselectRowAtIndexPath(selectedIndexPath, animated: false)
 		}
 	}
-	
 }
 
 // MARK: - UITableViewDelegate

@@ -30,10 +30,10 @@
         </mutableArray>
     </customFonts>
     <scenes>
-        <!--Tab Bar Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="gVs-Qp-pUy">
             <objects>
-                <viewController id="3r2-VZ-bTI" customClass="TabBarController" customModule="iTacit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3r2-VZ-bTI" customClass="MainTabBarController" customModule="iTacit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="g9B-Vm-Ohf"/>
                         <viewControllerLayoutGuide type="bottom" id="VkF-aT-RKd"/>
@@ -59,9 +59,6 @@
                                             <userDefinedRuntimeAttribute type="boolean" keyPath="selected" value="YES"/>
                                             <userDefinedRuntimeAttribute type="image" keyPath="image" value="ic_home"/>
                                         </userDefinedRuntimeAttributes>
-                                        <connections>
-                                            <action selector="switchTab:" destination="3r2-VZ-bTI" eventType="touchUpInside" id="5aH-Rs-o0W"/>
-                                        </connections>
                                     </view>
                                     <view tag="2" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gba-VO-gVB" customClass="TabBarButton" customModule="iTacit" customModuleProvider="target">
                                         <rect key="frame" x="303" y="1" width="149" height="44"/>
@@ -138,8 +135,12 @@
                     <navigationItem key="navigationItem" id="cdG-3Y-Ck0"/>
                     <nil key="simulatedTopBarMetrics"/>
                     <connections>
+                        <outlet property="TrainingTabBarButton" destination="MM1-RZ-y0b" id="wcl-53-PoS"/>
                         <outlet property="containerView" destination="RmE-wH-sdL" id="h7G-4T-1TD"/>
-                        <outlet property="mainTabBarButton" destination="lu5-ZM-MpG" id="ZGL-LA-d1d"/>
+                        <outlet property="dashboardTabBarButton" destination="lu5-ZM-MpG" id="ChR-mw-jKZ"/>
+                        <outlet property="mainTabBarButton" destination="lu5-ZM-MpG" id="BpP-Q9-DoI"/>
+                        <outlet property="messagesTabBarButton" destination="gba-VO-gVB" id="p6L-jf-Fdf"/>
+                        <outlet property="newsTabBarButton" destination="RTc-bY-V21" id="3mP-pc-H6r"/>
                         <segue destination="gVn-1K-qyO" kind="custom" identifier="TabSegue2" customClass="TabBarControllerSegue" customModule="iTacit" id="Ueh-ot-f8d"/>
                         <segue destination="cTR-c0-run" kind="custom" identifier="TabSegue1" customClass="TabBarControllerSegue" customModule="iTacit" id="McZ-kt-3BF"/>
                         <segue destination="xNy-t3-6KO" kind="custom" identifier="TabSegue3" customClass="TabBarControllerSegue" customModule="iTacit" id="MDK-4h-7Un"/>
@@ -306,6 +307,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="newsTitle" destination="Yhk-j0-Nu0" id="jHl-VY-GJi"/>
                         <outlet property="tableView" destination="gH4-jr-sWD" id="21G-t7-7O6"/>
                         <outlet property="tagSearchControl" destination="jCt-Pq-OoG" id="SRe-bI-W4h"/>
                     </connections>
@@ -818,7 +820,9 @@
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
+                                            <outlet property="cancelButton" destination="c5F-R7-ElP" id="Kbe-T2-1y8"/>
                                             <outlet property="datePicker" destination="2y5-qt-AYX" id="dRv-gg-J2L"/>
+                                            <outlet property="doneButton" destination="deI-MG-GkC" id="kFP-n6-xOW"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -860,6 +864,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="searchButton" destination="I7x-4E-VEb" id="x6k-xs-CBS"/>
                         <outlet property="tableView" destination="Svd-wB-qSL" id="3eA-mw-LDo"/>
                     </connections>
                 </viewController>

@@ -66,6 +66,14 @@ class DateHeaderView: UIView {
         loadViewFromXib()
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        dateLabel.text = LocalizationService.LocalizedString("Date") + ": " + LocalizationService.LocalizedString("Change Date")
+        addStartDateButton.setTitle(LocalizationService.LocalizedString("Add Date"), forState: .Normal)
+        addEndDateButton.setTitle(LocalizationService.LocalizedString("Add Date"), forState: .Normal)
+    }
+    
     // MARK: - Private
     
     func setButtonAppearenceToSelected(button: UIButton, isSelected:Bool, buttonTitle: String) {

@@ -1,0 +1,21 @@
+/* 
+  Localizable.strings
+  iTacit
+
+  Created by MaksymRachytskyy on 10/29/15.
+  Copyright © 2015 iTacit. All rights reserved.
+*/
+
+
+"Dashboard" = "Dashboard";
+"News" = "News";
+"Messages" = "Messages";
+"Training" = "Training";
+"Author" = "Author";
+"Category" = "Category";
+"Date" = "Date";
+"Change Date" = "Change Date";
+"Add Date" = "Add Date";
+"SEARCH" = "SEARCH";
+"CANCEL" = "CANCEL";
+"DONE" = "DONE";

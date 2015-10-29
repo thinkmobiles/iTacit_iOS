@@ -25,7 +25,8 @@ class ListHeaderView: UIView {
     
     var section: Int? {
         didSet {
-            headerTitleLabel.text = section == 0 ? "Author: " : "Category: "
+            headerTitleLabel.text = LocalizationService.LocalizedString(section == 0 ? "Author" : "Category") + ": "
+
         }
     }
     
@@ -58,6 +59,10 @@ class ListHeaderView: UIView {
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         loadViewFromNib()
+    }
+    
+    override func layoutSubviews() {
+        super.layoutSubviews()
     }
     
     // MARK: - Private

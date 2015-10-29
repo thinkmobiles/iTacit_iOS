@@ -18,10 +18,14 @@ class DatePickerTableViewCell: UITableViewCell {
     var delegate: DatePickerCellDelegate?
 
     @IBOutlet weak var datePicker: UIDatePicker!
+    @IBOutlet weak var cancelButton: UIButton!
+    @IBOutlet weak var doneButton: UIButton!
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        cancelButton.setTitle(LocalizationService.LocalizedString("CANCEL"), forState: .Normal)
+        doneButton.setTitle(LocalizationService.LocalizedString("DONE"), forState: .Normal)
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
