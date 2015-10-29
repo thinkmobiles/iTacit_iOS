@@ -70,8 +70,6 @@ class DateHeaderView: UIView {
         super.layoutSubviews()
         
         dateLabel.text = LocalizationService.LocalizedString("Date") + ": " + LocalizationService.LocalizedString("Change Date")
-        addStartDateButton.setTitle(LocalizationService.LocalizedString("Add Date"), forState: .Normal)
-        addEndDateButton.setTitle(LocalizationService.LocalizedString("Add Date"), forState: .Normal)
     }
     
     // MARK: - Private
@@ -96,6 +94,9 @@ class DateHeaderView: UIView {
             view.frame = self.frame
             self.addSubview(view)
         }
+        
+        addStartDateButton.setTitle(LocalizationService.LocalizedString("Add Date"), forState: .Normal)
+        addEndDateButton.setTitle(LocalizationService.LocalizedString("Add Date"), forState: .Normal)
     }
     
     private func getStringRepresentation(date: NSDate) -> String {
