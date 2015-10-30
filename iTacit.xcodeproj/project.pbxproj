@@ -23,6 +23,8 @@
 		3563B9A21BD12E40009BE696 /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563B9A11BD12E40009BE696 /* DescriptionTableViewCell.swift */; };
 		3563B9A41BD12FAE009BE696 /* HashtagAndTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563B9A31BD12FAE009BE696 /* HashtagAndTimeTableViewCell.swift */; };
 		3DD1FF2E1BE39900005C4339 /* SingleNewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD1FF2D1BE39900005C4339 /* SingleNewsModel.swift */; };
+		3DD1FF301BE39EC4005C4339 /* NewsAuthorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD1FF2F1BE39EC4005C4339 /* NewsAuthorModel.swift */; };
+		3DD1FF321BE39FC0005C4339 /* NewsCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD1FF311BE39FC0005C4339 /* NewsCategoryModel.swift */; };
 		3DEFA79D1BD5040A00596A2B /* FilterNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFA79C1BD5040A00596A2B /* FilterNewsViewController.swift */; };
 		3DEFA79F1BD5056E00596A2B /* DatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFA79E1BD5056E00596A2B /* DatePickerTableViewCell.swift */; };
 		3DEFA7A11BD50B7100596A2B /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFA7A01BD50B7100596A2B /* CategoryTableViewCell.swift */; };
@@ -85,6 +87,8 @@
 		3563B9A11BD12E40009BE696 /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		3563B9A31BD12FAE009BE696 /* HashtagAndTimeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashtagAndTimeTableViewCell.swift; sourceTree = "<group>"; };
 		3DD1FF2D1BE39900005C4339 /* SingleNewsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SingleNewsModel.swift; sourceTree = "<group>"; };
+		3DD1FF2F1BE39EC4005C4339 /* NewsAuthorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsAuthorModel.swift; sourceTree = "<group>"; };
+		3DD1FF311BE39FC0005C4339 /* NewsCategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCategoryModel.swift; sourceTree = "<group>"; };
 		3DEFA79C1BD5040A00596A2B /* FilterNewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterNewsViewController.swift; sourceTree = "<group>"; };
 		3DEFA79E1BD5056E00596A2B /* DatePickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerTableViewCell.swift; sourceTree = "<group>"; };
 		3DEFA7A01BD50B7100596A2B /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
@@ -258,6 +262,8 @@
 			children = (
 				355FF06D1BDF697B0070B600 /* SearchNewsModel.swift */,
 				3DD1FF2D1BE39900005C4339 /* SingleNewsModel.swift */,
+				3DD1FF2F1BE39EC4005C4339 /* NewsAuthorModel.swift */,
+				3DD1FF311BE39FC0005C4339 /* NewsCategoryModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -519,10 +525,12 @@
 				355FF06E1BDF697B0070B600 /* SearchNewsModel.swift in Sources */,
 				3563B99A1BD11B43009BE696 /* NewsDetailViewController.swift in Sources */,
 				3DD1FF2E1BE39900005C4339 /* SingleNewsModel.swift in Sources */,
+				3DD1FF301BE39EC4005C4339 /* NewsAuthorModel.swift in Sources */,
 				40440DBC1BDBCD0E00FADF6E /* CollectionViewLeftAlignedFlowLayout.swift in Sources */,
 				40EA824B1BCFCD720029228F /* TabBarButton.swift in Sources */,
 				40EA82581BCFD09A0029228F /* TrainingViewController.swift in Sources */,
 				3563B9A41BD12FAE009BE696 /* HashtagAndTimeTableViewCell.swift in Sources */,
+				3DD1FF321BE39FC0005C4339 /* NewsCategoryModel.swift in Sources */,
 				40EA82521BCFD05F0029228F /* DashboardViewController.swift in Sources */,
 				3563B99E1BD1288A009BE696 /* ImageTableViewCell.swift in Sources */,
 				3DEFA79F1BD5056E00596A2B /* DatePickerTableViewCell.swift in Sources */,
