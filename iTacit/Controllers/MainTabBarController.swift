@@ -21,9 +21,10 @@ class MainTabBarController: TabBarController {
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
+        
+        let model: SingleNewsModels = SingleNewsModels()
 
-        LocalizationService.setDefaulLanguage(LocalizationService.Language.French)
-        //        LocalizationService.setDefaulLanguage(LocalizationService.Language.English)
+        LocalizationService.setDefaulLanguage(LocalizationService.Language.English)
         
         dashboardTabBarButton.title = LocalizationService.LocalizedString("Dashboard")
         newsTabBarButton.title = LocalizationService.LocalizedString("News")
