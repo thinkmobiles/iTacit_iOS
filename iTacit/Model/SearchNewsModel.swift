@@ -9,6 +9,7 @@
 import UIKit
 
 class SearchNewsModel {
+
     var summary: String?
     var endDate: NSDate?
     var headlineImageAssetId: String?

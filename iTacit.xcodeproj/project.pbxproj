@@ -40,6 +40,17 @@
 		40440DC31BDBCE2F00FADF6E /* TagSearchControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40440DC01BDBCE2F00FADF6E /* TagSearchControl.swift */; };
 		40440DC41BDBCE2F00FADF6E /* TagSearchControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40440DC11BDBCE2F00FADF6E /* TagSearchControl.xib */; };
 		40440DC51BDBCE2F00FADF6E /* TagTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40440DC21BDBCE2F00FADF6E /* TagTextField.swift */; };
+		405A29891BE6B21A0024ADA9 /* JSONMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A29801BE6B21A0024ADA9 /* JSONMapper.swift */; };
+		405A298A1BE6B21A0024ADA9 /* JSONValueConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A29811BE6B21A0024ADA9 /* JSONValueConvertible.swift */; };
+		405A298B1BE6B21A0024ADA9 /* JSONValueConvertibleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A29821BE6B21A0024ADA9 /* JSONValueConvertibleExtensions.swift */; };
+		405A298C1BE6B21A0024ADA9 /* KeyValueCodable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A29831BE6B21A0024ADA9 /* KeyValueCodable.swift */; };
+		405A298D1BE6B21A0024ADA9 /* Mappable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A29841BE6B21A0024ADA9 /* Mappable.swift */; };
+		405A298E1BE6B21A0024ADA9 /* PropertyDescriptor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A29851BE6B21A0024ADA9 /* PropertyDescriptor.swift */; };
+		405A298F1BE6B21A0024ADA9 /* ValueTransformer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A29861BE6B21A0024ADA9 /* ValueTransformer.swift */; };
+		405A29901BE6B21A0024ADA9 /* RequestBuilder.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A29871BE6B21A0024ADA9 /* RequestBuilder.swift */; };
+		405A29911BE6B21A0024ADA9 /* URLParametersSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A29881BE6B21A0024ADA9 /* URLParametersSerializer.swift */; };
+		405A29931BE6B2710024ADA9 /* TokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A29921BE6B2710024ADA9 /* TokenModel.swift */; };
+		405A29951BE6B2800024ADA9 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A29941BE6B2800024ADA9 /* BaseModel.swift */; };
 		40EA82001BCFA3360029228F /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EA81FF1BCFA3360029228F /* AppDelegate.swift */; };
 		40EA82051BCFA3360029228F /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40EA82031BCFA3360029228F /* Main.storyboard */; };
 		40EA820A1BCFA3360029228F /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 40EA82081BCFA3360029228F /* LaunchScreen.storyboard */; };
@@ -104,6 +115,17 @@
 		40440DC01BDBCE2F00FADF6E /* TagSearchControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSearchControl.swift; sourceTree = "<group>"; };
 		40440DC11BDBCE2F00FADF6E /* TagSearchControl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagSearchControl.xib; sourceTree = "<group>"; };
 		40440DC21BDBCE2F00FADF6E /* TagTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTextField.swift; sourceTree = "<group>"; };
+		405A29801BE6B21A0024ADA9 /* JSONMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONMapper.swift; sourceTree = "<group>"; };
+		405A29811BE6B21A0024ADA9 /* JSONValueConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONValueConvertible.swift; sourceTree = "<group>"; };
+		405A29821BE6B21A0024ADA9 /* JSONValueConvertibleExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONValueConvertibleExtensions.swift; sourceTree = "<group>"; };
+		405A29831BE6B21A0024ADA9 /* KeyValueCodable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeyValueCodable.swift; sourceTree = "<group>"; };
+		405A29841BE6B21A0024ADA9 /* Mappable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Mappable.swift; sourceTree = "<group>"; };
+		405A29851BE6B21A0024ADA9 /* PropertyDescriptor.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PropertyDescriptor.swift; sourceTree = "<group>"; };
+		405A29861BE6B21A0024ADA9 /* ValueTransformer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ValueTransformer.swift; sourceTree = "<group>"; };
+		405A29871BE6B21A0024ADA9 /* RequestBuilder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RequestBuilder.swift; sourceTree = "<group>"; };
+		405A29881BE6B21A0024ADA9 /* URLParametersSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLParametersSerializer.swift; sourceTree = "<group>"; };
+		405A29921BE6B2710024ADA9 /* TokenModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenModel.swift; sourceTree = "<group>"; };
+		405A29941BE6B2800024ADA9 /* BaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
 		40EA81FC1BCFA3360029228F /* iTacit.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iTacit.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		40EA81FF1BCFA3360029228F /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		40EA82041BCFA3360029228F /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -200,11 +222,25 @@
 			path = TagSearchControl;
 			sourceTree = "<group>";
 		};
+		405A297F1BE6B21A0024ADA9 /* Mapping */ = {
+			isa = PBXGroup;
+			children = (
+				405A29801BE6B21A0024ADA9 /* JSONMapper.swift */,
+				405A29811BE6B21A0024ADA9 /* JSONValueConvertible.swift */,
+				405A29821BE6B21A0024ADA9 /* JSONValueConvertibleExtensions.swift */,
+				405A29831BE6B21A0024ADA9 /* KeyValueCodable.swift */,
+				405A29841BE6B21A0024ADA9 /* Mappable.swift */,
+				405A29851BE6B21A0024ADA9 /* PropertyDescriptor.swift */,
+				405A29861BE6B21A0024ADA9 /* ValueTransformer.swift */,
+			);
+			path = Mapping;
+			sourceTree = "<group>";
+		};
 		40EA81F31BCFA3360029228F = {
 			isa = PBXGroup;
 			children = (
-				40EA81FD1BCFA3360029228F /* Products */,
 				40EA81FE1BCFA3360029228F /* iTacit */,
+				40EA81FD1BCFA3360029228F /* Products */,
 			);
 			sourceTree = "<group>";
 		};
@@ -260,6 +296,8 @@
 		40EA821B1BCFC40C0029228F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				405A29941BE6B2800024ADA9 /* BaseModel.swift */,
+				405A29921BE6B2710024ADA9 /* TokenModel.swift */,
 				355FF06D1BDF697B0070B600 /* SearchNewsModel.swift */,
 				3DD1FF2D1BE39900005C4339 /* SingleNewsModel.swift */,
 				3DD1FF2F1BE39EC4005C4339 /* NewsAuthorModel.swift */,
@@ -325,9 +363,12 @@
 		40EA823A1BCFCCBE0029228F /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				405A297F1BE6B21A0024ADA9 /* Mapping */,
 				40EA823B1BCFCCBE0029228F /* Extensions */,
 				40EA823D1BCFCCBE0029228F /* Managers */,
 				40EA823E1BCFCCBE0029228F /* Segues */,
+				405A29881BE6B21A0024ADA9 /* URLParametersSerializer.swift */,
+				405A29871BE6B21A0024ADA9 /* RequestBuilder.swift */,
 				40440DBB1BDBCD0E00FADF6E /* CollectionViewLeftAlignedFlowLayout.swift */,
 				353C04FA1BE2490F00C92352 /* LocalizationService.swift */,
 			);
@@ -500,11 +541,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				405A298C1BE6B21A0024ADA9 /* KeyValueCodable.swift in Sources */,
+				405A29931BE6B2710024ADA9 /* TokenModel.swift in Sources */,
 				40440DB91BDBCCA200FADF6E /* AutocompletionTableViewCell.swift in Sources */,
 				40EA82561BCFD07B0029228F /* MessagesViewController.swift in Sources */,
 				353C05051BE25D0800C92352 /* MainTabBarController.swift in Sources */,
 				40EA824E1BCFCDEC0029228F /* TabBarControllerSegue.swift in Sources */,
+				405A29891BE6B21A0024ADA9 /* JSONMapper.swift in Sources */,
 				3DEFA79D1BD5040A00596A2B /* FilterNewsViewController.swift in Sources */,
+				405A29901BE6B21A0024ADA9 /* RequestBuilder.swift in Sources */,
 				40440DBE1BDBCDDE00FADF6E /* ExtendedTextField.swift in Sources */,
 				4014E4EC1BD0FD4F00837B3E /* NewsTableViewCell.swift in Sources */,
 				40EA82501BCFCE120029228F /* TabBarController.swift in Sources */,
@@ -513,10 +558,12 @@
 				3563B9981BD117BE009BE696 /* UserTableViewCell.swift in Sources */,
 				40440DB21BDBCC9C00FADF6E /* InputCollectionViewCell.swift in Sources */,
 				40EA82471BCFCD690029228F /* TabsContainerView.swift in Sources */,
+				405A29951BE6B2800024ADA9 /* BaseModel.swift in Sources */,
 				40EA82371BCFC8A40029228F /* AppColors.swift in Sources */,
 				40EA82001BCFA3360029228F /* AppDelegate.swift in Sources */,
 				353C04FB1BE2490F00C92352 /* LocalizationService.swift in Sources */,
 				40EA823F1BCFCCBE0029228F /* Extensions.swift in Sources */,
+				405A29911BE6B21A0024ADA9 /* URLParametersSerializer.swift in Sources */,
 				3DEFA7A11BD50B7100596A2B /* CategoryTableViewCell.swift in Sources */,
 				40EA82541BCFD06F0029228F /* NewsViewController.swift in Sources */,
 				40440DC31BDBCE2F00FADF6E /* TagSearchControl.swift in Sources */,
@@ -524,10 +571,14 @@
 				350644C81BD784A800D51D5C /* DateHeaderView.swift in Sources */,
 				355FF06E1BDF697B0070B600 /* SearchNewsModel.swift in Sources */,
 				3563B99A1BD11B43009BE696 /* NewsDetailViewController.swift in Sources */,
+				405A298A1BE6B21A0024ADA9 /* JSONValueConvertible.swift in Sources */,
+				405A298E1BE6B21A0024ADA9 /* PropertyDescriptor.swift in Sources */,
 				3DD1FF2E1BE39900005C4339 /* SingleNewsModel.swift in Sources */,
 				3DD1FF301BE39EC4005C4339 /* NewsAuthorModel.swift in Sources */,
 				40440DBC1BDBCD0E00FADF6E /* CollectionViewLeftAlignedFlowLayout.swift in Sources */,
+				405A298D1BE6B21A0024ADA9 /* Mappable.swift in Sources */,
 				40EA824B1BCFCD720029228F /* TabBarButton.swift in Sources */,
+				405A298F1BE6B21A0024ADA9 /* ValueTransformer.swift in Sources */,
 				40EA82581BCFD09A0029228F /* TrainingViewController.swift in Sources */,
 				3563B9A41BD12FAE009BE696 /* HashtagAndTimeTableViewCell.swift in Sources */,
 				3DD1FF321BE39FC0005C4339 /* NewsCategoryModel.swift in Sources */,
@@ -535,6 +586,7 @@
 				3563B99E1BD1288A009BE696 /* ImageTableViewCell.swift in Sources */,
 				3DEFA79F1BD5056E00596A2B /* DatePickerTableViewCell.swift in Sources */,
 				40440DC51BDBCE2F00FADF6E /* TagTextField.swift in Sources */,
+				405A298B1BE6B21A0024ADA9 /* JSONValueConvertibleExtensions.swift in Sources */,
 				350644C31BD7783300D51D5C /* ListHeaderView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
