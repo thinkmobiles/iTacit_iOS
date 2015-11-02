@@ -24,9 +24,7 @@ class NewsViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		newsList.load { [weak self] (success) -> Void in
-			self?.tableView.reloadData()
-		}
+		reloadData()
 	}
 
 	override func viewWillAppear(animated: Bool) {
@@ -39,6 +37,18 @@ class NewsViewController: UIViewController {
 	private func clearSelection() {
 		if let selectedIndexPath = tableView.indexPathForSelectedRow {
 			tableView.deselectRowAtIndexPath(selectedIndexPath, animated: false)
+		}
+	}
+
+	private func reloadData() {
+		newsList.load { [weak self] (success) -> Void in
+			self?.tableView.reloadData()
+		}
+	}
+
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if let selectedIndexPath = tableView.indexPathForSelectedRow, newsDetailViewController = segue.destinationViewController as? NewsDetailViewController {
+			newsDetailViewController.newsModel = newsList[selectedIndexPath.row]
 		}
 	}
 }
@@ -96,4 +106,17 @@ extension NewsViewController: TagSearchControlDelegate {
 		let strings = ["lorem ipsum", "lorem", "lorem ipsum", "Lorem ipsum dolor"]
 		return completion(strings: strings)
 	}
+
+	func tagsSearchControlSearchButtonPressed(tagsSearchControl: TagSearchControl) {
+		if !tagsSearchControl.inputText.isEmpty {
+			newsList.searchQuery = SearchNewsQueryModel(string: tagsSearchControl.inputText)
+			reloadData()
+		}
+	}
+
+	func tagsSearchControlDidClear(tagsSearchControl: TagSearchControl) {
+		newsList.searchQuery = nil
+		reloadData()
+	}
+
 }

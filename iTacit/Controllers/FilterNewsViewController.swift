@@ -15,11 +15,11 @@ class FilterNewsViewController: UIViewController {
         static let dateHeaderViewHeight: CGFloat = 93
     }
     
-    var showFirstSection: Bool = true;
-    var indexPathesArray: [Int] = [2]
+    var showFirstSection = true;
+    var indexPathesArray = [2]
     var selectedDateButtonTag: Int!
     
-    var searchModel = SearchNewsModel()
+    var searchModel = SearchNewsQueryModel(string: "")
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchButton: UIButton!

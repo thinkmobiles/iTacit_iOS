@@ -17,5 +17,5 @@ class NewsListModel<T: NewsModel>: ListModel<T> {
 	required init() {
 		super.init()
 	}
-	
+
 }

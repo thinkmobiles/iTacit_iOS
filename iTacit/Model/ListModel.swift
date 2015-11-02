@@ -31,6 +31,8 @@ class ListModel<Element: BaseModel where Element: Mappable>: BaseModel, Mappable
 		return objects.count
 	}
 
+	var searchQuery: SearchQuery?
+
 	func load(completion: CompletionHandler? = nil) {
 		loadWithStartIndex(0, completion: completion)
 	}
@@ -41,9 +43,13 @@ class ListModel<Element: BaseModel where Element: Mappable>: BaseModel, Mappable
 
 	private func loadWithStartIndex(startIndex: Int, completion: CompletionHandler?) {
 		performRequest({ [unowned self] (builder) -> Void in
+			var JSON: [String: AnyObject] = ["startIndex": startIndex, "rowCount": self.requestRowCount]
+			if let searchQueryString = self.searchQuery?.stringQuery {
+				JSON["query"] = searchQueryString
+			}
 			builder.path = self.path
 			builder.method = .POST
-			builder.body = .JSON(JSON: ["startIndex": startIndex, "rowCount": self.requestRowCount])
+			builder.body = .JSON(JSON: JSON)
 			builder.contentType = .ApplicationJSON
 		}, successHandler: { [weak self] (data, request, response) -> Void in
 			self?.defaultSuccessHandler(data, request: request, response: response, completion: completion)
@@ -51,6 +57,8 @@ class ListModel<Element: BaseModel where Element: Mappable>: BaseModel, Mappable
 			completion?(success: false)
 		}
 	}
+
+	// MARK: - Mapping
 
 	func setValue<T>(value: T, forKey key: String) throws {
 		try validateKey(key, typeOfValue: T.self)
