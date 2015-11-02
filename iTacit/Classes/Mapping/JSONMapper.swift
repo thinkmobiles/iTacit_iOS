@@ -45,6 +45,15 @@ extension JSONMapper {
 		}
 	}
 
+	class func map(inout object: Mappable, fromJSONData data: NSData) throws {
+		let JSON = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
+		if let JSON = JSON as? JSONObject {
+			try map(&object, fromJSON: JSON)
+		} else {
+			throw Error.InvalidJSONObject(invalidJSON: JSON)
+		}
+	}
+
 	class func map<T: Mappable>(JSON: JSONObject) throws -> T {
 		var object = (T.init() as Mappable)
 		try map(&object, fromJSON: JSON)
@@ -145,15 +154,15 @@ extension Optional: OptionalJSONElementConvertible {
 		}
 
 		if let valueConvertibleType = Wrapped.self as? JSONValueConvertible.Type {
-			let value = try valueConvertibleType.convertFromJSONValue(value)
-			return value as? Wrapped
+			if let value = try? valueConvertibleType.convertFromJSONValue(value) {
+				return value as? Wrapped
+			}
 		} else if let mappableType = Wrapped.self as? Mappable.Type, JSON = value as? [String: AnyObject] {
 			var object = (mappableType.init() as Mappable)
 			try JSONMapper.map(&object, fromJSON: JSON)
 			return object as? Wrapped
-		} else {
-			return nil
 		}
+		return nil
 	}
 
 	func JSONValue() throws -> AnyObject {

@@ -13,21 +13,19 @@ class URLRequestBuilder {
 	static var defaultHeaderFields = [String: String]()
 
 	var baseURL: NSURL
-	var path: String
-	var method: URLRequestMethod
+	var path: String?
+	var method: URLRequestMethod?
 	var contentType: URLRequestContentType?
 	var queryParams = [String: String]()
 	var headerFields = [String: String]()
 	var body: URLRequestBody?
 
-	init(baseURL: NSURL, path: String, method: URLRequestMethod) {
+	init(baseURL: NSURL) {
 		self.baseURL = baseURL
-		self.path = path
-		self.method = method
 	}
 
 	var URLRequest: NSURLRequest? {
-		guard let URL = URL else {
+		guard let URL = URL, method = method else {
 			return nil
 		}
 
@@ -52,7 +50,7 @@ class URLRequestBuilder {
 	}
 
 	private var URL: NSURL? {
-		guard let URLComponents = NSURLComponents(URL: baseURL, resolvingAgainstBaseURL: false) else {
+		guard let URLComponents = NSURLComponents(URL: baseURL, resolvingAgainstBaseURL: false), path = path else {
 			return nil
 		}
 

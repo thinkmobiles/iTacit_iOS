@@ -8,6 +8,8 @@
 
 import UIKit
 
+let ImageCache = NSCache()
+
 class NewsViewController: UIViewController {
 
     @IBOutlet weak var newsTitle: UILabel!
@@ -15,6 +17,15 @@ class NewsViewController: UIViewController {
 	@IBOutlet weak var tagSearchControl: TagSearchControl! {
 		didSet {
 			tagSearchControl.delegate = self
+		}
+	}
+
+	private let newsList = NewsListModel()
+
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		newsList.load { [weak self] (success) -> Void in
+			self?.tableView.reloadData()
 		}
 	}
 
@@ -46,12 +57,35 @@ extension NewsViewController: UITableViewDelegate {
 extension NewsViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return newsList.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("NewsTableViewCell", forIndexPath: indexPath)
-        
+        let cell = tableView.dequeueReusableCellWithIdentifier("NewsTableViewCell", forIndexPath: indexPath) as! NewsTableViewCell
+		let newsModel = newsList[indexPath.item]
+		cell.title = newsModel.headline
+		cell.newsCategoryLabel.text = newsModel.categoryName
+
+		if let imageURL = newsModel.headlineImageURL {
+			cell.imageDownloadTask?.cancel()
+			if let image = ImageCache.objectForKey(imageURL) as? UIImage {
+				cell.newsImage = image
+			} else {
+				cell.newsImage = nil
+				let request = NSMutableURLRequest(URL: imageURL)
+				request.HTTPMethod = URLRequestMethod.GET.rawValue
+				cell.imageDownloadTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, _, _) -> Void in
+					dispatch_async(dispatch_get_main_queue()) { () -> Void in
+						if let data = data, image = UIImage(data: data) {
+							ImageCache.setObject(image, forKey: imageURL)
+							cell.newsImage = image
+						}
+					}
+				})
+				cell.imageDownloadTask?.resume()
+			}
+		}
+
         return cell
     }
 }

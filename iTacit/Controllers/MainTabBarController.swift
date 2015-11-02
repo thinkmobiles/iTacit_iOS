@@ -17,6 +17,7 @@ class MainTabBarController: TabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+		login()
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -29,4 +30,14 @@ class MainTabBarController: TabBarController {
         messagesTabBarButton.title = LocalizationService.LocalizedString("Messages")
         TrainingTabBarButton.title = LocalizationService.LocalizedString("Training")
     }
+
+	func login() {
+		let token = TokenModel()
+		token.signInWithUsername("ph", password: "ph") { (success) -> Void in
+			print("Success: \(success ? "Ja": "Nein") \n\(token)")
+			if success {
+				BaseModel.token = token
+			}
+		}
+	}
 } 

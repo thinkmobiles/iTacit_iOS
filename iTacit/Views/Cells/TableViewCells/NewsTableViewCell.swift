@@ -23,7 +23,7 @@ class NewsTableViewCell: UITableViewCell {
         }
     }
     
-    var titleLabel: String? {
+    var title: String? {
         get {
             return newsTitleLabel.text
         }
@@ -32,15 +32,6 @@ class NewsTableViewCell: UITableViewCell {
         }
     }
 
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
-    }
+	var imageDownloadTask: NSURLSessionDataTask?
 
 }

@@ -77,3 +77,18 @@ extension NSDate: JSONValueConvertible {
 		return NSDate.ISO8601DateFormatter.stringFromDate(self)
 	}
 }
+
+extension NSURL: JSONValueConvertible {
+
+	class func convertFromJSONValue(value: AnyObject) throws -> Self {
+		if let string = value as? String, URL = self.init(string: string) where !string.isEmpty {
+			return URL
+		}
+
+		throw JSONValueConvertibleError.FailedToConvertValue(value: value, type: String.self)
+	}
+
+	func JSONValue() throws -> AnyObject {
+		return self.absoluteString
+	}
+}
