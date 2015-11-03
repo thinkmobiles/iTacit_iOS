@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsDetailViewController: UIViewController {
+class NewsDetailViewController: BaseViewController {
     
     private struct Constants {
         static let heightOfUserCell: CGFloat = 47
@@ -88,6 +88,7 @@ extension NewsDetailViewController: UITableViewDataSource {
             return cell
         } else if indexPath.row == 3 {
             let cell = tableView.dequeueReusableCellWithIdentifier("HashtagAndTimeTableViewCell", forIndexPath: indexPath) as! HashtagAndTimeTableViewCell
+            cell.timeLabel.text = newsModel?.startDate?.timeAgoStringRepresentation()
             
             cell.hashtagLabel.text = newsModel?.categoryName
             return cell

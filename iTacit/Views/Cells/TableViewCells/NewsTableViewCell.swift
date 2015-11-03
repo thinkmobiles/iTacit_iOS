@@ -13,6 +13,7 @@ class NewsTableViewCell: UITableViewCell {
     @IBOutlet weak var newsImageView: UIImageView!
     @IBOutlet weak var newsCategoryLabel: UILabel!
     @IBOutlet weak var newsTitleLabel: UILabel!
+    @IBOutlet weak var timeLabel: UILabel!
     
     var newsImage: UIImage? {
         get {

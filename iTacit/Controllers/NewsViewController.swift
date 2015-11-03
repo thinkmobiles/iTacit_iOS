@@ -79,7 +79,11 @@ extension NewsViewController: UITableViewDataSource {
 		let newsModel = newsList[indexPath.item]
 		cell.title = newsModel.headline
 		cell.newsCategoryLabel.text = newsModel.categoryName
-
+        
+        if let startDate  = newsModel.startDate {
+            cell.timeLabel.text = startDate.timeAgoStringRepresentation()
+        }
+        
 		if let imageURL = newsModel.headlineImageURL {
 			cell.imageDownloadTask?.cancel()
 			cell.imageDownloadTask = ImageCacheManager.sharedInstance.imageForURL(imageURL, completion: { (image) -> Void in
