@@ -1,17 +1,14 @@
 //
-//  CategoryTableViewCell.swift
+//  ComposerToTableViewCell.swift
 //  iTacit
 //
-//  Created by Sergey Sheba on 10/19/15.
+//  Created by MaksymRachytskyy on 10/30/15.
 //  Copyright © 2015 iTacit. All rights reserved.
 //
 
 import UIKit
 
-class CategoryTableViewCell: UITableViewCell {
-
-    @IBOutlet weak var selectCategoryButton: UIButton!
-    @IBOutlet weak var categoryName: UILabel!
+class ComposerToTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -20,8 +17,8 @@ class CategoryTableViewCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-        
-        selectCategoryButton.selected = selected
+
+        // Configure the view for the selected state
     }
 
 }

@@ -24,6 +24,7 @@ class NewsViewController: UIViewController {
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		tableView.tableFooterView = UIView()
 		reloadData()
 	}
 
@@ -49,8 +50,11 @@ class NewsViewController: UIViewController {
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if let selectedIndexPath = tableView.indexPathForSelectedRow, newsDetailViewController = segue.destinationViewController as? NewsDetailViewController {
 			newsDetailViewController.newsModel = newsList[selectedIndexPath.row]
+		} else if let filterNewsViewController = segue.destinationViewController as? FilterNewsViewController {
+			filterNewsViewController.searchString = tagSearchControl.inputText
 		}
 	}
+	
 }
 
 // MARK: - UITableViewDelegate
@@ -78,22 +82,11 @@ extension NewsViewController: UITableViewDataSource {
 
 		if let imageURL = newsModel.headlineImageURL {
 			cell.imageDownloadTask?.cancel()
-			if let image = ImageCache.objectForKey(imageURL) as? UIImage {
+			cell.imageDownloadTask = ImageCacheManager.sharedInstance.imageForURL(imageURL, completion: { (image) -> Void in
 				cell.newsImage = image
-			} else {
-				cell.newsImage = nil
-				let request = NSMutableURLRequest(URL: imageURL)
-				request.HTTPMethod = URLRequestMethod.GET.rawValue
-				cell.imageDownloadTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, _, _) -> Void in
-					dispatch_async(dispatch_get_main_queue()) { () -> Void in
-						if let data = data, image = UIImage(data: data) {
-							ImageCache.setObject(image, forKey: imageURL)
-							cell.newsImage = image
-						}
-					}
-				})
-				cell.imageDownloadTask?.resume()
-			}
+			})
+		} else {
+			cell.newsImage = nil
 		}
 
         return cell

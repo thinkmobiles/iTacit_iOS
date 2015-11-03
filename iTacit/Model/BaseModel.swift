@@ -87,6 +87,9 @@ class BaseModel: NSObject {
 
 	func handleUnauthorizedResponseForRequest(request: NSURLRequest, successHandler: SuccessHandler?, failureHandler: FailureHandler?) {
 		pendingRequests[request] = (successHandler, failureHandler)
+		if let token = BaseModel.token where !token.loginInProgress {
+			token.refresh()
+		}
 	}
 
 	func didLoginNotification(notification: NSNotification) {
@@ -102,17 +105,7 @@ class BaseModel: NSObject {
 	func resendRequest(request: NSURLRequest, accessToken: String, successHandler: SuccessHandler?, failureHandler: FailureHandler?) {
 		let mutableRequest = request.mutableCopy() as! NSMutableURLRequest
 		mutableRequest.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
-		performRequest(request, successHandler: successHandler, failureHandler: failureHandler)
+		performRequest(mutableRequest, successHandler: successHandler, failureHandler: failureHandler)
 	}
 
-//	// MARK: - Mapping
-//
-//	func setValue<T>(value: T, forKey key: String) throws {
-//
-//	}
-//
-//	class var mapping: [PropertyDescriptor] {
-//		return []
-//	}
 }
-

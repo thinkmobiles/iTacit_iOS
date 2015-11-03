@@ -35,7 +35,7 @@
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="iaL-oW-bjQ">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="39"/>
                     <subviews>
-                        <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="okI-q9-0Od">
+                        <button hidden="YES" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="okI-q9-0Od">
                             <rect key="frame" x="294" y="0.0" width="26" height="39"/>
                             <animations/>
                             <constraints>

@@ -17,27 +17,36 @@ class TokenModel: BaseModel, Mappable {
 	var accessToken = ""
 	var refreshToken = ""
 
+	var loginInProgress = false
+
 	func signInWithUsername(username: String, password: String, completion: CompletionHandler? = nil) {
+		loginInProgress = true
 		performRequest({ [unowned self] (builder) -> Void in
 			builder.path = self.path
 			builder.method = .POST
 			builder.queryParams = ["client_id": "MOBILESANDBOX", "username": username, "password": password, "grant_type": "password"]
 		}, requiresToken: false, successHandler: { [weak self] (data, request, response) -> Void in
 			self?.defaultSuccessHandler(data, request: request, response: response, completion: completion)
-		}) { (error, request, response) -> Void in
+			self?.loginInProgress = false
+			print(self)
+		}) { [weak self] (error, request, response) -> Void in
 			completion?(success: false)
+			self?.loginInProgress = false
 		}
 	}
 
 	func refresh(completion: CompletionHandler? = nil) {
+		loginInProgress = true
 		performRequest({ [unowned self] (builder) -> Void in
 			builder.path = self.path
 			builder.method = .POST
 			builder.queryParams = ["client_id": "MOBILESANDBOX", "grant_type": "refresh_token", "refresh_token": self.refreshToken]
 		}, requiresToken: false, successHandler: { [weak self] (data, request, response) -> Void in
 			self?.defaultSuccessHandler(data, request: request, response: response, completion: completion)
-		}) { (error, request, response) -> Void in
+			self?.loginInProgress = false
+		}) { [weak self] (error, request, response) -> Void in
 			completion?(success: false)
+			self?.loginInProgress = false
 		}
 	}
 

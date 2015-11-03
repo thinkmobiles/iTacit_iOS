@@ -19,6 +19,33 @@ class UserTableViewCell: UITableViewCell {
     @IBOutlet weak var userDescriptionLabel: UILabel!
     @IBOutlet weak var selectAuthorButton: UIButton!
     @IBOutlet weak var selectAuthorButtonWidthConstraint: NSLayoutConstraint!
+
+	var userImage: UIImage? {
+		get {
+			return userAvatarImageView.image
+		}
+		set {
+			userAvatarImageView.image = newValue
+		}
+	}
+
+	var fullName: String {
+		get {
+			return userNameLabel.text ?? ""
+		}
+		set {
+			userNameLabel.text = newValue
+		}
+	}
+
+	var userAttributesText: String {
+		get {
+			return userDescriptionLabel.text ?? ""
+		}
+		set {
+			userDescriptionLabel.text = newValue
+		}
+	}
     
     var selectable: Bool? {
         get {
@@ -31,11 +58,6 @@ class UserTableViewCell: UITableViewCell {
                 selectAuthorButtonWidthConstraint.constant = 0
             }
         }
-    }
-    
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(selected: Bool, animated: Bool) {

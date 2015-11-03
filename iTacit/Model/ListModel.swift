@@ -41,6 +41,10 @@ class ListModel<Element: BaseModel where Element: Mappable>: BaseModel, Mappable
 		loadWithStartIndex(objects.count, completion: completion)
 	}
 
+	func clear() {
+		objects = []
+	}
+
 	private func loadWithStartIndex(startIndex: Int, completion: CompletionHandler?) {
 		performRequest({ [unowned self] (builder) -> Void in
 			var JSON: [String: AnyObject] = ["startIndex": startIndex, "rowCount": self.requestRowCount]
