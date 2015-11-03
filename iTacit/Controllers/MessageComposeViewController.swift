@@ -54,7 +54,6 @@ class MessageComposeViewController: BaseViewController {
     
     @IBAction func showDatePickerButtonAction(sender: UIButton) {
         if !isEstimateCellShown {
-            floatingView.hidden = true
             isEstimateCellShown = true
             tableView.reloadData()
         }
@@ -77,8 +76,6 @@ class MessageComposeViewController: BaseViewController {
     }
     
     override func keyboardWillHideWithSize(size: CGSize, animationDuration: NSTimeInterval, animationOptions: UIViewAnimationOptions) {
-        floatingView.hidden = false
-
         view.layoutIfNeeded()
         tableView.contentInset = UIEdgeInsetsZero
         tableView.scrollIndicatorInsets = UIEdgeInsetsZero
@@ -181,7 +178,6 @@ extension MessageComposeViewController: ComposeDynamicCellDelegate {
 extension MessageComposeViewController: ConfirmationCellDelegate {
     func confirmationCellCancelButtonPressed() {
         isEstimateCellShown = false
-        floatingView.hidden = false
         tableView.reloadData()
         tableView.layoutIfNeeded()
     }

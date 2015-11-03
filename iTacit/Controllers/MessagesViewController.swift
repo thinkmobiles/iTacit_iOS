@@ -12,7 +12,7 @@ class MessagesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        performSegueWithIdentifier("ShowComposer", sender: self)
+//        performSegueWithIdentifier("ShowComposer", sender: self)
     }
     
     override func viewWillAppear(animated: Bool) {
