@@ -9,10 +9,10 @@
 import UIKit
 
 class NewsAuthorModel {
-    var authorImageAssetId: Int?
-    var authorRoleName: String?
+
+	var authorID = ""
+    var roleName = ""
     var mostRecentArticlePublishDate: NSDate?
-    var authorNameFull: String?
-    var authorID: String?
-    var authorImageUrl: String?
+    var fullName = ""
+    var authorImageUrl: NSURL?
 }

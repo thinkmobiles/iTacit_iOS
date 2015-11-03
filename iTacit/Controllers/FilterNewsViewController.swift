@@ -14,25 +14,29 @@ class FilterNewsViewController: UIViewController {
         static let listHeaderViewHeight: CGFloat = 39
         static let dateHeaderViewHeight: CGFloat = 93
     }
-    
-    var showFirstSection = true;
-    var indexPathesArray = [2]
-    var selectedDateButtonTag: Int!
-    
-    var searchModel = SearchNewsQueryModel(string: "")
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchButton: UIButton!
-    
+	@IBOutlet weak var tagTextField: TagTextField!
+
+	var showFirstSection = true;
+	var indexPathesArray = [2]
+	var selectedDateButtonTag: Int!
+
+	var searchModel = SearchNewsQueryModel(string: "")
+	var searchString = ""
+
     override func viewDidLoad() {
         super.viewDidLoad()
+		searchModel.string = searchString
+		searchButton.setTitle(LocalizationService.LocalizedString("SEARCH"), forState: .Normal)
     }
-    
-    override func loadView() {
-        super.loadView()
-        
-        searchButton.setTitle(LocalizationService.LocalizedString("SEARCH"), forState: .Normal)
-    }
+
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		tagTextField.beginEditing()
+		tagTextField.text = searchString
+	}
     
     // MARK: - Private
     

@@ -95,6 +95,7 @@ class TagSearchControl: UIControl {
 		tagTextField.clear()
 		hideAutocompletionTableView()
 		mode = .Normal
+		clearButton.hidden = true
 		delegate?.tagsSearchControlDidClear(self)
 	}
 	
@@ -114,6 +115,7 @@ class TagSearchControl: UIControl {
 		} else {
 			hideAutocompletionTableView()
 		}
+		clearButton.hidden = inputText.isEmpty
 		sendActionsForControlEvents(.EditingChanged)
 	}
 	
@@ -169,29 +171,9 @@ class TagSearchControl: UIControl {
 
 	private func setNormalMode() {
 		tagTextField.endEditing()
-		layoutIfNeeded()
-		UIView.animateWithDuration(Constants.animationDuratoin) { [weak self] () -> Void in
-			guard let strongSelf = self else {
-				return
-			}
-			strongSelf.searchButton.alpha = 1.0
-			strongSelf.clearButton.alpha = 0.0
-			strongSelf.searchButtonLeadingConstraint.constant = 0.0
-			strongSelf.layoutIfNeeded()
-		}
 	}
 
 	private func setEditingMode() {
-		layoutIfNeeded()
-		UIView.animateWithDuration(Constants.animationDuratoin) { [weak self] () -> Void in
-			guard let strongSelf = self else {
-				return
-			}
-			strongSelf.searchButton.alpha = 0.0
-			strongSelf.clearButton.alpha = 1.0
-			strongSelf.searchButtonLeadingConstraint.constant = -CGRectGetWidth(strongSelf.searchButton.frame)
-			strongSelf.layoutIfNeeded()
-		}
 		tagTextField.beginEditing()
 	}
 
@@ -227,7 +209,11 @@ extension TagSearchControl: TagTextFieldDelegate {
 		hideAutocompletionTableView()
 	}
 
-	func tagedTextShouldInserTag(textField: TagTextField, tag: String) -> Bool {
+	func tagedTextFieldShouldInserTag(textField: TagTextField, tag: String) -> Bool {
+		return false
+	}
+
+	func tagedTextFieldShouldSwitchToCollapsedMode(textField: TagTextField) -> Bool {
 		return false
 	}
 }
@@ -248,7 +234,7 @@ extension TagSearchControl: UITableViewDataSource {
 extension TagSearchControl: UITableViewDelegate {
 
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		tagTextField.insertTag(autocompletionStrings[indexPath.row])
+		inputText = autocompletionStrings[indexPath.row]
 		hideAutocompletionTableView()
 	}
 }
