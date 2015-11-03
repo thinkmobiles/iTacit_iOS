@@ -254,6 +254,7 @@
                                             <outlet property="newsCategoryLabel" destination="lJf-xZ-EJ8" id="PAb-JE-zdt"/>
                                             <outlet property="newsImageView" destination="eFM-fU-U19" id="Ddd-R9-DBo"/>
                                             <outlet property="newsTitleLabel" destination="6XG-k8-ium" id="U3z-ea-eLT"/>
+                                            <outlet property="timeLabel" destination="sV3-sW-KSE" id="yA0-oJ-hHU"/>
                                             <segue destination="HcX-Zi-BlF" kind="show" id="tpX-jl-psr"/>
                                         </connections>
                                     </tableViewCell>
