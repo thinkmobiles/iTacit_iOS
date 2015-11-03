@@ -15,7 +15,11 @@ protocol ListHeaderViewDelegate {
 }
 
 class ListHeaderView: UIView {
-    
+
+	private struct Constants {
+		static let NibName = "ListHeaderView"
+	}
+
     @IBOutlet weak var expandButton: UIButton!
     @IBOutlet weak var headerTitleLabel: UILabel!
     @IBOutlet weak var numberOfCellsLabel: UILabel!
@@ -26,43 +30,44 @@ class ListHeaderView: UIView {
     var section: Int? {
         didSet {
             headerTitleLabel.text = LocalizationService.LocalizedString(section == 0 ? "Author" : "Category") + ": "
-
         }
     }
+
+	var rowCount: String {
+		get {
+			return numberOfCellsLabel.text ?? ""
+		}
+		set {
+			numberOfCellsLabel.text = newValue
+		}
+	}
     
     var isExpanded: Bool? {
         didSet {
             if isExpanded == true {
-                disclosureImageView.image = UIImage(named: "btn_drop_show")
+                disclosureImageView.image = UIImage(named: "btn_drop_show") // TODO: USE AssetsIndetifier
             } else  {
-                disclosureImageView.image = UIImage(named: "btn_drop_hide")
+                disclosureImageView.image = UIImage(named: "btn_drop_hide") // TODO: USE AssetsIndetifier
             }
         }
-    }
+	}
 
-    private struct Constants {
-        static let NibName = "ListHeaderView"
-    }
+	// MARK: -  Lifecycle
+
+	override init(frame: CGRect) {
+		super.init(frame: frame)
+		loadViewFromNib()
+	}
+
+	required init?(coder aDecoder: NSCoder) {
+		super.init(coder: aDecoder)
+		loadViewFromNib()
+	}
+
+	// MARK: - IBActions
 
     @IBAction func expandButtonAction(sender: UIButton) {
         delegate?.didSelectHeaderWithSection(self)
-    }
-    
-    // MARK: -  Lifecycle
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
-        
-        loadViewFromNib()
-    }
-    
-    required init?(coder aDecoder: NSCoder) {
-        super.init(coder: aDecoder)
-        loadViewFromNib()
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
     }
     
     // MARK: - Private

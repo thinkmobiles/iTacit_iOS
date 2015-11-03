@@ -23,10 +23,10 @@ class NewsCategoryModel: BaseModel, Mappable {
         performRequest({ (builder) -> Void in
             builder.path = String(format: self.path, arguments: [self.categoryId])
             builder.method = .GET
-            }, successHandler: { [weak self] (data, request, response) -> Void in
-                self?.defaultSuccessHandler(data, request: request, response: response, completion: completion)
-            }) { (error, request, response) -> Void in
-                completion?(success: false)
+		}, successHandler: { [weak self] (data, request, response) -> Void in
+			self?.defaultSuccessHandler(data, request: request, response: response, completion: completion)
+		}) { (error, request, response) -> Void in
+			completion?(success: false)
         }
     }
     
@@ -35,10 +35,10 @@ class NewsCategoryModel: BaseModel, Mappable {
     func setValue<T>(value: T, forKey key: String) throws {
         try validateKey(key, typeOfValue: T.self)
         switch key {
-        case "mostRecentArticlePublishedDate": mostRecentArticlePublishedDate <<- value
-        case "categoryName": categoryName <<- value
-        case "categoryId": categoryId <<- value
-        default: break
+			case "mostRecentArticlePublishedDate": mostRecentArticlePublishedDate <<- value
+			case "categoryName": categoryName <<- value
+			case "categoryId": categoryId <<- value
+			default: break
         }
     }
     
