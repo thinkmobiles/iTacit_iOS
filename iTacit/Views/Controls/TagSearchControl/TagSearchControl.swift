@@ -26,6 +26,7 @@ class TagSearchControl: UIControl {
 	enum Mode {
 		case Normal
 		case Editing
+		case Tags
 	}
 
 	@IBOutlet weak var tagTextField: TagTextField!
@@ -34,11 +35,18 @@ class TagSearchControl: UIControl {
 	@IBOutlet weak var searchButtonLeadingConstraint: NSLayoutConstraint!
 	@IBOutlet weak var autocompletionTableView: UITableView!
 	@IBOutlet weak var trailingConstraint: NSLayoutConstraint!
+	@IBOutlet weak var autocompletionTableViewHeightConstraint: NSLayoutConstraint!
 
 	weak var delegate: TagSearchControlDelegate?
 
 	var tags: [TagModel] {
-		return tagTextField.tags
+		get {
+			return tagTextField.tags
+		}
+		set {
+			tagTextField.tags = newValue
+			updateClearButtonvisibility()
+		}
 	}
 
 	private(set) var inputText: String {
@@ -47,10 +55,11 @@ class TagSearchControl: UIControl {
 		}
 		set {
 			tagTextField.text = newValue
+			updateClearButtonvisibility()
 		}
 	}
 
-	private(set) var mode = Mode.Normal {
+	var mode = Mode.Normal {
 		didSet {
 			guard oldValue != mode else {
 				return
@@ -58,6 +67,7 @@ class TagSearchControl: UIControl {
 			switch mode {
 				case .Normal: setNormalMode()
 				case .Editing: setEditingMode()
+				case .Tags: setTagsMode()
 			}
 		}
 	}
@@ -85,21 +95,9 @@ class TagSearchControl: UIControl {
 		setUp()
 	}
 
-	// MARK: - IBActions
+	// MARK: - Public 
 
-	@IBAction func activateSearch() {
-		mode = .Editing
-	}
-
-	@IBAction func clear() {
-		tagTextField.clear()
-		hideAutocompletionTableView()
-		mode = .Normal
-		clearButton.hidden = true
-		delegate?.tagsSearchControlDidClear(self)
-	}
-	
-	@IBAction func didChangeInputText(sender: TagTextField) {
+	func updateAutocompletionIfNeeded() {
 		if inputText.characters.count >= 3 {
 			delegate?.tagsSearchControl(self) { [weak self] (strings) -> Void in
 				guard let strongSelf = self else {
@@ -115,16 +113,41 @@ class TagSearchControl: UIControl {
 		} else {
 			hideAutocompletionTableView()
 		}
-		clearButton.hidden = inputText.isEmpty
-		sendActionsForControlEvents(.EditingChanged)
+	}
+
+	// MARK: - IBActions
+
+	@IBAction func activateSearch() {
+		mode = .Editing
+	}
+
+	@IBAction func clear() {
+		tagTextField.clear()
+		hideAutocompletionTableView()
+		mode = .Normal
+		updateClearButtonvisibility()
+		delegate?.tagsSearchControlDidClear(self)
 	}
 	
+	@IBAction func didChangeInputText(sender: TagTextField) {
+		updateAutocompletionIfNeeded()
+		updateClearButtonvisibility()
+		sendActionsForControlEvents(.EditingChanged)
+	}
+
 	// MARK: - Private
+
+	private func updateClearButtonvisibility() {
+		clearButton.hidden = inputText.isEmpty && tags.isEmpty && (mode != .Tags)
+	}
 
 	private func showAutocompletionTableView() {
 		guard !autocompletionStrings.isEmpty else {
 			return
 		}
+		let multiplier = CGFloat(min(autocompletionStrings.count, 3))
+		autocompletionTableViewHeightConstraint.constant = autocompletionTableView.rowHeight * multiplier
+
 		CATransaction.begin()
 
 		CATransaction.setCompletionBlock { [weak self] () -> Void in
@@ -170,11 +193,20 @@ class TagSearchControl: UIControl {
 	// MARK: - Modes 
 
 	private func setNormalMode() {
+		searchButtonLeadingConstraint.constant = 0
 		tagTextField.endEditing()
 	}
 
 	private func setEditingMode() {
+		searchButtonLeadingConstraint.constant = 0
 		tagTextField.beginEditing()
+	}
+
+	private func setTagsMode() {
+		searchButtonLeadingConstraint.constant = -CGRectGetWidth(searchButton.frame)
+		tagTextField.mode = .Collapsed
+		tagTextField.reloadData()
+		updateClearButtonvisibility()
 	}
 
 	// MARK: - UIView
@@ -194,12 +226,16 @@ class TagSearchControl: UIControl {
 extension TagSearchControl: TagTextFieldDelegate {
 
 	func tagedTextFieldShouldBeginEditing(textField: TagTextField) -> Bool {
-		return mode == .Editing
+		return mode != .Tags
 	}
 
 	func tagedTextFieldDidReturn(textField: TagTextField) {
 		hideAutocompletionTableView()
 		delegate?.tagsSearchControlSearchButtonPressed(self)
+	}
+
+	func tagedTextFieldDidBeginEditing(textField: TagTextField) {
+		updateAutocompletionIfNeeded()
 	}
 
 	func tagedTextFieldDidEndEditing(textField: TagTextField) {
@@ -218,7 +254,7 @@ extension TagSearchControl: TagTextFieldDelegate {
 	}
 
 	func tagedTextField(textField: TagTextField, didDeleteTag tag: TagModel) {
-
+		updateClearButtonvisibility()
 	}
 }
 

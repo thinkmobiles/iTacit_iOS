@@ -12,6 +12,7 @@ protocol TagTextFieldDelegate: class {
 
 	func tagedTextFieldShouldBeginEditing(textField: TagTextField) -> Bool
 	func tagedTextFieldDidReturn(textField: TagTextField)
+	func tagedTextFieldDidBeginEditing(textField: TagTextField)
 	func tagedTextFieldDidEndEditing(textField: TagTextField)
 	func tagedTextFieldShouldInserTag(textField: TagTextField, tag: String) -> Bool
 	func tagedTextFieldShouldSwitchToCollapsedMode(textField: TagTextField) -> Bool
@@ -26,7 +27,7 @@ class TagTextField: UIControl {
 		static let animationDuratoin = 0.25
 	}
 
-	private enum Mode {
+	enum Mode {
 		case Editing
 		case Collapsed
 	}
@@ -45,7 +46,6 @@ class TagTextField: UIControl {
 	private var collectionViewLayout: CollectionViewLeftAlignedFlowLayout!
 	private var tagsShortArray = [TagModel]()
 	private var tagsShortArrayAppendix: String?
-	private var mode = Mode.Collapsed
 
 	private var tagsArray: [TagModel] {
 		switch mode {
@@ -59,8 +59,13 @@ class TagTextField: UIControl {
 		}
 	}
 
-	private(set) var tags = [TagModel]()
-	private(set) var tagAttributes = [[String: AnyObject]]()
+	var mode = Mode.Collapsed
+
+	var tags = [TagModel]() {
+		didSet {
+			createTagsShortArray()
+		}
+	}
 
 	weak var delegate: TagTextFieldDelegate?
 
@@ -302,7 +307,8 @@ extension TagTextField: CollectionViewDelegateLeftAlignedFlowLayout {
 		switch mode {
 			case .Editing: return true
 			case .Collapsed:
-				if indexPath.item == (tagsArray.count - 1) && tags.count > tagsShortArray.count {
+				let shouldBeginEditing = delegate?.tagedTextFieldShouldBeginEditing(self) ?? true
+				if indexPath.item == (tagsArray.count - 1) && tags.count > tagsShortArray.count && shouldBeginEditing {
 					beginEditing(true)
 					return false
 				} else {
@@ -360,6 +366,10 @@ extension TagTextField: ExtendedTextFieldDelegate {
 
 	func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
 		return delegate?.tagedTextFieldShouldBeginEditing(self) ?? true
+	}
+
+	func textFieldDidBeginEditing(textField: UITextField) {
+		delegate?.tagedTextFieldDidBeginEditing(self)
 	}
 
 	func textFieldDidEndEditing(textField: UITextField) {

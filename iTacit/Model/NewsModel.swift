@@ -79,7 +79,7 @@ class NewsModel: BaseModel, Mappable {
 
 class DateValueTransformer: JSONValueTransformer {
 
-	private static let birthDateFormatter: NSDateFormatter = {
+	static let dateFormatter: NSDateFormatter = {
 		let dateFormatter = NSDateFormatter()
 		dateFormatter.dateFormat = "yyyy-MM-dd"
 		return dateFormatter
@@ -87,14 +87,14 @@ class DateValueTransformer: JSONValueTransformer {
 
 	class func transformFromJSONValue(value: AnyObject) throws -> Any {
 		if let stringDate = value as? String  {
-			return birthDateFormatter.dateFromString(stringDate)
+			return dateFormatter.dateFromString(stringDate)
 		}
 		throw ValueTransformerError.FailedToTransformValue(value: value)
 	}
 
 	class func transformToJSONValue(value: Any) throws -> AnyObject {
 		if let date = value as? NSDate {
-			return birthDateFormatter.stringFromDate(date)
+			return dateFormatter.stringFromDate(date)
 		}
 		throw ValueTransformerError.FailedToTransformValue(value: value)
 	}

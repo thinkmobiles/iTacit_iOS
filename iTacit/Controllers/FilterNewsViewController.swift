@@ -34,12 +34,14 @@ class FilterNewsViewController: BaseViewController {
 
 	var searchModel = SearchNewsQueryModel(string: "")
 	var searchString = ""
+	var tags: [TagModel] {
+		return tagTextField.tags
+	}
 
     override func viewDidLoad() {
         super.viewDidLoad()
 		addKeyboardObservers()
 		searchButton.setTitle(LocalizationService.LocalizedString("SEARCH"), forState: .Normal)
-		searchModel.string = searchString
 		authorList.searchQuery = SearchAuthorQueryModel(string: searchString)
 		categoryList.searchQuery = SearchCategoryQueryModel(string: searchString)
 		if searchString.characters.count >= 3 {
@@ -341,6 +343,8 @@ extension FilterNewsViewController: TagTextFieldDelegate {
 	}
 
 	func tagedTextFieldDidReturn(textField: TagTextField) {}
+
+	func tagedTextFieldDidBeginEditing(textField: TagTextField) {}
 
 	func tagedTextFieldDidEndEditing(textField: TagTextField) {}
 

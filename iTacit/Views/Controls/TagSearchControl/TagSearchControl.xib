@@ -8,6 +8,7 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TagSearchControl" customModule="iTacit" customModuleProvider="target" propertyAccessControl="none">
             <connections>
                 <outlet property="autocompletionTableView" destination="Kv7-jq-5h5" id="qUx-6D-udd"/>
+                <outlet property="autocompletionTableViewHeightConstraint" destination="NdW-cH-qTJ" id="2qk-8R-EUi"/>
                 <outlet property="clearButton" destination="okI-q9-0Od" id="H7m-ec-SAG"/>
                 <outlet property="searchButton" destination="veR-vc-eJl" id="8xK-qq-KXi"/>
                 <outlet property="searchButtonLeadingConstraint" destination="VXP-mH-06Z" id="MIH-T9-aZu"/>

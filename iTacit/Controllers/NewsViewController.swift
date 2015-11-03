@@ -21,10 +21,14 @@ class NewsViewController: UIViewController {
 	}
 
 	private let newsList = NewsListModel()
+	private var searchTimer: NSTimer?
+
+	// MARK: - LifeCycle
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		tableView.tableFooterView = UIView()
+		newsList.searchQuery = SearchNewsQueryModel(string: "")
 		reloadData()
 	}
 
@@ -35,6 +39,8 @@ class NewsViewController: UIViewController {
         newsTitle.text = LocalizationService.LocalizedString("News")
 	}
 
+	// MARK: - Private
+
 	private func clearSelection() {
 		if let selectedIndexPath = tableView.indexPathForSelectedRow {
 			tableView.deselectRowAtIndexPath(selectedIndexPath, animated: false)
@@ -42,10 +48,18 @@ class NewsViewController: UIViewController {
 	}
 
 	private func reloadData() {
+		print("Search query: \(newsList.searchQuery?.stringQuery)")
 		newsList.load { [weak self] (success) -> Void in
 			self?.tableView.reloadData()
+			self?.tagSearchControl?.updateAutocompletionIfNeeded()
 		}
 	}
+
+	func performSearch(sender: NSTimer) {
+		reloadData()
+	}
+
+	// MARK: Navigation
 
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if let selectedIndexPath = tableView.indexPathForSelectedRow, newsDetailViewController = segue.destinationViewController as? NewsDetailViewController {
@@ -54,7 +68,23 @@ class NewsViewController: UIViewController {
 			filterNewsViewController.searchString = tagSearchControl.inputText
 		}
 	}
+
+	@IBAction func returnFromFilterViewController(segue: UIStoryboardSegue) {
+		if let filterNewsViewController = segue.sourceViewController as? FilterNewsViewController {
+			newsList.searchQuery = filterNewsViewController.searchModel
+			tagSearchControl.tags = filterNewsViewController.tags
+			tagSearchControl.mode = .Tags
+			reloadData()
+		}
+	}
 	
+	@IBAction func didChangeSearchString(sender: TagSearchControl) {
+		(newsList.searchQuery as? SearchNewsQueryModel)?.string = tagSearchControl.inputText
+		searchTimer?.invalidate()
+		if sender.inputText.characters.count >= 3 {
+			searchTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("performSearch:"), userInfo: nil, repeats: false)
+		}
+	}
 }
 
 // MARK: - UITableViewDelegate
@@ -80,7 +110,7 @@ extension NewsViewController: UITableViewDataSource {
 		cell.title = newsModel.headline
 		cell.newsCategoryLabel.text = newsModel.categoryName
         
-        if let startDate  = newsModel.startDate {
+        if let startDate = newsModel.startDate {
             cell.timeLabel.text = startDate.timeAgoStringRepresentation()
         }
         
@@ -100,19 +130,20 @@ extension NewsViewController: UITableViewDataSource {
 extension NewsViewController: TagSearchControlDelegate {
 
 	func tagsSearchControl(tagsSearchControl: TagSearchControl, needsAutocompletionWithCompletion completion: (strings: [String]) -> Void) {
-		let strings = ["lorem ipsum", "lorem", "lorem ipsum", "Lorem ipsum dolor"]
+		let news = newsList.objects.filter { $0.headline.beginsWithString(tagSearchControl.inputText) }
+		let strings = news.map { $0.headline }
 		return completion(strings: strings)
 	}
 
 	func tagsSearchControlSearchButtonPressed(tagsSearchControl: TagSearchControl) {
 		if !tagsSearchControl.inputText.isEmpty {
-			newsList.searchQuery = SearchNewsQueryModel(string: tagsSearchControl.inputText)
+			(newsList.searchQuery as? SearchNewsQueryModel)?.string = tagSearchControl.inputText
 			reloadData()
 		}
 	}
 
 	func tagsSearchControlDidClear(tagsSearchControl: TagSearchControl) {
-		newsList.searchQuery = nil
+		newsList.searchQuery = SearchNewsQueryModel(string: "")
 		reloadData()
 	}
 
