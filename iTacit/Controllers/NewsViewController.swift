@@ -52,7 +52,11 @@ class NewsViewController: UIViewController {
 			newsDetailViewController.newsModel = newsList[selectedIndexPath.row]
 		} else if let filterNewsViewController = segue.destinationViewController as? FilterNewsViewController {
 			filterNewsViewController.searchString = tagSearchControl.inputText
+
+//            newsDetailViewController.userModel = UserProfileModel()
+//            newsDetailViewController.userModel?.userId = newsList[selectedIndexPath.row].authorId
 		}
+        
 	}
 }
 
