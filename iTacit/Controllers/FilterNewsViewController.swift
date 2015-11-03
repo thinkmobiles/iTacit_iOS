@@ -13,23 +13,27 @@ class FilterNewsViewController: BaseViewController {
     private struct Constants {
         static let listHeaderViewHeight: CGFloat = 39
         static let dateHeaderViewHeight: CGFloat = 93
+		static let authorIdKey = "authorId"
+		static let categoryIdKey = "categoryId"
     }
 
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var searchButton: UIButton!
-	@IBOutlet weak var tagTextField: TagTextField!
+	@IBOutlet weak var tagTextField: TagTextField! {
+		didSet {
+			tagTextField.delegate = self
+		}
+	}
 
 	private var searchTimer: NSTimer?
+	private let authorList = AuthorListModel()
+	private let categoryList = CategoriesListModel()
 
-	var showFirstSection = true;
-	var indexPathesArray = [2]
-	var selectedDateButtonTag: Int!
+	var hiddenSections = [2]
+	var selectedDateButtonTag: Int = 0
 
 	var searchModel = SearchNewsQueryModel(string: "")
 	var searchString = ""
-
-	private let  authorList = AuthorListModel()
-    private let categoriesList = CategoriesListModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,7 +41,7 @@ class FilterNewsViewController: BaseViewController {
 		searchButton.setTitle(LocalizationService.LocalizedString("SEARCH"), forState: .Normal)
 		searchModel.string = searchString
 		authorList.searchQuery = SearchAuthorQueryModel(string: searchString)
-		categoriesList.searchQuery = SearchCategoryQueryModel(string: searchString)
+		categoryList.searchQuery = SearchCategoryQueryModel(string: searchString)
 		if searchString.characters.count >= 3 {
 			reloadData()
 		}
@@ -57,7 +61,7 @@ class FilterNewsViewController: BaseViewController {
 
 	@IBAction func didChangeText(sender: TagTextField) {
 		(authorList.searchQuery as? SearchAuthorQueryModel)?.string = sender.text
-		(categoriesList.searchQuery as? SearchCategoryQueryModel)?.string = sender.text
+		(categoryList.searchQuery as? SearchCategoryQueryModel)?.string = sender.text
 		searchTimer?.invalidate()
 		if sender.text.characters.count >= 3 {
 			searchTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("performSearch:"), userInfo: nil, repeats: false)
@@ -75,24 +79,24 @@ class FilterNewsViewController: BaseViewController {
 			guard let strongSelf = self else {
 				return
 			}
-			if !strongSelf.indexPathesArray.contains(0) {
+			if !strongSelf.hiddenSections.contains(0) {
 				strongSelf.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
 			}
 		}
 
-		categoriesList.load { [weak self] (success) -> Void in
+		categoryList.load { [weak self] (success) -> Void in
 			guard let strongSelf = self else {
 				return
 			}
-			if !strongSelf.indexPathesArray.contains(1) {
+			if !strongSelf.hiddenSections.contains(1) {
 				strongSelf.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
 			}
 		}
 	}
 
     private func showOrHideCellsIn(section section: Int) {
-        if indexPathesArray.contains(section) {
-            indexPathesArray.removeAtIndex(indexPathesArray.indexOf(section)!)
+        if hiddenSections.contains(section) {
+            hiddenSections.removeAtIndex(hiddenSections.indexOf(section)!)
             if section == 2 {
                 CATransaction.begin()
                 
@@ -108,11 +112,29 @@ class FilterNewsViewController: BaseViewController {
                 CATransaction.commit()
             }
         } else {
-            indexPathesArray.append(section)
+            hiddenSections.append(section)
         }
 
         tableView.reloadSections(NSIndexSet(index: section), withRowAnimation: .Automatic);
     }
+
+	private func authorTagForId(authorId: String) -> TagModel? {
+		let index = tagTextField.tags.indexOf { ($0.attributes?[Constants.authorIdKey] ?? "") == authorId }
+		if let index = index {
+			return tagTextField.tags[index]
+		} else {
+			return nil
+		}
+	}
+
+	private func categoryTagForId(categoryId: String) -> TagModel? {
+		let index = tagTextField.tags.indexOf { ($0.attributes?[Constants.categoryIdKey] ?? "") == categoryId }
+		if let index = index {
+			return tagTextField.tags[index]
+		} else {
+			return nil
+		}
+	}
 
 	// MARK: - Keyboard
 
@@ -135,13 +157,13 @@ extension FilterNewsViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        if indexPathesArray.contains(section) {
+        if hiddenSections.contains(section) {
             return 0
         }
 
 		switch section {
 			case 0: return authorList.count
-			case 1: return categoriesList.count
+			case 1: return categoryList.count
 			default: return 1
 		}
     }
@@ -160,10 +182,26 @@ extension FilterNewsViewController: UITableViewDataSource {
 			} else {
 				cell.userImage = nil
 			}
+
+			let contains = tagTextField.tags.contains { ($0.attributes?[Constants.authorIdKey] ?? "") == author.authorID }
+
+			cell.selected = contains
+			if contains {
+				tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
+			}
+
             return cell
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier("CategoryTableViewCell") as! CategoryTableViewCell
-            cell.categoryName.text = categoriesList[indexPath.item].categoryName
+			let category = categoryList[indexPath.item]
+            cell.categoryName.text = category.categoryName
+
+			let contains = tagTextField.tags.contains { ($0.attributes?[Constants.categoryIdKey] ?? "") == category.categoryId }
+
+			cell.selected = contains
+			if contains {
+				tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
+			}
             
             return cell
         } else {
@@ -188,19 +226,51 @@ extension FilterNewsViewController: UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-        if indexPath.section == 1 {
-            showFirstSection = !showFirstSection
-        }
+		switch indexPath.section {
+			case 0:
+				let author = authorList[indexPath.item]
+				searchModel.authorIDs.append(author.authorID)
+				tagTextField.insertTag(author.fullName, attributes: [Constants.authorIdKey: author.authorID])
+			case 1:
+				let category = categoryList[indexPath.item]
+				searchModel.categoryIDs.append(category.categoryId)
+				tagTextField.insertTag(category.categoryName, attributes: [Constants.categoryIdKey: category.categoryId])
+			default: break
+		}
     }
-    
+
+	func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+		switch indexPath.section {
+			case 0:
+				let author = authorList[indexPath.item]
+				if let index = searchModel.authorIDs.indexOf(author.authorID) {
+					searchModel.authorIDs.removeAtIndex(index)
+				}
+
+				if let tag = authorTagForId(author.authorID) {
+					tagTextField.removeTag(tag)
+				}
+
+			case 1:
+				let category = categoryList[indexPath.item]
+				if let index = searchModel.categoryIDs.indexOf(category.categoryId) {
+					searchModel.categoryIDs.removeAtIndex(index)
+				}
+				if let tag = categoryTagForId(category.categoryId) {
+					tagTextField.removeTag(tag)
+				}
+			default: break
+		}
+	}
+
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if section < 2 {
             let header = ListHeaderView(frame: CGRect(x: 0, y: 0, width: CGRectGetMaxX(self.view.frame), height: Constants.listHeaderViewHeight))
             header.section = section
             header.delegate = self
-			header.rowCount = "\(section == 0 ? authorList.count: categoriesList.count)"
+			header.rowCount = "\(section == 0 ? authorList.count: categoryList.count)"
 
-            if indexPathesArray.contains(section) {
+            if hiddenSections.contains(section) {
                 header.isExpanded = false
             } else {
                 header.isExpanded = true
@@ -260,4 +330,41 @@ extension FilterNewsViewController: DatePickerCellDelegate {
     func didPressCancelButton() {
         showOrHideCellsIn(section: 2)
     }
+}
+
+// MARK: - TagSearchControlDelegate
+
+extension FilterNewsViewController: TagTextFieldDelegate {
+
+	func tagedTextFieldShouldBeginEditing(textField: TagTextField) -> Bool {
+		return true
+	}
+
+	func tagedTextFieldDidReturn(textField: TagTextField) {}
+
+	func tagedTextFieldDidEndEditing(textField: TagTextField) {}
+
+	func tagedTextFieldShouldInserTag(textField: TagTextField, tag: String) -> Bool {
+		return false
+	}
+
+	func tagedTextFieldShouldSwitchToCollapsedMode(textField: TagTextField) -> Bool {
+		return true
+	}
+
+	func tagedTextField(textField: TagTextField, didDeleteTag tag: TagModel) {
+		if let authorId = tag.attributes?[Constants.authorIdKey] where !hiddenSections.contains(0) {
+			let index = authorList.objects.indexOf { $0.authorID == authorId }
+			if let index = index {
+				tableView.deselectRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0), animated: false)
+			}
+		} else if let categoryId = tag.attributes?[Constants.categoryIdKey] where !hiddenSections.contains(1) {
+			let index = categoryList.objects.indexOf { $0.categoryId == categoryId }
+			if let index = index {
+				tableView.deselectRowAtIndexPath(NSIndexPath(forRow: index, inSection: 1), animated: false)
+			}
+
+		}
+	}
+
 }

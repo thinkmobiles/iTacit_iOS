@@ -37,7 +37,7 @@ class TagSearchControl: UIControl {
 
 	weak var delegate: TagSearchControlDelegate?
 
-	var tags: [String] {
+	var tags: [TagModel] {
 		return tagTextField.tags
 	}
 
@@ -215,6 +215,10 @@ extension TagSearchControl: TagTextFieldDelegate {
 
 	func tagedTextFieldShouldSwitchToCollapsedMode(textField: TagTextField) -> Bool {
 		return false
+	}
+
+	func tagedTextField(textField: TagTextField, didDeleteTag tag: TagModel) {
+
 	}
 }
 
