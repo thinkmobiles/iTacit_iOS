@@ -8,7 +8,7 @@
 
 import UIKit
 
-class NewsDetailViewController: UIViewController {
+class NewsDetailViewController: BaseViewController {
     
     private struct Constants {
         static let heightOfUserCell: CGFloat = 47

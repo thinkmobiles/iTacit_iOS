@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FilterNewsViewController: UIViewController {
+class FilterNewsViewController: BaseViewController {
     
     private struct Constants {
         static let listHeaderViewHeight: CGFloat = 39
