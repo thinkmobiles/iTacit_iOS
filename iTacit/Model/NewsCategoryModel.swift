@@ -9,6 +9,7 @@
 import UIKit
 
 class NewsCategoryModel {
+	
     var mostRecentArticlePublishedDate: NSDate?
     var categoryName: String?
     var categoryId: Int?

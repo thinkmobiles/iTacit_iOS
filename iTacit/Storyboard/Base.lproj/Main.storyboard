@@ -1116,6 +1116,9 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="72" id="DC0-0v-hPO"/>
                                 </constraints>
+                                <connections>
+                                    <action selector="didChangeText:" destination="QOC-HU-CCj" eventType="editingChanged" id="WSq-LT-8fi"/>
+                                </connections>
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="nMu-Th-Gwf" userLabel="Bottom Line View">
                                 <rect key="frame" x="0.0" y="92" width="600" height="0.0"/>

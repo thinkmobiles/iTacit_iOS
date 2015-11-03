@@ -19,6 +19,8 @@ class FilterNewsViewController: UIViewController {
     @IBOutlet weak var searchButton: UIButton!
 	@IBOutlet weak var tagTextField: TagTextField!
 
+	private var searchTimer: NSTimer?
+
 	var showFirstSection = true;
 	var indexPathesArray = [2]
 	var selectedDateButtonTag: Int!
@@ -26,10 +28,14 @@ class FilterNewsViewController: UIViewController {
 	var searchModel = SearchNewsQueryModel(string: "")
 	var searchString = ""
 
+	var authorList = AuthorListModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
-		searchModel.string = searchString
 		searchButton.setTitle(LocalizationService.LocalizedString("SEARCH"), forState: .Normal)
+		searchModel.string = searchString
+
+		authorList.searchQuery = SearchAuthorQueryModel(string: searchString)
     }
 
 	override func viewWillAppear(animated: Bool) {
@@ -37,10 +43,35 @@ class FilterNewsViewController: UIViewController {
 		tagTextField.beginEditing()
 		tagTextField.text = searchString
 	}
+
+	// MARK: - IBActions
+
+	@IBAction func didChangeText(sender: TagTextField) {
+		(authorList.searchQuery as? SearchAuthorQueryModel)?.string = sender.text
+		searchTimer?.invalidate()
+		if sender.text.characters.count >= 3 {
+			searchTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("performSearch:"), userInfo: nil, repeats: false)
+		}
+	}
     
     // MARK: - Private
+
+	func performSearch(sender: NSTimer) {
+		reloadAuthorList()
+	}
+
+	private func reloadAuthorList() {
+		authorList.load { [weak self] (success) -> Void in
+			guard let strongSelf = self else {
+				return
+			}
+			if !strongSelf.indexPathesArray.contains(0) {
+				strongSelf.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+			}
+		}
+	}
     
-    func showOrHideCellsIn(section section: Int) {
+    private func showOrHideCellsIn(section section: Int) {
         if indexPathesArray.contains(section) {
             indexPathesArray.removeAtIndex(indexPathesArray.indexOf(section)!)
             if section == 2 {
@@ -78,13 +109,29 @@ extension FilterNewsViewController: UITableViewDataSource {
         if indexPathesArray.contains(section) {
             return 0
         }
-        
-        return section < 2 ? 3 : 1
+
+		switch section {
+			case 0: return authorList.count
+			case 1: 3
+			default: return 1
+		}
+		return 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("UserTableViewCell") as! UserTableViewCell
+			let author = authorList[indexPath.item]
+			cell.fullName = author.fullName
+			cell.userAttributesText = author.roleName
+
+			if let imageURL = author.imageURL {
+				ImageCacheManager.sharedInstance.imageForURL(imageURL, completion: { (image) -> Void in
+					cell.userImage = image
+				})
+			} else {
+				cell.userImage = nil
+			}
             return cell
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier("CategoryTableViewCell") as! CategoryTableViewCell
@@ -144,6 +191,7 @@ extension FilterNewsViewController: UITableViewDelegate {
 // MARK: - ListHeaderViewDelegate
 
 extension FilterNewsViewController: ListHeaderViewDelegate {
+	
     func didSelectHeaderWithSection(headerView: UIView) {
         if headerView is ListHeaderView {
             if let section = (headerView as! ListHeaderView).section {
