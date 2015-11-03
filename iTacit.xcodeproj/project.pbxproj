@@ -11,6 +11,14 @@
 		350644C61BD7788400D51D5C /* ListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 350644C51BD7788400D51D5C /* ListHeaderView.xib */; };
 		350644C81BD784A800D51D5C /* DateHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350644C71BD784A800D51D5C /* DateHeaderView.swift */; };
 		350644CA1BD784B300D51D5C /* DateHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 350644C91BD784B300D51D5C /* DateHeaderView.xib */; };
+		3516FFA11BE756BF00865EB9 /* MessageComposerFloatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516FFA01BE756BF00865EB9 /* MessageComposerFloatingView.swift */; };
+		3516FFA31BE7940000865EB9 /* ComposerRequestConfirmationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516FFA21BE7940000865EB9 /* ComposerRequestConfirmationCell.swift */; };
+		3516FFA51BE7996800865EB9 /* NewMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516FFA41BE7996800865EB9 /* NewMessageModel.swift */; };
+		351E8EC11BE36B1500690669 /* MessageComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E8EC01BE36B1500690669 /* MessageComposeViewController.swift */; };
+		351E8EC31BE36E8C00690669 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E8EC21BE36E8C00690669 /* BaseViewController.swift */; };
+		351E8EC51BE36FC800690669 /* ComposerToTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E8EC41BE36FC800690669 /* ComposerToTableViewCell.swift */; };
+		351E8EC81BE3700F00690669 /* ComposerTopicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E8EC71BE3700F00690669 /* ComposerTopicTableViewCell.swift */; };
+		351E8ECC1BE3C2AC00690669 /* ComposerBodyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E8ECB1BE3C2AC00690669 /* ComposerBodyTableViewCell.swift */; };
 		353C04FB1BE2490F00C92352 /* LocalizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353C04FA1BE2490F00C92352 /* LocalizationService.swift */; };
 		353C04FE1BE253BF00C92352 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 353C05001BE253BF00C92352 /* Localizable.strings */; };
 		353C05051BE25D0800C92352 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353C05041BE25D0800C92352 /* MainTabBarController.swift */; };
@@ -69,6 +77,14 @@
 		350644C51BD7788400D51D5C /* ListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListHeaderView.xib; sourceTree = "<group>"; };
 		350644C71BD784A800D51D5C /* DateHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHeaderView.swift; sourceTree = "<group>"; };
 		350644C91BD784B300D51D5C /* DateHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateHeaderView.xib; sourceTree = "<group>"; };
+		3516FFA01BE756BF00865EB9 /* MessageComposerFloatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageComposerFloatingView.swift; sourceTree = "<group>"; };
+		3516FFA21BE7940000865EB9 /* ComposerRequestConfirmationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerRequestConfirmationCell.swift; sourceTree = "<group>"; };
+		3516FFA41BE7996800865EB9 /* NewMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageModel.swift; sourceTree = "<group>"; };
+		351E8EC01BE36B1500690669 /* MessageComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageComposeViewController.swift; sourceTree = "<group>"; };
+		351E8EC21BE36E8C00690669 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		351E8EC41BE36FC800690669 /* ComposerToTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerToTableViewCell.swift; sourceTree = "<group>"; };
+		351E8EC71BE3700F00690669 /* ComposerTopicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerTopicTableViewCell.swift; sourceTree = "<group>"; };
+		351E8ECB1BE3C2AC00690669 /* ComposerBodyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerBodyTableViewCell.swift; sourceTree = "<group>"; };
 		353C04FA1BE2490F00C92352 /* LocalizationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationService.swift; sourceTree = "<group>"; };
 		353C04FF1BE253BF00C92352 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		353C05011BE253D900C92352 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -149,6 +165,17 @@
 			path = HeaderViews;
 			sourceTree = "<group>";
 		};
+		351E8EC61BE36FCD00690669 /* MailComposerTableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				351E8EC41BE36FC800690669 /* ComposerToTableViewCell.swift */,
+				351E8EC71BE3700F00690669 /* ComposerTopicTableViewCell.swift */,
+				351E8ECB1BE3C2AC00690669 /* ComposerBodyTableViewCell.swift */,
+				3516FFA21BE7940000865EB9 /* ComposerRequestConfirmationCell.swift */,
+			);
+			name = MailComposerTableViewCells;
+			sourceTree = "<group>";
+		};
 		40440DAB1BDBCC9C00FADF6E /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -213,12 +240,12 @@
 		40EA81FE1BCFA3360029228F /* iTacit */ = {
 			isa = PBXGroup;
 			children = (
-				40EA823A1BCFCCBE0029228F /* Classes */,
-				40EA82171BCFC40C0029228F /* Controllers */,
-				40EA821B1BCFC40C0029228F /* Model */,
-				40EA821E1BCFC40C0029228F /* Views */,
-				40EA821C1BCFC40C0029228F /* Resources */,
 				40EA82201BCFC4170029228F /* Storyboard */,
+				40EA82171BCFC40C0029228F /* Controllers */,
+				40EA821E1BCFC40C0029228F /* Views */,
+				40EA823A1BCFCCBE0029228F /* Classes */,
+				40EA821B1BCFC40C0029228F /* Model */,
+				40EA821C1BCFC40C0029228F /* Resources */,
 				40EA82121BCFB8E10029228F /* Supporting Files */,
 				40EA82351BCFC8710029228F /* Utils */,
 			);
@@ -247,6 +274,8 @@
 				353C05041BE25D0800C92352 /* MainTabBarController.swift */,
 				40EA82571BCFD09A0029228F /* TrainingViewController.swift */,
 				3DEFA79C1BD5040A00596A2B /* FilterNewsViewController.swift */,
+				351E8EC01BE36B1500690669 /* MessageComposeViewController.swift */,
+				351E8EC21BE36E8C00690669 /* BaseViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -254,6 +283,7 @@
 		40EA821B1BCFC40C0029228F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				3516FFA41BE7996800865EB9 /* NewMessageModel.swift */,
 				355FF06D1BDF697B0070B600 /* SearchNewsModel.swift */,
 			);
 			path = Model;
@@ -292,6 +322,7 @@
 				40EA82451BCFCD150029228F /* Controls */,
 				40EA82441BCFCCEA0029228F /* DirectSubclasses */,
 				350644C41BD7783D00D51D5C /* HeaderViews */,
+				3516FFA01BE756BF00865EB9 /* MessageComposerFloatingView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -299,8 +330,8 @@
 		40EA82201BCFC4170029228F /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
-				40EA82081BCFA3360029228F /* LaunchScreen.storyboard */,
 				40EA82031BCFA3360029228F /* Main.storyboard */,
+				40EA82081BCFA3360029228F /* LaunchScreen.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -360,6 +391,7 @@
 		40EA82421BCFCCEA0029228F /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				351E8EC61BE36FCD00690669 /* MailComposerTableViewCells */,
 				40440DB61BDBCCA200FADF6E /* AutocompletionTableViewCell */,
 				3DEFA7A01BD50B7100596A2B /* CategoryTableViewCell.swift */,
 				3DEFA79E1BD5056E00596A2B /* DatePickerTableViewCell.swift */,
@@ -492,17 +524,24 @@
 			buildActionMask = 2147483647;
 			files = (
 				40440DB91BDBCCA200FADF6E /* AutocompletionTableViewCell.swift in Sources */,
+				3516FFA51BE7996800865EB9 /* NewMessageModel.swift in Sources */,
+				351E8EC11BE36B1500690669 /* MessageComposeViewController.swift in Sources */,
+				351E8EC51BE36FC800690669 /* ComposerToTableViewCell.swift in Sources */,
 				40EA82561BCFD07B0029228F /* MessagesViewController.swift in Sources */,
 				353C05051BE25D0800C92352 /* MainTabBarController.swift in Sources */,
 				40EA824E1BCFCDEC0029228F /* TabBarControllerSegue.swift in Sources */,
+				351E8EC31BE36E8C00690669 /* BaseViewController.swift in Sources */,
 				3DEFA79D1BD5040A00596A2B /* FilterNewsViewController.swift in Sources */,
 				40440DBE1BDBCDDE00FADF6E /* ExtendedTextField.swift in Sources */,
 				4014E4EC1BD0FD4F00837B3E /* NewsTableViewCell.swift in Sources */,
 				40EA82501BCFCE120029228F /* TabBarController.swift in Sources */,
+				351E8ECC1BE3C2AC00690669 /* ComposerBodyTableViewCell.swift in Sources */,
 				40440DB41BDBCC9C00FADF6E /* TextCollectionViewCell.swift in Sources */,
 				3563B9A21BD12E40009BE696 /* DescriptionTableViewCell.swift in Sources */,
 				3563B9981BD117BE009BE696 /* UserTableViewCell.swift in Sources */,
 				40440DB21BDBCC9C00FADF6E /* InputCollectionViewCell.swift in Sources */,
+				3516FFA11BE756BF00865EB9 /* MessageComposerFloatingView.swift in Sources */,
+				351E8EC81BE3700F00690669 /* ComposerTopicTableViewCell.swift in Sources */,
 				40EA82471BCFCD690029228F /* TabsContainerView.swift in Sources */,
 				40EA82371BCFC8A40029228F /* AppColors.swift in Sources */,
 				40EA82001BCFA3360029228F /* AppDelegate.swift in Sources */,
@@ -511,6 +550,7 @@
 				3DEFA7A11BD50B7100596A2B /* CategoryTableViewCell.swift in Sources */,
 				40EA82541BCFD06F0029228F /* NewsViewController.swift in Sources */,
 				40440DC31BDBCE2F00FADF6E /* TagSearchControl.swift in Sources */,
+				3516FFA31BE7940000865EB9 /* ComposerRequestConfirmationCell.swift in Sources */,
 				3563B9A01BD12CCB009BE696 /* TitleTableViewCell.swift in Sources */,
 				350644C81BD784A800D51D5C /* DateHeaderView.swift in Sources */,
 				355FF06E1BDF697B0070B600 /* SearchNewsModel.swift in Sources */,

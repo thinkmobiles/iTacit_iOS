@@ -9,5 +9,13 @@
 import UIKit
 
 class MessagesViewController: UIViewController {
-
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        performSegueWithIdentifier("ShowComposer", sender: self)
+    }
+    
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+    }
 }
