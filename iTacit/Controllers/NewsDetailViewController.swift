@@ -25,6 +25,7 @@ class NewsDetailViewController: UIViewController {
         tableView.estimatedRowHeight = 89
         tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0)
+		
 		newsModel?.load({ [weak self] (success) -> Void in
 			self?.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 0)], withRowAnimation: .Automatic)
 		})
@@ -64,21 +65,9 @@ extension NewsDetailViewController: UITableViewDataSource {
         if indexPath.row == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("ImageTableViewCell", forIndexPath: indexPath) as! ImageTableViewCell
 			if let imageURL = newsModel?.headlineImageURL {
-				if let image = ImageCache.objectForKey(imageURL) as? UIImage {
+				ImageCacheManager.sharedInstance.imageForURL(imageURL, completion: { (image) -> Void in
 					cell.mewsImageView.image = image
-				} else {
-					let request = NSMutableURLRequest(URL: imageURL)
-					request.HTTPMethod = URLRequestMethod.GET.rawValue
-					let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, _, _) -> Void in
-						dispatch_async(dispatch_get_main_queue()) { () -> Void in
-							if let data = data, image = UIImage(data: data) {
-								ImageCache.setObject(image, forKey: imageURL)
-								cell.mewsImageView.image = image
-							}
-						}
-					})
-					task.resume()
-				}
+				})
 			}
             return cell
         } else if indexPath.row == 1 {
