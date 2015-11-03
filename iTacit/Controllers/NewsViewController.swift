@@ -50,7 +50,10 @@ class NewsViewController: UIViewController {
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if let selectedIndexPath = tableView.indexPathForSelectedRow, newsDetailViewController = segue.destinationViewController as? NewsDetailViewController {
 			newsDetailViewController.newsModel = newsList[selectedIndexPath.row]
+            newsDetailViewController.userModel = UserProfileModel()
+            newsDetailViewController.userModel?.userId = newsList[selectedIndexPath.row].authorId
 		}
+        
 	}
 }
 

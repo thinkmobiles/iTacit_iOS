@@ -17,8 +17,9 @@ class NewsDetailViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
 
-	var newsModel: NewsModel?
-    
+    var newsModel: NewsModel?
+    var userModel: UserProfileModel?
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -27,8 +28,14 @@ class NewsDetailViewController: UIViewController {
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0)
 		
 		newsModel?.load({ [weak self] (success) -> Void in
-			self?.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 0)], withRowAnimation: .Automatic)
+		
+            self?.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 0)], withRowAnimation: .Automatic)
 		})
+        
+        userModel?.load({ [weak self] (success) -> Void in
+            
+            self?.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 4, inSection: 0)], withRowAnimation: .Automatic)
+            })
     }
 
 	deinit {
@@ -85,6 +92,44 @@ extension NewsDetailViewController: UITableViewDataSource {
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("UserTableViewCell", forIndexPath: indexPath) as! UserTableViewCell
+            
+            if let imageURL = userModel?.imageUrl {
+                ImageCacheManager.sharedInstance.imageForURL(imageURL, completion: { (image) -> Void in
+                    cell.userAvatarImageView.image = image
+                })
+            }
+            
+            if let nameFirst = userModel?.nameFirst, nameLast = userModel?.nameLast {
+                cell.userNameLabel.text = nameFirst + " " + nameLast
+            }
+            
+            let nameFirst: String? = userModel?.nameFirst
+            let nameLast: String? = userModel?.nameLast
+
+            switch (nameFirst, nameLast) {
+            case let (nameFirst?, nameLast?):
+                cell.userNameLabel.text = nameFirst + " " + nameLast
+            case let (nameFirst?, nil):
+                cell.userNameLabel.text = nameFirst
+            case let (nil, nameLast?):
+                cell.userNameLabel.text = nameLast
+            case (nil, nil):
+                cell.userNameLabel.text = ""
+            }
+            
+            let roleName: String? = userModel?.roleName
+            let businessUnitName: String? = userModel?.businessUnitName
+            
+            switch (roleName, businessUnitName) {
+            case let (roleName?, businessUnitName?):
+                cell.userDescriptionLabel.text = roleName + " / " + businessUnitName
+            case let (roleName?, nil):
+                cell.userDescriptionLabel.text = roleName
+            case let (nil, businessUnitName?):
+                cell.userDescriptionLabel.text = businessUnitName
+            case (nil, nil):
+                cell.userDescriptionLabel.text = ""
+            }
             
             return cell
         }
