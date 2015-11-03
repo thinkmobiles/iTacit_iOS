@@ -25,7 +25,7 @@ class NewsModel: BaseModel, Mappable {
 	var categoryId = ""
 	var headlineImageURL: NSURL?
 	var body: NSAttributedString?
-    var authorID = ""
+    var authorId = ""
 
 	func load(completion: CompletionHandler? = nil) {
 		performRequest({ (builder) -> Void in
@@ -53,7 +53,7 @@ class NewsModel: BaseModel, Mappable {
 			case "categoryId": categoryId <<- value
 			case "headlineImageURL": headlineImageURL <<- value
 			case "body": body <<- value
-            case "authorID": authorID <<- value
+            case "authorId": authorId <<- value
 			default: break
 		}
 	}
@@ -65,7 +65,7 @@ class NewsModel: BaseModel, Mappable {
 			PropertyDescriptor(propertyName: "authorName"),
 			PropertyDescriptor(propertyName: "categoryName"),
 			PropertyDescriptor(propertyName: "categoryId"),
-            PropertyDescriptor(propertyName: "authorID"),
+            PropertyDescriptor(propertyName: "authorId"),
 			PropertyDescriptor(propertyName: "headlineImageURL", JSONKey: "headlineImageUrl"),
 			TransformablePropertyDescriptor(propertyName: "summary", valueTransformer: HTMLToAttributedStringTransformer.self),
 			TransformablePropertyDescriptor(propertyName: "endDate", valueTransformer: DateValueTransformer.self),
