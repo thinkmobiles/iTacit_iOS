@@ -32,6 +32,12 @@ class NewsTableViewCell: UITableViewCell {
         }
     }
 
-	var imageDownloadTask: NSURLSessionDataTask?
+	var imageDownloadTask: NSURLSessionTask? {
+		didSet {
+			if let _ = imageDownloadTask {
+				newsImage = nil
+			}
+		}
+	}
 
 }

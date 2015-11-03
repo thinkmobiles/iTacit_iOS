@@ -45,6 +45,7 @@
 		40440DC31BDBCE2F00FADF6E /* TagSearchControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40440DC01BDBCE2F00FADF6E /* TagSearchControl.swift */; };
 		40440DC41BDBCE2F00FADF6E /* TagSearchControl.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40440DC11BDBCE2F00FADF6E /* TagSearchControl.xib */; };
 		40440DC51BDBCE2F00FADF6E /* TagTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40440DC21BDBCE2F00FADF6E /* TagTextField.swift */; };
+		4056D5771BE89B290076B970 /* ImageCacheManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4056D5761BE89B290076B970 /* ImageCacheManager.swift */; };
 		405A29891BE6B21A0024ADA9 /* JSONMapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A29801BE6B21A0024ADA9 /* JSONMapper.swift */; };
 		405A298A1BE6B21A0024ADA9 /* JSONValueConvertible.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A29811BE6B21A0024ADA9 /* JSONValueConvertible.swift */; };
 		405A298B1BE6B21A0024ADA9 /* JSONValueConvertibleExtensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A29821BE6B21A0024ADA9 /* JSONValueConvertibleExtensions.swift */; };
@@ -132,6 +133,7 @@
 		40440DC01BDBCE2F00FADF6E /* TagSearchControl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagSearchControl.swift; sourceTree = "<group>"; };
 		40440DC11BDBCE2F00FADF6E /* TagSearchControl.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TagSearchControl.xib; sourceTree = "<group>"; };
 		40440DC21BDBCE2F00FADF6E /* TagTextField.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TagTextField.swift; sourceTree = "<group>"; };
+		4056D5761BE89B290076B970 /* ImageCacheManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageCacheManager.swift; sourceTree = "<group>"; };
 		405A29801BE6B21A0024ADA9 /* JSONMapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONMapper.swift; sourceTree = "<group>"; };
 		405A29811BE6B21A0024ADA9 /* JSONValueConvertible.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONValueConvertible.swift; sourceTree = "<group>"; };
 		405A29821BE6B21A0024ADA9 /* JSONValueConvertibleExtensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JSONValueConvertibleExtensions.swift; sourceTree = "<group>"; };
@@ -426,6 +428,7 @@
 		40EA823D1BCFCCBE0029228F /* Managers */ = {
 			isa = PBXGroup;
 			children = (
+				4056D5761BE89B290076B970 /* ImageCacheManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -631,6 +634,7 @@
 				40EA82581BCFD09A0029228F /* TrainingViewController.swift in Sources */,
 				3563B9A41BD12FAE009BE696 /* HashtagAndTimeTableViewCell.swift in Sources */,
 				3DD1FF321BE39FC0005C4339 /* NewsCategoryModel.swift in Sources */,
+				4056D5771BE89B290076B970 /* ImageCacheManager.swift in Sources */,
 				40EA82521BCFD05F0029228F /* DashboardViewController.swift in Sources */,
 				3563B99E1BD1288A009BE696 /* ImageTableViewCell.swift in Sources */,
 				3DEFA79F1BD5056E00596A2B /* DatePickerTableViewCell.swift in Sources */,
