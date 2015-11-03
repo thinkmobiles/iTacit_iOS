@@ -22,8 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		UINavigationBar.appearance().barTintColor = UIColor.whiteColor()
 		UINavigationBar.appearance().translucent = false
 		UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont.openSansRegular(17.0), NSForegroundColorAttributeName: AppColors.darkGray]
-		UINavigationBar.appearance().backIndicatorImage = UIImage(assetsIndetifier: .BackBatton)
-		UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(assetsIndetifier: .BackBatton)
+		UINavigationBar.appearance().backIndicatorImage = UIImage(assetsIndetifier: .BackButton)
+		UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(assetsIndetifier: .BackButton)
 		UINavigationBar.appearance().tintColor = AppColors.darkGray
 	}
 }

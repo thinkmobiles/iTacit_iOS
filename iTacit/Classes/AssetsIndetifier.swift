@@ -10,7 +10,7 @@ import UIKit
 
 enum AssetsIndetifier: String {
 
-	case BackBatton = "btn_back"
+	case BackButton = "btn_back"
 	case TrianglePointerUp = "btn_drop_show"
 	case TrianglePointerDown = "btn_drop_hide"
 
