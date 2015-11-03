@@ -938,6 +938,7 @@
                                         <animations/>
                                         <inset key="separatorInset" minX="15" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <connections>
+                                            <outlet property="categoryName" destination="i00-Y4-5Kn" id="BWG-En-swe"/>
                                             <outlet property="selectCategoryButton" destination="9mM-UV-xDr" id="xb4-3O-UtX"/>
                                         </connections>
                                     </tableViewCell>

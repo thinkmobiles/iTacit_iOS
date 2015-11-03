@@ -11,6 +11,7 @@ import UIKit
 class CategoryTableViewCell: UITableViewCell {
 
     @IBOutlet weak var selectCategoryButton: UIButton!
+    @IBOutlet weak var categoryName: UILabel!
 
     override func awakeFromNib() {
         super.awakeFromNib()

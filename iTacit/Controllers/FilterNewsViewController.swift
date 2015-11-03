@@ -26,10 +26,19 @@ class FilterNewsViewController: UIViewController {
 	var searchModel = SearchNewsQueryModel(string: "")
 	var searchString = ""
 
+    private let categoriesList = CategoriesListModel()
+
     override func viewDidLoad() {
         super.viewDidLoad()
 		searchModel.string = searchString
 		searchButton.setTitle(LocalizationService.LocalizedString("SEARCH"), forState: .Normal)
+        reloadData()
+    }
+    
+    private func reloadData() {
+        categoriesList.load { [weak self] (success) -> Void in
+            self?.tableView.reloadData()
+        }
     }
 
 	override func viewWillAppear(animated: Bool) {
@@ -79,6 +88,10 @@ extension FilterNewsViewController: UITableViewDataSource {
             return 0
         }
         
+        if section == 1 {
+            return categoriesList.count
+        }
+        
         return section < 2 ? 3 : 1
     }
     
@@ -88,6 +101,8 @@ extension FilterNewsViewController: UITableViewDataSource {
             return cell
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier("CategoryTableViewCell") as! CategoryTableViewCell
+            cell.categoryName.text = categoriesList[indexPath.item].categoryName
+            
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("DatePickerTableViewCell") as! DatePickerTableViewCell
