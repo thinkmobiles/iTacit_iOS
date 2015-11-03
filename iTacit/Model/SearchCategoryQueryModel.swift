@@ -1,5 +1,5 @@
 //
-//  SearchAuthorQueryModel.swift
+//  SearchCategoryQueryModel.swift
 //  iTacit
 //
 //  Created by Sauron Black on 11/3/15.
@@ -8,10 +8,10 @@
 
 import Foundation
 
-class SearchAuthorQueryModel: SearchStringModel {
+class SearchCategoryQueryModel: SearchStringModel {
 
 	override var stringQuery: String {
-		return "authorNameFull:" + string
+		return "categoryName:" + string
 	}
 
 }

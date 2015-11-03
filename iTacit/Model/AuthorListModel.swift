@@ -17,5 +17,5 @@ class AuthorListModel<T: AuthorModel>: ListModel<T> {
 	required init() {
 		super.init()
 	}
-	
+
 }

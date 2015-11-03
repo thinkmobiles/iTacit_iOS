@@ -8,7 +8,7 @@
 
 import UIKit
 
-class FilterNewsViewController: UIViewController {
+class FilterNewsViewController: BaseViewController {
     
     private struct Constants {
         static let listHeaderViewHeight: CGFloat = 39
@@ -28,14 +28,19 @@ class FilterNewsViewController: UIViewController {
 	var searchModel = SearchNewsQueryModel(string: "")
 	var searchString = ""
 
-	var authorList = AuthorListModel()
+	private let  authorList = AuthorListModel()
+    private let categoriesList = CategoriesListModel()
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		addKeyboardObservers()
 		searchButton.setTitle(LocalizationService.LocalizedString("SEARCH"), forState: .Normal)
 		searchModel.string = searchString
-
 		authorList.searchQuery = SearchAuthorQueryModel(string: searchString)
+		categoriesList.searchQuery = SearchCategoryQueryModel(string: searchString)
+		if searchString.characters.count >= 3 {
+			reloadData()
+		}
     }
 
 	override func viewWillAppear(animated: Bool) {
@@ -44,10 +49,15 @@ class FilterNewsViewController: UIViewController {
 		tagTextField.text = searchString
 	}
 
+	deinit {
+		removeKeyboardObservers()
+	}
+
 	// MARK: - IBActions
 
 	@IBAction func didChangeText(sender: TagTextField) {
 		(authorList.searchQuery as? SearchAuthorQueryModel)?.string = sender.text
+		(categoriesList.searchQuery as? SearchCategoryQueryModel)?.string = sender.text
 		searchTimer?.invalidate()
 		if sender.text.characters.count >= 3 {
 			searchTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("performSearch:"), userInfo: nil, repeats: false)
@@ -57,10 +67,10 @@ class FilterNewsViewController: UIViewController {
     // MARK: - Private
 
 	func performSearch(sender: NSTimer) {
-		reloadAuthorList()
+		reloadData()
 	}
 
-	private func reloadAuthorList() {
+	private func reloadData() {
 		authorList.load { [weak self] (success) -> Void in
 			guard let strongSelf = self else {
 				return
@@ -69,8 +79,17 @@ class FilterNewsViewController: UIViewController {
 				strongSelf.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
 			}
 		}
+
+		categoriesList.load { [weak self] (success) -> Void in
+			guard let strongSelf = self else {
+				return
+			}
+			if !strongSelf.indexPathesArray.contains(1) {
+				strongSelf.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
+			}
+		}
 	}
-    
+
     private func showOrHideCellsIn(section section: Int) {
         if indexPathesArray.contains(section) {
             indexPathesArray.removeAtIndex(indexPathesArray.indexOf(section)!)
@@ -94,6 +113,16 @@ class FilterNewsViewController: UIViewController {
 
         tableView.reloadSections(NSIndexSet(index: section), withRowAnimation: .Automatic);
     }
+
+	// MARK: - Keyboard
+
+	override func keyboardWillShowWithSize(size: CGSize, animationDuration: NSTimeInterval, animationOptions: UIViewAnimationOptions) {
+		tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: size.height, right: 0)
+	}
+
+	override func keyboardWillHideWithSize(size: CGSize, animationDuration: NSTimeInterval, animationOptions: UIViewAnimationOptions) {
+		tableView.contentInset = UIEdgeInsetsZero
+	}
 }
 
 // MARK: - UITableViewDataSource
@@ -112,10 +141,9 @@ extension FilterNewsViewController: UITableViewDataSource {
 
 		switch section {
 			case 0: return authorList.count
-			case 1: 3
+			case 1: return categoriesList.count
 			default: return 1
 		}
-		return 1
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
@@ -135,6 +163,8 @@ extension FilterNewsViewController: UITableViewDataSource {
             return cell
         } else if indexPath.section == 1 {
             let cell = tableView.dequeueReusableCellWithIdentifier("CategoryTableViewCell") as! CategoryTableViewCell
+            cell.categoryName.text = categoriesList[indexPath.item].categoryName
+            
             return cell
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("DatePickerTableViewCell") as! DatePickerTableViewCell
@@ -168,7 +198,8 @@ extension FilterNewsViewController: UITableViewDelegate {
             let header = ListHeaderView(frame: CGRect(x: 0, y: 0, width: CGRectGetMaxX(self.view.frame), height: Constants.listHeaderViewHeight))
             header.section = section
             header.delegate = self
-            
+			header.rowCount = "\(section == 0 ? authorList.count: categoriesList.count)"
+
             if indexPathesArray.contains(section) {
                 header.isExpanded = false
             } else {
