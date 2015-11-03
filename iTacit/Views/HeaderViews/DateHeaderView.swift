@@ -23,7 +23,7 @@ class DateHeaderView: UIView {
     var delegate: ListHeaderViewDelegate?
     var section: Int?
     
-    var searchNewsModel: SearchNewsModel? {
+    var searchNewsModel: SearchNewsQueryModel? {
         didSet {
             
             if let startDate = searchNewsModel?.startDate {

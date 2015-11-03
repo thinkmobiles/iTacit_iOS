@@ -13,6 +13,7 @@ protocol TagTextFieldDelegate: class {
 	func tagedTextFieldShouldBeginEditing(textField: TagTextField) -> Bool
 	func tagedTextFieldDidReturn(textField: TagTextField)
 	func tagedTextFieldDidEndEditing(textField: TagTextField)
+	func tagedTextShouldInserTag(textField: TagTextField, tag: String) -> Bool
 
 }
 
@@ -377,8 +378,10 @@ extension TagTextField: ExtendedTextFieldDelegate {
 		guard let cell = inputCell else {
 			return false
 		}
-		insertTag(cell.text) { [weak self] in
-			self?.sendActionsForControlEvents(.ValueChanged)
+		if let shouldInserTag = delegate?.tagedTextShouldInserTag(self, tag: cell.text) where shouldInserTag {
+			insertTag(cell.text) { [weak self] in
+				self?.sendActionsForControlEvents(.ValueChanged)
+			}
 		}
 		return false
 	}

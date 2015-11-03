@@ -17,17 +17,27 @@ class MainTabBarController: TabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+		login()
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
-
-        LocalizationService.setDefaulLanguage(LocalizationService.Language.French)
-        //        LocalizationService.setDefaulLanguage(LocalizationService.Language.English)
+        
+        LocalizationService.setDefaulLanguage(LocalizationService.Language.English)
         
         dashboardTabBarButton.title = LocalizationService.LocalizedString("Dashboard")
         newsTabBarButton.title = LocalizationService.LocalizedString("News")
         messagesTabBarButton.title = LocalizationService.LocalizedString("Messages")
         TrainingTabBarButton.title = LocalizationService.LocalizedString("Training")
     }
+
+	func login() {
+		let token = TokenModel()
+		token.signInWithUsername("ph", password: "ph") { (success) -> Void in
+			print("Success: \(success ? "Ja": "Nein") \n\(token)")
+			if success {
+				BaseModel.token = token
+			}
+		}
+	}
 } 

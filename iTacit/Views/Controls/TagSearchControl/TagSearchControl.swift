@@ -11,6 +11,8 @@ import UIKit
 protocol TagSearchControlDelegate: class {
 
 	func tagsSearchControl(tagsSearchControl: TagSearchControl, needsAutocompletionWithCompletion completion:(strings: [String]) -> Void)
+	func tagsSearchControlSearchButtonPressed(tagsSearchControl: TagSearchControl)
+	func tagsSearchControlDidClear(tagsSearchControl: TagSearchControl)
 
 }
 
@@ -93,6 +95,7 @@ class TagSearchControl: UIControl {
 		tagTextField.clear()
 		hideAutocompletionTableView()
 		mode = .Normal
+		delegate?.tagsSearchControlDidClear(self)
 	}
 	
 	@IBAction func didChangeInputText(sender: TagTextField) {
@@ -214,6 +217,7 @@ extension TagSearchControl: TagTextFieldDelegate {
 
 	func tagedTextFieldDidReturn(textField: TagTextField) {
 		hideAutocompletionTableView()
+		delegate?.tagsSearchControlSearchButtonPressed(self)
 	}
 
 	func tagedTextFieldDidEndEditing(textField: TagTextField) {
@@ -221,6 +225,10 @@ extension TagSearchControl: TagTextFieldDelegate {
 			mode = .Normal
 		}
 		hideAutocompletionTableView()
+	}
+
+	func tagedTextShouldInserTag(textField: TagTextField, tag: String) -> Bool {
+		return false
 	}
 }
 

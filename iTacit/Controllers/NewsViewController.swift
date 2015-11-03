@@ -8,6 +8,8 @@
 
 import UIKit
 
+let ImageCache = NSCache()
+
 class NewsViewController: UIViewController {
 
     @IBOutlet weak var newsTitle: UILabel!
@@ -16,6 +18,13 @@ class NewsViewController: UIViewController {
 		didSet {
 			tagSearchControl.delegate = self
 		}
+	}
+
+	private let newsList = NewsListModel()
+
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		reloadData()
 	}
 
 	override func viewWillAppear(animated: Bool) {
@@ -28,6 +37,18 @@ class NewsViewController: UIViewController {
 	private func clearSelection() {
 		if let selectedIndexPath = tableView.indexPathForSelectedRow {
 			tableView.deselectRowAtIndexPath(selectedIndexPath, animated: false)
+		}
+	}
+
+	private func reloadData() {
+		newsList.load { [weak self] (success) -> Void in
+			self?.tableView.reloadData()
+		}
+	}
+
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if let selectedIndexPath = tableView.indexPathForSelectedRow, newsDetailViewController = segue.destinationViewController as? NewsDetailViewController {
+			newsDetailViewController.newsModel = newsList[selectedIndexPath.row]
 		}
 	}
 }
@@ -46,12 +67,35 @@ extension NewsViewController: UITableViewDelegate {
 extension NewsViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return newsList.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("NewsTableViewCell", forIndexPath: indexPath)
-        
+        let cell = tableView.dequeueReusableCellWithIdentifier("NewsTableViewCell", forIndexPath: indexPath) as! NewsTableViewCell
+		let newsModel = newsList[indexPath.item]
+		cell.title = newsModel.headline
+		cell.newsCategoryLabel.text = newsModel.categoryName
+
+		if let imageURL = newsModel.headlineImageURL {
+			cell.imageDownloadTask?.cancel()
+			if let image = ImageCache.objectForKey(imageURL) as? UIImage {
+				cell.newsImage = image
+			} else {
+				cell.newsImage = nil
+				let request = NSMutableURLRequest(URL: imageURL)
+				request.HTTPMethod = URLRequestMethod.GET.rawValue
+				cell.imageDownloadTask = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, _, _) -> Void in
+					dispatch_async(dispatch_get_main_queue()) { () -> Void in
+						if let data = data, image = UIImage(data: data) {
+							ImageCache.setObject(image, forKey: imageURL)
+							cell.newsImage = image
+						}
+					}
+				})
+				cell.imageDownloadTask?.resume()
+			}
+		}
+
         return cell
     }
 }
@@ -62,4 +106,17 @@ extension NewsViewController: TagSearchControlDelegate {
 		let strings = ["lorem ipsum", "lorem", "lorem ipsum", "Lorem ipsum dolor"]
 		return completion(strings: strings)
 	}
+
+	func tagsSearchControlSearchButtonPressed(tagsSearchControl: TagSearchControl) {
+		if !tagsSearchControl.inputText.isEmpty {
+			newsList.searchQuery = SearchNewsQueryModel(string: tagsSearchControl.inputText)
+			reloadData()
+		}
+	}
+
+	func tagsSearchControlDidClear(tagsSearchControl: TagSearchControl) {
+		newsList.searchQuery = nil
+		reloadData()
+	}
+
 }
