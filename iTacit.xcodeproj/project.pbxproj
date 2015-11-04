@@ -12,7 +12,7 @@
 		350644C81BD784A800D51D5C /* DateHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350644C71BD784A800D51D5C /* DateHeaderView.swift */; };
 		350644CA1BD784B300D51D5C /* DateHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 350644C91BD784B300D51D5C /* DateHeaderView.xib */; };
 		3516FFA11BE756BF00865EB9 /* MessageComposerFloatingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516FFA01BE756BF00865EB9 /* MessageComposerFloatingView.swift */; };
-		3516FFA31BE7940000865EB9 /* ComposerRequestConfirmationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516FFA21BE7940000865EB9 /* ComposerRequestConfirmationCell.swift */; };
+		3516FFA31BE7940000865EB9 /* ComposerReadDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516FFA21BE7940000865EB9 /* ComposerReadDateTableViewCell.swift */; };
 		351E8EC81BE3700F00690669 /* ComposerTopicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E8EC71BE3700F00690669 /* ComposerTopicTableViewCell.swift */; };
 		351E8ECC1BE3C2AC00690669 /* ComposerBodyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E8ECB1BE3C2AC00690669 /* ComposerBodyTableViewCell.swift */; };
 		353C04FB1BE2490F00C92352 /* LocalizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353C04FA1BE2490F00C92352 /* LocalizationService.swift */; };
@@ -51,7 +51,7 @@
 		4056D57B1BE8B4F30076B970 /* Fonts.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4056D57A1BE8B4F30076B970 /* Fonts.swift */; };
 		4056D57C1BE8D1790076B970 /* MessageComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E8EC01BE36B1500690669 /* MessageComposeViewController.swift */; };
 		4056D57D1BE8D1C80076B970 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E8EC21BE36E8C00690669 /* BaseViewController.swift */; };
-		4056D57E1BE8D1F00076B970 /* ComposerToTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E8EC41BE36FC800690669 /* ComposerToTableViewCell.swift */; };
+		4056D57E1BE8D1F00076B970 /* ComposerRecipiencTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E8EC41BE36FC800690669 /* ComposerRecipiencTableViewCell.swift */; };
 		4056D5801BE8D49D0076B970 /* AuthorListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4056D57F1BE8D49D0076B970 /* AuthorListModel.swift */; };
 		4056D5821BE8D5050076B970 /* SearchAuthorQueryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4056D5811BE8D5050076B970 /* SearchAuthorQueryModel.swift */; };
 		4056D5841BE8E7AC0076B970 /* AuthorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4056D5831BE8E7AC0076B970 /* AuthorModel.swift */; };
@@ -106,10 +106,10 @@
 		350644C71BD784A800D51D5C /* DateHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHeaderView.swift; sourceTree = "<group>"; };
 		350644C91BD784B300D51D5C /* DateHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateHeaderView.xib; sourceTree = "<group>"; };
 		3516FFA01BE756BF00865EB9 /* MessageComposerFloatingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageComposerFloatingView.swift; sourceTree = "<group>"; };
-		3516FFA21BE7940000865EB9 /* ComposerRequestConfirmationCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerRequestConfirmationCell.swift; sourceTree = "<group>"; };
+		3516FFA21BE7940000865EB9 /* ComposerReadDateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerReadDateTableViewCell.swift; sourceTree = "<group>"; };
 		351E8EC01BE36B1500690669 /* MessageComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageComposeViewController.swift; sourceTree = "<group>"; };
 		351E8EC21BE36E8C00690669 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
-		351E8EC41BE36FC800690669 /* ComposerToTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerToTableViewCell.swift; sourceTree = "<group>"; };
+		351E8EC41BE36FC800690669 /* ComposerRecipiencTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerRecipiencTableViewCell.swift; sourceTree = "<group>"; };
 		351E8EC71BE3700F00690669 /* ComposerTopicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerTopicTableViewCell.swift; sourceTree = "<group>"; };
 		351E8ECB1BE3C2AC00690669 /* ComposerBodyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerBodyTableViewCell.swift; sourceTree = "<group>"; };
 		353C04FA1BE2490F00C92352 /* LocalizationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationService.swift; sourceTree = "<group>"; };
@@ -224,10 +224,10 @@
 		351E8EC61BE36FCD00690669 /* MailComposerTableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				351E8EC41BE36FC800690669 /* ComposerToTableViewCell.swift */,
+				351E8EC41BE36FC800690669 /* ComposerRecipiencTableViewCell.swift */,
 				351E8EC71BE3700F00690669 /* ComposerTopicTableViewCell.swift */,
 				351E8ECB1BE3C2AC00690669 /* ComposerBodyTableViewCell.swift */,
-				3516FFA21BE7940000865EB9 /* ComposerRequestConfirmationCell.swift */,
+				3516FFA21BE7940000865EB9 /* ComposerReadDateTableViewCell.swift */,
 			);
 			name = MailComposerTableViewCells;
 			sourceTree = "<group>";
@@ -353,7 +353,6 @@
 		40EA821B1BCFC40C0029228F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				35EE4E961BE89CBD00740A03 /* NewMessageModel.swift */,
 				405A29941BE6B2800024ADA9 /* BaseModel.swift */,
 				407A7DA31BE778BD006A9DB0 /* ServerErrorModel.swift */,
 				405A29921BE6B2710024ADA9 /* TokenModel.swift */,
@@ -369,6 +368,7 @@
 				35EE4E981BE8DDD400740A03 /* CategoriesListModel.swift */,
 				4056D5851BE8E8B20076B970 /* SearchCategoryQueryModel.swift */,
 				4056D5871BE8E8E50076B970 /* SearchStringModel.swift */,
+				35EE4E961BE89CBD00740A03 /* NewMessageModel.swift */,
 				4056D5891BE903FD0076B970 /* TagModel.swift */,
 			);
 			path = Model;
@@ -625,7 +625,7 @@
 				4056D5821BE8D5050076B970 /* SearchAuthorQueryModel.swift in Sources */,
 				400327D51BE817FC00D2BEAE /* UserProfileModel.swift in Sources */,
 				40EA82561BCFD07B0029228F /* MessagesViewController.swift in Sources */,
-				4056D57E1BE8D1F00076B970 /* ComposerToTableViewCell.swift in Sources */,
+				4056D57E1BE8D1F00076B970 /* ComposerRecipiencTableViewCell.swift in Sources */,
 				353C05051BE25D0800C92352 /* MainTabBarController.swift in Sources */,
 				40EA824E1BCFCDEC0029228F /* TabBarControllerSegue.swift in Sources */,
 				405A29891BE6B21A0024ADA9 /* JSONMapper.swift in Sources */,
@@ -655,7 +655,7 @@
 				3DEFA7A11BD50B7100596A2B /* CategoryTableViewCell.swift in Sources */,
 				40EA82541BCFD06F0029228F /* NewsViewController.swift in Sources */,
 				40440DC31BDBCE2F00FADF6E /* TagSearchControl.swift in Sources */,
-				3516FFA31BE7940000865EB9 /* ComposerRequestConfirmationCell.swift in Sources */,
+				3516FFA31BE7940000865EB9 /* ComposerReadDateTableViewCell.swift in Sources */,
 				3563B9A01BD12CCB009BE696 /* TitleTableViewCell.swift in Sources */,
 				350644C81BD784A800D51D5C /* DateHeaderView.swift in Sources */,
 				4056D58A1BE903FD0076B970 /* TagModel.swift in Sources */,

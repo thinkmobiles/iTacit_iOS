@@ -13,7 +13,7 @@
                 <outlet property="searchButton" destination="veR-vc-eJl" id="8xK-qq-KXi"/>
                 <outlet property="searchButtonLeadingConstraint" destination="VXP-mH-06Z" id="MIH-T9-aZu"/>
                 <outlet property="tagTextField" destination="dGg-QI-POo" id="19M-nm-LT5"/>
-                <outlet property="trailingConstraint" destination="FVH-7M-23g" id="VXU-Pg-iWy"/>
+                <outlet property="trailingConstraint" destination="FVH-7M-23g" id="cPZ-2e-fVj"/>
             </connections>
         </placeholder>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>

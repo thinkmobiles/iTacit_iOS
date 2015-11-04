@@ -15,21 +15,21 @@ class MessageComposeViewController: BaseViewController {
         static let FloatingViewDefaultDownHeith: CGFloat = 30.0
         static let AnimationDuration: Double = 0.2
     }
-    
-    @IBOutlet weak var navigationBar: UINavigationBar!
+
     @IBOutlet weak var tableView: UITableView!
+	@IBOutlet weak var floatingView: MessageComposerFloatingView!
     @IBOutlet weak var floatingViewDownConstraint: NSLayoutConstraint!
-    @IBOutlet weak var floatingView: MessageComposerFloatingView!
+
+
+	private var reuseIdetifiersDataSource = [ComposerRecipiencTableViewCell.reuseIdentifier, ComposerTopicTableViewCell.reuseIdentifier, ComposerBodyTableViewCell.reuseIdentifier]
     
-    private var dynamicCellReference: UITableViewCell?
+//    private var dynamicCellReference: UITableViewCell?
     private var messageModel = NewMessageModel()
-    private var isEstimateCellShown = false
-    
+//    private var isEstimateCellShown = false
+
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        tableView.estimatedRowHeight = 40
-        tableView.rowHeight = UITableViewAutomaticDimension
+
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -44,18 +44,15 @@ class MessageComposeViewController: BaseViewController {
     
     // MARK: - IBAction
     
-    @IBAction func dismissButtonAction(sender: UIBarButtonItem) {
-        dismissViewControllerAnimated(true, completion: nil)
-    }
-    
-    @IBAction func sendButtonAction(sender: UIBarButtonItem) {
+    @IBAction func sendMessageAction(sender: UIBarButtonItem) {
+
     }
     
     @IBAction func showDatePickerButtonAction(sender: UIButton) {
-        if !isEstimateCellShown {
-            isEstimateCellShown = true
-            tableView.reloadData()
-        }
+//        if !isEstimateCellShown {
+//            isEstimateCellShown = true
+//            tableView.reloadData()
+//        }
     }
     
     // MARK: Keyboard
@@ -71,7 +68,7 @@ class MessageComposeViewController: BaseViewController {
                 self.floatingViewDownConstraint.constant += size.height + 20
                 self.view.layoutIfNeeded()
             }
-            }, completion: nil)
+		}, completion: nil)
     }
     
     override func keyboardWillHideWithSize(size: CGSize, animationDuration: NSTimeInterval, animationOptions: UIViewAnimationOptions) {
@@ -79,45 +76,32 @@ class MessageComposeViewController: BaseViewController {
         tableView.contentInset = UIEdgeInsetsZero
         tableView.scrollIndicatorInsets = UIEdgeInsetsZero
 
-        UIView.animateWithDuration(Constants.AnimationDuration, animations: { () -> Void in
-            self.floatingViewDownConstraint.constant = Constants.FloatingViewDefaultDownHeith
-            self.view.layoutIfNeeded()
+		UIView.animateWithDuration(animationDuration, delay: 0, options: animationOptions, animations: { [weak self] () -> Void in
+			self?.floatingViewDownConstraint.constant = Constants.FloatingViewDefaultDownHeith
+			self?.view.layoutIfNeeded()
+		}, completion: nil)
+	}
 
-            }, completion: nil)
-    }
 }
 
-extension MessageComposeViewController: UITableViewDelegate {
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        
-        if indexPath.row == 1 {
-            if let cell = dynamicCellReference as? ComposerTopicTableViewCell {
-                cell.frame = CGRect(x: 0.0, y: 0.0, width: UIScreen.mainScreen().bounds.size.width, height: 40.0)
-                let size = cell.systemLayoutSizeFittingSize(CGSize(width: (UIScreen.mainScreen().bounds.size.width), height: Constants.DefaultCellHeight), withHorizontalFittingPriority: 1000, verticalFittingPriority: 50)
-
-                return size.height
-            }
-            
-            return UITableViewAutomaticDimension
-        }
-        
-        return UITableViewAutomaticDimension
-    }
-}
+// MARK: - UITableViewDataSource
 
 extension MessageComposeViewController: UITableViewDataSource {
+
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return isEstimateCellShown ? 4 : 3
+        return reuseIdetifiersDataSource.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        
+		let reuseIdentifier = reuseIdetifiersDataSource[indexPath.row]
+		let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
+		return cell
+/*
         if indexPath.row == 0 {
-            let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(ComposerToTableViewCell).componentsSeparatedByString(".").last!, forIndexPath: indexPath)
-            
+            let cell = tableView.dequeueReusableCellWithIdentifier(ComposerRecipiencTableViewCell.reuseIdentifier, forIndexPath: indexPath) as! ComposerRecipiencTableViewCell
             return cell
         } else if indexPath.row == 1 {
-            let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(ComposerTopicTableViewCell).componentsSeparatedByString(".").last!, forIndexPath: indexPath)
+            let cell = tableView.dequeueReusableCellWithIdentifier(ComposerTopicTableViewCell.reuseIdentifier, forIndexPath: indexPath)
             if let custCell = cell as? ComposerTopicTableViewCell {
                 custCell.delegate = self
             }
@@ -125,9 +109,9 @@ extension MessageComposeViewController: UITableViewDataSource {
             return cell
         } else {
             if isEstimateCellShown && indexPath.row == 2 {
-                let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(ComposerRequestConfirmationCell).componentsSeparatedByString(".").last!, forIndexPath: indexPath)
+                let cell = tableView.dequeueReusableCellWithIdentifier(NSStringFromClass(ComposerReadDateTableViewCell).componentsSeparatedByString(".").last!, forIndexPath: indexPath)
                 
-                if let custCell = cell as? ComposerRequestConfirmationCell {
+                if let custCell = cell as? ComposerReadDateTableViewCell {
                     custCell.delegate = self
                     
                     dispatch_async(dispatch_get_main_queue(), { () -> Void in
@@ -146,37 +130,60 @@ extension MessageComposeViewController: UITableViewDataSource {
                 return cell
             }
         }
+		*/
     }
 }
 
-extension MessageComposeViewController: ComposeDynamicCellDelegate {
-    func composerCellTopicDidChangeTo(newValue: AnyObject, cell: UITableViewCell) {
-        dynamicCellReference = cell
-        
-        if let _ = cell as? ComposerTopicTableViewCell {
-            messageModel.topic = newValue as? String
-        }
-        if let _ = cell as? ComposerRequestConfirmationCell {
-            messageModel.estimatedDate = newValue as? NSDate
-        }
-        
-        UIView.setAnimationsEnabled(false)
-        CATransaction.begin()
-        
-        CATransaction.setCompletionBlock { () -> Void in
-            UIView.setAnimationsEnabled(true)
-        }
-        
-        tableView.beginUpdates()
-        tableView.endUpdates()
-        
-        CATransaction.commit()
-    }
+// MARK: - UITableViewDelegate
+
+extension MessageComposeViewController: UITableViewDelegate {
+
+	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+
+//		if indexPath.row == 1 {
+//			if let cell = dynamicCellReference as? ComposerTopicTableViewCell {
+//				cell.frame = CGRect(x: 0.0, y: 0.0, width: UIScreen.mainScreen().bounds.size.width, height: 40.0)
+//				let size = cell.systemLayoutSizeFittingSize(CGSize(width: (UIScreen.mainScreen().bounds.size.width), height: Constants.DefaultCellHeight), withHorizontalFittingPriority: 1000, verticalFittingPriority: 50)
+//
+//				return size.height
+//			}
+//
+//			return UITableViewAutomaticDimension
+//		}
+
+		return UITableViewAutomaticDimension
+	}
 }
+
+//extension MessageComposeViewController: ComposeDynamicCellDelegate {
+//
+//    func composerCellTopicDidChangeTo(newValue: AnyObject, cell: UITableViewCell) {
+////        dynamicCellReference = cell
+//
+//        if let _ = cell as? ComposerTopicTableViewCell {
+//            messageModel.topic = newValue as? String
+//        }
+//        if let _ = cell as? ComposerReadDateTableViewCell {
+//            messageModel.estimatedDate = newValue as? NSDate
+//        }
+//        
+//        UIView.setAnimationsEnabled(false)
+//        CATransaction.begin()
+//        
+//        CATransaction.setCompletionBlock { () -> Void in
+//            UIView.setAnimationsEnabled(true)
+//        }
+//        
+//        tableView.beginUpdates()
+//        tableView.endUpdates()
+//        
+//        CATransaction.commit()
+//    }
+//}
 
 extension MessageComposeViewController: ConfirmationCellDelegate {
+
     func confirmationCellCancelButtonPressed() {
-        isEstimateCellShown = false
         tableView.reloadData()
         tableView.layoutIfNeeded()
     }

@@ -7,12 +7,11 @@
 //
 
 import Foundation
-import UIKit
 
 class LocalizationService {
     
-    private struct LanguageKey {
-        static let DefaultLangugeKey = "DefaultLangugeKey"
+    private struct Constants {
+        static let langugeKey = "DefaultLanguageKey"
     }
     
     enum Language: String {
@@ -21,8 +20,7 @@ class LocalizationService {
     }
     
     private static var _language: Language = {
-        
-        if let languageRawValue = NSUserDefaults.standardUserDefaults().valueForKey(LanguageKey.DefaultLangugeKey) as? String {
+        if let languageRawValue = NSUserDefaults.standardUserDefaults().valueForKey(Constants.langugeKey) as? String {
             return Language(rawValue: languageRawValue) ?? .English
         } else {
             return Language.English
@@ -35,23 +33,19 @@ class LocalizationService {
         }
         set {
             _language = newValue
-            NSUserDefaults.standardUserDefaults().setValue(newValue.rawValue, forKey: LanguageKey.DefaultLangugeKey)
+            NSUserDefaults.standardUserDefaults().setValue(newValue.rawValue, forKey: Constants.langugeKey)
             NSUserDefaults.standardUserDefaults().synchronize()
         }
     }
     
-    static func setDefaulLanguage(defaulLanguage: Language) {
-        language = defaulLanguage
-    }
-    
-    static let bundles: [Language : NSBundle] = {
+    static let bundles: [Language: NSBundle] = {
         let enLanguage = NSBundle(path: NSBundle.mainBundle().pathForResource("en", ofType: "lproj")!)
         let frLanguage = NSBundle(path: NSBundle.mainBundle().pathForResource("fr", ofType: "lproj")!)
         
         return [Language.English: enLanguage!, Language.French : frLanguage!]
     }()
-    
-    static func LocalizedString(key :String) -> String {
-        return bundles[language]?.localizedStringForKey(key, value: "", table: nil) ?? key
-    }
+}
+
+func LocalizedString(key: String) -> String {
+	return LocalizationService.bundles[LocalizationService.language]?.localizedStringForKey(key, value: "", table: nil) ?? key
 }

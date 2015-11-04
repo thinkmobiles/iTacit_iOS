@@ -9,8 +9,10 @@
 import Foundation
 
 struct TagModel {
+
 	var string: String
 	var attributes: [String: String]?
+	
 }
 
 extension TagModel: Equatable {

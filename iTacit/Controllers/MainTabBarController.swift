@@ -24,12 +24,10 @@ class MainTabBarController: TabBarController {
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         
-        LocalizationService.setDefaulLanguage(LocalizationService.Language.English)
-        
-        dashboardTabBarButton.title = LocalizationService.LocalizedString("Dashboard")
-        newsTabBarButton.title = LocalizationService.LocalizedString("News")
-        messagesTabBarButton.title = LocalizationService.LocalizedString("Messages")
-        TrainingTabBarButton.title = LocalizationService.LocalizedString("Training")
+        dashboardTabBarButton.title = LocalizedString("Dashboard")
+        newsTabBarButton.title = LocalizedString("News")
+        messagesTabBarButton.title = LocalizedString("Messages")
+        TrainingTabBarButton.title = LocalizedString("Training")
     }
 
 	func login() {

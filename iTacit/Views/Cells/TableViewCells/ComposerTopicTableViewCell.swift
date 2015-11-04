@@ -9,10 +9,14 @@
 import UIKit
 
 protocol ComposeDynamicCellDelegate: class {
+
     func composerCellTopicDidChangeTo(newValue: AnyObject, cell: UITableViewCell)
+	
 }
 
 class ComposerTopicTableViewCell: UITableViewCell {
+
+	static let reuseIdentifier = "ComposerTopicTableViewCell"
 
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var topicText: UITextView!
@@ -38,11 +42,10 @@ class ComposerTopicTableViewCell: UITableViewCell {
 }
 
 extension ComposerTopicTableViewCell: UITextViewDelegate {
+
     func textView(textView: UITextView, shouldChangeTextInRange range: NSRange, replacementText text: String) -> Bool {
         if !textView.text.isEmpty {
-            if let _delegate = delegate {
-                _delegate.composerCellTopicDidChangeTo(textView.text, cell: self)
-            }
+			delegate?.composerCellTopicDidChangeTo(textView.text, cell: self)
         }
         
         return true

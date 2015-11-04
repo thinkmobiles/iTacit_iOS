@@ -36,7 +36,7 @@ class NewsViewController: UIViewController {
 		super.viewWillAppear(animated)
 		clearSelection()
         
-        newsTitle.text = LocalizationService.LocalizedString("News")
+        newsTitle.text = LocalizedString("News")
 	}
 
 	// MARK: - Private
@@ -65,7 +65,7 @@ class NewsViewController: UIViewController {
 		if let selectedIndexPath = tableView.indexPathForSelectedRow, newsDetailViewController = segue.destinationViewController as? NewsDetailViewController {
 			newsDetailViewController.newsModel = newsList[selectedIndexPath.row]
 		} else if let filterNewsViewController = segue.destinationViewController as? FilterNewsViewController {
-			filterNewsViewController.searchString = tagSearchControl.inputText
+			filterNewsViewController.searchString = tagSearchControl.searchText
 		}
 	}
 
@@ -73,15 +73,15 @@ class NewsViewController: UIViewController {
 		if let filterNewsViewController = segue.sourceViewController as? FilterNewsViewController {
 			newsList.searchQuery = filterNewsViewController.searchModel
 			tagSearchControl.tags = filterNewsViewController.tags
-			tagSearchControl.mode = .Tags
+			
 			reloadData()
 		}
 	}
 	
 	@IBAction func didChangeSearchString(sender: TagSearchControl) {
-		(newsList.searchQuery as? SearchNewsQueryModel)?.string = tagSearchControl.inputText
+		(newsList.searchQuery as? SearchNewsQueryModel)?.string = tagSearchControl.searchText
 		searchTimer?.invalidate()
-		if sender.inputText.characters.count >= 3 {
+		if sender.searchText.characters.count >= 3 {
 			searchTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("performSearch:"), userInfo: nil, repeats: false)
 		}
 	}
@@ -130,14 +130,15 @@ extension NewsViewController: UITableViewDataSource {
 extension NewsViewController: TagSearchControlDelegate {
 
 	func tagsSearchControl(tagsSearchControl: TagSearchControl, needsAutocompletionWithCompletion completion: (strings: [String]) -> Void) {
-		let news = newsList.objects.filter { $0.headline.beginsWithString(tagSearchControl.inputText) }
+		let news = newsList.objects.filter { $0.headline.beginsWithString(tagSearchControl.searchText) }
 		let strings = news.map { $0.headline }
 		return completion(strings: strings)
 	}
 
 	func tagsSearchControlSearchButtonPressed(tagsSearchControl: TagSearchControl) {
-		if !tagsSearchControl.inputText.isEmpty {
-			(newsList.searchQuery as? SearchNewsQueryModel)?.string = tagSearchControl.inputText
+		searchTimer?.invalidate()
+		if !tagsSearchControl.searchText.isEmpty {
+			(newsList.searchQuery as? SearchNewsQueryModel)?.string = tagSearchControl.searchText
 			reloadData()
 		}
 	}
