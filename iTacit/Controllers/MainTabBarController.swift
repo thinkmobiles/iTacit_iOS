@@ -18,7 +18,7 @@ class MainTabBarController: TabBarController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		BaseModel.token = TokenModel()
-//		login()
+
     }
     
     override func viewWillAppear(animated: Bool) {
