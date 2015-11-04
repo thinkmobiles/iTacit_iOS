@@ -31,10 +31,15 @@ class SearchNewsQueryModel {
 extension SearchNewsQueryModel: SearchQuery {
 
 	var stringQuery: String {
-		var  query = "search:" + string
+		var query = "search:" + string
 		if !authorIDs.isEmpty {
-			query += authorIDs.reduce("|authorId:") { $0 + "\($1)," }
-			query.removeAtIndex(query.endIndex)
+			query += "|authorId:" + authorIDs.joinWithSeparator(",")
+		}
+		if !categoryIDs.isEmpty {
+			query += "|categoryId:" + categoryIDs.joinWithSeparator(",")
+		}
+		if let startDate = startDate, endDate = endDate {
+			query += "|startDate:\(DateValueTransformer.dateFormatter.stringFromDate(startDate)),\(DateValueTransformer.dateFormatter.stringFromDate(endDate))"
 		}
 		return query
 	}

@@ -286,6 +286,9 @@
                                         <integer key="value" value="37"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="didChangeSearchString:" destination="gVn-1K-qyO" eventType="editingChanged" id="aSy-4a-xAV"/>
+                                </connections>
                             </view>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="bbN-g4-4Bk">
                                 <rect key="frame" x="563" y="59" width="37" height="40"/>
@@ -869,6 +872,9 @@
                                                 </userDefinedRuntimeAttribute>
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="layer.masksToBounds" value="YES"/>
                                             </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <segue destination="zEO-ue-Lae" kind="unwind" unwindAction="returnFromFilterViewController:" id="ujB-os-15C"/>
+                                            </connections>
                                         </button>
                                     </subviews>
                                     <animations/>
@@ -1153,6 +1159,7 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="obg-WU-p4j" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="zEO-ue-Lae" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="2927" y="-1037"/>
         </scene>

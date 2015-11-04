@@ -42,12 +42,12 @@ class ListHeaderView: UIView {
 		}
 	}
     
-    var isExpanded: Bool? {
+    var isExpanded = false {
         didSet {
-            if isExpanded == true {
-                disclosureImageView.image = UIImage(named: "btn_drop_show") // TODO: USE AssetsIndetifier
+            if isExpanded {
+                disclosureImageView.image = UIImage(assetsIndetifier: .TrianglePointerDown)
             } else  {
-                disclosureImageView.image = UIImage(named: "btn_drop_hide") // TODO: USE AssetsIndetifier
+                disclosureImageView.image = UIImage(assetsIndetifier: .TrianglePointerUp)
             }
         }
 	}

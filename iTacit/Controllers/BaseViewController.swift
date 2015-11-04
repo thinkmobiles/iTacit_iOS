@@ -9,25 +9,17 @@
 import UIKit
 
 class BaseViewController: UIViewController {
-    
-    var backButton: UIButton?
-    
-    override func loadView() {
-        super.loadView()
-        
-        let buttonFrame = CGRectMake(0, 0, 24, 24)
-        backButton = UIButton(frame: buttonFrame)
-        backButton?.addTarget(self, action: Selector("backButtonAction"), forControlEvents: .TouchUpInside)
-        backButton?.setImage(UIImage(named: "btn_back"), forState: .Normal)
-        
-        let backBarButton = UIBarButtonItem.init(customView: backButton!)
-        navigationItem.leftBarButtonItem = backBarButton
-    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		addBackButton()
     }
-    
+
+	func addBackButton() {
+		let backBarButton = UIBarButtonItem(image: UIImage(assetsIndetifier: .BackButton), style: .Plain, target: self, action: Selector("backButtonAction"))
+		navigationItem.leftBarButtonItem = backBarButton
+	}
+
     // MARK: - ButtonAction
     
     func backButtonAction() {

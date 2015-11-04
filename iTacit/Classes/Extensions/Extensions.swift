@@ -71,4 +71,11 @@ extension String {
 
 		return stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet()).isEmpty
 	}
+
+	func beginsWithString(substring: String) -> Bool {
+		if let range = rangeOfString(substring, options: .CaseInsensitiveSearch) where range.startIndex == startIndex {
+			return true
+		}
+		return false
+	}
 }

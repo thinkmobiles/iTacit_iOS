@@ -12,7 +12,7 @@ class ListModel<Element: BaseModel where Element: Mappable>: BaseModel, Mappable
 
 	private let requestRowCount = 50
 
-	private var objects = [Element]()
+	private(set) var objects = [Element]()
 
 	required init() {
 		super.init()

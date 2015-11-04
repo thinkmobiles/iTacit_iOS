@@ -12,9 +12,11 @@ protocol TagTextFieldDelegate: class {
 
 	func tagedTextFieldShouldBeginEditing(textField: TagTextField) -> Bool
 	func tagedTextFieldDidReturn(textField: TagTextField)
+	func tagedTextFieldDidBeginEditing(textField: TagTextField)
 	func tagedTextFieldDidEndEditing(textField: TagTextField)
 	func tagedTextFieldShouldInserTag(textField: TagTextField, tag: String) -> Bool
 	func tagedTextFieldShouldSwitchToCollapsedMode(textField: TagTextField) -> Bool
+	func tagedTextField(textField: TagTextField, didDeleteTag tag: TagModel)
 
 }
 
@@ -25,7 +27,7 @@ class TagTextField: UIControl {
 		static let animationDuratoin = 0.25
 	}
 
-	private enum Mode {
+	enum Mode {
 		case Editing
 		case Collapsed
 	}
@@ -42,15 +44,14 @@ class TagTextField: UIControl {
 	private weak var inputCell: InputCollectionViewCell?
 
 	private var collectionViewLayout: CollectionViewLeftAlignedFlowLayout!
-	private var tagsShortArray = [String]()
+	private var tagsShortArray = [TagModel]()
 	private var tagsShortArrayAppendix: String?
-	private var mode = Mode.Collapsed
 
-	private var tagsArray: [String] {
+	private var tagsArray: [TagModel] {
 		switch mode {
 			case .Collapsed:
 				if let tagsShortArrayAppendix = tagsShortArrayAppendix {
-					return tagsShortArray + [tagsShortArrayAppendix]
+					return tagsShortArray + [TagModel(string: tagsShortArrayAppendix, attributes: nil)]
 				} else {
 					return tagsShortArray
 				}
@@ -58,7 +59,13 @@ class TagTextField: UIControl {
 		}
 	}
 
-	private(set) var tags = [String]()
+	var mode = Mode.Collapsed
+
+	var tags = [TagModel]() {
+		didSet {
+			createTagsShortArray()
+		}
+	}
 
 	weak var delegate: TagTextFieldDelegate?
 
@@ -92,7 +99,7 @@ class TagTextField: UIControl {
 		collectionView.reloadData()
 	}
 
-	func insertTag(tagString: String, clearInputText: Bool = true, completion: (() -> Void)? = nil) {
+	func insertTag(tagString: String, attributes: [String: String]? = nil, clearInputText: Bool = true, completion: (() -> Void)? = nil) {
 		guard !tagString.isEmptyOrWhitespaces else {
 			return
 		}
@@ -102,7 +109,7 @@ class TagTextField: UIControl {
 			inputCell?.cursorColor = UIColor.whiteColor()
 		}
 
-		tags.append(tagString)
+		tags.append(TagModel(string: tagString, attributes: attributes))
 		let indexPath = NSIndexPath(forItem: tags.count - 1, inSection: 0)
 		collectionView.performBatchUpdates({ [weak self] () -> Void in
 			self?.collectionView.insertItemsAtIndexPaths([indexPath])
@@ -114,19 +121,16 @@ class TagTextField: UIControl {
 		}
 	}
 
-	func removeTag(tagString: String, completion: (() -> Void)? = nil) {
-		guard !tagString.isEmpty else {
-			return
-		}
-		if let index = tagsArray.indexOf(tagString) {
+	func removeTag(tag: TagModel, completion: (() -> Void)? = nil) {
+		if let index = tagsArray.indexOf(tag) {
 			tags.removeAtIndex(index)
 			collectionView.performBatchUpdates({ [weak self] () -> Void in
 				self?.collectionView.deleteItemsAtIndexPaths([NSIndexPath(forItem: index, inSection: 0)])
-			}) { (finished) -> Void in
-				completion?()
+				}) { (finished) -> Void in
+					completion?()
 			}
 		} else if case .Collapsed = mode {
-			if let index = tags.indexOf(tagString) {
+			if let index = tagsArray.indexOf(tag) {
 				tags.removeAtIndex(index)
 				createTagsShortArray()
 				collectionView.reloadData()
@@ -147,7 +151,6 @@ class TagTextField: UIControl {
 			collectionView.setContentOffset(CGPoint(x: 0, y: max(0, (collectionView.contentSize.height - CGRectGetHeight(collectionView.frame)))), animated: false)
 			collectionView.layoutIfNeeded()
 		} 
-//		inputCell?.resetTextField()
 		inputCell?.textField.tintColor = AppColors.darkGray
 		inputCell?.textField.becomeFirstResponder()
 	}
@@ -231,14 +234,15 @@ class TagTextField: UIControl {
 			return
 		}
 		let collectionViewHeight = CGRectGetHeight(collectionView.frame)
-		if contentSizeForArray(tags).height <= collectionViewHeight {
+		let tagStirngs = tags.map { $0.string }
+		if contentSizeForArray(tagStirngs).height <= collectionViewHeight {
 			tagsShortArray = tags
 			return
 		}
 		var i = 0
 		var contentSize = CGSizeZero
 		while contentSize.height <= collectionViewHeight && i < tags.count {
-			var array = Array(tags[0...i])
+			var array = tags[0...i].map { $0.string }
 			array += ["+\((tags.count - (i + 1)))..."]
 			contentSize = contentSizeForArray(array)
 			i++
@@ -259,7 +263,9 @@ class TagTextField: UIControl {
 	private func deleteSelectedCellIfNeeded() {
 		if let selectedIndexPath = collectionView.indexPathsForSelectedItems()?.first {
 			inputCell?.cursorColor = AppColors.darkGray
-			removeTag(tags[selectedIndexPath.item])
+			let tag = tags[selectedIndexPath.item]
+			removeTag(tag)
+			delegate?.tagedTextField(self, didDeleteTag: tag)
 		}
 	}
 
@@ -279,7 +285,7 @@ extension TagTextField: UICollectionViewDataSource {
 	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 		if indexPath.row < tagsArray.count {
 			let cell = collectionView.dequeueReusableCellWithReuseIdentifier(TextCollectionViewCell.reuseIdentifier, forIndexPath: indexPath) as! TextCollectionViewCell
-			cell.text = tagsArray[indexPath.row]
+			cell.text = tagsArray[indexPath.row].string
 			return cell
 		} else {
 			let cell = collectionView.dequeueReusableCellWithReuseIdentifier(InputCollectionViewCell.reuseIdentifier, forIndexPath: indexPath) as! InputCollectionViewCell
@@ -301,7 +307,8 @@ extension TagTextField: CollectionViewDelegateLeftAlignedFlowLayout {
 		switch mode {
 			case .Editing: return true
 			case .Collapsed:
-				if indexPath.item == (tagsArray.count - 1) && tags.count > tagsShortArray.count {
+				let shouldBeginEditing = delegate?.tagedTextFieldShouldBeginEditing(self) ?? true
+				if indexPath.item == (tagsArray.count - 1) && tags.count > tagsShortArray.count && shouldBeginEditing {
 					beginEditing(true)
 					return false
 				} else {
@@ -319,7 +326,7 @@ extension TagTextField: CollectionViewDelegateLeftAlignedFlowLayout {
 
 	func collectionView(collectionView: UICollectionView, layout: CollectionViewLeftAlignedFlowLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
 		if indexPath.row < tagsArray.count {
-			return textCellSizeForText(tagsArray[indexPath.row])
+			return textCellSizeForText(tagsArray[indexPath.row].string)
 		} else {
 			let maxWidth = CGRectGetWidth(collectionView.frame) - layout.sectionInsets.left - layout.sectionInsets.right
 			let height = layout.itemSize.height
@@ -359,6 +366,10 @@ extension TagTextField: ExtendedTextFieldDelegate {
 
 	func textFieldShouldBeginEditing(textField: UITextField) -> Bool {
 		return delegate?.tagedTextFieldShouldBeginEditing(self) ?? true
+	}
+
+	func textFieldDidBeginEditing(textField: UITextField) {
+		delegate?.tagedTextFieldDidBeginEditing(self)
 	}
 
 	func textFieldDidEndEditing(textField: UITextField) {

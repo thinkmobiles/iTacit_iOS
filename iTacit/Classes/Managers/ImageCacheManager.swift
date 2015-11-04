@@ -21,6 +21,9 @@ class ImageCacheManager {
 		} else {
 			let request = NSMutableURLRequest(URL: imageURL)
 			request.HTTPMethod = URLRequestMethod.GET.rawValue
+			if let accessToken = BaseModel.token?.accessToken {
+				request.setValue("Bearer \(accessToken)", forHTTPHeaderField: "Authorization")
+			}
 			let task = NSURLSession.sharedSession().dataTaskWithRequest(request, completionHandler: { (data, _, _) -> Void in
 				dispatch_async(dispatch_get_main_queue()) { [weak self] () -> Void in
 					if let data = data, image = UIImage(data: data) {
