@@ -16,11 +16,6 @@ class BaseViewController: UIViewController {
     }
 
 	func addBackButton() {
-//		let backImage = UIImage(assetsIndetifier: .BackButton)
-//		let backButton = UIButton(frame: CGRect(origin: CGPointZero, size: backImage.size))
-//		backButton.addTarget(self, action: Selector("backButtonAction"), forControlEvents: .TouchUpInside)
-//		backButton.setImage(UIImage(assetsIndetifier: .BackButton), forState: .Normal)
-//		let backBarButton = UIBarButtonItem(customView: backButton)
 		let backBarButton = UIBarButtonItem(image: UIImage(assetsIndetifier: .BackButton), style: .Plain, target: self, action: Selector("backButtonAction"))
 		navigationItem.leftBarButtonItem = backBarButton
 	}
