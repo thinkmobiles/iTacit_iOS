@@ -9,6 +9,11 @@
 import Foundation
 
 class TokenModel: BaseModel, Mappable {
+    
+    private struct Constants {
+        static let TokenKey = "token"
+        static let RefreshTokenKey = "refreshToken"
+    }
 
 	override var path: String {
 		return "/mobile/oauth/token"
@@ -82,6 +87,25 @@ class TokenModel: BaseModel, Mappable {
 	override var description: String {
 		return "Token: {\n\taccessToken: \(accessToken)\n\trefreshToken: \(refreshToken)\n}"
 	}
+    
+    //MARK: KeyChain
+    
+    func storeToKeyChain() {
+        KeychainWrapper.setString(accessToken, forKey: Constants.TokenKey)
+        KeychainWrapper.setString(refreshToken, forKey: Constants.RefreshTokenKey)
+    }
+    
+    static func loadFromKeyChain() -> TokenModel? {
+        if let token  = KeychainWrapper.stringForKey(Constants.TokenKey), refreshToken = KeychainWrapper.stringForKey(Constants.RefreshTokenKey) {
+            let tokenModel = TokenModel()
+            tokenModel.accessToken = token
+            tokenModel.refreshToken = refreshToken
+            
+            return tokenModel
+        } else {
+            return nil
+        }
+    }
 }
 
 //extension TokenModel: CustomStringConvertible {
