@@ -30,6 +30,18 @@ class DatePickerTableViewCell: UITableViewCell {
 
     // MARK: - IBAction
     
+    func setDatePickerLimits(minimumDate: NSDate?, maximumDate: NSDate?, selectedDate: NSDate?) {
+        if let minDate = minimumDate {
+            datePicker.minimumDate = minDate
+        }
+        if let maxDate = maximumDate {
+            datePicker.maximumDate = maxDate
+        }
+        if let selDate = selectedDate {
+            datePicker.setDate(selDate, animated: false)
+        }
+    }
+    
     @IBAction func camcelButtonAction(sender: UIButton) {
         delegate?.didPressCancelButton()
     }

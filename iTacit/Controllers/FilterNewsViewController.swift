@@ -210,7 +210,11 @@ extension FilterNewsViewController: UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("DatePickerTableViewCell") as! DatePickerTableViewCell
             cell.delegate = self
-            
+            if selectedDateButtonTag == 1 {
+                cell.setDatePickerLimits(nil, maximumDate: searchModel.endDate, selectedDate: searchModel.startDate)
+            } else {
+                cell.setDatePickerLimits(searchModel.startDate, maximumDate: nil, selectedDate: searchModel.endDate)
+            }
             return cell
         }
     }
@@ -310,8 +314,8 @@ extension FilterNewsViewController: ListHeaderViewDelegate {
     }
     
     func didSelectHeaderWithSection(headerView: UIView, button: UIButton) {
-        didSelectHeaderWithSection(headerView)
         selectedDateButtonTag = button.tag
+        didSelectHeaderWithSection(headerView)
     }
 }
 
