@@ -40,6 +40,14 @@ class UserRecepientTableViewCell: UITableViewCell {
             }
         }
     }
+    var hiddenSeparator: Bool {
+        get {
+            return separatorView.hidden
+        }
+        set {
+            separatorView.hidden = newValue
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()

@@ -11,7 +11,8 @@ import UIKit
 class ComposerRecepientsViewController: UIViewController {
     
     private struct Constants {
-        static let HeaderViewHeight: CGFloat = 39
+        static let HeaderViewHeight: CGFloat = 40
+        static let CellHeight: CGFloat = 40
     }
     
     @IBOutlet weak var tableView: UITableView!
@@ -50,11 +51,15 @@ class ComposerRecepientsViewController: UIViewController {
 
 extension ComposerRecepientsViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 40
+        return Constants.CellHeight
     }
     
     func numberOfSectionsInTableView(tableView: UITableView) -> Int {
         return 3
+    }
+    
+    func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return Constants.HeaderViewHeight
     }
 }
 
@@ -79,6 +84,10 @@ extension ComposerRecepientsViewController: UITableViewDataSource {
             let cell = tableView.dequeueReusableCellWithIdentifier("UserRecepientTableViewCell") as! UserRecepientTableViewCell
             cell.cellType = UserRecepientCellType.Interactive
             cell.delegate = self;
+            
+            if indexPath.row == 2 {
+                cell.hiddenSeparator = true
+            }
             
             return cell
         } else {
