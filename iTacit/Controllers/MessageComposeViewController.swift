@@ -11,7 +11,7 @@ import UIKit
 class MessageComposeViewController: BaseViewController {
     
     private struct Constants {
-        static let DefaultCellHeight: CGFloat = 40.0
+        static let defaultCellHeight: CGFloat = 42.0
         static let FloatingViewDefaultDownHeith: CGFloat = 30.0
         static let AnimationDuration: Double = 0.2
     }
@@ -21,7 +21,7 @@ class MessageComposeViewController: BaseViewController {
     @IBOutlet weak var floatingViewDownConstraint: NSLayoutConstraint!
 
 
-	private var reuseIdetifiersDataSource = [ComposerRecipiencTableViewCell.reuseIdentifier, ComposerTopicTableViewCell.reuseIdentifier, ComposerBodyTableViewCell.reuseIdentifier]
+	private var reuseIdetifiersDataSource = [ComposerRecipientsTableViewCell.reuseIdentifier, ComposerTopicTableViewCell.reuseIdentifier, ComposerBodyTableViewCell.reuseIdentifier]
     
 //    private var dynamicCellReference: UITableViewCell?
     private var messageModel = NewMessageModel()
@@ -29,7 +29,8 @@ class MessageComposeViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
+		tableView.tableFooterView = UIView()
+		tableView.estimatedRowHeight = Constants.defaultCellHeight
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -95,6 +96,7 @@ extension MessageComposeViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let reuseIdentifier = reuseIdetifiersDataSource[indexPath.row]
 		let cell = tableView.dequeueReusableCellWithIdentifier(reuseIdentifier, forIndexPath: indexPath)
+		(cell as? ResizableTableViewCell)?.delegate = self
 		return cell
 /*
         if indexPath.row == 0 {
@@ -140,46 +142,17 @@ extension MessageComposeViewController: UITableViewDelegate {
 
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
 
-//		if indexPath.row == 1 {
-//			if let cell = dynamicCellReference as? ComposerTopicTableViewCell {
-//				cell.frame = CGRect(x: 0.0, y: 0.0, width: UIScreen.mainScreen().bounds.size.width, height: 40.0)
-//				let size = cell.systemLayoutSizeFittingSize(CGSize(width: (UIScreen.mainScreen().bounds.size.width), height: Constants.DefaultCellHeight), withHorizontalFittingPriority: 1000, verticalFittingPriority: 50)
-//
-//				return size.height
-//			}
-//
-//			return UITableViewAutomaticDimension
-//		}
-
 		return UITableViewAutomaticDimension
 	}
 }
 
-//extension MessageComposeViewController: ComposeDynamicCellDelegate {
-//
-//    func composerCellTopicDidChangeTo(newValue: AnyObject, cell: UITableViewCell) {
-////        dynamicCellReference = cell
-//
-//        if let _ = cell as? ComposerTopicTableViewCell {
-//            messageModel.topic = newValue as? String
-//        }
-//        if let _ = cell as? ComposerReadDateTableViewCell {
-//            messageModel.estimatedDate = newValue as? NSDate
-//        }
-//        
-//        UIView.setAnimationsEnabled(false)
-//        CATransaction.begin()
-//        
-//        CATransaction.setCompletionBlock { () -> Void in
-//            UIView.setAnimationsEnabled(true)
-//        }
-//        
-//        tableView.beginUpdates()
-//        tableView.endUpdates()
-//        
-//        CATransaction.commit()
-//    }
-//}
+extension MessageComposeViewController: ResizableTableViewCellDelegate {
+
+	func tableVeiwCellNeedsUpdateSize(cell: UITableViewCell) {
+		tableView.beginUpdates()
+		tableView.endUpdates()
+	}
+}
 
 extension MessageComposeViewController: ConfirmationCellDelegate {
 

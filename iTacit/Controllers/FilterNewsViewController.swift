@@ -15,6 +15,7 @@ class FilterNewsViewController: BaseViewController {
         static let dateHeaderViewHeight: CGFloat = 93
 		static let authorIdKey = "authorId"
 		static let categoryIdKey = "categoryId"
+		static let returnToNewsListSegue = "returnToNewsList"
     }
 
     @IBOutlet weak var tableView: UITableView!
@@ -34,17 +35,16 @@ class FilterNewsViewController: BaseViewController {
 
 	var searchModel = SearchNewsQueryModel(string: "")
 	var searchString = ""
-	var tags: [TagModel] {
-		return tagTextField.tags
-	}
+	var tags = [TagModel]()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		title = LocalizedString("Filter")
 		addKeyboardObservers()
+		title = LocalizedString("Filter")
 		searchButton.setTitle(LocalizedString("SEARCH"), forState: .Normal)
 		authorList.searchQuery = SearchAuthorQueryModel(string: searchString)
 		categoryList.searchQuery = SearchCategoryQueryModel(string: searchString)
+		tagTextField.tags = tags
 		if searchString.characters.count >= 3 {
 			reloadData()
 		}
@@ -70,7 +70,13 @@ class FilterNewsViewController: BaseViewController {
 			searchTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("performSearch:"), userInfo: nil, repeats: false)
 		}
 	}
-    
+
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if let identifier = segue.identifier where identifier == Constants.returnToNewsListSegue {
+			tags = tagTextField.tags
+		}
+	}
+	
     // MARK: - Private
 
 	func performSearch(sender: NSTimer) {
@@ -188,6 +194,7 @@ extension FilterNewsViewController: UITableViewDataSource {
 
 			let contains = tagTextField.tags.contains { ($0.attributes?[Constants.authorIdKey] ?? "") == author.authorID }
 
+			cell.selectable = true
 			cell.selected = contains
 			if contains {
 				tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
@@ -354,7 +361,7 @@ extension FilterNewsViewController: TagTextFieldDelegate {
 	}
 
 	func tagedTextFieldShouldSwitchToCollapsedMode(textField: TagTextField) -> Bool {
-		return true
+		return false
 	}
 
 	func tagedTextField(textField: TagTextField, didDeleteTag tag: TagModel) {

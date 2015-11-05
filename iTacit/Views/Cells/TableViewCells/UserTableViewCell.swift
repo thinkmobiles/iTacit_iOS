@@ -47,23 +47,18 @@ class UserTableViewCell: UITableViewCell {
 		}
 	}
     
-    var selectable: Bool? {
-        get {
-            return self.selectable
-        }
-        set {
-            if newValue == true {
-                selectAuthorButtonWidthConstraint.constant = Constants.selectButtonWidth
-            } else {
-                selectAuthorButtonWidthConstraint.constant = 0
-            }
-        }
-    }
+    var selectable = false {
+		didSet {
+			selectAuthorButtonWidthConstraint.constant = selectable ? Constants.selectButtonWidth: 0
+		}
+	}
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        selectAuthorButton.selected = selected
+		if selectable {
+			selectAuthorButton.selected = selected
+		}
     }
 
 }

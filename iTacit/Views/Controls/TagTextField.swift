@@ -126,8 +126,8 @@ class TagTextField: UIControl {
 			tags.removeAtIndex(index)
 			collectionView.performBatchUpdates({ [weak self] () -> Void in
 				self?.collectionView.deleteItemsAtIndexPaths([NSIndexPath(forItem: index, inSection: 0)])
-				}) { (finished) -> Void in
-					completion?()
+			}) { (finished) -> Void in
+				completion?()
 			}
 		} else if case .Collapsed = mode {
 			if let index = tagsArray.indexOf(tag) {
