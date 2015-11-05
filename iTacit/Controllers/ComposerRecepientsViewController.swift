@@ -109,9 +109,9 @@ extension ComposerRecepientsViewController: UITableViewDataSource {
         }
         
         if section == 1 {
-            header.titleLabel.text = LocalizationService.LocalizedString("MY DIRECT REPORTS")
+            header.titleLabel.text = LocalizedString("MY DIRECT REPORTS")
         } else {
-            header.titleLabel.text = LocalizationService.LocalizedString("MY DIRECT AND INDIRECT REPORTS")
+            header.titleLabel.text =  LocalizedString("MY DIRECT AND INDIRECT REPORTS")
         }
         
         return header
