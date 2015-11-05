@@ -23,6 +23,8 @@ class NewsDetailViewController: BaseViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
+		title = LocalizedString("News")
+		
         tableView.estimatedRowHeight = 89
         tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0)

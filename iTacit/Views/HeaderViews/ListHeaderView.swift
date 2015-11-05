@@ -29,7 +29,7 @@ class ListHeaderView: UIView {
     
     var section: Int? {
         didSet {
-            headerTitleLabel.text = LocalizationService.LocalizedString(section == 0 ? "Author" : "Category") + ": "
+            headerTitleLabel.text = LocalizedString(section == 0 ? "Author" : "Category") + ": "
         }
     }
 

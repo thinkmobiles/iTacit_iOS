@@ -56,20 +56,18 @@ class DateHeaderView: UIView {
     
     required init?(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
-        
         loadViewFromXib()
     }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         loadViewFromXib()
     }
     
     override func layoutSubviews() {
         super.layoutSubviews()
         
-        dateLabel.text = LocalizationService.LocalizedString("Date") + ": " + LocalizationService.LocalizedString("Change Date")
+        dateLabel.text = LocalizedString("Date") + ": " + LocalizedString("Change Date")
     }
     
     // MARK: - Private
@@ -94,9 +92,11 @@ class DateHeaderView: UIView {
             view.frame = self.frame
             self.addSubview(view)
         }
-        
-        addStartDateButton.setTitle(LocalizationService.LocalizedString("Add Date"), forState: .Normal)
-        addEndDateButton.setTitle(LocalizationService.LocalizedString("Add Date"), forState: .Normal)
+
+        addStartDateButton.setTitle(LocalizedString("Add Date"), forState: .Normal)
+		addStartDateButton.exclusiveTouch = true
+        addEndDateButton.setTitle(LocalizedString("Add Date"), forState: .Normal)
+		addEndDateButton.exclusiveTouch = true
     }
     
     private func getStringRepresentation(date: NSDate) -> String {

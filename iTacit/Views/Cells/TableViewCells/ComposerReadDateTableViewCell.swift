@@ -1,6 +1,6 @@
 
 //
-//  ComposerRequestConfirmationCell.swift
+//  ComposerReadDateTableViewCelll.swift
 //  iTacit
 //
 //  Created by MaksymRachytskyy on 11/2/15.
@@ -14,7 +14,9 @@ protocol ConfirmationCellDelegate {
     func pickeDate(date: NSDate)
 }
 
-class ComposerRequestConfirmationCell: UITableViewCell {
+class ComposerReadDateTableViewCell: UITableViewCell {
+
+	static let reuseIdentifier = "ComposerReadDateTableViewCell"
 
     @IBOutlet weak var cellTitileLabel: UILabel!
     @IBOutlet weak var cancelButtonAction: NSLayoutConstraint!
@@ -73,7 +75,4 @@ class ComposerRequestConfirmationCell: UITableViewCell {
     @IBAction func cancelButtonAction(sender: UIButton) {
         delegate?.confirmationCellCancelButtonPressed()
     }
-}
-
-extension ComposerRequestConfirmationCell: UITextFieldDelegate {
 }

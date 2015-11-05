@@ -34,45 +34,8 @@ class TagSearchControl: UIControl {
 	@IBOutlet weak var clearButton: UIButton!
 	@IBOutlet weak var searchButtonLeadingConstraint: NSLayoutConstraint!
 	@IBOutlet weak var autocompletionTableView: UITableView!
-	@IBOutlet weak var trailingConstraint: NSLayoutConstraint!
 	@IBOutlet weak var autocompletionTableViewHeightConstraint: NSLayoutConstraint!
-
-	weak var delegate: TagSearchControlDelegate?
-
-	var tags: [TagModel] {
-		get {
-			return tagTextField.tags
-		}
-		set {
-			tagTextField.tags = newValue
-			updateClearButtonvisibility()
-		}
-	}
-
-	private(set) var inputText: String {
-		get {
-			return tagTextField.text
-		}
-		set {
-			tagTextField.text = newValue
-			updateClearButtonvisibility()
-		}
-	}
-
-	var mode = Mode.Normal {
-		didSet {
-			guard oldValue != mode else {
-				return
-			}
-			switch mode {
-				case .Normal: setNormalMode()
-				case .Editing: setEditingMode()
-				case .Tags: setTagsMode()
-			}
-		}
-	}
-
-	var autocompletionStrings = [String]()
+	@IBOutlet weak var trailingConstraint: NSLayoutConstraint!
 
 	var rightOffset: CGFloat {
 		get {
@@ -82,6 +45,35 @@ class TagSearchControl: UIControl {
 			trailingConstraint.constant = newValue
 		}
 	}
+
+	weak var delegate: TagSearchControlDelegate?
+
+	var tags: [TagModel] {
+		get {
+			return tagTextField.tags
+		}
+		set {
+			tagTextField.tags = newValue
+			tagTextField.mode = newValue.isEmpty ? .Editing: .Collapsed
+			searchButtonLeadingConstraint.constant = newValue.isEmpty ? 0: -CGRectGetWidth(searchButton.frame)
+			tagTextField.reloadData()
+			updateClearButtonvisibility()
+		}
+	}
+
+	private(set) var searchText: String {
+		get {
+			return tagTextField.text
+		}
+		set {
+			tagTextField.text = newValue
+			updateClearButtonvisibility()
+		}
+	}
+
+	var isEditing = false
+
+	var autocompletionStrings = [String]()
 
 	// MARK: - Lifecycle
 
@@ -98,7 +90,7 @@ class TagSearchControl: UIControl {
 	// MARK: - Public 
 
 	func updateAutocompletionIfNeeded() {
-		if inputText.characters.count >= 3 {
+		if searchText.characters.count >= 3 && isEditing {
 			delegate?.tagsSearchControl(self) { [weak self] (strings) -> Void in
 				guard let strongSelf = self else {
 					return
@@ -115,16 +107,25 @@ class TagSearchControl: UIControl {
 		}
 	}
 
+	func beginEditing() {
+		tagTextField.beginEditing()
+	}
+
+	func endEditing() {
+		tagTextField.endEditing()
+	}
+
 	// MARK: - IBActions
 
 	@IBAction func activateSearch() {
-		mode = .Editing
+		beginEditing()
 	}
 
 	@IBAction func clear() {
+		endEditing()
+		tags = []
 		tagTextField.clear()
 		hideAutocompletionTableView()
-		mode = .Normal
 		updateClearButtonvisibility()
 		delegate?.tagsSearchControlDidClear(self)
 	}
@@ -138,7 +139,7 @@ class TagSearchControl: UIControl {
 	// MARK: - Private
 
 	private func updateClearButtonvisibility() {
-		clearButton.hidden = inputText.isEmpty && tags.isEmpty && (mode != .Tags)
+		clearButton.hidden = searchText.isEmpty && tags.isEmpty// && (mode != .Tags)
 	}
 
 	private func showAutocompletionTableView() {
@@ -190,25 +191,6 @@ class TagSearchControl: UIControl {
 		return attributedString
 	}
 
-	// MARK: - Modes 
-
-	private func setNormalMode() {
-		searchButtonLeadingConstraint.constant = 0
-		tagTextField.endEditing()
-	}
-
-	private func setEditingMode() {
-		searchButtonLeadingConstraint.constant = 0
-		tagTextField.beginEditing()
-	}
-
-	private func setTagsMode() {
-		searchButtonLeadingConstraint.constant = -CGRectGetWidth(searchButton.frame)
-		tagTextField.mode = .Collapsed
-		tagTextField.reloadData()
-		updateClearButtonvisibility()
-	}
-
 	// MARK: - UIView
 
 	override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
@@ -226,22 +208,22 @@ class TagSearchControl: UIControl {
 extension TagSearchControl: TagTextFieldDelegate {
 
 	func tagedTextFieldShouldBeginEditing(textField: TagTextField) -> Bool {
-		return mode != .Tags
+		return tags.isEmpty// mode != .Tags
 	}
 
 	func tagedTextFieldDidReturn(textField: TagTextField) {
 		hideAutocompletionTableView()
 		delegate?.tagsSearchControlSearchButtonPressed(self)
+		tagTextField.endEditing()
 	}
 
 	func tagedTextFieldDidBeginEditing(textField: TagTextField) {
+		isEditing = true
 		updateAutocompletionIfNeeded()
 	}
 
 	func tagedTextFieldDidEndEditing(textField: TagTextField) {
-		if tags.count == 0 {
-			mode = .Normal
-		}
+		isEditing = false
 		hideAutocompletionTableView()
 	}
 
@@ -266,7 +248,7 @@ extension TagSearchControl: UITableViewDataSource {
 
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier(AutocompletionTableViewCell.reuseIdentifier, forIndexPath: indexPath) as! AutocompletionTableViewCell
-		cell.titleLabel.attributedText = highlightSubstring(inputText, inString: autocompletionStrings[indexPath.row])
+		cell.titleLabel.attributedText = highlightSubstring(searchText, inString: autocompletionStrings[indexPath.row])
 		return cell
 	}
 }
@@ -274,7 +256,7 @@ extension TagSearchControl: UITableViewDataSource {
 extension TagSearchControl: UITableViewDelegate {
 
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		inputText = autocompletionStrings[indexPath.row]
+		searchText = autocompletionStrings[indexPath.row]
 		hideAutocompletionTableView()
 	}
 }

@@ -40,8 +40,9 @@ class FilterNewsViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+		title = LocalizedString("Filter")
 		addKeyboardObservers()
-		searchButton.setTitle(LocalizationService.LocalizedString("SEARCH"), forState: .Normal)
+		searchButton.setTitle(LocalizedString("SEARCH"), forState: .Normal)
 		authorList.searchQuery = SearchAuthorQueryModel(string: searchString)
 		categoryList.searchQuery = SearchCategoryQueryModel(string: searchString)
 		if searchString.characters.count >= 3 {

@@ -9,6 +9,7 @@
 import UIKit
 
 protocol DatePickerCellDelegate {
+	
     func didPressCancelButton()
     func didPressDoneButtonWithDate(date: NSDate)
 }
@@ -23,15 +24,8 @@ class DatePickerTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
-        cancelButton.setTitle(LocalizationService.LocalizedString("CANCEL"), forState: .Normal)
-        doneButton.setTitle(LocalizationService.LocalizedString("DONE"), forState: .Normal)
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        cancelButton.setTitle(LocalizedString("CANCEL"), forState: .Normal)
+        doneButton.setTitle(LocalizedString("DONE"), forState: .Normal)
     }
 
     // MARK: - IBAction
