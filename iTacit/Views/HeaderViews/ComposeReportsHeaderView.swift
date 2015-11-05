@@ -8,7 +8,7 @@
 
 import UIKit
 
-protocol ComposerHeaderViewDelegate {
+protocol ComposerHeaderViewDelegate: class {
     func didSelectExpandButtonInHeaderView(view: UIView)
     func didSelectCloseButtonInHeaderView(view: UIView)
 }
@@ -24,7 +24,7 @@ class ComposeReportsHeaderView: UIView {
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var expandImageView: UIImageView!
     
-    var delegate: ComposerHeaderViewDelegate?
+    weak var delegate: ComposerHeaderViewDelegate?
     var section: Int?
     var rowCount: String {
         get {

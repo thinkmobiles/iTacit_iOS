@@ -28,7 +28,7 @@ class UserRecepientTableViewCell: UITableViewCell {
     @IBOutlet weak var closeButtonWidthConstraint: NSLayoutConstraint!
     @IBOutlet weak var separatorView: UIView!
     
-    var delegate: ComposerHeaderViewDelegate?
+    weak var delegate: ComposerHeaderViewDelegate?
     
     var cellType: UserRecepientCellType? {
         didSet {
