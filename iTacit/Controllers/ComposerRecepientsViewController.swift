@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ComposerRecepientsViewController: UIViewController {
+class ComposerRecepientsViewController: BaseViewController {
     
     private struct Constants {
         static let HeaderViewHeight: CGFloat = 40
@@ -22,25 +22,15 @@ class ComposerRecepientsViewController: UIViewController {
         super.viewDidLoad()
     }
     
-    // MARK: - Private 
+    // MARK: - Private
     
     private func showOrHideCellsIn(section section: Int) {
+        
         if hiddenSections.contains(section) {
             hiddenSections.removeAtIndex(hiddenSections.indexOf(section)!)
-            if section == 2 {
-                CATransaction.begin()
-                
-                CATransaction.setCompletionBlock { [weak self] () -> Void in
-                    let indexPath = NSIndexPath(forRow:0, inSection: section)
-                    self?.tableView.scrollToRowAtIndexPath(indexPath, atScrollPosition: .Bottom, animated: true)
-                }
-                
-                tableView.beginUpdates()
-                tableView.reloadSections(NSIndexSet(index: section), withRowAnimation: .None)
-                tableView.endUpdates()
-                
-                CATransaction.commit()
-            }
+            tableView.beginUpdates()
+            tableView.reloadSections(NSIndexSet(index: section), withRowAnimation: .None)
+            tableView.endUpdates()
         } else {
             hiddenSections.append(section)
         }
@@ -71,10 +61,10 @@ extension ComposerRecepientsViewController: UITableViewDataSource {
         }
         
         switch section {
-            case 0: return 3
-            case 1: return 3
-            case 2: return 3
-            default: return 0
+        case 0: return 3
+        case 1: return 3
+        case 2: return 3
+        default: return 0
         }
     }
     
@@ -83,7 +73,7 @@ extension ComposerRecepientsViewController: UITableViewDataSource {
         if indexPath.section == 0 {
             let cell = tableView.dequeueReusableCellWithIdentifier("UserRecepientTableViewCell") as! UserRecepientTableViewCell
             cell.cellType = UserRecepientCellType.Interactive
-            cell.delegate = self;
+            cell.delegate = self
             
             if indexPath.row == 2 {
                 cell.hiddenSeparator = true

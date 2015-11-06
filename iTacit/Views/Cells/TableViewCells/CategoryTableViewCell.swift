@@ -12,6 +12,16 @@ class CategoryTableViewCell: UITableViewCell {
 
     @IBOutlet weak var selectCategoryButton: UIButton!
     @IBOutlet weak var categoryName: UILabel!
+    @IBOutlet weak var separatorView: UIView!
+    
+    var hiddenSeparator: Bool {
+        get {
+            return separatorView.hidden
+        }
+        set {
+            separatorView.hidden = newValue
+        }
+    }
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)

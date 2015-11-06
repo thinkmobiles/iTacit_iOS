@@ -74,4 +74,5 @@ class UserRecepientTableViewCell: UITableViewCell {
         closeButtonWidthConstraint.constant = Constants.closeButtonWidth
         separatorView.hidden = false
     }
+	
 }
