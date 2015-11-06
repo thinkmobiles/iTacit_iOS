@@ -82,6 +82,7 @@ class CollectionViewLeftAlignedFlowLayout: UICollectionViewLayout {
 				} else {
 					size = itemSize
 				}
+
 				size.width = min(maxWidth, size.width)
 				maxHeight = max(maxHeight, size.height)
 				let frame: CGRect
@@ -118,4 +119,5 @@ class CollectionViewLeftAlignedFlowLayout: UICollectionViewLayout {
 		}
 		return attributesArray
 	}
+
 }

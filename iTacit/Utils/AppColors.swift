@@ -19,4 +19,5 @@ struct AppColors {
 	static let dirtyWhite = UIColor(hexColor: 0xF5F6F9)
     static let grayButtonFont = UIColor(hexColor: 0x5A5B61)
     static let lightGrayButtonBorder = UIColor(hexColor: 0xD9D9DC)
+	static let placeholderText = UIColor(hexColor: 0xCCCCCC)
 }

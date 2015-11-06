@@ -66,6 +66,8 @@ class NewsViewController: UIViewController {
 			newsDetailViewController.newsModel = newsList[selectedIndexPath.row]
 		} else if let filterNewsViewController = segue.destinationViewController as? FilterNewsViewController {
 			filterNewsViewController.searchString = tagSearchControl.searchText
+			filterNewsViewController.searchModel = (newsList.searchQuery as? SearchNewsQueryModel) ?? SearchNewsQueryModel(string: "")
+			filterNewsViewController.tags = tagSearchControl.tags
 		}
 	}
 
