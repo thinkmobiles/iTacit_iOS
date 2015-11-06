@@ -36,6 +36,12 @@
 		35D6EA371BEBA2D20084559B /* AddRecipientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6EA361BEBA2D20084559B /* AddRecipientViewController.swift */; };
 		35EE4E971BE89CBD00740A03 /* NewMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE4E961BE89CBD00740A03 /* NewMessageModel.swift */; };
 		35EE4E991BE8DDD400740A03 /* CategoriesListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE4E981BE8DDD400740A03 /* CategoriesListModel.swift */; };
+		35FF25DF1BECF62600B1D734 /* BusinessUnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FF25DE1BECF62600B1D734 /* BusinessUnitModel.swift */; };
+		35FF25E11BECF93C00B1D734 /* BusinessUnitListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FF25E01BECF93C00B1D734 /* BusinessUnitListModel.swift */; };
+		35FF25E31BECFAB300B1D734 /* JobClassificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FF25E21BECFAB300B1D734 /* JobClassificationModel.swift */; };
+		35FF25E51BECFBDC00B1D734 /* JobClassificationListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FF25E41BECFBDC00B1D734 /* JobClassificationListModel.swift */; };
+		35FF25E71BECFDF400B1D734 /* PermissionGroupsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FF25E61BECFDF400B1D734 /* PermissionGroupsModel.swift */; };
+		35FF25E91BECFE6300B1D734 /* PermissionGroupsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FF25E81BECFE6300B1D734 /* PermissionGroupsListModel.swift */; };
 		3D03534B1BE8F562009841F9 /* TimeAgoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D03534A1BE8F562009841F9 /* TimeAgoExtension.swift */; };
 		3DD1FF321BE39FC0005C4339 /* NewsCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD1FF311BE39FC0005C4339 /* NewsCategoryModel.swift */; };
 		3DEFA79D1BD5040A00596A2B /* FilterNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFA79C1BD5040A00596A2B /* FilterNewsViewController.swift */; };
@@ -146,6 +152,12 @@
 		35D6EA361BEBA2D20084559B /* AddRecipientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipientViewController.swift; sourceTree = "<group>"; };
 		35EE4E961BE89CBD00740A03 /* NewMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageModel.swift; sourceTree = "<group>"; };
 		35EE4E981BE8DDD400740A03 /* CategoriesListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesListModel.swift; sourceTree = "<group>"; };
+		35FF25DE1BECF62600B1D734 /* BusinessUnitModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessUnitModel.swift; sourceTree = "<group>"; };
+		35FF25E01BECF93C00B1D734 /* BusinessUnitListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessUnitListModel.swift; sourceTree = "<group>"; };
+		35FF25E21BECFAB300B1D734 /* JobClassificationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobClassificationModel.swift; sourceTree = "<group>"; };
+		35FF25E41BECFBDC00B1D734 /* JobClassificationListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobClassificationListModel.swift; sourceTree = "<group>"; };
+		35FF25E61BECFDF400B1D734 /* PermissionGroupsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionGroupsModel.swift; sourceTree = "<group>"; };
+		35FF25E81BECFE6300B1D734 /* PermissionGroupsListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionGroupsListModel.swift; sourceTree = "<group>"; };
 		3D03534A1BE8F562009841F9 /* TimeAgoExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeAgoExtension.swift; sourceTree = "<group>"; };
 		3DD1FF311BE39FC0005C4339 /* NewsCategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCategoryModel.swift; sourceTree = "<group>"; };
 		3DEFA79C1BD5040A00596A2B /* FilterNewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterNewsViewController.swift; sourceTree = "<group>"; };
@@ -396,6 +408,12 @@
 				4056D5871BE8E8E50076B970 /* SearchStringModel.swift */,
 				35EE4E961BE89CBD00740A03 /* NewMessageModel.swift */,
 				4056D5891BE903FD0076B970 /* TagModel.swift */,
+				35FF25DE1BECF62600B1D734 /* BusinessUnitModel.swift */,
+				35FF25E01BECF93C00B1D734 /* BusinessUnitListModel.swift */,
+				35FF25E21BECFAB300B1D734 /* JobClassificationModel.swift */,
+				35FF25E41BECFBDC00B1D734 /* JobClassificationListModel.swift */,
+				35FF25E61BECFDF400B1D734 /* PermissionGroupsModel.swift */,
+				35FF25E81BECFE6300B1D734 /* PermissionGroupsListModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -662,6 +680,7 @@
 				40EA82561BCFD07B0029228F /* MessagesViewController.swift in Sources */,
 				4056D57E1BE8D1F00076B970 /* ComposerRecipientsTableViewCell.swift in Sources */,
 				353C05051BE25D0800C92352 /* MainTabBarController.swift in Sources */,
+				35FF25E31BECFAB300B1D734 /* JobClassificationModel.swift in Sources */,
 				40EA824E1BCFCDEC0029228F /* TabBarControllerSegue.swift in Sources */,
 				405A29891BE6B21A0024ADA9 /* JSONMapper.swift in Sources */,
 				3DEFA79D1BD5040A00596A2B /* FilterNewsViewController.swift in Sources */,
@@ -678,6 +697,7 @@
 				40440DB21BDBCC9C00FADF6E /* InputCollectionViewCell.swift in Sources */,
 				3D03534B1BE8F562009841F9 /* TimeAgoExtension.swift in Sources */,
 				3516FFA11BE756BF00865EB9 /* MessageComposerFloatingView.swift in Sources */,
+				35FF25DF1BECF62600B1D734 /* BusinessUnitModel.swift in Sources */,
 				351E8EC81BE3700F00690669 /* ComposerTopicTableViewCell.swift in Sources */,
 				4056D5861BE8E8B20076B970 /* SearchCategoryQueryModel.swift in Sources */,
 				40EA82471BCFCD690029228F /* TabsContainerView.swift in Sources */,
@@ -690,6 +710,8 @@
 				3DEFA7A11BD50B7100596A2B /* CategoryTableViewCell.swift in Sources */,
 				40EA82541BCFD06F0029228F /* NewsViewController.swift in Sources */,
 				40440DC31BDBCE2F00FADF6E /* TagSearchControl.swift in Sources */,
+				35FF25E51BECFBDC00B1D734 /* JobClassificationListModel.swift in Sources */,
+				35FF25E11BECF93C00B1D734 /* BusinessUnitListModel.swift in Sources */,
 				3516FFA31BE7940000865EB9 /* ComposerReadDateTableViewCell.swift in Sources */,
 				3563B9A01BD12CCB009BE696 /* TitleTableViewCell.swift in Sources */,
 				35D6EA371BEBA2D20084559B /* AddRecipientViewController.swift in Sources */,
@@ -707,6 +729,7 @@
 				40440DBC1BDBCD0E00FADF6E /* CollectionViewLeftAlignedFlowLayout.swift in Sources */,
 				405A298D1BE6B21A0024ADA9 /* Mappable.swift in Sources */,
 				3532472F1BEC9DA000733B1A /* AddRecipientHeaderView.swift in Sources */,
+				35FF25E71BECFDF400B1D734 /* PermissionGroupsModel.swift in Sources */,
 				40EA824B1BCFCD720029228F /* TabBarButton.swift in Sources */,
 				405A298F1BE6B21A0024ADA9 /* ValueTransformer.swift in Sources */,
 				40EA82581BCFD09A0029228F /* TrainingViewController.swift in Sources */,
@@ -715,6 +738,7 @@
 				3DD1FF321BE39FC0005C4339 /* NewsCategoryModel.swift in Sources */,
 				4056D5771BE89B290076B970 /* ImageCacheManager.swift in Sources */,
 				40EA82521BCFD05F0029228F /* DashboardViewController.swift in Sources */,
+				35FF25E91BECFE6300B1D734 /* PermissionGroupsListModel.swift in Sources */,
 				3563B99E1BD1288A009BE696 /* ImageTableViewCell.swift in Sources */,
 				3DEFA79F1BD5056E00596A2B /* DatePickerTableViewCell.swift in Sources */,
 				40440DC51BDBCE2F00FADF6E /* TagTextField.swift in Sources */,
