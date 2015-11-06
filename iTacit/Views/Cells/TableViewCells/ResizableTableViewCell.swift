@@ -20,23 +20,31 @@ class ResizableTableViewCell: UITableViewCell, UITextViewDelegate {
 
 	weak var delegate: ResizableTableViewCellDelegate?
 
+	var string: String {
+		get {
+			return textView.text ?? ""
+		}
+		set {
+			textView.text = newValue
+		}
+	}
+
 	override func awakeFromNib() {
 		super.awakeFromNib()
 		textView.textContainerInset = UIEdgeInsetsZero
 		textView.textContainer.lineFragmentPadding = 0.0
+		textView.contentInset = UIEdgeInsetsZero
 		layoutMargins = UIEdgeInsetsZero
 	}
 
 	// MARK: - UITextViewDelegate
 
 	func textViewDidChange(textView: UITextView) {
-		guard let attributedText = textView.attributedText, delegate = delegate else {
-			return
-		}
-
-		let size = attributedText.boundingRectWithSize(CGSize(width: CGRectGetWidth(textView.frame), height: CGFloat.max), options: [.UsesLineFragmentOrigin, .UsesFontLeading], context: nil).size
-		if abs(size.height - CGRectGetHeight(textView.frame)) > 1.0 {
-			delegate.tableVeiwCellNeedsUpdateSize(self)
+		let targetSize = CGSize(width: CGRectGetWidth(textView.frame), height: CGFloat.max)
+		let textHeight = textView.sizeThatFits(targetSize).height
+		let height = CGRectGetHeight(textView.frame)
+		if height != textHeight {
+			delegate?.tableVeiwCellNeedsUpdateSize(self)
 		}
 	}
 	

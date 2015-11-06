@@ -20,6 +20,13 @@ extension UIView {
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-0.0-[view]-0.0-|", options: NSLayoutFormatOptions(), metrics: nil, views: bindings))
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("V:|-0.0-[view]-0.0-|", options: NSLayoutFormatOptions(), metrics: nil, views: bindings))
     }
+
+	func roundCorners(corners: UIRectCorner, radii: CGSize) {
+		let maskLayer = CAShapeLayer()
+		maskLayer.frame = bounds
+		maskLayer.path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: radii).CGPath
+		layer.mask = maskLayer
+	}
 }
 
 // MARK: - UIColor+Hex

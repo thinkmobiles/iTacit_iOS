@@ -12,13 +12,13 @@ import UIKit
 class NewsModel: BaseModel, Mappable {
 
 	override var path: String {
-		return "/mobile/1.0/news/article/%@"
+		return "/mobile/1.0/news/article"
 	}
 
 	var articleId = ""
 	var headline = ""
 	var summary: NSAttributedString?
-	var endDate: NSDate? // "2016-09-09",
+	var endDate: NSDate?
 	var startDate: NSDate?
 	var authorName = ""
 	var categoryName = ""
@@ -30,7 +30,9 @@ class NewsModel: BaseModel, Mappable {
 	func load(completion: CompletionHandler? = nil) {
 		performRequest({ (builder) -> Void in
 			builder.path = String(format: self.path, arguments: [self.articleId])
-			builder.method = .GET
+			builder.method = .POST
+			builder.body = .JSON(JSON: ["id":  self.articleId])
+			builder.contentType = .ApplicationJSON
 		}, successHandler: { [weak self] (data, request, response) -> Void in
 			self?.defaultSuccessHandler(data, request: request, response: response, completion: completion)
 		}) { (error, request, response) -> Void in

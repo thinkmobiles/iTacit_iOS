@@ -9,70 +9,100 @@
 
 import UIKit
 
-protocol ConfirmationCellDelegate {
-    func confirmationCellCancelButtonPressed()
-    func pickeDate(date: NSDate)
+protocol ComposerReadDateTableViewCellDelegate: class {
+
+	func composerReadDateTableViewCellDidPressDeleteButton(cell: ComposerReadDateTableViewCell)
+	func composerReadDateTableViewCell(cell: ComposerReadDateTableViewCell, didPickDate date: NSDate)
+
 }
 
 class ComposerReadDateTableViewCell: UITableViewCell {
 
 	static let reuseIdentifier = "ComposerReadDateTableViewCell"
 
-    @IBOutlet weak var cellTitileLabel: UILabel!
-    @IBOutlet weak var cancelButtonAction: NSLayoutConstraint!
-    @IBOutlet weak var pickedDateTextField: UITextField!
-    
-    private var pickedDate: NSDate?
-    
-    var delegate: ConfirmationCellDelegate?
+	private static let dateFormatter: NSDateFormatter = {
+		let dateFormatter = NSDateFormatter()
+		dateFormatter.dateFormat = "MMM dd, yyyy"
+		return dateFormatter
+	}()
+
+	private struct Constants {
+		static let toolBarHeight = CGFloat(30)
+	}
+
+    @IBOutlet weak var titleLabel: UILabel!
+    @IBOutlet weak var textField: UITextField!
+
+	private lazy var datePicker: UIDatePicker = { [unowned self] in
+		let datePicker = UIDatePicker()
+		datePicker.minimumDate = NSDate()
+		datePicker.backgroundColor = UIColor.whiteColor()
+		datePicker.datePickerMode = UIDatePickerMode.Date
+		return datePicker
+	}()
+
+	private lazy var datePickerToolBar: UIToolbar = { [unowned self] in
+		let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: CGRectGetWidth(self.bounds), height: Constants.toolBarHeight))
+		let cancelButton = UIBarButtonItem(title: LocalizedString("Cancel"), style: .Plain, target: self, action: Selector("cancelPicking"))
+		cancelButton.setTitleTextAttributes([NSForegroundColorAttributeName: AppColors.blue, NSFontAttributeName: UIFont.openSansRegular(13.0)], forState: .Normal)
+		let doneButton = UIBarButtonItem(title: LocalizedString("Done"), style: .Plain, target: self, action: Selector("pickDate"))
+		doneButton.setTitleTextAttributes([NSForegroundColorAttributeName: AppColors.blue, NSFontAttributeName: UIFont.openSansSemibold(13.0)], forState: .Normal)
+		let spaceButton = UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil)
+		toolBar.items = [cancelButton, spaceButton, doneButton]
+		return toolBar
+	}()
+
+	var date = NSDate()
+
+    weak var delegate: ComposerReadDateTableViewCellDelegate?
+
+	// MARK: - Lifecycle
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        
-        let datePickerView  : UIDatePicker = UIDatePicker()
-        datePickerView.minimumDate = NSDate()
-        datePickerView.backgroundColor = UIColor.whiteColor()
-        datePickerView.datePickerMode = UIDatePickerMode.Date
-        pickedDateTextField.inputView = datePickerView
-        datePickerView.addTarget(self, action: Selector("handleDatePicker:"), forControlEvents: UIControlEvents.ValueChanged)
-        
-        let numberToolbar = UIToolbar(frame: CGRectMake(0, 0, frame.size.width, 50))
-        numberToolbar.barStyle = UIBarStyle.Default
-        
-        numberToolbar.items = [
-            UIBarButtonItem(title: "Cancel", style: UIBarButtonItemStyle.Plain, target: self, action: "keyboardCancelButtonTapped"),
-            UIBarButtonItem(barButtonSystemItem: UIBarButtonSystemItem.FlexibleSpace, target: nil, action: nil),
-            UIBarButtonItem(title: "Done", style: UIBarButtonItemStyle.Plain, target: self, action: "keyboardDoneButtonTapped")]
-        
-        numberToolbar.sizeToFit()
-        pickedDateTextField.inputAccessoryView = numberToolbar
-        
-        cellTitileLabel.text = "Request Confirmation by:"
-        pickedDateTextField.tintColor = UIColor.clearColor()
+        layoutMargins = UIEdgeInsetsZero
+		titleLabel.text = LocalizedString("Request Confirmation by:")
+		textField.tintColor = UIColor.clearColor()
+		textField.inputView = datePicker
+		textField.inputAccessoryView = datePickerToolBar
+		updateTextFieldText()
     }
 
-    func keyboardCancelButtonTapped() {
-        endEditing(true)
+	override func prepareForReuse() {
+		super.prepareForReuse()
+		updateTextFieldText()
+	}
+
+	// MARK: - Public 
+
+	func showDatePicker() {
+		textField.becomeFirstResponder()
+	}
+
+	// MARK: - Private
+
+	private func updateTextFieldText() {
+		textField.text = ComposerReadDateTableViewCell.dateFormatter.stringFromDate(date)
+	}
+
+	// MARK: - Actions
+
+    func cancelPicking() {
+        textField.resignFirstResponder()
+		datePicker.date = date
     }
     
-    func keyboardDoneButtonTapped() {
-        if let date = pickedDate {
-            delegate?.pickeDate(date)
-            endEditing(true)
-        } else {
-            keyboardCancelButtonTapped()
-        }
+    func pickDate() {
+		date = datePicker.date
+		updateTextFieldText()
+		textField.resignFirstResponder()
+		delegate?.composerReadDateTableViewCell(self, didPickDate: date)
     }
     
-    func handleDatePicker(sender: UIDatePicker) {
-        let dateFormatter = NSDateFormatter()
-        dateFormatter.dateFormat = "MMM dd, yyyy"
-        pickedDateTextField.text = dateFormatter.stringFromDate(sender.date)
-        layoutIfNeeded()
-        pickedDate = sender.date
-    }
-    
-    @IBAction func cancelButtonAction(sender: UIButton) {
-        delegate?.confirmationCellCancelButtonPressed()
+    @IBAction func deleteDateAction() {
+		textField.resignFirstResponder()
+        delegate?.composerReadDateTableViewCellDidPressDeleteButton(self)
+		datePicker.date = NSDate()
+		date = datePicker.date
     }
 }

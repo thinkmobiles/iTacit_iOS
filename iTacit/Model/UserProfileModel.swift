@@ -12,7 +12,7 @@ import UIKit
 class UserProfileModel: BaseModel, Mappable {
     
     override var path: String {
-        return "/mobile/1.0/employee/profile/%@"
+        return "/mobile/1.0/employee/profile"
     }
     
     var userId = ""
@@ -25,8 +25,9 @@ class UserProfileModel: BaseModel, Mappable {
     
     func load(completion: CompletionHandler? = nil) {
         performRequest({ (builder) -> Void in
-            builder.path = String(format: self.path, arguments: [self.userId])
-            builder.method = .GET
+            builder.path = self.path
+            builder.method = .POST
+			builder.body = .JSON(JSON: ["id":  self.userId])
         }, successHandler: { [weak self] (data, request, response) -> Void in
             self?.defaultSuccessHandler(data, request: request, response: response, completion: completion)
         }) { (error, request, response) -> Void in

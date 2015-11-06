@@ -14,7 +14,9 @@ class ComposerBodyTableViewCell: ResizableTableViewCell {
 
 	override func awakeFromNib() {
 		super.awakeFromNib()
+		(textView as? PlaceholderedTextView)?.placeholder = LocalizedString("Enter your message here")
 		layoutMargins = UIEdgeInsetsZero
+		separatorInset = UIEdgeInsets(top: 0, left: CGRectGetWidth(bounds), bottom: 0, right: 0)
 	}
 }
 

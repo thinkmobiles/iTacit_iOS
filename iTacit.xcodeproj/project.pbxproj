@@ -242,8 +242,8 @@
 			children = (
 				351E8EC41BE36FC800690669 /* ComposerRecipientsTableViewCell.swift */,
 				351E8EC71BE3700F00690669 /* ComposerTopicTableViewCell.swift */,
-				351E8ECB1BE3C2AC00690669 /* ComposerBodyTableViewCell.swift */,
 				3516FFA21BE7940000865EB9 /* ComposerReadDateTableViewCell.swift */,
+				351E8ECB1BE3C2AC00690669 /* ComposerBodyTableViewCell.swift */,
 			);
 			name = MailComposerTableViewCells;
 			sourceTree = "<group>";
@@ -361,8 +361,8 @@
 				3DEFA79C1BD5040A00596A2B /* FilterNewsViewController.swift */,
 				40EA82551BCFD07B0029228F /* MessagesViewController.swift */,
 				351E8EC01BE36B1500690669 /* MessageComposeViewController.swift */,
-				40EA82571BCFD09A0029228F /* TrainingViewController.swift */,
 				356558DB1BEA4A41001E31D5 /* ComposerRecepientsViewController.swift */,
+				40EA82571BCFD09A0029228F /* TrainingViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";

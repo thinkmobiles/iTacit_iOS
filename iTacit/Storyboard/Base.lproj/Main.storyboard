@@ -572,7 +572,7 @@
         <!--New Message-->
         <scene sceneID="eNa-Nj-rxh">
             <objects>
-                <viewController storyboardIdentifier="MessageComposeViewController" id="Onc-ln-2mc" customClass="MessageComposeViewController" customModule="iTacit" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MessageComposeViewController" automaticallyAdjustsScrollViewInsets="NO" id="Onc-ln-2mc" customClass="MessageComposeViewController" customModule="iTacit" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="pnn-Zc-Xbq"/>
                         <viewControllerLayoutGuide type="bottom" id="JyA-Jh-wa2"/>
@@ -581,14 +581,14 @@
                         <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="08a-6l-AVY">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" showsHorizontalScrollIndicator="NO" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" allowsSelection="NO" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="08a-6l-AVY">
                                 <rect key="frame" x="0.0" y="64" width="600" height="536"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ComposerRecipientsTableViewCell" rowHeight="42" id="ytH-eI-eIU" customClass="ComposerRecipientsTableViewCell" customModule="iTacit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="92" width="600" height="42"/>
+                                        <rect key="frame" x="0.0" y="28" width="600" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="ytH-eI-eIU" id="JNU-Xz-C4g">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="41"/>
@@ -646,7 +646,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ComposerTopicTableViewCell" rowHeight="42" id="YLS-1e-j1H" customClass="ComposerTopicTableViewCell" customModule="iTacit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="134" width="600" height="42"/>
+                                        <rect key="frame" x="0.0" y="70" width="600" height="42"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="YLS-1e-j1H" id="qNW-O4-67K">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="41"/>
@@ -690,22 +690,19 @@
                                             <outlet property="titleLabel" destination="BkY-7L-icd" id="rvm-Pu-d3E"/>
                                         </connections>
                                     </tableViewCell>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ComposerBodyTableViewCell" rowHeight="175" id="MeM-39-GKI" customClass="ComposerBodyTableViewCell" customModule="iTacit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="176" width="600" height="175"/>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="ComposerBodyTableViewCell" rowHeight="50" id="MeM-39-GKI" customClass="ComposerBodyTableViewCell" customModule="iTacit" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="112" width="600" height="50"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="MeM-39-GKI" id="fdr-5d-NIG">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="174"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="600" height="49"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Wrg-ue-J1i" customClass="PlaceholderedTextView" customModule="iTacit" customModuleProvider="target">
-                                                    <rect key="frame" x="16" y="16" width="568" height="142"/>
+                                                <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" bounces="NO" scrollEnabled="NO" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Wrg-ue-J1i" customClass="PlaceholderedTextView" customModule="iTacit" customModuleProvider="target">
+                                                    <rect key="frame" x="15" y="8" width="570" height="33"/>
                                                     <animations/>
                                                     <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
                                                     <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
-                                                    <userDefinedRuntimeAttributes>
-                                                        <userDefinedRuntimeAttribute type="string" keyPath="placeholder" value="Entert your message here"/>
-                                                    </userDefinedRuntimeAttributes>
                                                     <connections>
                                                         <outlet property="delegate" destination="MeM-39-GKI" id="GAO-LC-8od"/>
                                                     </connections>
@@ -713,10 +710,10 @@
                                             </subviews>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstItem="Wrg-ue-J1i" firstAttribute="leading" secondItem="fdr-5d-NIG" secondAttribute="leading" constant="16" id="eh9-ek-NFL"/>
-                                                <constraint firstItem="Wrg-ue-J1i" firstAttribute="top" secondItem="fdr-5d-NIG" secondAttribute="top" constant="16" id="naD-jB-hTE"/>
-                                                <constraint firstAttribute="trailing" secondItem="Wrg-ue-J1i" secondAttribute="trailing" constant="16" id="sr0-Ve-XaF"/>
-                                                <constraint firstAttribute="bottom" secondItem="Wrg-ue-J1i" secondAttribute="bottom" constant="16" id="ul2-A3-Ou9"/>
+                                                <constraint firstItem="Wrg-ue-J1i" firstAttribute="leading" secondItem="fdr-5d-NIG" secondAttribute="leading" constant="15" id="eh9-ek-NFL"/>
+                                                <constraint firstItem="Wrg-ue-J1i" firstAttribute="top" secondItem="fdr-5d-NIG" secondAttribute="top" constant="8" id="naD-jB-hTE"/>
+                                                <constraint firstAttribute="trailing" secondItem="Wrg-ue-J1i" secondAttribute="trailing" constant="15" id="sr0-Ve-XaF"/>
+                                                <constraint firstAttribute="bottom" secondItem="Wrg-ue-J1i" secondAttribute="bottom" constant="8" id="ul2-A3-Ou9"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
@@ -725,7 +722,7 @@
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="none" indentationWidth="10" reuseIdentifier="ComposerReadDateTableViewCell" rowHeight="66" id="EIP-EQ-JXx" customClass="ComposerReadDateTableViewCell" customModule="iTacit" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="351" width="600" height="66"/>
+                                        <rect key="frame" x="0.0" y="162" width="600" height="66"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="EIP-EQ-JXx" id="sIn-qg-w3D">
                                             <rect key="frame" x="0.0" y="0.0" width="600" height="65"/>
@@ -739,15 +736,14 @@
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7HX-dl-mWO">
-                                                    <rect key="frame" x="564" y="23" width="20" height="20"/>
+                                                    <rect key="frame" x="548" y="8" width="52" height="49"/>
                                                     <animations/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" secondItem="7HX-dl-mWO" secondAttribute="height" multiplier="1:1" id="8IQ-80-XTv"/>
-                                                        <constraint firstAttribute="width" constant="20" id="BLv-x7-GMa"/>
+                                                        <constraint firstAttribute="width" constant="52" id="BLv-x7-GMa"/>
                                                     </constraints>
                                                     <state key="normal" image="btn_close"/>
                                                     <connections>
-                                                        <action selector="cancelButtonAction:" destination="EIP-EQ-JXx" eventType="touchUpInside" id="YgF-ZB-Jj3"/>
+                                                        <action selector="deleteDateAction" destination="EIP-EQ-JXx" eventType="touchUpInside" id="QYP-UG-41j"/>
                                                     </connections>
                                                 </button>
                                                 <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="date" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Dre-nH-YcK">
@@ -762,19 +758,20 @@
                                             </subviews>
                                             <animations/>
                                             <constraints>
-                                                <constraint firstItem="7HX-dl-mWO" firstAttribute="leading" secondItem="Dre-nH-YcK" secondAttribute="trailing" constant="16" id="1jd-pG-Lgc"/>
-                                                <constraint firstAttribute="trailing" secondItem="7HX-dl-mWO" secondAttribute="trailing" constant="16" id="ALT-7m-esc"/>
+                                                <constraint firstItem="7HX-dl-mWO" firstAttribute="leading" secondItem="Dre-nH-YcK" secondAttribute="trailing" id="1jd-pG-Lgc"/>
+                                                <constraint firstAttribute="bottom" secondItem="7HX-dl-mWO" secondAttribute="bottom" constant="8" id="322-js-NNz"/>
+                                                <constraint firstAttribute="trailing" secondItem="7HX-dl-mWO" secondAttribute="trailing" id="ALT-7m-esc"/>
                                                 <constraint firstItem="WRD-X2-856" firstAttribute="leading" secondItem="sIn-qg-w3D" secondAttribute="leading" constant="16" id="BKl-aH-Cyz"/>
                                                 <constraint firstItem="Dre-nH-YcK" firstAttribute="centerY" secondItem="sIn-qg-w3D" secondAttribute="centerY" id="FHu-Cc-ll4"/>
+                                                <constraint firstItem="7HX-dl-mWO" firstAttribute="top" secondItem="sIn-qg-w3D" secondAttribute="top" constant="8" id="dFj-iJ-1ab"/>
                                                 <constraint firstItem="7HX-dl-mWO" firstAttribute="centerY" secondItem="sIn-qg-w3D" secondAttribute="centerY" id="eDj-Uy-RWy"/>
                                                 <constraint firstItem="WRD-X2-856" firstAttribute="centerY" secondItem="sIn-qg-w3D" secondAttribute="centerY" id="jqZ-JM-aiT"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <animations/>
                                         <connections>
-                                            <outlet property="cancelButtonAction" destination="eDj-Uy-RWy" id="7Dp-0g-RS2"/>
-                                            <outlet property="cellTitileLabel" destination="WRD-X2-856" id="USR-2c-zfu"/>
-                                            <outlet property="pickedDateTextField" destination="Dre-nH-YcK" id="2em-kZ-Exf"/>
+                                            <outlet property="textField" destination="Dre-nH-YcK" id="iWJ-9u-ygc"/>
+                                            <outlet property="titleLabel" destination="WRD-X2-856" id="DkJ-3B-v07"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -783,42 +780,30 @@
                                     <outlet property="delegate" destination="Onc-ln-2mc" id="DvA-GR-YDq"/>
                                 </connections>
                             </tableView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7AP-Qg-Iqs" customClass="MessageComposerFloatingView" customModule="iTacit" customModuleProvider="target">
-                                <rect key="frame" x="544" y="530" width="56" height="40"/>
-                                <subviews>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ynm-Ir-cBh">
-                                        <rect key="frame" x="18" y="5" width="30" height="30"/>
-                                        <animations/>
-                                        <constraints>
-                                            <constraint firstAttribute="width" secondItem="Ynm-Ir-cBh" secondAttribute="height" multiplier="1:1" id="3EP-NV-uqP"/>
-                                        </constraints>
-                                        <state key="normal" image="ic_calendar"/>
-                                        <connections>
-                                            <action selector="showDatePickerButtonAction:" destination="Onc-ln-2mc" eventType="touchUpInside" id="c1X-8a-V52"/>
-                                        </connections>
-                                    </button>
-                                </subviews>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="dnK-df-peb">
+                                <rect key="frame" x="547" y="562" width="53" height="29"/>
                                 <animations/>
-                                <color key="backgroundColor" red="0.65490196078431373" green="0.65490196078431373" blue="0.67450980392156867" alpha="1" colorSpace="calibratedRGB"/>
-                                <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.93725490196078431" green="0.93725490196078431" blue="0.93725490196078431" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="width" constant="56" id="Dc3-9K-f8N"/>
-                                    <constraint firstAttribute="bottom" secondItem="Ynm-Ir-cBh" secondAttribute="bottom" constant="5" id="ITD-dN-4gP"/>
-                                    <constraint firstItem="Ynm-Ir-cBh" firstAttribute="centerY" secondItem="7AP-Qg-Iqs" secondAttribute="centerY" id="V47-ff-vaP"/>
-                                    <constraint firstAttribute="height" constant="40" id="fNL-XG-Tw9"/>
-                                    <constraint firstAttribute="trailing" secondItem="Ynm-Ir-cBh" secondAttribute="trailing" constant="8" id="twK-kj-Ulg"/>
+                                    <constraint firstAttribute="height" constant="29" id="Wlz-ti-MhM"/>
+                                    <constraint firstAttribute="width" constant="53" id="lt5-TM-eQZ"/>
                                 </constraints>
-                            </view>
+                                <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="16" maxY="0.0"/>
+                                <state key="normal" image="ic_calendar"/>
+                                <connections>
+                                    <action selector="showDatePickerAction" destination="Onc-ln-2mc" eventType="touchUpInside" id="UFU-0w-BZh"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
                             <constraint firstItem="08a-6l-AVY" firstAttribute="top" secondItem="pnn-Zc-Xbq" secondAttribute="bottom" id="8nR-Fb-UrJ"/>
-                            <constraint firstAttribute="trailing" secondItem="7AP-Qg-Iqs" secondAttribute="trailing" id="ESF-oe-G3c"/>
                             <constraint firstItem="JyA-Jh-wa2" firstAttribute="top" secondItem="08a-6l-AVY" secondAttribute="bottom" id="IMo-6P-IO0"/>
                             <constraint firstAttribute="trailing" secondItem="08a-6l-AVY" secondAttribute="trailing" id="LEU-v0-UyV"/>
                             <constraint firstItem="08a-6l-AVY" firstAttribute="leading" secondItem="Pao-em-3Fd" secondAttribute="leading" id="f9s-9a-qgg"/>
-                            <constraint firstItem="JyA-Jh-wa2" firstAttribute="top" secondItem="7AP-Qg-Iqs" secondAttribute="bottom" constant="30" id="ogc-8A-sfq"/>
+                            <constraint firstAttribute="trailing" secondItem="dnK-df-peb" secondAttribute="trailing" id="sqp-T1-TU6"/>
+                            <constraint firstItem="JyA-Jh-wa2" firstAttribute="top" secondItem="dnK-df-peb" secondAttribute="bottom" constant="9" id="vaJ-MH-kig"/>
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" title="New Message" id="25Y-LB-Wa6">
@@ -830,8 +815,8 @@
                     </navigationItem>
                     <simulatedNavigationBarMetrics key="simulatedTopBarMetrics" prompted="NO"/>
                     <connections>
-                        <outlet property="floatingView" destination="7AP-Qg-Iqs" id="cSw-Ra-Fi6"/>
-                        <outlet property="floatingViewDownConstraint" destination="ogc-8A-sfq" id="4bb-z9-UNa"/>
+                        <outlet property="floatingCalendarButton" destination="dnK-df-peb" id="gy1-Z6-FDb"/>
+                        <outlet property="floatingViewBottomConstraint" destination="vaJ-MH-kig" id="vFT-Cc-LvO"/>
                         <outlet property="tableView" destination="08a-6l-AVY" id="35T-1m-5mK"/>
                     </connections>
                 </viewController>
