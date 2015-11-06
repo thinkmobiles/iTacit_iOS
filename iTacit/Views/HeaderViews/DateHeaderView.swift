@@ -42,6 +42,7 @@ class DateHeaderView: UIView {
     // MARK: - IBAction
     
     @IBAction func expandButtonAction(sender: UIButton) {
+        
     }
     
     @IBAction func addStartDateButtonAction(sender: UIButton) {

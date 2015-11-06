@@ -26,6 +26,10 @@
 		3563B9A01BD12CCB009BE696 /* TitleTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563B99F1BD12CCB009BE696 /* TitleTableViewCell.swift */; };
 		3563B9A21BD12E40009BE696 /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563B9A11BD12E40009BE696 /* DescriptionTableViewCell.swift */; };
 		3563B9A41BD12FAE009BE696 /* HashtagAndTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563B9A31BD12FAE009BE696 /* HashtagAndTimeTableViewCell.swift */; };
+		356558DC1BEA4A41001E31D5 /* ComposerRecepientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356558DB1BEA4A41001E31D5 /* ComposerRecepientsViewController.swift */; };
+		356558DE1BEA50DF001E31D5 /* UserRecepientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356558DD1BEA50DF001E31D5 /* UserRecepientTableViewCell.swift */; };
+		3584F0F01BEB48CC00AB20B2 /* ComposeReportsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3584F0EF1BEB48CC00AB20B2 /* ComposeReportsHeaderView.swift */; };
+		3584F0F21BEB48DD00AB20B2 /* ComposeReportsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3584F0F11BEB48DD00AB20B2 /* ComposeReportsHeaderView.xib */; };
 		3591D0101BEA085500AE4884 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3591D00F1BEA085500AE4884 /* KeychainWrapper.swift */; };
 		35EE4E971BE89CBD00740A03 /* NewMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE4E961BE89CBD00740A03 /* NewMessageModel.swift */; };
 		35EE4E991BE8DDD400740A03 /* CategoriesListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE4E981BE8DDD400740A03 /* CategoriesListModel.swift */; };
@@ -129,6 +133,10 @@
 		3563B99F1BD12CCB009BE696 /* TitleTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TitleTableViewCell.swift; sourceTree = "<group>"; };
 		3563B9A11BD12E40009BE696 /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		3563B9A31BD12FAE009BE696 /* HashtagAndTimeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashtagAndTimeTableViewCell.swift; sourceTree = "<group>"; };
+		356558DB1BEA4A41001E31D5 /* ComposerRecepientsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerRecepientsViewController.swift; sourceTree = "<group>"; };
+		356558DD1BEA50DF001E31D5 /* UserRecepientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRecepientTableViewCell.swift; sourceTree = "<group>"; };
+		3584F0EF1BEB48CC00AB20B2 /* ComposeReportsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeReportsHeaderView.swift; sourceTree = "<group>"; };
+		3584F0F11BEB48DD00AB20B2 /* ComposeReportsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeReportsHeaderView.xib; sourceTree = "<group>"; };
 		3591D00F1BEA085500AE4884 /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		35EE4E961BE89CBD00740A03 /* NewMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageModel.swift; sourceTree = "<group>"; };
 		35EE4E981BE8DDD400740A03 /* CategoriesListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesListModel.swift; sourceTree = "<group>"; };
@@ -223,6 +231,8 @@
 				350644C91BD784B300D51D5C /* DateHeaderView.xib */,
 				350644C21BD7783300D51D5C /* ListHeaderView.swift */,
 				350644C51BD7788400D51D5C /* ListHeaderView.xib */,
+				3584F0EF1BEB48CC00AB20B2 /* ComposeReportsHeaderView.swift */,
+				3584F0F11BEB48DD00AB20B2 /* ComposeReportsHeaderView.xib */,
 			);
 			path = HeaderViews;
 			sourceTree = "<group>";
@@ -352,6 +362,7 @@
 				40EA82551BCFD07B0029228F /* MessagesViewController.swift */,
 				351E8EC01BE36B1500690669 /* MessageComposeViewController.swift */,
 				40EA82571BCFD09A0029228F /* TrainingViewController.swift */,
+				356558DB1BEA4A41001E31D5 /* ComposerRecepientsViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -501,6 +512,7 @@
 				3563B99F1BD12CCB009BE696 /* TitleTableViewCell.swift */,
 				3563B9971BD117BE009BE696 /* UserTableViewCell.swift */,
 				40C5612E1BEBBF82005BAAED /* ResizableTableViewCell.swift */,
+				356558DD1BEA50DF001E31D5 /* UserRecepientTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -611,6 +623,7 @@
 				350644CA1BD784B300D51D5C /* DateHeaderView.xib in Resources */,
 				40440DB51BDBCC9C00FADF6E /* TextCollectionViewCell.xib in Resources */,
 				40EA82311BCFC4760029228F /* OPENSANS-SEMIBOLD.TTF in Resources */,
+				3584F0F21BEB48DD00AB20B2 /* ComposeReportsHeaderView.xib in Resources */,
 				40EA822C1BCFC4760029228F /* OPENSANS-BOLDITALIC.TTF in Resources */,
 				40EA82321BCFC4760029228F /* OPENSANS-SEMIBOLDITALIC.TTF in Resources */,
 				40440DB31BDBCC9C00FADF6E /* InputCollectionViewCell.xib in Resources */,
@@ -631,8 +644,10 @@
 				405A29931BE6B2710024ADA9 /* TokenModel.swift in Sources */,
 				407A7DAA1BE77D85006A9DB0 /* NewsListModel.swift in Sources */,
 				40440DB91BDBCCA200FADF6E /* AutocompletionTableViewCell.swift in Sources */,
+				3584F0F01BEB48CC00AB20B2 /* ComposeReportsHeaderView.swift in Sources */,
 				407A7DA41BE778BD006A9DB0 /* ServerErrorModel.swift in Sources */,
 				4056D5821BE8D5050076B970 /* SearchAuthorQueryModel.swift in Sources */,
+				356558DE1BEA50DF001E31D5 /* UserRecepientTableViewCell.swift in Sources */,
 				400327D51BE817FC00D2BEAE /* UserProfileModel.swift in Sources */,
 				40EA82561BCFD07B0029228F /* MessagesViewController.swift in Sources */,
 				4056D57E1BE8D1F00076B970 /* ComposerRecipientsTableViewCell.swift in Sources */,
@@ -677,6 +692,7 @@
 				405A298A1BE6B21A0024ADA9 /* JSONValueConvertible.swift in Sources */,
 				405A298E1BE6B21A0024ADA9 /* PropertyDescriptor.swift in Sources */,
 				35EE4E971BE89CBD00740A03 /* NewMessageModel.swift in Sources */,
+				356558DC1BEA4A41001E31D5 /* ComposerRecepientsViewController.swift in Sources */,
 				40440DBC1BDBCD0E00FADF6E /* CollectionViewLeftAlignedFlowLayout.swift in Sources */,
 				405A298D1BE6B21A0024ADA9 /* Mappable.swift in Sources */,
 				40EA824B1BCFCD720029228F /* TabBarButton.swift in Sources */,
