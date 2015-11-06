@@ -15,6 +15,8 @@
 		3516FFA31BE7940000865EB9 /* ComposerReadDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516FFA21BE7940000865EB9 /* ComposerReadDateTableViewCell.swift */; };
 		351E8EC81BE3700F00690669 /* ComposerTopicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E8EC71BE3700F00690669 /* ComposerTopicTableViewCell.swift */; };
 		351E8ECC1BE3C2AC00690669 /* ComposerBodyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E8ECB1BE3C2AC00690669 /* ComposerBodyTableViewCell.swift */; };
+		3532472F1BEC9DA000733B1A /* AddRecipientHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3532472E1BEC9DA000733B1A /* AddRecipientHeaderView.swift */; };
+		353247311BEC9DAC00733B1A /* AddRecipientHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 353247301BEC9DAC00733B1A /* AddRecipientHeaderView.xib */; };
 		353C04FB1BE2490F00C92352 /* LocalizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353C04FA1BE2490F00C92352 /* LocalizationService.swift */; };
 		353C04FE1BE253BF00C92352 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 353C05001BE253BF00C92352 /* Localizable.strings */; };
 		353C05051BE25D0800C92352 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353C05041BE25D0800C92352 /* MainTabBarController.swift */; };
@@ -31,6 +33,7 @@
 		3584F0F01BEB48CC00AB20B2 /* ComposeReportsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3584F0EF1BEB48CC00AB20B2 /* ComposeReportsHeaderView.swift */; };
 		3584F0F21BEB48DD00AB20B2 /* ComposeReportsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3584F0F11BEB48DD00AB20B2 /* ComposeReportsHeaderView.xib */; };
 		3591D0101BEA085500AE4884 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3591D00F1BEA085500AE4884 /* KeychainWrapper.swift */; };
+		35D6EA371BEBA2D20084559B /* AddRecipientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6EA361BEBA2D20084559B /* AddRecipientViewController.swift */; };
 		35EE4E971BE89CBD00740A03 /* NewMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE4E961BE89CBD00740A03 /* NewMessageModel.swift */; };
 		35EE4E991BE8DDD400740A03 /* CategoriesListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE4E981BE8DDD400740A03 /* CategoriesListModel.swift */; };
 		3D03534B1BE8F562009841F9 /* TimeAgoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D03534A1BE8F562009841F9 /* TimeAgoExtension.swift */; };
@@ -117,6 +120,8 @@
 		351E8EC41BE36FC800690669 /* ComposerRecipiencTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerRecipiencTableViewCell.swift; sourceTree = "<group>"; };
 		351E8EC71BE3700F00690669 /* ComposerTopicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerTopicTableViewCell.swift; sourceTree = "<group>"; };
 		351E8ECB1BE3C2AC00690669 /* ComposerBodyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerBodyTableViewCell.swift; sourceTree = "<group>"; };
+		3532472E1BEC9DA000733B1A /* AddRecipientHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipientHeaderView.swift; sourceTree = "<group>"; };
+		353247301BEC9DAC00733B1A /* AddRecipientHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddRecipientHeaderView.xib; sourceTree = "<group>"; };
 		353C04FA1BE2490F00C92352 /* LocalizationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationService.swift; sourceTree = "<group>"; };
 		353C04FF1BE253BF00C92352 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/Localizable.strings; sourceTree = "<group>"; };
 		353C05011BE253D900C92352 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/LaunchScreen.strings; sourceTree = "<group>"; };
@@ -136,6 +141,7 @@
 		3584F0EF1BEB48CC00AB20B2 /* ComposeReportsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeReportsHeaderView.swift; sourceTree = "<group>"; };
 		3584F0F11BEB48DD00AB20B2 /* ComposeReportsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeReportsHeaderView.xib; sourceTree = "<group>"; };
 		3591D00F1BEA085500AE4884 /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
+		35D6EA361BEBA2D20084559B /* AddRecipientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipientViewController.swift; sourceTree = "<group>"; };
 		35EE4E961BE89CBD00740A03 /* NewMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageModel.swift; sourceTree = "<group>"; };
 		35EE4E981BE8DDD400740A03 /* CategoriesListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesListModel.swift; sourceTree = "<group>"; };
 		3D03534A1BE8F562009841F9 /* TimeAgoExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeAgoExtension.swift; sourceTree = "<group>"; };
@@ -229,6 +235,8 @@
 				350644C51BD7788400D51D5C /* ListHeaderView.xib */,
 				3584F0EF1BEB48CC00AB20B2 /* ComposeReportsHeaderView.swift */,
 				3584F0F11BEB48DD00AB20B2 /* ComposeReportsHeaderView.xib */,
+				3532472E1BEC9DA000733B1A /* AddRecipientHeaderView.swift */,
+				353247301BEC9DAC00733B1A /* AddRecipientHeaderView.xib */,
 			);
 			path = HeaderViews;
 			sourceTree = "<group>";
@@ -359,6 +367,7 @@
 				351E8EC01BE36B1500690669 /* MessageComposeViewController.swift */,
 				40EA82571BCFD09A0029228F /* TrainingViewController.swift */,
 				356558DB1BEA4A41001E31D5 /* ComposerRecepientsViewController.swift */,
+				35D6EA361BEBA2D20084559B /* AddRecipientViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -617,6 +626,7 @@
 				350644CA1BD784B300D51D5C /* DateHeaderView.xib in Resources */,
 				40440DB51BDBCC9C00FADF6E /* TextCollectionViewCell.xib in Resources */,
 				40EA82311BCFC4760029228F /* OPENSANS-SEMIBOLD.TTF in Resources */,
+				353247311BEC9DAC00733B1A /* AddRecipientHeaderView.xib in Resources */,
 				3584F0F21BEB48DD00AB20B2 /* ComposeReportsHeaderView.xib in Resources */,
 				40EA822C1BCFC4760029228F /* OPENSANS-BOLDITALIC.TTF in Resources */,
 				40EA82321BCFC4760029228F /* OPENSANS-SEMIBOLDITALIC.TTF in Resources */,
@@ -675,6 +685,7 @@
 				40440DC31BDBCE2F00FADF6E /* TagSearchControl.swift in Sources */,
 				3516FFA31BE7940000865EB9 /* ComposerReadDateTableViewCell.swift in Sources */,
 				3563B9A01BD12CCB009BE696 /* TitleTableViewCell.swift in Sources */,
+				35D6EA371BEBA2D20084559B /* AddRecipientViewController.swift in Sources */,
 				350644C81BD784A800D51D5C /* DateHeaderView.swift in Sources */,
 				4056D58A1BE903FD0076B970 /* TagModel.swift in Sources */,
 				4056D5841BE8E7AC0076B970 /* AuthorModel.swift in Sources */,
@@ -688,6 +699,7 @@
 				356558DC1BEA4A41001E31D5 /* ComposerRecepientsViewController.swift in Sources */,
 				40440DBC1BDBCD0E00FADF6E /* CollectionViewLeftAlignedFlowLayout.swift in Sources */,
 				405A298D1BE6B21A0024ADA9 /* Mappable.swift in Sources */,
+				3532472F1BEC9DA000733B1A /* AddRecipientHeaderView.swift in Sources */,
 				40EA824B1BCFCD720029228F /* TabBarButton.swift in Sources */,
 				405A298F1BE6B21A0024ADA9 /* ValueTransformer.swift in Sources */,
 				40EA82581BCFD09A0029228F /* TrainingViewController.swift in Sources */,
