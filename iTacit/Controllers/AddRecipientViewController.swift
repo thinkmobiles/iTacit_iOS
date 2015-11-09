@@ -82,7 +82,6 @@ extension AddRecipientViewController: UITableViewDelegate {
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = AddRecipientHeaderView(frame: CGRect(x: 0, y: 0, width: CGRectGetMaxX(UIScreen.mainScreen().bounds), height: Constants.HeaderViewHeight))
 
-        print(CGRectGetMaxX(UIScreen.mainScreen().bounds))
         header.delegate = self
         header.section = section
         header.rowCount = section < 2 ? "3" : "0"
