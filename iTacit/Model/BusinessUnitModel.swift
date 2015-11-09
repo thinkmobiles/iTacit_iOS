@@ -11,35 +11,35 @@ import UIKit
 
 class BusinessUnitModel: BaseModel, Mappable {
     
-    var unitId = ""
-    var unitName = ""
-    var unitParentId = ""
-    var unitParentName = ""
-    var unitNameFull = ""
-    var unitTypeName = ""
+    var businessUnitId = ""
+    var businessUnitName = ""
+    var businessUnitParentId = ""
+    var businessUnitParentName = ""
+    var businessUnitNameFull = ""
+    var businessUnitTypeName = ""
     
     // MARK: - Mapping
     
     func setValue<T>(value: T, forKey key: String) throws {
         try validateKey(key, typeOfValue: T.self)
         switch key {
-        case "unitId": unitId <<- value
-        case "unitName": unitName <<- value
-        case "unitParentId": unitParentId <<- value
-        case "unitTypeName": unitParentName <<- value
-        case "unitNameFull": unitNameFull <<- value
-        case "unitTypeName": unitTypeName <<- value
+        case "businessUnitId": businessUnitId <<- value
+        case "businessUnitName": businessUnitName <<- value
+        case "businessUnitParentId": businessUnitParentId <<- value
+        case "businessUnitParentName": businessUnitParentName <<- value
+        case "businessUnitNameFull": businessUnitNameFull <<- value
+        case "businessUnitTypeName": businessUnitTypeName <<- value
             
         default: break
         }
     }
     
     class var mapping: [PropertyDescriptor] {
-        return [PropertyDescriptor(propertyName: "unitId"),
-            PropertyDescriptor(propertyName: "unitName"),
-            PropertyDescriptor(propertyName: "unitParentId"),
-            PropertyDescriptor(propertyName: "unitParentName"),
-            PropertyDescriptor(propertyName: "unitNameFull"),
-            PropertyDescriptor(propertyName: "unitTypeName")]
+        return [PropertyDescriptor(propertyName: "businessUnitId", JSONKey: "id"),
+            PropertyDescriptor(propertyName: "businessUnitName", JSONKey: "name"),
+            PropertyDescriptor(propertyName: "businessUnitParentId", JSONKey: "parentId"),
+            PropertyDescriptor(propertyName: "businessUnitParentName", JSONKey: "parentName"),
+            PropertyDescriptor(propertyName: "businessUnitNameFull", JSONKey: "nameFull"),
+            PropertyDescriptor(propertyName: "businessUnitTypeName", JSONKey: "typeName")]
     }
 }

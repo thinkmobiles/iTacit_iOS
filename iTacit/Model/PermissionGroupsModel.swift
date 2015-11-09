@@ -27,7 +27,7 @@ class PermissionGroupsModel: BaseModel, Mappable {
     }
     
     class var mapping: [PropertyDescriptor] {
-        return [PropertyDescriptor(propertyName: "permitionGroupId"),
-            PropertyDescriptor(propertyName: "permitionGroupName")]
+        return [PropertyDescriptor(propertyName: "permitionGroupId", JSONKey: "id"),
+            PropertyDescriptor(propertyName: "permitionGroupName", JSONKey: "name")]
     }
 }

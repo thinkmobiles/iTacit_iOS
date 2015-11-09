@@ -27,7 +27,7 @@ class JobClassificationModel: BaseModel, Mappable {
     }
     
     class var mapping: [PropertyDescriptor] {
-        return [PropertyDescriptor(propertyName: "jobClassificationId"),
-            PropertyDescriptor(propertyName: "jobClassificationName")]
+        return [PropertyDescriptor(propertyName: "jobClassificationId", JSONKey: "id"),
+            PropertyDescriptor(propertyName: "jobClassificationName", JSONKey: "name")]
     }
 }
