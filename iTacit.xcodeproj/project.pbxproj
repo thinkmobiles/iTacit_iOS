@@ -41,13 +41,13 @@
 		35FF25E51BECFBDC00B1D734 /* JobClassificationListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FF25E41BECFBDC00B1D734 /* JobClassificationListModel.swift */; };
 		35FF25E71BECFDF400B1D734 /* PermissionGroupsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FF25E61BECFDF400B1D734 /* PermissionGroupsModel.swift */; };
 		35FF25E91BECFE6300B1D734 /* PermissionGroupsListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FF25E81BECFE6300B1D734 /* PermissionGroupsListModel.swift */; };
-		3D03534B1BE8F562009841F9 /* TimeAgoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3D03534A1BE8F562009841F9 /* TimeAgoExtension.swift */; };
 		3DD1FF321BE39FC0005C4339 /* NewsCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD1FF311BE39FC0005C4339 /* NewsCategoryModel.swift */; };
 		3DEFA79D1BD5040A00596A2B /* FilterNewsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFA79C1BD5040A00596A2B /* FilterNewsViewController.swift */; };
 		3DEFA79F1BD5056E00596A2B /* DatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFA79E1BD5056E00596A2B /* DatePickerTableViewCell.swift */; };
 		3DEFA7A11BD50B7100596A2B /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFA7A01BD50B7100596A2B /* CategoryTableViewCell.swift */; };
 		400327D51BE817FC00D2BEAE /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400327D41BE817FC00D2BEAE /* UserProfileModel.swift */; };
 		4014E4EC1BD0FD4F00837B3E /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4014E4EB1BD0FD4F00837B3E /* NewsTableViewCell.swift */; };
+		402B633E1BEDFC2300372201 /* TimeAgoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402B633D1BEDFC2300372201 /* TimeAgoExtension.swift */; };
 		40440DB21BDBCC9C00FADF6E /* InputCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40440DAD1BDBCC9C00FADF6E /* InputCollectionViewCell.swift */; };
 		40440DB31BDBCC9C00FADF6E /* InputCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40440DAE1BDBCC9C00FADF6E /* InputCollectionViewCell.xib */; };
 		40440DB41BDBCC9C00FADF6E /* TextCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40440DB01BDBCC9C00FADF6E /* TextCollectionViewCell.swift */; };
@@ -156,13 +156,13 @@
 		35FF25E41BECFBDC00B1D734 /* JobClassificationListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobClassificationListModel.swift; sourceTree = "<group>"; };
 		35FF25E61BECFDF400B1D734 /* PermissionGroupsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionGroupsModel.swift; sourceTree = "<group>"; };
 		35FF25E81BECFE6300B1D734 /* PermissionGroupsListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PermissionGroupsListModel.swift; sourceTree = "<group>"; };
-		3D03534A1BE8F562009841F9 /* TimeAgoExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeAgoExtension.swift; sourceTree = "<group>"; };
 		3DD1FF311BE39FC0005C4339 /* NewsCategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsCategoryModel.swift; sourceTree = "<group>"; };
 		3DEFA79C1BD5040A00596A2B /* FilterNewsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = FilterNewsViewController.swift; sourceTree = "<group>"; };
 		3DEFA79E1BD5056E00596A2B /* DatePickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerTableViewCell.swift; sourceTree = "<group>"; };
 		3DEFA7A01BD50B7100596A2B /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		400327D41BE817FC00D2BEAE /* UserProfileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
 		4014E4EB1BD0FD4F00837B3E /* NewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
+		402B633D1BEDFC2300372201 /* TimeAgoExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeAgoExtension.swift; sourceTree = "<group>"; };
 		40440DAD1BDBCC9C00FADF6E /* InputCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputCollectionViewCell.swift; sourceTree = "<group>"; };
 		40440DAE1BDBCC9C00FADF6E /* InputCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputCollectionViewCell.xib; sourceTree = "<group>"; };
 		40440DB01BDBCC9C00FADF6E /* TextCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -465,7 +465,6 @@
 		40EA82351BCFC8710029228F /* Utils */ = {
 			isa = PBXGroup;
 			children = (
-				3D03534A1BE8F562009841F9 /* TimeAgoExtension.swift */,
 				40EA82361BCFC8A40029228F /* AppColors.swift */,
 			);
 			path = Utils;
@@ -492,6 +491,7 @@
 		40EA823B1BCFCCBE0029228F /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				402B633D1BEDFC2300372201 /* TimeAgoExtension.swift */,
 				40EA823C1BCFCCBE0029228F /* Extensions.swift */,
 			);
 			path = Extensions;
@@ -672,6 +672,7 @@
 				3584F0F01BEB48CC00AB20B2 /* ComposeReportsHeaderView.swift in Sources */,
 				407A7DA41BE778BD006A9DB0 /* ServerErrorModel.swift in Sources */,
 				4056D5821BE8D5050076B970 /* SearchAuthorQueryModel.swift in Sources */,
+				402B633E1BEDFC2300372201 /* TimeAgoExtension.swift in Sources */,
 				356558DE1BEA50DF001E31D5 /* UserRecepientTableViewCell.swift in Sources */,
 				400327D51BE817FC00D2BEAE /* UserProfileModel.swift in Sources */,
 				40EA82561BCFD07B0029228F /* MessagesViewController.swift in Sources */,
@@ -692,7 +693,6 @@
 				4056D57C1BE8D1790076B970 /* MessageComposeViewController.swift in Sources */,
 				3563B9981BD117BE009BE696 /* UserTableViewCell.swift in Sources */,
 				40440DB21BDBCC9C00FADF6E /* InputCollectionViewCell.swift in Sources */,
-				3D03534B1BE8F562009841F9 /* TimeAgoExtension.swift in Sources */,
 				35FF25DF1BECF62600B1D734 /* BusinessUnitModel.swift in Sources */,
 				351E8EC81BE3700F00690669 /* ComposerTopicTableViewCell.swift in Sources */,
 				4056D5861BE8E8B20076B970 /* SearchCategoryQueryModel.swift in Sources */,

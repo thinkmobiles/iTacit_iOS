@@ -8,22 +8,26 @@
 
 import Foundation
 
-let Minute = 60.0
-let Hour = 60 * Minute
-let Day = 24 * Hour
-let Month = 30 * Day
-let Year = 365 * Day
-
 extension NSDate {
+
+	private struct Constants {
+
+		static let minute = 60.0
+		static let hour = 60.0 * minute
+		static let day = 24.0 * hour
+		static let month = 30 * day
+		static let year = 365 * day
+
+	}
     
     func timeAgoStringRepresentation() -> String {
         let secondsLeft = abs(self.timeIntervalSinceNow)
         
-        if secondsLeft < Minute {
+        if secondsLeft < Constants.minute {
             return "\(self.secondsString())"
         }
         
-        if secondsLeft < Hour {
+        if secondsLeft < Constants.hour {
             return "\(self.minutesString())"
         }
         
@@ -54,22 +58,22 @@ extension NSDate {
     }
     
     private func minutesString() -> String {
-        let minutes = Int(abs(self.timeIntervalSinceNow)/Minute)
+        let minutes = Int(abs(self.timeIntervalSinceNow) / Constants.minute)
         return "\(minutes) min\(minutes > 1 ? "s" : "") ago"
     }
     
     private func daysString() -> String {
-        let days = Int(abs(self.timeIntervalSinceNow)/Day)
+        let days = Int(abs(self.timeIntervalSinceNow) / Constants.day)
         return "\(days) day\(days > 1 ? "s" : "") ago"
     }
     
     private func monthsString() -> String {
-        let months = Int(abs(self.timeIntervalSinceNow)/Month)
+        let months = Int(abs(self.timeIntervalSinceNow) / Constants.month)
         return "\(months) month\(months > 1 ? "s" : "") ago"
     }
 
     private func yearsString() -> String {
-        let years = Int(abs(self.timeIntervalSinceNow)/Year)
+        let years = Int(abs(self.timeIntervalSinceNow) / Constants.year)
         return "\(years) year\(years > 1 ? "s" : "") ago"
     }
     
@@ -83,9 +87,10 @@ extension NSDate {
         return formatter.stringFromDate(self)
     }
     
-    // MARK:
+    // MARK: -
+
     private func isLastMonth() -> Bool {
-        let days = Int(abs(self.timeIntervalSinceNow)/Day)
+        let days = Int(abs(self.timeIntervalSinceNow) / Constants.day)
         let currentMonth = NSCalendar.currentCalendar().components([NSCalendarUnit.Month], fromDate: NSDate())
         let selfMonth = NSCalendar.currentCalendar().components([NSCalendarUnit.Month], fromDate: self)
         
@@ -93,7 +98,7 @@ extension NSDate {
     }
     
     private func isLastYear() -> Bool {
-        let days = Int(abs(self.timeIntervalSinceNow)/Day)
+        let days = Int(abs(self.timeIntervalSinceNow) / Constants.day)
         let currentYear = NSCalendar.currentCalendar().components([NSCalendarUnit.Year], fromDate: NSDate())
         let selfYear = NSCalendar.currentCalendar().components([NSCalendarUnit.Year], fromDate: self)
 
