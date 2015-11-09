@@ -17,10 +17,35 @@ class AddRecipientViewController: BaseViewController {
     
     @IBOutlet weak var recipientsCountLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    
     var hiddenSections: [Int] = []
+    
+//    var businessUnitsList = BusinessUnitListModel()
+//    var jobClassification = JobClassificationListModel()
+//    var permissionGroup = PermissionGroupsListModel()
+//
+//    func debug() {
+//        businessUnitsList.load { (success) -> Void in
+//            print(self.businessUnitsList)
+//            print("businessUnitsList " + String(self.businessUnitsList.count))
+//            
+//        }
+//        
+//        jobClassification.load { (success) -> Void in
+//            print(self.jobClassification)
+//            print("jobClassification " + String(self.jobClassification.count))
+//        }
+//        
+//        permissionGroup.load { (success) -> Void in
+//            print(self.permissionGroup)
+//            print("permissionGroup " + String(self.permissionGroup.count))
+//        }
+//    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
+    
+//        debug()
     }
     
     // MARK: - IBAction
@@ -56,7 +81,8 @@ extension AddRecipientViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         let header = AddRecipientHeaderView(frame: CGRect(x: 0, y: 0, width: CGRectGetMaxX(UIScreen.mainScreen().bounds), height: Constants.HeaderViewHeight))
-        
+
+        print(CGRectGetMaxX(UIScreen.mainScreen().bounds))
         header.delegate = self
         header.section = section
         header.rowCount = section < 2 ? "3" : "0"

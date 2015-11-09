@@ -11,23 +11,23 @@ import UIKit
 
 class JobClassificationModel: BaseModel, Mappable {
     
-    var jobClassificationId = ""
-    var jobClassificationName = ""
+    var id = ""
+    var name = ""
     
     // MARK: - Mapping
     
     func setValue<T>(value: T, forKey key: String) throws {
         try validateKey(key, typeOfValue: T.self)
         switch key {
-        case "jobClassificationId": jobClassificationId <<- value
-        case "jobClassificationName": jobClassificationName <<- value
+        case "id": id <<- value
+        case "name": name <<- value
             
         default: break
         }
     }
     
     class var mapping: [PropertyDescriptor] {
-        return [PropertyDescriptor(propertyName: "jobClassificationId", JSONKey: "id"),
-            PropertyDescriptor(propertyName: "jobClassificationName", JSONKey: "name")]
+        return [PropertyDescriptor(propertyName: "id"),
+            PropertyDescriptor(propertyName: "name")]
     }
 }

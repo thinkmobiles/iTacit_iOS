@@ -11,23 +11,23 @@ import UIKit
 
 class PermissionGroupsModel: BaseModel, Mappable {
     
-    var permitionGroupId = ""
-    var permitionGroupName = ""
+    var id = ""
+    var name = ""
     
     // MARK: - Mapping
     
     func setValue<T>(value: T, forKey key: String) throws {
         try validateKey(key, typeOfValue: T.self)
         switch key {
-        case "permitionGroupId": permitionGroupId <<- value
-        case "permitionGroupName": permitionGroupName <<- value
+        case "id": id <<- value
+        case "name": name <<- value
             
         default: break
         }
     }
     
     class var mapping: [PropertyDescriptor] {
-        return [PropertyDescriptor(propertyName: "permitionGroupId", JSONKey: "id"),
-            PropertyDescriptor(propertyName: "permitionGroupName", JSONKey: "name")]
+        return [PropertyDescriptor(propertyName: "id"),
+            PropertyDescriptor(propertyName: "name")]
     }
 }
