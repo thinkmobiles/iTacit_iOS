@@ -79,39 +79,30 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hYg-84-sas">
-                    <rect key="frame" x="268" y="4" width="36" height="36"/>
+                    <rect key="frame" x="275" y="0.0" width="40" height="40"/>
                     <subviews>
-                        <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="btn_close" translatesAutoresizingMaskIntoConstraints="NO" id="Ie0-Ao-QRX">
-                            <rect key="frame" x="10" y="10" width="16" height="16"/>
-                            <animations/>
-                            <constraints>
-                                <constraint firstAttribute="width" constant="16" id="bIw-1U-7Dc"/>
-                                <constraint firstAttribute="width" secondItem="Ie0-Ao-QRX" secondAttribute="height" multiplier="1:1" id="nrm-01-hFD"/>
-                            </constraints>
-                        </imageView>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyP-1J-oRH">
-                            <rect key="frame" x="3" y="3" width="30" height="30"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyP-1J-oRH">
+                            <rect key="frame" x="9" y="9" width="22" height="22"/>
                             <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" secondItem="eyP-1J-oRH" secondAttribute="height" multiplier="1:1" id="GDy-MN-fV3"/>
                             </constraints>
+                            <state key="normal" image="btn_close"/>
                             <connections>
                                 <action selector="closeButtonAction:" destination="-1" eventType="touchUpInside" id="B66-F9-nkN"/>
                             </connections>
                         </button>
                     </subviews>
                     <animations/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="hYg-84-sas" secondAttribute="height" multiplier="1:1" id="3Cm-NS-7zu"/>
-                        <constraint firstItem="Ie0-Ao-QRX" firstAttribute="centerX" secondItem="hYg-84-sas" secondAttribute="centerX" id="bDW-IW-LU0"/>
                         <constraint firstItem="eyP-1J-oRH" firstAttribute="centerY" secondItem="hYg-84-sas" secondAttribute="centerY" id="das-kH-k7r"/>
                         <constraint firstItem="eyP-1J-oRH" firstAttribute="centerX" secondItem="hYg-84-sas" secondAttribute="centerX" id="gqy-Y6-Y7s"/>
-                        <constraint firstItem="Ie0-Ao-QRX" firstAttribute="centerY" secondItem="hYg-84-sas" secondAttribute="centerY" id="rTj-R4-2cW"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PON-Y0-BVX">
-                    <rect key="frame" x="0.0" y="0.0" width="268" height="40"/>
+                    <rect key="frame" x="0.0" y="0.0" width="275" height="40"/>
                     <animations/>
                     <connections>
                         <action selector="expandButtonAction:" destination="-1" eventType="touchUpInside" id="YyT-17-yEG"/>
@@ -130,11 +121,11 @@
                 <constraint firstItem="hYg-84-sas" firstAttribute="leading" secondItem="PON-Y0-BVX" secondAttribute="trailing" id="aZQ-o3-025"/>
                 <constraint firstAttribute="trailing" secondItem="wc4-d6-uAb" secondAttribute="trailing" id="bNa-zP-cmO"/>
                 <constraint firstItem="DZm-Rt-Rrf" firstAttribute="centerY" secondItem="iN0-l3-epB" secondAttribute="centerY" id="eRe-Xz-Kum"/>
-                <constraint firstItem="hYg-84-sas" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="4" id="fpI-nb-nqD"/>
+                <constraint firstItem="hYg-84-sas" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="fpI-nb-nqD"/>
                 <constraint firstItem="wc4-d6-uAb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="mwv-9S-3wn"/>
                 <constraint firstItem="DZm-Rt-Rrf" firstAttribute="leading" secondItem="Juc-nl-cwo" secondAttribute="trailing" constant="12" id="srL-6S-wV2"/>
                 <constraint firstAttribute="bottom" secondItem="PON-Y0-BVX" secondAttribute="bottom" id="tND-2x-C4J"/>
-                <constraint firstAttribute="trailing" secondItem="hYg-84-sas" secondAttribute="trailing" constant="16" id="yEf-DJ-pu0"/>
+                <constraint firstAttribute="trailing" secondItem="hYg-84-sas" secondAttribute="trailing" constant="5" id="yEf-DJ-pu0"/>
             </constraints>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="445" y="208"/>

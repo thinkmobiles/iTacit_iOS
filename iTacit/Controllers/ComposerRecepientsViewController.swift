@@ -11,8 +11,8 @@ import UIKit
 class ComposerRecepientsViewController: BaseViewController {
     
     private struct Constants {
-        static let HeaderViewHeight: CGFloat = 40
-        static let CellHeight: CGFloat = 40
+        static let HeaderViewHeight: CGFloat = 50
+        static let CellHeight: CGFloat = 50
     }
     
     @IBOutlet weak var tableView: UITableView!
@@ -49,6 +49,11 @@ extension ComposerRecepientsViewController: UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        
+        if section == 0 {
+            return 0
+        }
+        
         return Constants.HeaderViewHeight
     }
 }

@@ -1239,10 +1239,10 @@
                                                     </userDefinedRuntimeAttributes>
                                                 </imageView>
                                                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kbA-rF-G0T">
-                                                    <rect key="frame" x="546" y="6" width="35" height="35"/>
+                                                    <rect key="frame" x="545" y="-1" width="50" height="50"/>
                                                     <animations/>
                                                     <constraints>
-                                                        <constraint firstAttribute="width" constant="35" id="iDz-J6-sN3"/>
+                                                        <constraint firstAttribute="width" constant="50" id="iDz-J6-sN3"/>
                                                         <constraint firstAttribute="width" secondItem="kbA-rF-G0T" secondAttribute="height" multiplier="1:1" id="xGp-1N-wfR"/>
                                                     </constraints>
                                                     <state key="normal" image="btn_close"/>
@@ -1252,14 +1252,14 @@
                                                     </connections>
                                                 </button>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Bryan Champman" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tZO-0a-AK2">
-                                                    <rect key="frame" x="60" y="6" width="478" height="18"/>
+                                                    <rect key="frame" x="60" y="6" width="477" height="18"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
                                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Project Manager/Manager Department" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="IU8-jh-gCz">
-                                                    <rect key="frame" x="60" y="23" width="478" height="17"/>
+                                                    <rect key="frame" x="60" y="23" width="477" height="17"/>
                                                     <animations/>
                                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                                     <color key="textColor" red="0.65490196079999996" green="0.65490196079999996" blue="0.67450980390000004" alpha="1" colorSpace="calibratedRGB"/>
@@ -1287,7 +1287,7 @@
                                                 <constraint firstItem="0uy-cW-Cy4" firstAttribute="leading" secondItem="AkM-UX-Udg" secondAttribute="leading" constant="19" id="iHC-m8-n6v"/>
                                                 <constraint firstItem="IU8-jh-gCz" firstAttribute="trailing" secondItem="tZO-0a-AK2" secondAttribute="trailing" id="ix8-fd-oqX"/>
                                                 <constraint firstItem="tZO-0a-AK2" firstAttribute="leading" secondItem="0uy-cW-Cy4" secondAttribute="trailing" constant="7" id="oIp-7W-drw"/>
-                                                <constraint firstAttribute="trailing" secondItem="kbA-rF-G0T" secondAttribute="trailing" constant="19" id="pAc-pi-Okw"/>
+                                                <constraint firstAttribute="trailing" secondItem="kbA-rF-G0T" secondAttribute="trailing" constant="5" id="pAc-pi-Okw"/>
                                                 <constraint firstItem="kbA-rF-G0T" firstAttribute="centerY" secondItem="AkM-UX-Udg" secondAttribute="centerY" id="sHu-nK-CFU"/>
                                             </constraints>
                                         </tableViewCellContentView>

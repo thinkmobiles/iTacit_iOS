@@ -91,7 +91,7 @@ class DateHeaderView: UIView {
     func loadViewFromXib() {
         if let view = NSBundle.mainBundle().loadNibNamed(Constants.NibName, owner: self, options: nil).first as? UIView {
             view.frame = self.frame
-            self.addSubview(view)
+            addEdgePinnedSubview(view)
         }
 
         addStartDateButton.setTitle(LocalizedString("Add Date"), forState: .Normal)

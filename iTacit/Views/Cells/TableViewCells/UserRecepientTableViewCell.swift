@@ -17,7 +17,7 @@ class UserRecepientTableViewCell: UITableViewCell {
     private struct Constants {
         static let defaultLeadingSize: CGFloat = 35.0
         static let interactiveLeadingSize: CGFloat = 19.0
-        static let closeButtonWidth: CGFloat = 20.0
+        static let closeButtonWidth: CGFloat = 50.0
     }
 
     @IBOutlet weak var userImageView: UIImageView!
