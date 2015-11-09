@@ -24,16 +24,23 @@ class MessageComposeViewController: BaseViewController {
 	private weak var readDateTableViewCell: ComposerReadDateTableViewCell?
 	private weak var bodyTableViewCell: ComposerBodyTableViewCell?
 
+	private var searchTimer: NSTimer?
+
 	private var readDate: NSDate?
 
 	private var reuseIdetifiersDataSource = [ComposerRecipientsTableViewCell.reuseIdentifier, ComposerTopicTableViewCell.reuseIdentifier, ComposerBodyTableViewCell.reuseIdentifier]
 
     private var messageModel = NewMessageModel()
 
+	private var userProfileList = UserProfileListModel()
+
+	// MARK: - Lifecycle
+
     override func viewDidLoad() {
         super.viewDidLoad()
 		tableView.tableFooterView = UIView()
 		tableView.layoutMargins = UIEdgeInsetsZero
+		userProfileList.searchQuery = SearchStringModel(string: "")
     }
     
     override func viewWillAppear(animated: Bool) {
@@ -60,7 +67,17 @@ class MessageComposeViewController: BaseViewController {
 			tableView.deleteRowsAtIndexPaths([NSIndexPath(forRow: index, inSection: 0)], withRowAnimation: .Automatic)
 		}
 	}
-    
+
+	func performSearch(sender: NSTimer) {
+		userProfileList.load { [weak self] (success) -> Void in
+			self?.updateAutocompletionList()
+		}
+	}
+
+	private func updateAutocompletionList() {
+		recipientsTableViewCell?.updateDataSource(userProfileList.objects)
+	}
+
     // MARK: - IBActions
     
     @IBAction func sendMessageAction(sender: UIBarButtonItem) {
@@ -167,6 +184,16 @@ extension MessageComposeViewController: ComposerRecipientsTableViewCellDelegate 
 
 	func composerRecipientsTableViewCellDidPressMoreButton(cell: ComposerRecipientsTableViewCell) {
 
+	}
+
+	func composerRecipientsTableViewCell(cell: ComposerRecipientsTableViewCell, didChangeSearchString searchString: String) {
+		(userProfileList.searchQuery as? SearchStringModel)?.string = searchString
+		searchTimer?.invalidate()
+		searchTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("performSearch:"), userInfo: nil, repeats: false)
+	}
+
+	func composerRecipientsTableViewCellDidBeginSearch(cell: ComposerRecipientsTableViewCell) {
+		updateAutocompletionList()
 	}
 }
 

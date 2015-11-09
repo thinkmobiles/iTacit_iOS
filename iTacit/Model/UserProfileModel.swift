@@ -16,12 +16,19 @@ class UserProfileModel: BaseModel, Mappable {
     }
     
     var userId = ""
-    var nameFull = ""
-    var nameLast = ""
-    var nameFirst = ""
+    var lastName = ""
+    var firstName = ""
     var imageUrl: NSURL?
-    var roleName = ""
-    var businessUnitName = ""
+    var role = ""
+    var businessUnit = ""
+
+	var fullName: String {
+		return firstName + " " + lastName
+	}
+
+	var status: String {
+		return role + ", " + businessUnit
+	}
     
     func load(completion: CompletionHandler? = nil) {
         performRequest({ (builder) -> Void in
@@ -41,23 +48,21 @@ class UserProfileModel: BaseModel, Mappable {
         try validateKey(key, typeOfValue: T.self)
         switch key {
         case "userId": userId <<- value
-        case "nameFull": nameFull <<- value
-        case "nameLast": nameLast <<- value
-        case "nameFirst": nameFirst <<- value
+        case "lastName": lastName <<- value
+        case "firstName": firstName <<- value
         case "imageUrl": imageUrl <<- value
-        case "roleName": roleName <<- value
-        case "businessUnitName": businessUnitName <<- value
+        case "role": role <<- value
+        case "businessUnit": businessUnit <<- value
         default: break
         }
     }
     
     class var mapping: [PropertyDescriptor] {
-        return [PropertyDescriptor(propertyName: "userId"),
-            PropertyDescriptor(propertyName: "nameFull"),
-            PropertyDescriptor(propertyName: "nameLast"),
-            PropertyDescriptor(propertyName: "nameFirst"),
+        return [PropertyDescriptor(propertyName: "userId", JSONKey: "id"),
+			PropertyDescriptor(propertyName: "lastName", JSONKey: "nameLast"),
+            PropertyDescriptor(propertyName: "firstName", JSONKey: "nameFirst"),
             PropertyDescriptor(propertyName: "imageUrl"),
-            PropertyDescriptor(propertyName: "roleName"),
-            PropertyDescriptor(propertyName: "businessUnitName")]
+            PropertyDescriptor(propertyName: "role", JSONKey: "roleName"),
+			PropertyDescriptor(propertyName: "businessUnit", JSONKey:"businessUnitName")]
     }
 }

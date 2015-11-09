@@ -67,7 +67,7 @@ class AddRecipientHeaderView: UIView {
     
     func loadViewFromNib() {
         if let view = NSBundle.mainBundle().loadNibNamed(Constants.NibName, owner: self, options: nil).first as? UIView {
-            self.addSubview(view)
+            addEdgePinnedSubview(view)
         }
     }
     

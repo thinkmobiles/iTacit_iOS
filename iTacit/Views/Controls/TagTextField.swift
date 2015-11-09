@@ -24,7 +24,6 @@ class TagTextField: UIControl {
 
 	private struct Constants {
 		static let minInputCellWidth = CGFloat(20)
-		static let animationDuratoin = 0.25
 	}
 
 	enum Mode {

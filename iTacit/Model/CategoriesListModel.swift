@@ -11,7 +11,7 @@ import UIKit
 class CategoriesListModel<T: NewsCategoryModel>: ListModel<T> {
     
     override var path: String {
-        return "/mobile/1.0/news/article/category"
+        return "/mobile/1.0/news/category"
     }
     
     required init() {

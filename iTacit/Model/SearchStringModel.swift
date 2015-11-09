@@ -17,7 +17,7 @@ class SearchStringModel: SearchQuery {
 	}
 
 	var stringQuery: String {
-		return "authorNameFull:" + string
+		return "search:" + string
 	}
 	
 }
