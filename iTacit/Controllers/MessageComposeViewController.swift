@@ -31,7 +31,6 @@ class MessageComposeViewController: BaseViewController {
 	private var reuseIdetifiersDataSource = [ComposerRecipientsTableViewCell.reuseIdentifier, ComposerTopicTableViewCell.reuseIdentifier, ComposerBodyTableViewCell.reuseIdentifier]
 
     private var messageModel = NewMessageModel()
-
 	private var userProfileList = UserProfileListModel()
 
 	// MARK: - Lifecycle

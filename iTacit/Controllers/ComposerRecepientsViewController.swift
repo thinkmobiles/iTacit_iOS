@@ -25,7 +25,6 @@ class ComposerRecepientsViewController: BaseViewController {
     // MARK: - Private
     
     private func showOrHideCellsIn(section section: Int) {
-        
         if hiddenSections.contains(section) {
             hiddenSections.removeAtIndex(hiddenSections.indexOf(section)!)
             tableView.beginUpdates()

@@ -79,6 +79,11 @@ class TagTextField: UIControl {
 	}
 
 	var returnKeyType = UIReturnKeyType.Default
+	var edgeInsets = UIEdgeInsetsZero {
+		didSet {
+			collectionViewLayout.sectionInsets = edgeInsets
+		}
+	}
 
 	// MARK: - Lifecycle
 

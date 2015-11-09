@@ -22,6 +22,10 @@ class ComposerRecipientsTableViewCell: UITableViewCell {
 
 	static let reuseIdentifier = "ComposerRecipientsTableViewCell"
 
+	private struct Constants {
+		static let userIdKey = "userId"
+	}
+
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var tagTextField: TagTextField!
 	@IBOutlet weak var autocompletionTableView: UITableView!
@@ -41,6 +45,7 @@ class ComposerRecipientsTableViewCell: UITableViewCell {
 		layer.zPosition = 666
 		autocompletionTableView.registerNib(UserProfileTableViewCell.nib, forCellReuseIdentifier: UserProfileTableViewCell.ReuseIdentifier.Selectable.rawValue)
 		autocompletionTableView.tableFooterView = UIView()
+		tagTextField.edgeInsets = UIEdgeInsets(top: 7, left: 0, bottom: 5, right: 0)
 	}
 
 	// MARK: - Public
@@ -95,6 +100,13 @@ extension ComposerRecipientsTableViewCell: UITableViewDataSource {
 			cell.profileImageView.image = nil
 		}
 
+		let contains = tagTextField.tags.contains { ($0.attributes?[Constants.userIdKey] ?? "") == userProfile.userId }
+
+		cell.selected = contains
+		if contains {
+			tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)
+		}
+
 		return cell
 	}
 
@@ -105,8 +117,17 @@ extension ComposerRecipientsTableViewCell: UITableViewDataSource {
 extension ComposerRecipientsTableViewCell: UITableViewDelegate {
 
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		
+		let userProfile = autocompletionDataSource[indexPath.row]
+		tagTextField.insertTag(userProfile.fullName, attributes: [Constants.userIdKey: userProfile.userId])
 		hideAutocompletionTableView()
+	}
+
+	func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
+		let userProfile = autocompletionDataSource[indexPath.row]
+		let index = tagTextField.tags.indexOf { ($0.attributes?[Constants.userIdKey] ?? "") == userProfile.userId }
+		if let index = index {
+			tagTextField.removeTag(tagTextField.tags[index])
+		}
 	}
 	
 }
