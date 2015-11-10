@@ -17,43 +17,82 @@ class AddRecipientViewController: BaseViewController {
     
     @IBOutlet weak var recipientsCountLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var tagSearchControl: TagSearchControl! {
+        didSet {
+            tagSearchControl.delegate = self
+        }
+    }
     
     var hiddenSections: [Int] = []
-    
-//    var businessUnitsList = BusinessUnitListModel()
-//    var jobClassification = JobClassificationListModel()
-//    var permissionGroup = PermissionGroupsListModel()
-//
-//    func debug() {
-//        businessUnitsList.load { (success) -> Void in
-//            print(self.businessUnitsList)
-//            print("businessUnitsList " + String(self.businessUnitsList.count))
-//            
-//        }
-//        
-//        jobClassification.load { (success) -> Void in
-//            print(self.jobClassification)
-//            print("jobClassification " + String(self.jobClassification.count))
-//        }
-//        
-//        permissionGroup.load { (success) -> Void in
-//            print(self.permissionGroup)
-//            print("permissionGroup " + String(self.permissionGroup.count))
-//        }
-//    }
+    var searchString = ""
+    var businessUnitsList = BusinessUnitListModel()
+    var jobClassificationList = JobClassificationListModel()
+    var permissionGroupList = PermissionGroupsListModel()
+    var searchQuery = OrganizationsQueryModel(string: "")
+    private var searchTimer: NSTimer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
-//        debug()
+        businessUnitsList.searchQuery = searchQuery
+        jobClassificationList.searchQuery = searchQuery
+        permissionGroupList.searchQuery = searchQuery
+        
+        reloadData()
     }
     
     // MARK: - IBAction
+    @IBAction func didChangeText(sender: TagSearchControl) {
+        (businessUnitsList.searchQuery as? OrganizationsQueryModel)?.string = tagSearchControl.searchText
+        (jobClassificationList.searchQuery as? OrganizationsQueryModel)?.string = tagSearchControl.searchText
+        (permissionGroupList.searchQuery as? OrganizationsQueryModel)?.string = tagSearchControl.searchText
+        
+        if tagSearchControl.searchText.characters.count >= 3 {
+            searchTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("performSearch:"), userInfo: nil, repeats: false)
+        }
+    }
     
     @IBAction func bottomButtonAction(sender: UIButton) {
+        
     }
     
     // MARK: - Private
+    
+    func performSearch(sender: NSTimer) {
+        reloadData()
+    }
+    
+    private func reloadData() {
+        businessUnitsList.load { [weak self] (success) -> Void in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            if !strongSelf.hiddenSections.contains(1) {
+                strongSelf.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
+            }
+        }
+        
+        jobClassificationList.load { [weak self] (success) -> Void in
+            guard let strongSelf = self else {
+                return
+            }
+
+            if !strongSelf.hiddenSections.contains(0) {
+                strongSelf.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+            }
+        }
+        
+        permissionGroupList.load { [weak self] (success) -> Void in
+            guard let strongSelf = self else {
+                return
+            }
+
+            if !strongSelf.hiddenSections.contains(3) {
+                strongSelf.tableView.reloadSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
+            }
+        }
+        
+    }
     
     private func showOrHideCellsIn(section section: Int) {
         
@@ -94,9 +133,12 @@ extension AddRecipientViewController: UITableViewDelegate {
         
         switch section {
         case 0: header.titleLabel.text = LocalizedString("Job Classification:")
+            header.rowCount = String(jobClassificationList.count)
         case 1: header.titleLabel.text = LocalizedString("Business Unit:")
+            header.rowCount = String(businessUnitsList.count)
         case 2: header.titleLabel.text = LocalizedString("Role:")
         default: header.titleLabel.text = LocalizedString("Group:")
+            header.rowCount = String(permissionGroupList.count)
         }
         
         return header
@@ -106,6 +148,16 @@ extension AddRecipientViewController: UITableViewDelegate {
 extension AddRecipientViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView .dequeueReusableCellWithIdentifier(Constants.CellIdentifier) as! CategoryTableViewCell
+        
+        if indexPath.section == 0 {
+            cell.categoryName.text = jobClassificationList[indexPath.item].name
+        } else if indexPath.section == 1 {
+            cell.categoryName.text = businessUnitsList[indexPath.item].name
+        } else if indexPath.section == 2 {
+            
+        }else if indexPath.section == 3 {
+            cell.categoryName.text = permissionGroupList[indexPath.item].name
+        }
         
         if indexPath.row == 2 {
             cell.hiddenSeparator = true
@@ -126,7 +178,13 @@ extension AddRecipientViewController: UITableViewDataSource {
             return 0
         }
         
-        return section < 2 ? 3 : 0
+        switch section {
+            case 0: return jobClassificationList.count
+            case 1: return businessUnitsList.count
+            case 2: return 0
+            case 3: return permissionGroupList.count
+            default: return 0
+        }
     }
 }
 
@@ -143,4 +201,31 @@ extension AddRecipientViewController: ComposerHeaderViewDelegate {
     func didSelectCloseButtonInHeaderView(view: UIView) {
         
     }
+}
+
+extension AddRecipientViewController: TagSearchControlDelegate {
+    
+    func tagsSearchControl(tagsSearchControl: TagSearchControl, needsAutocompletionWithCompletion completion: (strings: [String]) -> Void) {
+        return completion(strings: [""])
+    }
+    
+    func tagsSearchControlSearchButtonPressed(tagsSearchControl: TagSearchControl) {
+        searchTimer?.invalidate()
+        if !tagsSearchControl.searchText.isEmpty {
+            (businessUnitsList.searchQuery as? OrganizationsQueryModel)?.string = tagSearchControl.searchText
+            (jobClassificationList.searchQuery as? OrganizationsQueryModel)?.string = tagSearchControl.searchText
+            (permissionGroupList.searchQuery as? OrganizationsQueryModel)?.string = tagSearchControl.searchText
+            
+            reloadData()
+        }
+    }
+    
+    func tagsSearchControlDidClear(tagsSearchControl: TagSearchControl) {
+        businessUnitsList.searchQuery = OrganizationsQueryModel(string: "")
+        jobClassificationList.searchQuery = OrganizationsQueryModel(string: "")
+        permissionGroupList.searchQuery = OrganizationsQueryModel(string: "")
+
+        reloadData()
+    }
+    
 }

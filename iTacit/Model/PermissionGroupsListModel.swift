@@ -8,7 +8,7 @@
 
 import Foundation
 
-class PermissionGroupsListModel<T: JobClassificationModel>: ListModel<T> {
+class PermissionGroupsListModel<T: PermissionGroupsModel>: ListModel<T> {
     
     override var path: String {
         return "/mobile/1.0/organization/permissionGroup"

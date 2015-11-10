@@ -1353,10 +1353,10 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                                 <connections>
-                                    <action selector="didChangeSearchString:" destination="gVn-1K-qyO" eventType="editingChanged" id="qxg-zZ-Upd"/>
+                                    <action selector="didChangeText:" destination="Jl1-s8-ulj" eventType="editingChanged" id="5AT-ZX-0GK"/>
                                 </connections>
                             </view>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QLZ-b4-5wm">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" keyboardDismissMode="interactive" dataMode="prototypes" style="plain" separatorStyle="none" allowsMultipleSelection="YES" rowHeight="44" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="QLZ-b4-5wm">
                                 <rect key="frame" x="0.0" y="104" width="600" height="456"/>
                                 <animations/>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1511,6 +1511,7 @@
                     <connections>
                         <outlet property="recipientsCountLabel" destination="OpT-No-CJs" id="dSt-CH-4i2"/>
                         <outlet property="tableView" destination="QLZ-b4-5wm" id="rnG-cq-pO4"/>
+                        <outlet property="tagSearchControl" destination="kUS-jM-ga1" id="TPT-NO-gdl"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PUO-j4-u7M" userLabel="First Responder" sceneMemberID="firstResponder"/>

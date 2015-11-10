@@ -20,24 +20,28 @@ class AddRecipientHeaderView: UIView {
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var counterLabel: UILabel!
     @IBOutlet weak var expandImageView: UIImageView!
-    @IBOutlet weak var expandViewWidthCinstraint: NSLayoutConstraint!
+//    @IBOutlet weak var expandViewWidthCinstraint: NSLayoutConstraint!
     @IBOutlet weak var expandViewImageWidthConstraint: NSLayoutConstraint!
     
     weak var delegate: ComposerHeaderViewDelegate?
     var section: Int?
     var rowCount: String {
         get {
-            return counterLabel.text ?? ""
+            return counterLabel.text ?? "0"
         }
         set {
             counterLabel.text = newValue
-            expandViewWidthCinstraint.constant = Constants.ExpandViewNormalWidth
+//            expandViewWidthCinstraint.constant = Constants.ExpandViewNormalWidth
             expandViewImageWidthConstraint.constant = Constants.ExpandViewImageNormalWidth
 
             if Int(newValue) == 0 {
                 expandImageView.hidden = true
-                expandViewWidthCinstraint.constant = Constants.ExpandViewEmptyWidth
+//                expandViewWidthCinstraint.constant = Constants.ExpandViewEmptyWidth
                 expandViewImageWidthConstraint.constant = 0
+            } else {
+                expandImageView.hidden = false
+//                expandViewWidthCinstraint.constant = Constants.ExpandViewNormalWidth
+                expandViewImageWidthConstraint.constant = Constants.ExpandViewImageNormalWidth
             }
         }
     }
