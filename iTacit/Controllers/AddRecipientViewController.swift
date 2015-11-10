@@ -149,6 +149,9 @@ extension AddRecipientViewController: UITableViewDataSource {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView .dequeueReusableCellWithIdentifier(Constants.CellIdentifier) as! CategoryTableViewCell
         
+        cell.categoryName.font = UIFont(name: "OpenSans-Regular", size: 14.0)
+        cell.categoryName.textColor = AppColors.gray
+        
         if indexPath.section == 0 {
             cell.categoryName.text = jobClassificationList[indexPath.item].name
         } else if indexPath.section == 1 {
