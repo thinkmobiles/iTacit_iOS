@@ -11,6 +11,10 @@ import UIKit
 let ImageCache = NSCache()
 
 class NewsViewController: UIViewController {
+    
+    private struct Constants {
+        static let CellHeight: CGFloat = 100.0
+    }
 
     @IBOutlet weak var newsTitle: UILabel!
 	@IBOutlet weak var tableView: UITableView!
@@ -22,7 +26,7 @@ class NewsViewController: UIViewController {
 
 	private let newsList = NewsListModel()
 	private var searchTimer: NSTimer?
-
+    private static var numberOfTotalElements = 0;
 	// MARK: - LifeCycle
 
 	override func viewDidLoad() {
@@ -158,4 +162,20 @@ extension NewsViewController: TagSearchControlDelegate {
 		reloadData()
 	}
 
+}
+
+// MARK: UIScrollViewDelegate
+
+extension NewsViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if (scrollView.contentOffset.y > (CGFloat((newsList.count / 2)) * Constants.CellHeight) && NewsViewController.numberOfTotalElements < newsList.count) {
+            NewsViewController.numberOfTotalElements = newsList.count ?? 0
+            newsList.loadMore { [weak self] (success) -> Void in
+                self?.tableView.reloadData()
+                self?.updateAutocompletionList()
+            }
+        }
+    }
+    
 }
