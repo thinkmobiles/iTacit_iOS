@@ -17,14 +17,17 @@ protocol TagTextFieldDelegate: class {
 	func tagedTextFieldShouldInserTag(textField: TagTextField, tag: String) -> Bool
 	func tagedTextFieldShouldSwitchToCollapsedMode(textField: TagTextField) -> Bool
 	func tagedTextField(textField: TagTextField, didDeleteTag tag: TagModel)
+	func tagedTextField(textField: TagTextField, didChangeContentSize contentSize: CGSize)
 
 }
 
 class TagTextField: UIControl {
 
+	static let CollectionViewContentSizeContext = UnsafeMutablePointer<Void>()
+
 	private struct Constants {
 		static let minInputCellWidth = CGFloat(20)
-		static let animationDuratoin = 0.25
+		static let contentSizeKeyPath = "contentSize"
 	}
 
 	enum Mode {
@@ -75,11 +78,21 @@ class TagTextField: UIControl {
 		}
 		set {
 			inputCell?.text = newValue
-			collectionView.collectionViewLayout.invalidateLayout()
+			collectionViewLayout.invalidateLayout()
 		}
 	}
 
 	var returnKeyType = UIReturnKeyType.Default
+	var edgeInsets = UIEdgeInsetsZero {
+		didSet {
+			collectionViewLayout.sectionInsets = edgeInsets
+			collectionViewLayout.invalidateLayout()
+		}
+	}
+
+	var contentSize: CGSize {
+		return collectionView.contentSize
+	}
 
 	// MARK: - Lifecycle
 
@@ -91,6 +104,10 @@ class TagTextField: UIControl {
 	required init?(coder aDecoder: NSCoder) {
 		super.init(coder: aDecoder)
 		setUp()
+	}
+
+	deinit {
+		collectionView.removeObserver(self, forKeyPath: Constants.contentSizeKeyPath, context: TagTextField.CollectionViewContentSizeContext)
 	}
 
 	// MARK: - Public
@@ -175,7 +192,7 @@ class TagTextField: UIControl {
 		collectionViewLayout.itemSize = CGSize(width: 50, height: 27)
 		collectionViewLayout.itemsSpacing = 10
 		collectionViewLayout.lineSpacing = 6
-		collectionViewLayout.sectionInsets = UIEdgeInsets(top: 6, left: 14, bottom: 6, right: 0)
+		collectionViewLayout.sectionInsets = UIEdgeInsets(top: 6, left: 0, bottom: 6, right: 0)
 		let aCollectionView = UICollectionView(frame: bounds, collectionViewLayout: collectionViewLayout)
 		addEdgePinnedSubview(aCollectionView)
 		collectionView = aCollectionView
@@ -184,7 +201,7 @@ class TagTextField: UIControl {
 		collectionView.backgroundColor = UIColor.whiteColor()
 		collectionView.showsHorizontalScrollIndicator = false
 		collectionView.showsVerticalScrollIndicator = false
-
+		collectionView.addObserver(self, forKeyPath: Constants.contentSizeKeyPath, options: [.Old, .New], context: TagTextField.CollectionViewContentSizeContext)
 		registerCells()
 		setupTapGesture()
 	}
@@ -266,6 +283,20 @@ class TagTextField: UIControl {
 			let tag = tags[selectedIndexPath.item]
 			removeTag(tag)
 			delegate?.tagedTextField(self, didDeleteTag: tag)
+		}
+	}
+
+	// MARK: - KVO
+
+	override func observeValueForKeyPath(keyPath: String?, ofObject object: AnyObject?, change: [String : AnyObject]?, context: UnsafeMutablePointer<Void>) {
+		if context == TagTextField.CollectionViewContentSizeContext {
+			let oldSizeValue = change?[NSKeyValueChangeOldKey] as? NSValue
+			let newSizeValue = change?[NSKeyValueChangeNewKey] as? NSValue
+			if let oldSize = oldSizeValue?.CGSizeValue(), newSize = newSizeValue?.CGSizeValue() where oldSize.height != newSize.height {
+				delegate?.tagedTextField(self, didChangeContentSize: newSize)
+			}
+		} else {
+			super.observeValueForKeyPath(keyPath, ofObject: object, change: change, context: context)
 		}
 	}
 
@@ -370,6 +401,7 @@ extension TagTextField: ExtendedTextFieldDelegate {
 
 	func textFieldDidBeginEditing(textField: UITextField) {
 		delegate?.tagedTextFieldDidBeginEditing(self)
+		sendActionsForControlEvents(.EditingDidBegin)
 	}
 
 	func textFieldDidEndEditing(textField: UITextField) {

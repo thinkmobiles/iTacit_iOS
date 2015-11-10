@@ -13,6 +13,9 @@ enum AssetsIndetifier: String {
 	case BackButton = "btn_back"
 	case TrianglePointerUp = "ic_drop_up"
 	case TrianglePointerDown = "ic_drop_down"
+	case SelectedIcon = "check_filter_act"
+	case UnselectedIcon = "check_filter"
+	case CloseIcon = "btn_close"
 
 }
 

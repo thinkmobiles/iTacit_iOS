@@ -49,11 +49,11 @@
                             </connections>
                         </button>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="veR-vc-eJl">
-                            <rect key="frame" x="0.0" y="0.0" width="43" height="39"/>
+                            <rect key="frame" x="0.0" y="0.0" width="35" height="39"/>
                             <animations/>
                             <constraints>
                                 <constraint firstAttribute="height" constant="39" id="GTa-aq-Nge"/>
-                                <constraint firstAttribute="width" constant="43" id="LjX-9r-css"/>
+                                <constraint firstAttribute="width" constant="35" id="LjX-9r-css"/>
                             </constraints>
                             <inset key="contentEdgeInsets" minX="14" minY="0.0" maxX="0.0" maxY="0.0"/>
                             <state key="normal" image="ic_search"/>
@@ -79,7 +79,7 @@
                         <constraint firstItem="dGg-QI-POo" firstAttribute="top" secondItem="iaL-oW-bjQ" secondAttribute="top" id="NIP-Bn-Voh"/>
                         <constraint firstItem="veR-vc-eJl" firstAttribute="leading" secondItem="iaL-oW-bjQ" secondAttribute="leading" id="VXP-mH-06Z"/>
                         <constraint firstAttribute="bottom" secondItem="okI-q9-0Od" secondAttribute="bottom" id="XGA-tR-uQ0"/>
-                        <constraint firstItem="dGg-QI-POo" firstAttribute="leading" secondItem="veR-vc-eJl" secondAttribute="trailing" id="bfl-AU-2y7"/>
+                        <constraint firstItem="dGg-QI-POo" firstAttribute="leading" secondItem="veR-vc-eJl" secondAttribute="trailing" constant="8" id="bfl-AU-2y7"/>
                         <constraint firstItem="veR-vc-eJl" firstAttribute="top" secondItem="iaL-oW-bjQ" secondAttribute="top" id="dc3-Xq-bS8"/>
                     </constraints>
                 </view>

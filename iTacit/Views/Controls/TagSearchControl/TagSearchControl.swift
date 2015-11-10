@@ -10,7 +10,6 @@ import UIKit
 
 protocol TagSearchControlDelegate: class {
 
-	func tagsSearchControl(tagsSearchControl: TagSearchControl, needsAutocompletionWithCompletion completion:(strings: [String]) -> Void)
 	func tagsSearchControlSearchButtonPressed(tagsSearchControl: TagSearchControl)
 	func tagsSearchControlDidClear(tagsSearchControl: TagSearchControl)
 
@@ -18,15 +17,10 @@ protocol TagSearchControlDelegate: class {
 
 class TagSearchControl: UIControl {
 
+	typealias SuggestedItem = String
+
 	private struct Constants {
 		static let nibName = "TagSearchControl"
-		static let animationDuratoin = 0.25
-	}
-
-	enum Mode {
-		case Normal
-		case Editing
-		case Tags
 	}
 
 	@IBOutlet weak var tagTextField: TagTextField!
@@ -36,6 +30,9 @@ class TagSearchControl: UIControl {
 	@IBOutlet weak var autocompletionTableView: UITableView!
 	@IBOutlet weak var autocompletionTableViewHeightConstraint: NSLayoutConstraint!
 	@IBOutlet weak var trailingConstraint: NSLayoutConstraint!
+
+	var autocompletionDataSource = [SuggestedItem]()
+	let numberOfVisibleCells = 3
 
 	var rightOffset: CGFloat {
 		get {
@@ -73,8 +70,6 @@ class TagSearchControl: UIControl {
 
 	var isEditing = false
 
-	var autocompletionStrings = [String]()
-
 	// MARK: - Lifecycle
 
 	override init(frame: CGRect) {
@@ -87,25 +82,7 @@ class TagSearchControl: UIControl {
 		setUp()
 	}
 
-	// MARK: - Public 
-
-	func updateAutocompletionIfNeeded() {
-		if searchText.characters.count >= 3 && isEditing {
-			delegate?.tagsSearchControl(self) { [weak self] (strings) -> Void in
-				guard let strongSelf = self else {
-					return
-				}
-				if strongSelf.autocompletionStrings != strings {
-					strongSelf.autocompletionStrings = strings
-					strongSelf.showAutocompletionTableView()
-				} else {
-					strongSelf.autocompletionTableView.reloadData()
-				}
-			}
-		} else {
-			hideAutocompletionTableView()
-		}
-	}
+	// MARK: - Public
 
 	func beginEditing() {
 		tagTextField.beginEditing()
@@ -131,7 +108,6 @@ class TagSearchControl: UIControl {
 	}
 	
 	@IBAction func didChangeInputText(sender: TagTextField) {
-		updateAutocompletionIfNeeded()
 		updateClearButtonvisibility()
 		sendActionsForControlEvents(.EditingChanged)
 	}
@@ -139,33 +115,7 @@ class TagSearchControl: UIControl {
 	// MARK: - Private
 
 	private func updateClearButtonvisibility() {
-		clearButton.hidden = searchText.isEmpty && tags.isEmpty// && (mode != .Tags)
-	}
-
-	private func showAutocompletionTableView() {
-		guard !autocompletionStrings.isEmpty else {
-			return
-		}
-		let multiplier = CGFloat(min(autocompletionStrings.count, 3))
-		autocompletionTableViewHeightConstraint.constant = autocompletionTableView.rowHeight * multiplier
-
-		CATransaction.begin()
-
-		CATransaction.setCompletionBlock { [weak self] () -> Void in
-			self?.autocompletionTableView.backgroundColor = UIColor.whiteColor()
-		}
-
-		autocompletionTableView.beginUpdates()
-		autocompletionTableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Top)
-		autocompletionTableView.endUpdates()
-
-		CATransaction.commit()
-	}
-
-	private func hideAutocompletionTableView() {
-		autocompletionStrings = []
-		autocompletionTableView.backgroundColor = UIColor.clearColor()
-		autocompletionTableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Top)
+		clearButton.hidden = searchText.isEmpty && tags.isEmpty
 	}
 
 	private func setUp() {
@@ -195,7 +145,7 @@ class TagSearchControl: UIControl {
 
 	override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
 		let convertedPoint = autocompletionTableView.convertPoint(point, fromView: self)
-		if CGRectContainsPoint(autocompletionTableView.bounds, convertedPoint) && autocompletionStrings.count > 0 {
+		if CGRectContainsPoint(autocompletionTableView.bounds, convertedPoint) && autocompletionDataSource.count > 0 {
 			return autocompletionTableView
 		}
 		return super.hitTest(point, withEvent: event)
@@ -203,12 +153,12 @@ class TagSearchControl: UIControl {
 
 }
 
-// MARK: - InputCollectionViewCellDelegate
+// MARK: - TagTextFieldDelegate
 
 extension TagSearchControl: TagTextFieldDelegate {
 
 	func tagedTextFieldShouldBeginEditing(textField: TagTextField) -> Bool {
-		return tags.isEmpty// mode != .Tags
+		return tags.isEmpty
 	}
 
 	func tagedTextFieldDidReturn(textField: TagTextField) {
@@ -219,12 +169,13 @@ extension TagSearchControl: TagTextFieldDelegate {
 
 	func tagedTextFieldDidBeginEditing(textField: TagTextField) {
 		isEditing = true
-		updateAutocompletionIfNeeded()
+		sendActionsForControlEvents(.EditingDidBegin)
 	}
 
 	func tagedTextFieldDidEndEditing(textField: TagTextField) {
 		isEditing = false
 		hideAutocompletionTableView()
+		sendActionsForControlEvents(.EditingDidEnd)
 	}
 
 	func tagedTextFieldShouldInserTag(textField: TagTextField, tag: String) -> Bool {
@@ -238,25 +189,46 @@ extension TagSearchControl: TagTextFieldDelegate {
 	func tagedTextField(textField: TagTextField, didDeleteTag tag: TagModel) {
 		updateClearButtonvisibility()
 	}
+
+	func tagedTextField(textField: TagTextField, didChangeContentSize contentSize: CGSize) {}
+
 }
+
+// MARK: - UITableViewDataSource
 
 extension TagSearchControl: UITableViewDataSource {
 
 	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return autocompletionStrings.count
+		return autocompletionDataSource.count
 	}
 
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier(AutocompletionTableViewCell.reuseIdentifier, forIndexPath: indexPath) as! AutocompletionTableViewCell
-		cell.titleLabel.attributedText = highlightSubstring(searchText, inString: autocompletionStrings[indexPath.row])
+		cell.titleLabel.attributedText = highlightSubstring(searchText, inString: autocompletionDataSource[indexPath.row])
 		return cell
 	}
+
 }
+
+// MARK: - UITableViewDelegate
 
 extension TagSearchControl: UITableViewDelegate {
 
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
-		searchText = autocompletionStrings[indexPath.row]
+		searchText = autocompletionDataSource[indexPath.row]
 		hideAutocompletionTableView()
 	}
+
+}
+
+// MARK: - Autocompletable
+
+extension TagSearchControl: Autocompletable {
+
+	func willShowAutocompletion() { }
+
+	func shoudShowAutocompletion() -> Bool {
+		return searchText.characters.count >= 3 && isEditing
+	}
+
 }

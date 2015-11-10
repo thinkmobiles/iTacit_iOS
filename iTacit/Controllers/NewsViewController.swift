@@ -51,8 +51,17 @@ class NewsViewController: UIViewController {
 		print("Search query: \(newsList.searchQuery?.stringQuery)")
 		newsList.load { [weak self] (success) -> Void in
 			self?.tableView.reloadData()
-			self?.tagSearchControl?.updateAutocompletionIfNeeded()
+			self?.updateAutocompletionList()
 		}
+	}
+
+	private func updateAutocompletionList() {
+		tagSearchControl.updateDataSource(autocompletionListForText(tagSearchControl.searchText))
+	}
+
+	private func autocompletionListForText(text: String) -> [String] {
+		let news = newsList.objects.filter { $0.headline.beginsWithString(text) }
+		return news.map { $0.headline }
 	}
 
 	func performSearch(sender: NSTimer) {
@@ -71,21 +80,24 @@ class NewsViewController: UIViewController {
 		}
 	}
 
+	// MARK: - IBActions
+
 	@IBAction func returnFromFilterViewController(segue: UIStoryboardSegue) {
 		if let filterNewsViewController = segue.sourceViewController as? FilterNewsViewController {
 			newsList.searchQuery = filterNewsViewController.searchModel
 			tagSearchControl.tags = filterNewsViewController.tags
-			
 			reloadData()
 		}
 	}
 	
 	@IBAction func didChangeSearchString(sender: TagSearchControl) {
-		(newsList.searchQuery as? SearchNewsQueryModel)?.string = tagSearchControl.searchText
+		(newsList.searchQuery as? SearchNewsQueryModel)?.string = sender.searchText.characters.count >= 3 ? tagSearchControl.searchText: ""
 		searchTimer?.invalidate()
-		if sender.searchText.characters.count >= 3 {
-			searchTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("performSearch:"), userInfo: nil, repeats: false)
-		}
+		searchTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("performSearch:"), userInfo: nil, repeats: false)
+	}
+
+	@IBAction func searchControllDidBeginEditing(sende: TagSearchControl) {
+		updateAutocompletionList()
 	}
 }
 
@@ -129,13 +141,9 @@ extension NewsViewController: UITableViewDataSource {
     }
 }
 
-extension NewsViewController: TagSearchControlDelegate {
+// MARK: - TagSearchControlDelegate
 
-	func tagsSearchControl(tagsSearchControl: TagSearchControl, needsAutocompletionWithCompletion completion: (strings: [String]) -> Void) {
-		let news = newsList.objects.filter { $0.headline.beginsWithString(tagSearchControl.searchText) }
-		let strings = news.map { $0.headline }
-		return completion(strings: strings)
-	}
+extension NewsViewController: TagSearchControlDelegate {
 
 	func tagsSearchControlSearchButtonPressed(tagsSearchControl: TagSearchControl) {
 		searchTimer?.invalidate()

@@ -11,8 +11,8 @@ import Foundation
 class TokenModel: BaseModel, Mappable {
     
     private struct Constants {
-        static let TokenKey = "token"
-        static let RefreshTokenKey = "refreshToken"
+        static let accessTokenKey = "accessToken"
+        static let refreshTokenKey = "refreshToken"
     }
 
 	override var path: String {
@@ -61,6 +61,7 @@ class TokenModel: BaseModel, Mappable {
 
 	override func defaultSuccessHandler(data: NSData?, request: NSURLRequest, response: NSHTTPURLResponse?, completion: CompletionHandler?) -> Void {
 		super.defaultSuccessHandler(data, request: request, response: response, completion: completion)
+		storeToKeyChain()
 		NSNotificationCenter.defaultCenter().postNotificationName(Notifications.DidLoginNotification, object: nil)
 	}
 
@@ -88,30 +89,21 @@ class TokenModel: BaseModel, Mappable {
 		return "Token: {\n\taccessToken: \(accessToken)\n\trefreshToken: \(refreshToken)\n}"
 	}
     
-    //MARK: KeyChain
+    // MARK: KeyChain
     
     func storeToKeyChain() {
-        KeychainWrapper.setString(accessToken, forKey: Constants.TokenKey)
-        KeychainWrapper.setString(refreshToken, forKey: Constants.RefreshTokenKey)
+        KeychainWrapper.setString(accessToken, forKey: Constants.accessTokenKey)
+        KeychainWrapper.setString(refreshToken, forKey: Constants.refreshTokenKey)
     }
     
-    static func loadFromKeyChain() -> TokenModel? {
-        if let token  = KeychainWrapper.stringForKey(Constants.TokenKey), refreshToken = KeychainWrapper.stringForKey(Constants.RefreshTokenKey) {
+    class func loadFromKeyChain() -> TokenModel? {
+        if let accesstoken = KeychainWrapper.stringForKey(Constants.accessTokenKey), refreshToken = KeychainWrapper.stringForKey(Constants.refreshTokenKey) {
             let tokenModel = TokenModel()
-            tokenModel.accessToken = token
+            tokenModel.accessToken = accesstoken
             tokenModel.refreshToken = refreshToken
-            
             return tokenModel
         } else {
             return nil
         }
     }
 }
-
-//extension TokenModel: CustomStringConvertible {
-//
-//	var description: String {
-//		return "Token: {\n\taccessToken: \(accessToken)\n\trefreshToken: \(refreshToken)\n}"
-//	}
-//
-//}

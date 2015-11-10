@@ -11,7 +11,7 @@ import Foundation
 class AuthorListModel<T: AuthorModel>: ListModel<T> {
 
 	override var path: String {
-		return "/mobile/1.0/news/article/author "
+		return "/mobile/1.0/news/author"
 	}
 
 	required init() {

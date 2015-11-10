@@ -23,12 +23,13 @@ class AddRecipientViewController: BaseViewController {
         }
     }
     
-    var hiddenSections: [Int] = []
+    var hiddenSections = [Int]()
     var searchString = ""
     var businessUnitsList = BusinessUnitListModel()
     var jobClassificationList = JobClassificationListModel()
     var permissionGroupList = PermissionGroupsListModel()
     var searchQuery = OrganizationsQueryModel(string: "")
+
     private var searchTimer: NSTimer?
     
     override func viewDidLoad() {
@@ -95,21 +96,22 @@ class AddRecipientViewController: BaseViewController {
     }
     
     private func showOrHideCellsIn(section section: Int) {
-        
         if hiddenSections.contains(section) {
             hiddenSections.removeAtIndex(hiddenSections.indexOf(section)!)
-            tableView.beginUpdates()
-            tableView.reloadSections(NSIndexSet(index: section), withRowAnimation: .None)
-            tableView.endUpdates()
+//            tableView.beginUpdates()
+//            tableView.reloadSections(NSIndexSet(index: section), withRowAnimation: .None)
+//            tableView.endUpdates()
         } else {
             hiddenSections.append(section)
         }
         
         tableView.reloadSections(NSIndexSet(index: section), withRowAnimation: .Automatic);
     }
+
 }
 
 extension AddRecipientViewController: UITableViewDelegate {
+
     func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return Constants.HeaderViewHeight
     }
@@ -119,7 +121,7 @@ extension AddRecipientViewController: UITableViewDelegate {
     }
     
     func tableView(tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let header = AddRecipientHeaderView(frame: CGRect(x: 0, y: 0, width: CGRectGetMaxX(UIScreen.mainScreen().bounds), height: Constants.HeaderViewHeight))
+        let header = AddRecipientHeaderView(frame: CGRect(x: 0, y: 0, width: CGRectGetWidth(tableView.frame), height: Constants.HeaderViewHeight))
 
         header.delegate = self
         header.section = section
@@ -132,24 +134,30 @@ extension AddRecipientViewController: UITableViewDelegate {
         }
         
         switch section {
-        case 0: header.titleLabel.text = LocalizedString("Job Classification:")
-            header.rowCount = String(jobClassificationList.count)
-        case 1: header.titleLabel.text = LocalizedString("Business Unit:")
-            header.rowCount = String(businessUnitsList.count)
-        case 2: header.titleLabel.text = LocalizedString("Role:")
-        default: header.titleLabel.text = LocalizedString("Group:")
-            header.rowCount = String(permissionGroupList.count)
+			case 0:
+				header.titleLabel.text = LocalizedString("Job Classification:")
+				header.rowCount = String(jobClassificationList.count)
+			case 1:
+				header.titleLabel.text = LocalizedString("Business Unit:")
+				header.rowCount = String(businessUnitsList.count)
+			case 2:
+				header.titleLabel.text = LocalizedString("Role:")
+			default:
+				header.titleLabel.text = LocalizedString("Group:")
+				header.rowCount = String(permissionGroupList.count)
         }
         
         return header
     }
+
 }
 
 extension AddRecipientViewController: UITableViewDataSource {
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView .dequeueReusableCellWithIdentifier(Constants.CellIdentifier) as! CategoryTableViewCell
         
-        cell.categoryName.font = UIFont(name: "OpenSans-Regular", size: 14.0)
+        cell.categoryName.font = UIFont.openSansRegular(14.0)
         cell.categoryName.textColor = AppColors.gray
         
         if indexPath.section == 0 {
@@ -189,6 +197,7 @@ extension AddRecipientViewController: UITableViewDataSource {
             default: return 0
         }
     }
+
 }
 
 extension AddRecipientViewController: ComposerHeaderViewDelegate {
@@ -207,10 +216,6 @@ extension AddRecipientViewController: ComposerHeaderViewDelegate {
 }
 
 extension AddRecipientViewController: TagSearchControlDelegate {
-    
-    func tagsSearchControl(tagsSearchControl: TagSearchControl, needsAutocompletionWithCompletion completion: (strings: [String]) -> Void) {
-        return completion(strings: [""])
-    }
     
     func tagsSearchControlSearchButtonPressed(tagsSearchControl: TagSearchControl) {
         searchTimer?.invalidate()

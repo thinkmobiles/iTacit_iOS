@@ -9,6 +9,8 @@
 import Foundation
 
 class NewMessageModel {
-    var topic: String?
-    var estimatedDate: NSDate?
+
+    var topic = ""
+    var readDate: NSDate?
+	
 }

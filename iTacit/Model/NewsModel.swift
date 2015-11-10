@@ -31,7 +31,7 @@ class NewsModel: BaseModel, Mappable {
 		performRequest({ (builder) -> Void in
 			builder.path = String(format: self.path, arguments: [self.articleId])
 			builder.method = .POST
-			builder.body = .JSON(JSON: ["id":  self.articleId])
+			builder.body = .JSON(JSON: ["id":  self.articleId, "rowCount": 100])
 			builder.contentType = .ApplicationJSON
 		}, successHandler: { [weak self] (data, request, response) -> Void in
 			self?.defaultSuccessHandler(data, request: request, response: response, completion: completion)

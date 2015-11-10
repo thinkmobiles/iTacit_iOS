@@ -17,7 +17,7 @@ class MainTabBarController: TabBarController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-		BaseModel.token = TokenModel()
+		BaseModel.token = TokenModel.loadFromKeyChain() ?? TokenModel()
 
     }
     
