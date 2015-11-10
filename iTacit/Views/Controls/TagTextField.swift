@@ -114,6 +114,7 @@ class TagTextField: UIControl {
 
 	func reloadData() {
 		collectionView.reloadData()
+		collectionView.layoutIfNeeded()
 	}
 
 	func insertTag(tagString: String, attributes: [String: String]? = nil, clearInputText: Bool = true, completion: (() -> Void)? = nil) {

@@ -34,14 +34,16 @@ class AddRecipientViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+		searchQuery.string = searchString
         businessUnitsList.searchQuery = searchQuery
         jobClassificationList.searchQuery = searchQuery
         permissionGroupList.searchQuery = searchQuery
-        
+		tagSearchControl.searchText = searchString
         reloadData()
     }
     
     // MARK: - IBAction
+
     @IBAction func didChangeText(sender: TagSearchControl) {
         (businessUnitsList.searchQuery as? OrganizationsQueryModel)?.string = tagSearchControl.searchText
         (jobClassificationList.searchQuery as? OrganizationsQueryModel)?.string = tagSearchControl.searchText
@@ -98,9 +100,6 @@ class AddRecipientViewController: BaseViewController {
     private func showOrHideCellsIn(section section: Int) {
         if hiddenSections.contains(section) {
             hiddenSections.removeAtIndex(hiddenSections.indexOf(section)!)
-//            tableView.beginUpdates()
-//            tableView.reloadSections(NSIndexSet(index: section), withRowAnimation: .None)
-//            tableView.endUpdates()
         } else {
             hiddenSections.append(section)
         }
@@ -201,6 +200,7 @@ extension AddRecipientViewController: UITableViewDataSource {
 }
 
 extension AddRecipientViewController: ComposerHeaderViewDelegate {
+
     func didSelectExpandButtonInHeaderView(view: UIView) {
         
         if view is AddRecipientHeaderView {

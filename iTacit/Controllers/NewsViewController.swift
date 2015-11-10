@@ -26,7 +26,8 @@ class NewsViewController: UIViewController {
 
 	private let newsList = NewsListModel()
 	private var searchTimer: NSTimer?
-    private static var numberOfTotalElements = 0;
+    private var numberOfLoadedElements = 0
+
 	// MARK: - LifeCycle
 
 	override func viewDidLoad() {
@@ -39,7 +40,6 @@ class NewsViewController: UIViewController {
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		clearSelection()
-        
         newsTitle.text = LocalizedString("News")
 	}
 
@@ -53,6 +53,7 @@ class NewsViewController: UIViewController {
 
 	private func reloadData() {
 		print("Search query: \(newsList.searchQuery?.stringQuery)")
+		numberOfLoadedElements = 0
 		newsList.load { [weak self] (success) -> Void in
 			self?.tableView.reloadData()
 			self?.updateAutocompletionList()
@@ -103,15 +104,6 @@ class NewsViewController: UIViewController {
 	@IBAction func searchControllDidBeginEditing(sende: TagSearchControl) {
 		updateAutocompletionList()
 	}
-}
-
-// MARK: - UITableViewDelegate
-
-extension NewsViewController: UITableViewDelegate {
-    
-    func tableView(tableView: UITableView, estimatedHeightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return 100
-    }
 }
 
 // MARK: - UITableViewDelegate
@@ -169,8 +161,10 @@ extension NewsViewController: TagSearchControlDelegate {
 extension NewsViewController: UIScrollViewDelegate {
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        if (scrollView.contentOffset.y > (CGFloat((newsList.count / 2)) * Constants.CellHeight) && NewsViewController.numberOfTotalElements < newsList.count) {
-            NewsViewController.numberOfTotalElements = newsList.count ?? 0
+		let delta = scrollView.contentSize.height - scrollView.contentOffset.y
+		let leftCellsHeight = CGFloat((NewsListModel.requestRowCount / 2)) * tableView.rowHeight
+		if delta <= leftCellsHeight && numberOfLoadedElements < newsList.count {
+            numberOfLoadedElements = newsList.count
             newsList.loadMore { [weak self] (success) -> Void in
                 self?.tableView.reloadData()
                 self?.updateAutocompletionList()

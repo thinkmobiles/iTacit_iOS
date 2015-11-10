@@ -58,11 +58,13 @@ class TagSearchControl: UIControl {
 		}
 	}
 
-	private(set) var searchText: String {
+	var searchText: String {
 		get {
 			return tagTextField.text
 		}
 		set {
+			tagTextField.mode = .Editing
+			tagTextField.reloadData()
 			tagTextField.text = newValue
 			updateClearButtonvisibility()
 		}

@@ -619,6 +619,7 @@
                                                     <state key="normal" image="btn_more"/>
                                                     <connections>
                                                         <action selector="moreAction" destination="ytH-eI-eIU" eventType="touchUpInside" id="d0v-fV-K8K"/>
+                                                        <segue destination="Jl1-s8-ulj" kind="show" id="bAh-yR-XbV"/>
                                                     </connections>
                                                 </button>
                                                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="1hd-Pw-A8U" customClass="TagTextField" customModule="iTacit" customModuleProvider="target">
@@ -1360,11 +1361,6 @@
                                     <constraint firstAttribute="height" constant="40" id="5IL-7b-evr"/>
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="ZzG-i8-ZZG"/>
                                 </constraints>
-                                <userDefinedRuntimeAttributes>
-                                    <userDefinedRuntimeAttribute type="number" keyPath="rightOffset">
-                                        <integer key="value" value="37"/>
-                                    </userDefinedRuntimeAttribute>
-                                </userDefinedRuntimeAttributes>
                                 <connections>
                                     <action selector="didChangeText:" destination="Jl1-s8-ulj" eventType="editingChanged" id="5AT-ZX-0GK"/>
                                 </connections>

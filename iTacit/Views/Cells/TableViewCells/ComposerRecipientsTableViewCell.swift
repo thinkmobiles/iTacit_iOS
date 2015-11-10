@@ -43,6 +43,10 @@ class ComposerRecipientsTableViewCell: UITableViewCell {
 		return tagTextField.contentSize.height > Constants.minHeight ? Constants.maxHeight: Constants.minHeight
 	}
 
+	var searchString: String {
+		return tagTextField.text
+	}
+
 	// MARK: - Lifecycle
 
 	override func awakeFromNib() {

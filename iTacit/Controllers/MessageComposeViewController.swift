@@ -115,6 +115,14 @@ class MessageComposeViewController: BaseViewController {
 		}, completion: nil)
 	}
 
+	// MARK: - Navigation 
+
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if let addRecipientViewController = segue.destinationViewController as? AddRecipientViewController {
+			addRecipientViewController.searchString = recipientsTableViewCell?.searchString ?? ""
+		}
+	}
+
 }
 
 // MARK: - UITableViewDataSource
