@@ -8,7 +8,7 @@
 
 import Foundation
 
-class NewsListModel<T: NewsModel>: ListModel<T> {
+class NewsListModel<T: NewsModel>: PageListModel<T> {
 
 	override var path: String {
 		return "/mobile/1.0/news/article"

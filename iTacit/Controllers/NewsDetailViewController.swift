@@ -102,7 +102,7 @@ extension NewsDetailViewController: UITableViewDataSource {
                 })
             }
             
-			cell.userNameLabel.text = userModel.firstName
+			cell.userNameLabel.text = userModel.fullName
 			cell.userDescriptionLabel.text = userModel.status
 
             return cell

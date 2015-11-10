@@ -193,7 +193,7 @@ extension FilterNewsViewController: UITableViewDataSource {
 				cell.userImage = nil
 			}
 
-			let contains = tagTextField.tags.contains { ($0.attributes?[Constants.authorIdKey] ?? "") == author.authorID }
+			let contains = tagTextField.tags.contains { ($0.attributes?[Constants.authorIdKey] ?? "") == author.id }
 
 			cell.selectable = true
 			cell.selected = contains
@@ -244,8 +244,8 @@ extension FilterNewsViewController: UITableViewDelegate {
 		switch indexPath.section {
 			case 0:
 				let author = authorList[indexPath.item]
-				searchModel.authorIDs.append(author.authorID)
-				tagTextField.insertTag(author.fullName, attributes: [Constants.authorIdKey: author.authorID])
+				searchModel.authorIDs.append(author.id)
+				tagTextField.insertTag(author.fullName, attributes: [Constants.authorIdKey: author.id])
 			case 1:
 				let category = categoryList[indexPath.item]
 				searchModel.categoryIDs.append(category.categoryId)
@@ -258,11 +258,11 @@ extension FilterNewsViewController: UITableViewDelegate {
 		switch indexPath.section {
 			case 0:
 				let author = authorList[indexPath.item]
-				if let index = searchModel.authorIDs.indexOf(author.authorID) {
+				if let index = searchModel.authorIDs.indexOf(author.id) {
 					searchModel.authorIDs.removeAtIndex(index)
 				}
 
-				if let tag = authorTagForId(author.authorID) {
+				if let tag = authorTagForId(author.id) {
 					tagTextField.removeTag(tag)
 				}
 
@@ -371,7 +371,7 @@ extension FilterNewsViewController: TagTextFieldDelegate {
 
 	func tagedTextField(textField: TagTextField, didDeleteTag tag: TagModel) {
 		if let authorId = tag.attributes?[Constants.authorIdKey] where !hiddenSections.contains(0) {
-			let index = authorList.objects.indexOf { $0.authorID == authorId }
+			let index = authorList.objects.indexOf { $0.id == authorId }
 			if let index = index {
 				tableView.deselectRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0), animated: false)
 			}

@@ -10,7 +10,7 @@ import UIKit
 
 class AuthorModel: BaseModel, Mappable {
 
-	var authorID = ""
+	var id = ""
     var roleName = ""
     var mostRecentArticlePublishDate: NSDate?
     var fullName = ""
@@ -21,7 +21,7 @@ class AuthorModel: BaseModel, Mappable {
 	func setValue<T>(value: T, forKey key: String) throws {
 		try validateKey(key, typeOfValue: T.self)
 		switch key {
-			case "authorID": authorID <<- value
+			case "id": id <<- value
 			case "roleName": roleName <<- value
 			case "mostRecentArticlePublishDate": mostRecentArticlePublishDate <<- value
 			case "fullName": fullName <<- value
@@ -31,7 +31,7 @@ class AuthorModel: BaseModel, Mappable {
 	}
 
 	class var mapping: [PropertyDescriptor] {
-		return [PropertyDescriptor(propertyName: "authorID"),
+		return [PropertyDescriptor(propertyName: "id", JSONKey: "authorId"),
 			PropertyDescriptor(propertyName: "roleName", JSONKey: "authorRoleName"),
 			PropertyDescriptor(propertyName: "fullName", JSONKey: "authorNameFull"),
 			PropertyDescriptor(propertyName: "imageURL", JSONKey: "authorImageUrl"),

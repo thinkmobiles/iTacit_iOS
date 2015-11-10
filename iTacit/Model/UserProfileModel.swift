@@ -34,7 +34,8 @@ class UserProfileModel: BaseModel, Mappable {
         performRequest({ (builder) -> Void in
             builder.path = self.path
             builder.method = .POST
-			builder.body = .JSON(JSON: ["id":  self.userId, "rowCount": 100])
+			builder.body = .JSON(JSON: ["id":  self.userId])
+			builder.contentType = .ApplicationJSON
         }, successHandler: { [weak self] (data, request, response) -> Void in
             self?.defaultSuccessHandler(data, request: request, response: response, completion: completion)
         }) { (error, request, response) -> Void in

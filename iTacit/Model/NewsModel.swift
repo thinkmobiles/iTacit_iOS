@@ -15,7 +15,7 @@ class NewsModel: BaseModel, Mappable {
 		return "/mobile/1.0/news/article"
 	}
 
-	var articleId = ""
+	var id = ""
 	var headline = ""
 	var summary: NSAttributedString?
 	var endDate: NSDate?
@@ -29,9 +29,9 @@ class NewsModel: BaseModel, Mappable {
 
 	func load(completion: CompletionHandler? = nil) {
 		performRequest({ (builder) -> Void in
-			builder.path = String(format: self.path, arguments: [self.articleId])
+			builder.path = self.path
 			builder.method = .POST
-			builder.body = .JSON(JSON: ["id":  self.articleId, "rowCount": 100])
+			builder.body = .JSON(JSON: ["id": self.id, "fields": "DEFAULT|body"])
 			builder.contentType = .ApplicationJSON
 		}, successHandler: { [weak self] (data, request, response) -> Void in
 			self?.defaultSuccessHandler(data, request: request, response: response, completion: completion)
@@ -45,7 +45,7 @@ class NewsModel: BaseModel, Mappable {
 	func setValue<T>(value: T, forKey key: String) throws {
 		try validateKey(key, typeOfValue: T.self)
 		switch key {
-			case "articleId": articleId <<- value
+			case "id": id <<- value
 			case "headline": headline <<- value
 			case "summary": summary <<- value
 			case "endDate": endDate <<- value
@@ -61,9 +61,8 @@ class NewsModel: BaseModel, Mappable {
 	}
 
 	class var mapping: [PropertyDescriptor] {
-		return [PropertyDescriptor(propertyName: "articleId"),
+		return [PropertyDescriptor(propertyName: "id"),
 			PropertyDescriptor(propertyName: "headline"),
-			PropertyDescriptor(propertyName: "articleId"),
 			PropertyDescriptor(propertyName: "authorName"),
 			PropertyDescriptor(propertyName: "categoryName"),
 			PropertyDescriptor(propertyName: "categoryId"),
