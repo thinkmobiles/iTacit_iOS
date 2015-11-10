@@ -13,6 +13,7 @@ protocol ComposerRecipientsTableViewCellDelegate: class {
 	func composerRecipientsTableViewCellDidPressMoreButton(cell: ComposerRecipientsTableViewCell)
 	func composerRecipientsTableViewCell(cell: ComposerRecipientsTableViewCell, didChangeSearchString searchString: String)
 	func composerRecipientsTableViewCellDidBeginSearch(cell: ComposerRecipientsTableViewCell)
+	func composerRecipientsTableViewCellNeedsUpdateSize(cell: ComposerRecipientsTableViewCell)
 
 }
 
@@ -24,6 +25,8 @@ class ComposerRecipientsTableViewCell: UITableViewCell {
 
 	private struct Constants {
 		static let userIdKey = "userId"
+		static let minHeight = CGFloat(42)
+		static let maxHeight = CGFloat(75)
 	}
 
 	@IBOutlet weak var titleLabel: UILabel!
@@ -36,6 +39,10 @@ class ComposerRecipientsTableViewCell: UITableViewCell {
 
 	weak var delegate: ComposerRecipientsTableViewCellDelegate?
 
+	var height: CGFloat {
+		return tagTextField.contentSize.height > Constants.minHeight ? Constants.maxHeight: Constants.minHeight
+	}
+
 	// MARK: - Lifecycle
 
 	override func awakeFromNib() {
@@ -45,7 +52,8 @@ class ComposerRecipientsTableViewCell: UITableViewCell {
 		layer.zPosition = 666
 		autocompletionTableView.registerNib(UserProfileTableViewCell.nib, forCellReuseIdentifier: UserProfileTableViewCell.ReuseIdentifier.Selectable.rawValue)
 		autocompletionTableView.tableFooterView = UIView()
-		tagTextField.edgeInsets = UIEdgeInsets(top: 7, left: 0, bottom: 5, right: 0)
+		tagTextField.edgeInsets = UIEdgeInsets(top: 6, left: 0, bottom: 5, right: 0)
+		tagTextField.delegate = self
 	}
 
 	// MARK: - Public
@@ -144,4 +152,36 @@ extension ComposerRecipientsTableViewCell: Autocompletable {
 		return tagTextField.text.characters.count >= 3
 	}
 
+}
+
+extension ComposerRecipientsTableViewCell: TagTextFieldDelegate {
+
+	func tagedTextFieldShouldBeginEditing(textField: TagTextField) -> Bool {
+		return true
+	}
+
+	func tagedTextFieldDidReturn(textField: TagTextField) {}
+
+	func tagedTextFieldDidBeginEditing(textField: TagTextField) {
+	}
+
+	func tagedTextFieldDidEndEditing(textField: TagTextField) {
+		hideAutocompletionTableView()
+	}
+
+	func tagedTextFieldShouldInserTag(textField: TagTextField, tag: String) -> Bool {
+		return true
+	}
+
+	func tagedTextFieldShouldSwitchToCollapsedMode(textField: TagTextField) -> Bool {
+		return true
+	}
+
+	func tagedTextField(textField: TagTextField, didDeleteTag tag: TagModel) {}
+
+	func tagedTextField(textField: TagTextField, didChangeContentSize contentSize: CGSize) {
+		if contentSize.height <= Constants.maxHeight {
+			delegate?.composerRecipientsTableViewCellNeedsUpdateSize(self)
+		}
+	}
 }

@@ -26,8 +26,6 @@ class MessageComposeViewController: BaseViewController {
 
 	private var searchTimer: NSTimer?
 
-	private var readDate: NSDate?
-
 	private var reuseIdetifiersDataSource = [ComposerRecipientsTableViewCell.reuseIdentifier, ComposerTopicTableViewCell.reuseIdentifier, ComposerBodyTableViewCell.reuseIdentifier]
 
     private var messageModel = NewMessageModel()
@@ -153,6 +151,9 @@ extension MessageComposeViewController: UITableViewDataSource {
 extension MessageComposeViewController: UITableViewDelegate {
 
 	func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
+		if indexPath.item == 0 {
+			return recipientsTableViewCell?.height ?? Constants.defaultCellHeight
+		}
 		let targetSize = CGSize(width: CGRectGetWidth(tableView.frame), height: Constants.defaultCellHeight)
 		if indexPath.item == 1 {
 			if let size = topicTableViewCell?.systemLayoutSizeFittingSize(targetSize, withHorizontalFittingPriority: 1000, verticalFittingPriority: 50) {
@@ -194,6 +195,11 @@ extension MessageComposeViewController: ComposerRecipientsTableViewCellDelegate 
 	func composerRecipientsTableViewCellDidBeginSearch(cell: ComposerRecipientsTableViewCell) {
 		updateAutocompletionList()
 	}
+
+	func composerRecipientsTableViewCellNeedsUpdateSize(cell: ComposerRecipientsTableViewCell) {
+		tableView.beginUpdates()
+		tableView.endUpdates()
+	}
 }
 
 // MARK: - ComposerReadDateTableViewCellDelegate
@@ -202,11 +208,11 @@ extension MessageComposeViewController: ComposerReadDateTableViewCellDelegate {
 
 	func composerReadDateTableViewCellDidPressDeleteButton(cell: ComposerReadDateTableViewCell) {
 		deleteReadDateCell()
-		readDate = nil
+		messageModel.readDate = nil
 	}
 
 	func composerReadDateTableViewCell(cell: ComposerReadDateTableViewCell, didPickDate date: NSDate) {
-		readDate = date
+		messageModel.readDate = date
 	}
 
 }

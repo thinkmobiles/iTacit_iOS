@@ -190,6 +190,8 @@ extension TagSearchControl: TagTextFieldDelegate {
 		updateClearButtonvisibility()
 	}
 
+	func tagedTextField(textField: TagTextField, didChangeContentSize contentSize: CGSize) {}
+
 }
 
 // MARK: - UITableViewDataSource

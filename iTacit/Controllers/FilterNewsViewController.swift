@@ -44,6 +44,7 @@ class FilterNewsViewController: BaseViewController {
 		searchButton.setTitle(LocalizedString("SEARCH"), forState: .Normal)
 		authorList.searchQuery = SearchAuthorQueryModel(string: searchString)
 		categoryList.searchQuery = SearchCategoryQueryModel(string: searchString)
+		tagTextField.edgeInsets = UIEdgeInsets(top: 6, left: 14, bottom: 6, right: 0)
 		tagTextField.tags = tags
 		if searchString.characters.count >= 3 {
 			reloadData()
@@ -382,5 +383,7 @@ extension FilterNewsViewController: TagTextFieldDelegate {
 
 		}
 	}
+
+	func tagedTextField(textField: TagTextField, didChangeContentSize contentSize: CGSize) {}
 
 }
