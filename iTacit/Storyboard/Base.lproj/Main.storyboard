@@ -1205,14 +1205,6 @@
                                     <segue destination="omN-PH-bnr" kind="show" id="E5p-BI-Aj2"/>
                                 </connections>
                             </button>
-                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Wve-uA-9cX">
-                                <rect key="frame" x="20" y="147" width="192" height="30"/>
-                                <animations/>
-                                <state key="normal" title="AddRecipientViewController"/>
-                                <connections>
-                                    <segue destination="Jl1-s8-ulj" kind="show" id="YD3-Ix-kM1"/>
-                                </connections>
-                            </button>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1346,7 +1338,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NyN-lo-4rS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3136" y="-360"/>
+            <point key="canvasLocation" x="3870" y="-360"/>
         </scene>
         <!--Add Recipients-->
         <scene sceneID="vSl-ot-wUJ">
@@ -1537,7 +1529,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PUO-j4-u7M" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2447" y="376"/>
+            <point key="canvasLocation" x="3136" y="-360"/>
         </scene>
         <!--Training View Controller-->
         <scene sceneID="5hZ-wF-e8j">
