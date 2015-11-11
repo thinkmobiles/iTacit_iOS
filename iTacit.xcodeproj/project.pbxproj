@@ -33,6 +33,7 @@
 		3589BF0F1BF0F3F900BC3EBF /* OrganizationsQueryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3589BF0E1BF0F3F900BC3EBF /* OrganizationsQueryModel.swift */; };
 		3591D0101BEA085500AE4884 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3591D00F1BEA085500AE4884 /* KeychainWrapper.swift */; };
 		35D6EA371BEBA2D20084559B /* AddRecipientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6EA361BEBA2D20084559B /* AddRecipientViewController.swift */; };
+		35DDBEB91BF3700F00791F79 /* ReplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DDBEB81BF3700F00791F79 /* ReplayViewController.swift */; };
 		35EE4E971BE89CBD00740A03 /* NewMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE4E961BE89CBD00740A03 /* NewMessageModel.swift */; };
 		35EE4E991BE8DDD400740A03 /* CategoriesListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE4E981BE8DDD400740A03 /* CategoriesListModel.swift */; };
 		35FF25DF1BECF62600B1D734 /* BusinessUnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FF25DE1BECF62600B1D734 /* BusinessUnitModel.swift */; };
@@ -153,6 +154,7 @@
 		3589BF0E1BF0F3F900BC3EBF /* OrganizationsQueryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationsQueryModel.swift; sourceTree = "<group>"; };
 		3591D00F1BEA085500AE4884 /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		35D6EA361BEBA2D20084559B /* AddRecipientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipientViewController.swift; sourceTree = "<group>"; };
+		35DDBEB81BF3700F00791F79 /* ReplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplayViewController.swift; sourceTree = "<group>"; };
 		35EE4E961BE89CBD00740A03 /* NewMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageModel.swift; sourceTree = "<group>"; };
 		35EE4E981BE8DDD400740A03 /* CategoriesListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesListModel.swift; sourceTree = "<group>"; };
 		35FF25DE1BECF62600B1D734 /* BusinessUnitModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessUnitModel.swift; sourceTree = "<group>"; };
@@ -409,6 +411,7 @@
 				356558DB1BEA4A41001E31D5 /* ComposerRecepientsViewController.swift */,
 				35D6EA361BEBA2D20084559B /* AddRecipientViewController.swift */,
 				40EA82571BCFD09A0029228F /* TrainingViewController.swift */,
+				35DDBEB81BF3700F00791F79 /* ReplayViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -734,6 +737,7 @@
 				405A29951BE6B2800024ADA9 /* BaseModel.swift in Sources */,
 				40EA82371BCFC8A40029228F /* AppColors.swift in Sources */,
 				40EA82001BCFA3360029228F /* AppDelegate.swift in Sources */,
+				35DDBEB91BF3700F00791F79 /* ReplayViewController.swift in Sources */,
 				353C04FB1BE2490F00C92352 /* LocalizationService.swift in Sources */,
 				40EA823F1BCFCCBE0029228F /* Extensions.swift in Sources */,
 				405A29911BE6B21A0024ADA9 /* URLParametersSerializer.swift in Sources */,
