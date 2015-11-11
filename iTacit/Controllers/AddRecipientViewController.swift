@@ -24,34 +24,41 @@ class AddRecipientViewController: BaseViewController {
     }
     
     var hiddenSections = [Int]()
-    var searchString = ""
+	var searchQuery = SearchStringModel(string: "")
+	var searchString: String {
+		get {
+			return searchQuery.string
+		}
+		set {
+			searchQuery.string = newValue
+		}
+	}
     var businessUnitsList = BusinessUnitListModel()
     var jobClassificationList = JobClassificationListModel()
     var permissionGroupList = PermissionGroupsListModel()
-    var searchQuery = OrganizationsQueryModel(string: "")
 
     private var searchTimer: NSTimer?
     
     override func viewDidLoad() {
         super.viewDidLoad()
-		searchQuery.string = searchString
+		addKeyboardObservers()
         businessUnitsList.searchQuery = searchQuery
         jobClassificationList.searchQuery = searchQuery
         permissionGroupList.searchQuery = searchQuery
 		tagSearchControl.searchText = searchString
         reloadData()
     }
+
+	deinit {
+		removeKeyboardObservers()
+	}
     
     // MARK: - IBAction
 
     @IBAction func didChangeText(sender: TagSearchControl) {
-        (businessUnitsList.searchQuery as? OrganizationsQueryModel)?.string = tagSearchControl.searchText
-        (jobClassificationList.searchQuery as? OrganizationsQueryModel)?.string = tagSearchControl.searchText
-        (permissionGroupList.searchQuery as? OrganizationsQueryModel)?.string = tagSearchControl.searchText
-        
-        if tagSearchControl.searchText.characters.count >= 3 {
-            searchTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("performSearch:"), userInfo: nil, repeats: false)
-        }
+		searchString = sender.searchText
+		searchTimer?.invalidate()
+		searchTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("performSearch:"), userInfo: nil, repeats: false)
     }
     
     @IBAction func bottomButtonAction(sender: UIButton) {
@@ -64,37 +71,18 @@ class AddRecipientViewController: BaseViewController {
         reloadData()
     }
     
-    private func reloadData() {
-        businessUnitsList.load { [weak self] (success) -> Void in
-            guard let strongSelf = self else {
-                return
-            }
-            
-            if !strongSelf.hiddenSections.contains(1) {
-                strongSelf.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
-            }
-        }
-        
-        jobClassificationList.load { [weak self] (success) -> Void in
-            guard let strongSelf = self else {
-                return
-            }
+	private func reloadData() {
+		jobClassificationList.load { [weak self] (success) -> Void in
+			self?.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
+		}
 
-            if !strongSelf.hiddenSections.contains(0) {
-                strongSelf.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
-            }
+        businessUnitsList.load { [weak self] (success) -> Void in
+            self?.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
         }
         
         permissionGroupList.load { [weak self] (success) -> Void in
-            guard let strongSelf = self else {
-                return
-            }
-
-            if !strongSelf.hiddenSections.contains(3) {
-                strongSelf.tableView.reloadSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
-            }
+			self?.tableView.reloadSections(NSIndexSet(index: 3), withRowAnimation: .Automatic)
         }
-        
     }
     
     private func showOrHideCellsIn(section section: Int) {
@@ -107,7 +95,19 @@ class AddRecipientViewController: BaseViewController {
         tableView.reloadSections(NSIndexSet(index: section), withRowAnimation: .Automatic);
     }
 
+	// MARK: - Keyboard
+
+	override func keyboardWillShowWithSize(size: CGSize, animationDuration: NSTimeInterval, animationOptions: UIViewAnimationOptions) {
+		tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: size.height, right: 0)
+	}
+
+	override func keyboardWillHideWithSize(size: CGSize, animationDuration: NSTimeInterval, animationOptions: UIViewAnimationOptions) {
+		tableView.contentInset = UIEdgeInsetsZero
+	}
+
 }
+
+// MARK: - UITableViewDelegate
 
 extension AddRecipientViewController: UITableViewDelegate {
 
@@ -150,6 +150,8 @@ extension AddRecipientViewController: UITableViewDelegate {
     }
 
 }
+
+// MARK: - UITableViewDataSource
 
 extension AddRecipientViewController: UITableViewDataSource {
 
@@ -199,6 +201,8 @@ extension AddRecipientViewController: UITableViewDataSource {
 
 }
 
+// MARK: - ComposerHeaderViewDelegate
+
 extension AddRecipientViewController: ComposerHeaderViewDelegate {
 
     func didSelectExpandButtonInHeaderView(view: UIView) {
@@ -213,26 +217,20 @@ extension AddRecipientViewController: ComposerHeaderViewDelegate {
     func didSelectCloseButtonInHeaderView(view: UIView) {
         
     }
+	
 }
+
+// MARK: - TagSearchControlDelegate
 
 extension AddRecipientViewController: TagSearchControlDelegate {
     
     func tagsSearchControlSearchButtonPressed(tagsSearchControl: TagSearchControl) {
         searchTimer?.invalidate()
-        if !tagsSearchControl.searchText.isEmpty {
-            (businessUnitsList.searchQuery as? OrganizationsQueryModel)?.string = tagSearchControl.searchText
-            (jobClassificationList.searchQuery as? OrganizationsQueryModel)?.string = tagSearchControl.searchText
-            (permissionGroupList.searchQuery as? OrganizationsQueryModel)?.string = tagSearchControl.searchText
-            
-            reloadData()
-        }
+        reloadData()
     }
     
     func tagsSearchControlDidClear(tagsSearchControl: TagSearchControl) {
-        businessUnitsList.searchQuery = OrganizationsQueryModel(string: "")
-        jobClassificationList.searchQuery = OrganizationsQueryModel(string: "")
-        permissionGroupList.searchQuery = OrganizationsQueryModel(string: "")
-
+		searchString = ""
         reloadData()
     }
     

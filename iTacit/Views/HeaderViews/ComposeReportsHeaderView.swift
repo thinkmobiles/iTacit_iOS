@@ -23,9 +23,12 @@ class ComposeReportsHeaderView: UIView {
     @IBOutlet weak var viewContainer: UIView!
     @IBOutlet weak var numberLabel: UILabel!
     @IBOutlet weak var expandImageView: UIImageView!
+	@IBOutlet weak var separatorView: UIView!
     
     weak var delegate: ComposerHeaderViewDelegate?
+
     var section: Int?
+
     var rowCount: String {
         get {
             return numberLabel.text ?? ""
@@ -34,6 +37,16 @@ class ComposeReportsHeaderView: UIView {
             numberLabel.text = newValue
         }
     }
+
+	var separatorHidden: Bool {
+		get {
+			return separatorView.hidden
+		}
+		set {
+			separatorView.hidden = newValue
+		}
+	}
+
     var isExpanded = false {
         didSet {
             if isExpanded {

@@ -8,9 +8,17 @@
 
 import Foundation
 
+protocol SearchQuery {
+
+	var stringQuery: String { get }
+
+}
+
 class SearchStringModel: SearchQuery {
 
 	var string = ""
+
+	init() {}
 
 	init(string: String) {
 		self.string = string

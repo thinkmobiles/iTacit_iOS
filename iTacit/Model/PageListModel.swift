@@ -18,21 +18,16 @@ class PageListModel<Element: BaseModel where Element: Mappable>: ListModel<Eleme
 		super.init()
 	}
 
-	var loadedAll = false
-	var isLoading = false
-
 	override func load(completion: CompletionHandler? = nil) {
-		objects = []
-		loadedAll = false
-		loadWithStartIndex(1, completion: completion)
+		loadWithStartIndex(0, completion: completion)
 	}
 
 	func loadMore(completion: CompletionHandler? = nil) {
-		loadWithStartIndex(objects.count, completion: completion)
+		let startIndex = objects.count == 1 ? 2: objects.count
+		loadWithStartIndex(startIndex, completion: completion)
 	}
 
 	private func loadWithStartIndex(startIndex: Int, completion: CompletionHandler?) {
-		isLoading = true
 		performRequest({ [unowned self] (builder) -> Void in
 			var JSON: [String: AnyObject] = ["startIndex": startIndex, "rowCount": PageListModel.requestRowCount]
 			if let searchQueryString = self.searchQuery?.stringQuery {
@@ -43,14 +38,16 @@ class PageListModel<Element: BaseModel where Element: Mappable>: ListModel<Eleme
 			builder.body = .JSON(JSON: JSON)
 			builder.contentType = .ApplicationJSON
 		}, successHandler: { [weak self] (data, request, response) -> Void in
-			self?.isLoading = false
-			if let data = data {
+			if let data = data where data.length > 0 {
 				do {
 					let JSON = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
 					if let JSONarray = JSON["responseRows"] as? [[String: AnyObject]] {
 						let newObjects: [Element] = try JSONMapper.map(JSONarray)
-						self?.objects += newObjects
-						self?.loadedAll = newObjects.count < PageListModel.requestRowCount
+						if startIndex == 0 {
+							self?.objects = newObjects
+						} else {
+							self?.objects += newObjects
+						}
 						completion?(success: true)
 					} else {
 						completion?(success: true)
@@ -59,10 +56,12 @@ class PageListModel<Element: BaseModel where Element: Mappable>: ListModel<Eleme
 					completion?(success: false)
 				}
 			} else {
+				if startIndex == 0 {
+					self?.clear()
+				}
 				completion?(success: false)
 			}
-		}) { [weak self] (error, request, response) -> Void in
-			self?.isLoading = false
+		}) { (error, request, response) -> Void in
 			completion?(success: false)
 		}
 	}

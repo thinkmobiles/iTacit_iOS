@@ -11,10 +11,6 @@ import UIKit
 let ImageCache = NSCache()
 
 class NewsViewController: UIViewController {
-    
-    private struct Constants {
-        static let CellHeight: CGFloat = 100.0
-    }
 
     @IBOutlet weak var newsTitle: UILabel!
 	@IBOutlet weak var tableView: UITableView!
@@ -79,8 +75,7 @@ class NewsViewController: UIViewController {
 		if let selectedIndexPath = tableView.indexPathForSelectedRow, newsDetailViewController = segue.destinationViewController as? NewsDetailViewController {
 			newsDetailViewController.newsModel = newsList[selectedIndexPath.row]
 		} else if let filterNewsViewController = segue.destinationViewController as? FilterNewsViewController {
-			filterNewsViewController.searchString = tagSearchControl.searchText
-			filterNewsViewController.searchModel = (newsList.searchQuery as? SearchNewsQueryModel) ?? SearchNewsQueryModel(string: "")
+			filterNewsViewController.searchModel = (newsList.searchQuery as? SearchNewsQueryModel) ?? SearchNewsQueryModel()
 			filterNewsViewController.tags = tagSearchControl.tags
 		}
 	}
@@ -89,8 +84,11 @@ class NewsViewController: UIViewController {
 
 	@IBAction func returnFromFilterViewController(segue: UIStoryboardSegue) {
 		if let filterNewsViewController = segue.sourceViewController as? FilterNewsViewController {
-			newsList.searchQuery = filterNewsViewController.searchModel
+			let searchModel = filterNewsViewController.searchModel
+			newsList.searchQuery = searchModel
+			(newsList.searchQuery as? SearchNewsQueryModel)?.string = tagSearchControl.searchText
 			tagSearchControl.tags = filterNewsViewController.tags
+			tagSearchControl.showClearButton = (searchModel.startDate != nil) || (searchModel.endDate != nil)
 			reloadData()
 		}
 	}
@@ -135,6 +133,7 @@ extension NewsViewController: UITableViewDataSource {
 
         return cell
     }
+	
 }
 
 // MARK: - TagSearchControlDelegate
@@ -144,7 +143,6 @@ extension NewsViewController: TagSearchControlDelegate {
 	func tagsSearchControlSearchButtonPressed(tagsSearchControl: TagSearchControl) {
 		searchTimer?.invalidate()
 		if !tagsSearchControl.searchText.isEmpty {
-			(newsList.searchQuery as? SearchNewsQueryModel)?.string = tagSearchControl.searchText
 			reloadData()
 		}
 	}

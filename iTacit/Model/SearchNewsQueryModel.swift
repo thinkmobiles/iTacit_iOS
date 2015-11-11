@@ -8,29 +8,22 @@
 
 import UIKit
 
-protocol SearchQuery {
+class SearchNewsQueryModel: SearchStringModel {
 
-	var stringQuery: String { get }
-
-}
-
-class SearchNewsQueryModel {
-
-	var string = ""
 	var authorIDs = [String]()
 	var categoryIDs = [String]()
     var endDate: NSDate?
     var startDate: NSDate?
 
-	init(string: String) {
-		self.string = string
-	}
+//	override init(string: String) {
+//		self.string = string
+//	}
 
-}
+//}
+//
+//extension SearchNewsQueryModel: SearchQuery {
 
-extension SearchNewsQueryModel: SearchQuery {
-
-	var stringQuery: String {
+	override var stringQuery: String {
 		var query = "search:" + string
 		if !authorIDs.isEmpty {
 			query += "|authorId:" + authorIDs.joinWithSeparator(",")

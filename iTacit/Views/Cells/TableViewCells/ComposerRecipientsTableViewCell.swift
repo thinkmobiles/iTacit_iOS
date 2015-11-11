@@ -27,6 +27,7 @@ class ComposerRecipientsTableViewCell: UITableViewCell {
 		static let userIdKey = "userId"
 		static let minHeight = CGFloat(42)
 		static let maxHeight = CGFloat(75)
+		static let userProfileCellImageOffset = CGFloat(20)
 	}
 
 	@IBOutlet weak var titleLabel: UILabel!
@@ -54,7 +55,7 @@ class ComposerRecipientsTableViewCell: UITableViewCell {
 		titleLabel.text = LocalizedString("To:")
 		layoutMargins = UIEdgeInsetsZero
 		layer.zPosition = 666
-		autocompletionTableView.registerNib(UserProfileTableViewCell.nib, forCellReuseIdentifier: UserProfileTableViewCell.ReuseIdentifier.Selectable.rawValue)
+		autocompletionTableView.registerNib(UserProfileTableViewCell.nib, forCellReuseIdentifier: UserProfileTableViewCell.reuseIdentifier)
 		autocompletionTableView.tableFooterView = UIView()
 		tagTextField.edgeInsets = UIEdgeInsets(top: 6, left: 0, bottom: 5, right: 0)
 		tagTextField.delegate = self
@@ -98,7 +99,9 @@ extension ComposerRecipientsTableViewCell: UITableViewDataSource {
 	}
 
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier(UserProfileTableViewCell.ReuseIdentifier.Selectable.rawValue, forIndexPath: indexPath) as! UserProfileTableViewCell
+		let cell = tableView.dequeueReusableCellWithIdentifier(UserProfileTableViewCell.reuseIdentifier, forIndexPath: indexPath) as! UserProfileTableViewCell
+		cell.style = .Selectable
+		cell.imageOffset = Constants.userProfileCellImageOffset
 		let userProfile = autocompletionDataSource[indexPath.row]
 		cell.fullName = userProfile.fullName
 		cell.status = userProfile.status

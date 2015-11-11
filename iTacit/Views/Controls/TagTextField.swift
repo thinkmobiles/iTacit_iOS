@@ -162,6 +162,10 @@ class TagTextField: UIControl {
 	}
 
 	func beginEditing(scrollToBottom: Bool) {
+		let shouldBeginEditing = delegate?.tagedTextFieldShouldBeginEditing(self) ?? true
+		guard shouldBeginEditing else {
+			return
+		}
 		mode = .Editing
 		collectionView.reloadData()
 		collectionView.layoutIfNeeded()

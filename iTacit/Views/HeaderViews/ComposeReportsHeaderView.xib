@@ -18,6 +18,7 @@
             <connections>
                 <outlet property="expandImageView" destination="DMf-6J-jnT" id="2tp-mA-pdg"/>
                 <outlet property="numberLabel" destination="BO0-I2-e5e" id="4Cy-Fe-Pj0"/>
+                <outlet property="separatorView" destination="wc4-d6-uAb" id="8ZI-tD-SCA"/>
                 <outlet property="titleLabel" destination="Juc-nl-cwo" id="SNb-P7-qkH"/>
                 <outlet property="viewContainer" destination="DZm-Rt-Rrf" id="w04-Eb-N0C"/>
             </connections>
@@ -30,7 +31,7 @@
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="wc4-d6-uAb">
                     <rect key="frame" x="0.0" y="0.0" width="320" height="0.0"/>
                     <animations/>
-                    <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <color key="backgroundColor" red="0.8862745098" green="0.8862745098" blue="0.89411764709999997" alpha="1" colorSpace="calibratedRGB"/>
                     <constraints>
                         <constraint firstAttribute="height" constant="0.5" id="L0w-jD-JaX"/>
                     </constraints>
@@ -127,6 +128,7 @@
                 <constraint firstAttribute="bottom" secondItem="PON-Y0-BVX" secondAttribute="bottom" id="tND-2x-C4J"/>
                 <constraint firstAttribute="trailing" secondItem="hYg-84-sas" secondAttribute="trailing" constant="5" id="yEf-DJ-pu0"/>
             </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
             <point key="canvasLocation" x="445" y="208"/>
         </view>

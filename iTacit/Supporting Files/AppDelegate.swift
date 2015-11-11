@@ -24,6 +24,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		UINavigationBar.appearance().titleTextAttributes = [NSFontAttributeName: UIFont.openSansRegular(17.0), NSForegroundColorAttributeName: AppColors.darkGray]
 		UINavigationBar.appearance().setTitleVerticalPositionAdjustment(-3.5, forBarMetrics: .Default)
 		UINavigationBar.appearance().tintColor = AppColors.darkGray
+		let barItemTextAttributes = [NSFontAttributeName: UIFont.openSansRegular(14.0), NSForegroundColorAttributeName: AppColors.gray]
+		UIBarButtonItem.appearance().setTitleTextAttributes(barItemTextAttributes, forState: .Normal)
 		UITextView.appearance().tintColor = AppColors.darkGray
 	}
 }

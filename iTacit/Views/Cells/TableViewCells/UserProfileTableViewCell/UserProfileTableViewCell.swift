@@ -18,12 +18,15 @@ class UserProfileTableViewCell: UITableViewCell {
 
 	private struct Constants {
 		static let rightButtonWidth = CGFloat(35)
+
 	}
 
-	enum ReuseIdentifier: String {
-		case Default = "UserProfileTableViewCellDefalt"
-		case Selectable = "UserProfileTableViewCellSelectable"
-		case Deletable = "UserProfileTableViewCellDeletable"
+	static let reuseIdentifier = "UserProfileTableViewCell"
+
+	enum Style {
+		case Default
+		case Selectable
+		case Deletable
 	}
 
 	@IBOutlet weak var profileImageView: UIImageView!
@@ -31,15 +34,10 @@ class UserProfileTableViewCell: UITableViewCell {
 	@IBOutlet weak var statusLabel: UILabel!
 	@IBOutlet weak var rightButton: UIButton!
 	@IBOutlet weak var rightButtonWidthConstraint: NSLayoutConstraint!
+	@IBOutlet weak var separatorView: UIView!
+	@IBOutlet weak var imageViewLeadingConstraint: NSLayoutConstraint!
 
 	weak var delegate: UserProfileTableViewCellDelegate?
-
-	var identifier: ReuseIdentifier? {
-		if let reuseIdentifierRaw = reuseIdentifier {
-			return ReuseIdentifier(rawValue: reuseIdentifierRaw)
-		}
-		return nil
-	}
 
 	var profileImage: UIImage? {
 		get {
@@ -76,6 +74,34 @@ class UserProfileTableViewCell: UITableViewCell {
 		}
 	}
 
+	var style = Style.Default {
+		didSet {
+			switch style {
+				case .Default: setUpDefault()
+				case .Selectable: setUpSelectable()
+				case .Deletable: setUpDeletable()
+			}
+		}
+	}
+
+	var separatorHidden: Bool {
+		get {
+			return separatorView.hidden
+		}
+		set {
+			separatorView.hidden = newValue
+		}
+	}
+
+	var imageOffset: CGFloat {
+		get {
+			return imageViewLeadingConstraint.constant
+		}
+		set {
+			imageViewLeadingConstraint.constant = newValue
+		}
+	}
+
 	class var nib: UINib {
 		return UINib(nibName: "UserProfileTableViewCell", bundle: nil)
 	}
@@ -85,13 +111,7 @@ class UserProfileTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
 		layoutMargins = UIEdgeInsetsZero
-		if let identifier = identifier {
-			switch identifier {
-				case .Default: setUpDefault()
-				case .Selectable: setUpSelectable()
-				case .Deletable: setUpDeletable()
-			}
-		}
+		setUpDefault()
     }
 
 	override func prepareForReuse() {
@@ -101,7 +121,9 @@ class UserProfileTableViewCell: UITableViewCell {
 
     override func setSelected(selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-		rightButton.selected = selected
+		if case .Selectable = style {
+			rightButton.selected = selected
+		}
     }
 
 	// MARK: - Private
@@ -127,7 +149,7 @@ class UserProfileTableViewCell: UITableViewCell {
 
 
 	@IBAction func rightButtonAction() {
-		if let identifier = identifier where identifier == .Deletable {
+		if case .Deletable = style {
 			delegate?.userProfileTableViewCellDidPressDeleteButton(self)
 		}
 	}

@@ -105,10 +105,13 @@ class DateValueTransformer: JSONValueTransformer {
 class HTMLToAttributedStringTransformer: JSONValueTransformer {
 
 	class func transformFromJSONValue(value: AnyObject) throws -> Any {
-		if let HTMLStringData = (value as? String)?.dataUsingEncoding(NSUTF8StringEncoding) {
-			let options: [String: AnyObject] = [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
-				NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding]
-			return try? NSAttributedString(data: HTMLStringData, options: options, documentAttributes: nil)
+		if var HTMLString = value as? String {
+			HTMLString += "<style>body{font-family: OpenSans;}</style>"
+			if let HTMLStringData = HTMLString.dataUsingEncoding(NSUTF8StringEncoding) {
+				let options: [String: AnyObject] = [NSDocumentTypeDocumentAttribute: NSHTMLTextDocumentType,
+					NSCharacterEncodingDocumentAttribute: NSUTF8StringEncoding]
+				return try? NSAttributedString(data: HTMLStringData, options: options, documentAttributes: nil)
+			}
 		}
 		throw ValueTransformerError.FailedToTransformValue(value: value)
 	}

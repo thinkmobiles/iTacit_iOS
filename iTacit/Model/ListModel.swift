@@ -39,10 +39,15 @@ class ListModel<Element: BaseModel where Element: Mappable>: BaseModel, Mappable
 			builder.path = self.path
 			builder.method = .POST
 			builder.contentType = .ApplicationJSON
-			}, successHandler: { [weak self] (data, request, response) -> Void in
-				self?.defaultSuccessHandler(data, request: request, response: response, completion: completion)
-			}) { (error, request, response) -> Void in
+		}, successHandler: { [weak self] (data, request, response) -> Void in
+			guard let data = data where data.length > 0 else {
+				self?.clear()
 				completion?(success: false)
+				return
+			}
+			self?.defaultSuccessHandler(data, request: request, response: response, completion: completion)
+		}) { (error, request, response) -> Void in
+			completion?(success: false)
 		}
 	}
 

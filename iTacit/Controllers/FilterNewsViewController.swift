@@ -34,7 +34,6 @@ class FilterNewsViewController: BaseViewController {
 	var selectedDateButtonTag: Int = 0
 
 	var searchModel = SearchNewsQueryModel(string: "")
-	var searchString = ""
 	var tags = [TagModel]()
 
     override func viewDidLoad() {
@@ -42,19 +41,15 @@ class FilterNewsViewController: BaseViewController {
 		addKeyboardObservers()
 		title = LocalizedString("Filter")
 		searchButton.setTitle(LocalizedString("SEARCH"), forState: .Normal)
-		authorList.searchQuery = SearchAuthorQueryModel(string: searchString)
-		categoryList.searchQuery = SearchCategoryQueryModel(string: searchString)
+		authorList.searchQuery = SearchAuthorQueryModel()
+		categoryList.searchQuery = SearchCategoryQueryModel()
 		tagTextField.edgeInsets = UIEdgeInsets(top: 6, left: 14, bottom: 6, right: 0)
 		tagTextField.tags = tags
-		if searchString.characters.count >= 3 {
-			reloadData()
-		}
     }
 
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		tagTextField.beginEditing()
-		tagTextField.text = searchString
 	}
 
 	deinit {
@@ -86,21 +81,11 @@ class FilterNewsViewController: BaseViewController {
 
 	private func reloadData() {
 		authorList.load { [weak self] (success) -> Void in
-			guard let strongSelf = self else {
-				return
-			}
-			if !strongSelf.hiddenSections.contains(0) {
-				strongSelf.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
-			}
+			self?.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
 		}
 
 		categoryList.load { [weak self] (success) -> Void in
-			guard let strongSelf = self else {
-				return
-			}
-			if !strongSelf.hiddenSections.contains(1) {
-				strongSelf.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
-			}
+			self?.tableView.reloadSections(NSIndexSet(index: 1), withRowAnimation: .Automatic)
 		}
 	}
 
@@ -155,6 +140,7 @@ class FilterNewsViewController: BaseViewController {
 	override func keyboardWillHideWithSize(size: CGSize, animationDuration: NSTimeInterval, animationOptions: UIViewAnimationOptions) {
 		tableView.contentInset = UIEdgeInsetsZero
 	}
+	
 }
 
 // MARK: - UITableViewDataSource
@@ -261,11 +247,9 @@ extension FilterNewsViewController: UITableViewDelegate {
 				if let index = searchModel.authorIDs.indexOf(author.id) {
 					searchModel.authorIDs.removeAtIndex(index)
 				}
-
 				if let tag = authorTagForId(author.id) {
 					tagTextField.removeTag(tag)
 				}
-
 			case 1:
 				let category = categoryList[indexPath.item]
 				if let index = searchModel.categoryIDs.indexOf(category.categoryId) {
@@ -322,6 +306,7 @@ extension FilterNewsViewController: ListHeaderViewDelegate {
     }
     
     func didSelectHeaderWithSection(headerView: UIView, button: UIButton) {
+		tagTextField.endEditing()
         selectedDateButtonTag = button.tag
         didSelectHeaderWithSection(headerView)
     }
@@ -332,7 +317,6 @@ extension FilterNewsViewController: ListHeaderViewDelegate {
 extension FilterNewsViewController: DatePickerCellDelegate {
     
     func didPressDoneButtonWithDate(date: NSDate) {
-
         if selectedDateButtonTag == 1 {
             searchModel.startDate = date
             didPressCancelButton()
@@ -375,10 +359,16 @@ extension FilterNewsViewController: TagTextFieldDelegate {
 			if let index = index {
 				tableView.deselectRowAtIndexPath(NSIndexPath(forRow: index, inSection: 0), animated: false)
 			}
+			if let index = searchModel.authorIDs.indexOf(authorId) {
+				searchModel.authorIDs.removeAtIndex(index)
+			}
 		} else if let categoryId = tag.attributes?[Constants.categoryIdKey] where !hiddenSections.contains(1) {
 			let index = categoryList.objects.indexOf { $0.categoryId == categoryId }
 			if let index = index {
 				tableView.deselectRowAtIndexPath(NSIndexPath(forRow: index, inSection: 1), animated: false)
+			}
+			if let index = searchModel.categoryIDs.indexOf(categoryId) {
+				searchModel.categoryIDs.removeAtIndex(index)
 			}
 
 		}

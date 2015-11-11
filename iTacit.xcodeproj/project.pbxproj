@@ -27,10 +27,8 @@
 		3563B9A21BD12E40009BE696 /* DescriptionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563B9A11BD12E40009BE696 /* DescriptionTableViewCell.swift */; };
 		3563B9A41BD12FAE009BE696 /* HashtagAndTimeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563B9A31BD12FAE009BE696 /* HashtagAndTimeTableViewCell.swift */; };
 		356558DC1BEA4A41001E31D5 /* ComposerRecepientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356558DB1BEA4A41001E31D5 /* ComposerRecepientsViewController.swift */; };
-		356558DE1BEA50DF001E31D5 /* UserRecepientTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 356558DD1BEA50DF001E31D5 /* UserRecepientTableViewCell.swift */; };
 		3584F0F01BEB48CC00AB20B2 /* ComposeReportsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3584F0EF1BEB48CC00AB20B2 /* ComposeReportsHeaderView.swift */; };
 		3584F0F21BEB48DD00AB20B2 /* ComposeReportsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3584F0F11BEB48DD00AB20B2 /* ComposeReportsHeaderView.xib */; };
-		3589BF0F1BF0F3F900BC3EBF /* OrganizationsQueryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3589BF0E1BF0F3F900BC3EBF /* OrganizationsQueryModel.swift */; };
 		3591D0101BEA085500AE4884 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3591D00F1BEA085500AE4884 /* KeychainWrapper.swift */; };
 		35D6EA371BEBA2D20084559B /* AddRecipientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6EA361BEBA2D20084559B /* AddRecipientViewController.swift */; };
 		35EE4E971BE89CBD00740A03 /* NewMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE4E961BE89CBD00740A03 /* NewMessageModel.swift */; };
@@ -147,10 +145,8 @@
 		3563B9A11BD12E40009BE696 /* DescriptionTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DescriptionTableViewCell.swift; sourceTree = "<group>"; };
 		3563B9A31BD12FAE009BE696 /* HashtagAndTimeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HashtagAndTimeTableViewCell.swift; sourceTree = "<group>"; };
 		356558DB1BEA4A41001E31D5 /* ComposerRecepientsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerRecepientsViewController.swift; sourceTree = "<group>"; };
-		356558DD1BEA50DF001E31D5 /* UserRecepientTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserRecepientTableViewCell.swift; sourceTree = "<group>"; };
 		3584F0EF1BEB48CC00AB20B2 /* ComposeReportsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeReportsHeaderView.swift; sourceTree = "<group>"; };
 		3584F0F11BEB48DD00AB20B2 /* ComposeReportsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeReportsHeaderView.xib; sourceTree = "<group>"; };
-		3589BF0E1BF0F3F900BC3EBF /* OrganizationsQueryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OrganizationsQueryModel.swift; sourceTree = "<group>"; };
 		3591D00F1BEA085500AE4884 /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		35D6EA361BEBA2D20084559B /* AddRecipientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipientViewController.swift; sourceTree = "<group>"; };
 		35EE4E961BE89CBD00740A03 /* NewMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageModel.swift; sourceTree = "<group>"; };
@@ -276,6 +272,93 @@
 			name = MailComposerTableViewCells;
 			sourceTree = "<group>";
 		};
+		401938571BF33D810030212F /* News Flow */ = {
+			isa = PBXGroup;
+			children = (
+				40EA82531BCFD06F0029228F /* NewsViewController.swift */,
+				3563B9991BD11B43009BE696 /* NewsDetailViewController.swift */,
+				3DEFA79C1BD5040A00596A2B /* FilterNewsViewController.swift */,
+			);
+			name = "News Flow";
+			sourceTree = "<group>";
+		};
+		401938581BF33D910030212F /* Messages Flow */ = {
+			isa = PBXGroup;
+			children = (
+				40EA82551BCFD07B0029228F /* MessagesViewController.swift */,
+				351E8EC01BE36B1500690669 /* MessageComposeViewController.swift */,
+				35D6EA361BEBA2D20084559B /* AddRecipientViewController.swift */,
+				356558DB1BEA4A41001E31D5 /* ComposerRecepientsViewController.swift */,
+			);
+			name = "Messages Flow";
+			sourceTree = "<group>";
+		};
+		401938591BF33D9A0030212F /* Training Flow */ = {
+			isa = PBXGroup;
+			children = (
+				40EA82571BCFD09A0029228F /* TrainingViewController.swift */,
+			);
+			name = "Training Flow";
+			sourceTree = "<group>";
+		};
+		4019385A1BF33DAF0030212F /* Dashboard */ = {
+			isa = PBXGroup;
+			children = (
+				40EA82511BCFD05F0029228F /* DashboardViewController.swift */,
+			);
+			name = Dashboard;
+			sourceTree = "<group>";
+		};
+		4019385B1BF33DE70030212F /* Tab Bar Controller */ = {
+			isa = PBXGroup;
+			children = (
+				40EA824F1BCFCE120029228F /* TabBarController.swift */,
+				353C05041BE25D0800C92352 /* MainTabBarController.swift */,
+			);
+			name = "Tab Bar Controller";
+			sourceTree = "<group>";
+		};
+		4019385C1BF354FB0030212F /* News Flow Models */ = {
+			isa = PBXGroup;
+			children = (
+				407A7DA51BE77D67006A9DB0 /* NewsModel.swift */,
+				407A7DA91BE77D85006A9DB0 /* NewsListModel.swift */,
+				355FF06D1BDF697B0070B600 /* SearchNewsQueryModel.swift */,
+				4056D5831BE8E7AC0076B970 /* AuthorModel.swift */,
+				4056D57F1BE8D49D0076B970 /* AuthorListModel.swift */,
+				4056D5811BE8D5050076B970 /* SearchAuthorQueryModel.swift */,
+				3DD1FF311BE39FC0005C4339 /* NewsCategoryModel.swift */,
+				35EE4E981BE8DDD400740A03 /* CategoriesListModel.swift */,
+				4056D5851BE8E8B20076B970 /* SearchCategoryQueryModel.swift */,
+			);
+			name = "News Flow Models";
+			sourceTree = "<group>";
+		};
+		4019385D1BF3609E0030212F /* Messages Flow Models */ = {
+			isa = PBXGroup;
+			children = (
+				35EE4E961BE89CBD00740A03 /* NewMessageModel.swift */,
+				35FF25DE1BECF62600B1D734 /* BusinessUnitModel.swift */,
+				35FF25E01BECF93C00B1D734 /* BusinessUnitListModel.swift */,
+				35FF25E21BECFAB300B1D734 /* JobClassificationModel.swift */,
+				35FF25E41BECFBDC00B1D734 /* JobClassificationListModel.swift */,
+				35FF25E61BECFDF400B1D734 /* PermissionGroupsModel.swift */,
+				35FF25E81BECFE6300B1D734 /* PermissionGroupsListModel.swift */,
+			);
+			name = "Messages Flow Models";
+			sourceTree = "<group>";
+		};
+		4019385E1BF361070030212F /* Base Models */ = {
+			isa = PBXGroup;
+			children = (
+				405A29941BE6B2800024ADA9 /* BaseModel.swift */,
+				407A7DA71BE77D75006A9DB0 /* ListModel.swift */,
+				4080B7DF1BF2333600965749 /* PageListModel.swift */,
+				4056D5871BE8E8E50076B970 /* SearchStringModel.swift */,
+			);
+			name = "Base Models";
+			sourceTree = "<group>";
+		};
 		40440DAB1BDBCC9C00FADF6E /* CollectionViewCells */ = {
 			isa = PBXGroup;
 			children = (
@@ -398,17 +481,11 @@
 			isa = PBXGroup;
 			children = (
 				351E8EC21BE36E8C00690669 /* BaseViewController.swift */,
-				40EA824F1BCFCE120029228F /* TabBarController.swift */,
-				353C05041BE25D0800C92352 /* MainTabBarController.swift */,
-				40EA82511BCFD05F0029228F /* DashboardViewController.swift */,
-				40EA82531BCFD06F0029228F /* NewsViewController.swift */,
-				3563B9991BD11B43009BE696 /* NewsDetailViewController.swift */,
-				3DEFA79C1BD5040A00596A2B /* FilterNewsViewController.swift */,
-				40EA82551BCFD07B0029228F /* MessagesViewController.swift */,
-				351E8EC01BE36B1500690669 /* MessageComposeViewController.swift */,
-				356558DB1BEA4A41001E31D5 /* ComposerRecepientsViewController.swift */,
-				35D6EA361BEBA2D20084559B /* AddRecipientViewController.swift */,
-				40EA82571BCFD09A0029228F /* TrainingViewController.swift */,
+				4019385B1BF33DE70030212F /* Tab Bar Controller */,
+				4019385A1BF33DAF0030212F /* Dashboard */,
+				401938571BF33D810030212F /* News Flow */,
+				401938581BF33D910030212F /* Messages Flow */,
+				401938591BF33D9A0030212F /* Training Flow */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -416,32 +493,14 @@
 		40EA821B1BCFC40C0029228F /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				405A29941BE6B2800024ADA9 /* BaseModel.swift */,
-				407A7DA71BE77D75006A9DB0 /* ListModel.swift */,
-				4080B7DF1BF2333600965749 /* PageListModel.swift */,
+				4056D5891BE903FD0076B970 /* TagModel.swift */,
 				407A7DA31BE778BD006A9DB0 /* ServerErrorModel.swift */,
 				405A29921BE6B2710024ADA9 /* TokenModel.swift */,
-				407A7DA51BE77D67006A9DB0 /* NewsModel.swift */,
-				407A7DA91BE77D85006A9DB0 /* NewsListModel.swift */,
-				355FF06D1BDF697B0070B600 /* SearchNewsQueryModel.swift */,
+				4019385E1BF361070030212F /* Base Models */,
+				4019385C1BF354FB0030212F /* News Flow Models */,
+				4019385D1BF3609E0030212F /* Messages Flow Models */,
 				400327D41BE817FC00D2BEAE /* UserProfileModel.swift */,
 				408C22CF1BF1070D00DA25A3 /* UserProfileListModel.swift */,
-				4056D5831BE8E7AC0076B970 /* AuthorModel.swift */,
-				4056D57F1BE8D49D0076B970 /* AuthorListModel.swift */,
-				4056D5811BE8D5050076B970 /* SearchAuthorQueryModel.swift */,
-				3DD1FF311BE39FC0005C4339 /* NewsCategoryModel.swift */,
-				35EE4E981BE8DDD400740A03 /* CategoriesListModel.swift */,
-				4056D5851BE8E8B20076B970 /* SearchCategoryQueryModel.swift */,
-				4056D5871BE8E8E50076B970 /* SearchStringModel.swift */,
-				35EE4E961BE89CBD00740A03 /* NewMessageModel.swift */,
-				4056D5891BE903FD0076B970 /* TagModel.swift */,
-				35FF25DE1BECF62600B1D734 /* BusinessUnitModel.swift */,
-				35FF25E01BECF93C00B1D734 /* BusinessUnitListModel.swift */,
-				35FF25E21BECFAB300B1D734 /* JobClassificationModel.swift */,
-				35FF25E41BECFBDC00B1D734 /* JobClassificationListModel.swift */,
-				35FF25E61BECFDF400B1D734 /* PermissionGroupsModel.swift */,
-				35FF25E81BECFE6300B1D734 /* PermissionGroupsListModel.swift */,
-				3589BF0E1BF0F3F900BC3EBF /* OrganizationsQueryModel.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -567,7 +626,6 @@
 				3563B99F1BD12CCB009BE696 /* TitleTableViewCell.swift */,
 				3563B9971BD117BE009BE696 /* UserTableViewCell.swift */,
 				40C5612E1BEBBF82005BAAED /* ResizableTableViewCell.swift */,
-				356558DD1BEA50DF001E31D5 /* UserRecepientTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -705,7 +763,6 @@
 				407A7DA41BE778BD006A9DB0 /* ServerErrorModel.swift in Sources */,
 				4056D5821BE8D5050076B970 /* SearchAuthorQueryModel.swift in Sources */,
 				402B633E1BEDFC2300372201 /* TimeAgoExtension.swift in Sources */,
-				356558DE1BEA50DF001E31D5 /* UserRecepientTableViewCell.swift in Sources */,
 				400327D51BE817FC00D2BEAE /* UserProfileModel.swift in Sources */,
 				408C22D01BF1070D00DA25A3 /* UserProfileListModel.swift in Sources */,
 				40EA82561BCFD07B0029228F /* MessagesViewController.swift in Sources */,
@@ -771,7 +828,6 @@
 				35FF25E91BECFE6300B1D734 /* PermissionGroupsListModel.swift in Sources */,
 				3563B99E1BD1288A009BE696 /* ImageTableViewCell.swift in Sources */,
 				3DEFA79F1BD5056E00596A2B /* DatePickerTableViewCell.swift in Sources */,
-				3589BF0F1BF0F3F900BC3EBF /* OrganizationsQueryModel.swift in Sources */,
 				4080B7E01BF2333600965749 /* PageListModel.swift in Sources */,
 				40440DC51BDBCE2F00FADF6E /* TagTextField.swift in Sources */,
 				4056D5791BE8B14E0076B970 /* AssetsIndetifier.swift in Sources */,
@@ -905,6 +961,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/iTacit/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iTacit.iTacit;
@@ -918,6 +975,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/iTacit/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iTacit.iTacit;

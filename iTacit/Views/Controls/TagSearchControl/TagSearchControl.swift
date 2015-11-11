@@ -71,6 +71,11 @@ class TagSearchControl: UIControl {
 	}
 
 	var isEditing = false
+	var showClearButton = false {
+		didSet {
+			updateClearButtonvisibility()
+		}
+	}
 
 	// MARK: - Lifecycle
 
@@ -107,6 +112,7 @@ class TagSearchControl: UIControl {
 		hideAutocompletionTableView()
 		updateClearButtonvisibility()
 		delegate?.tagsSearchControlDidClear(self)
+		showClearButton = false
 	}
 	
 	@IBAction func didChangeInputText(sender: TagTextField) {
@@ -117,7 +123,7 @@ class TagSearchControl: UIControl {
 	// MARK: - Private
 
 	private func updateClearButtonvisibility() {
-		clearButton.hidden = searchText.isEmpty && tags.isEmpty
+		clearButton.hidden = searchText.isEmpty && tags.isEmpty && !showClearButton
 	}
 
 	private func setUp() {
@@ -218,6 +224,7 @@ extension TagSearchControl: UITableViewDelegate {
 
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		searchText = autocompletionDataSource[indexPath.row]
+		sendActionsForControlEvents(.EditingChanged)
 		hideAutocompletionTableView()
 	}
 
