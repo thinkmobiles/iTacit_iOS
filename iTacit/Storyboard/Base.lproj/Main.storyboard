@@ -869,15 +869,15 @@
                                 <rect key="frame" x="0.0" y="64" width="600" height="69"/>
                                 <subviews>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_private" translatesAutoresizingMaskIntoConstraints="NO" id="cc8-mh-kK9">
-                                        <rect key="frame" x="25" y="20" width="30" height="30"/>
+                                        <rect key="frame" x="25" y="22" width="25" height="25"/>
                                         <animations/>
                                         <constraints>
                                             <constraint firstAttribute="width" secondItem="cc8-mh-kK9" secondAttribute="height" multiplier="1:1" id="Tcy-ea-vhH"/>
-                                            <constraint firstAttribute="width" constant="30" id="wfx-T6-UHv"/>
+                                            <constraint firstAttribute="width" constant="25" id="wfx-T6-UHv"/>
                                         </constraints>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hRe-4P-yy3">
-                                        <rect key="frame" x="71" y="26" width="513" height="18"/>
+                                        <rect key="frame" x="66" y="26" width="518" height="18"/>
                                         <animations/>
                                         <fontDescription key="fontDescription" name="OpenSans-Italic" family="Open Sans" pointSize="15"/>
                                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
