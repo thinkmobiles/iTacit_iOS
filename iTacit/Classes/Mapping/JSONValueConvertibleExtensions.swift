@@ -61,7 +61,7 @@ extension NSDate: JSONValueConvertible {
 	class var ISO8601DateFormatter: NSDateFormatter {
 		let formatter = NSDateFormatter()
 		formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-		formatter.dateFormat = "YYYY-MM-dd'T'HH:mm:ssZZZ"
+		formatter.dateFormat = "YYYY-MM-dd'T'HH:mm:sszzz"
 		return formatter
 	}
 

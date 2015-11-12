@@ -9,9 +9,14 @@
 import UIKit
 
 class MessagesViewController: UIViewController {
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
+
+    let messageList = MessageListModel()
+
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		messageList.load { success in
+			print(self)
+		}
+	}
 
 }
