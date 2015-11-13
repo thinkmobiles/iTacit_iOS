@@ -96,7 +96,7 @@ extension NewsDetailViewController: UITableViewDataSource {
         } else {
             let cell = tableView.dequeueReusableCellWithIdentifier("UserTableViewCell", forIndexPath: indexPath) as! UserTableViewCell
             
-            if let imageURL = userModel.imageUrl {
+            if let imageURL = userModel.imageURL {
                 ImageCacheManager.sharedInstance.imageForURL(imageURL, completion: { (image) -> Void in
                     cell.userAvatarImageView.image = image
                 })

@@ -106,7 +106,7 @@ extension ComposerRecipientsTableViewCell: UITableViewDataSource {
 		cell.fullName = userProfile.fullName
 		cell.status = userProfile.status
 
-		if let imageURL = userProfile.imageUrl {
+		if let imageURL = userProfile.imageURL {
 			cell.imageDownloadTask?.cancel()
 			cell.imageDownloadTask = ImageCacheManager.sharedInstance.imageForURL(imageURL, completion: { (image) -> Void in
 				cell.profileImage = image
