@@ -20,6 +20,7 @@
 		353C04FE1BE253BF00C92352 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = 353C05001BE253BF00C92352 /* Localizable.strings */; };
 		353C05051BE25D0800C92352 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353C05041BE25D0800C92352 /* MainTabBarController.swift */; };
 		355FF06E1BDF697B0070B600 /* SearchNewsQueryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 355FF06D1BDF697B0070B600 /* SearchNewsQueryModel.swift */; };
+		35610F5D1BF4BAB6007BE698 /* MessageDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35610F5C1BF4BAB6007BE698 /* MessageDetailViewController.swift */; };
 		3563B9981BD117BE009BE696 /* UserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563B9971BD117BE009BE696 /* UserTableViewCell.swift */; };
 		3563B99A1BD11B43009BE696 /* NewsDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563B9991BD11B43009BE696 /* NewsDetailViewController.swift */; };
 		3563B99E1BD1288A009BE696 /* ImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3563B99D1BD12889009BE696 /* ImageTableViewCell.swift */; };
@@ -30,6 +31,7 @@
 		3584F0F01BEB48CC00AB20B2 /* ComposeReportsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3584F0EF1BEB48CC00AB20B2 /* ComposeReportsHeaderView.swift */; };
 		3584F0F21BEB48DD00AB20B2 /* ComposeReportsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3584F0F11BEB48DD00AB20B2 /* ComposeReportsHeaderView.xib */; };
 		3591D0101BEA085500AE4884 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3591D00F1BEA085500AE4884 /* KeychainWrapper.swift */; };
+		35A3498A1BF5E6C100CD0DEB /* MessageDetailCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A349891BF5E6C100CD0DEB /* MessageDetailCommentTableViewCell.swift */; };
 		35D6EA371BEBA2D20084559B /* AddRecipientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6EA361BEBA2D20084559B /* AddRecipientViewController.swift */; };
 		35DDBEB91BF3700F00791F79 /* ReplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DDBEB81BF3700F00791F79 /* ReplayViewController.swift */; };
 		35DDBEBB1BF3951D00791F79 /* CreateReplyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DDBEBA1BF3951D00791F79 /* CreateReplyModel.swift */; };
@@ -140,6 +142,7 @@
 		353C05031BE253D900C92352 /* fr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = fr; path = fr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		353C05041BE25D0800C92352 /* MainTabBarController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
 		355FF06D1BDF697B0070B600 /* SearchNewsQueryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchNewsQueryModel.swift; sourceTree = "<group>"; };
+		35610F5C1BF4BAB6007BE698 /* MessageDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDetailViewController.swift; sourceTree = "<group>"; };
 		3563B9971BD117BE009BE696 /* UserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserTableViewCell.swift; sourceTree = "<group>"; };
 		3563B9991BD11B43009BE696 /* NewsDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsDetailViewController.swift; sourceTree = "<group>"; };
 		3563B99D1BD12889009BE696 /* ImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImageTableViewCell.swift; sourceTree = "<group>"; };
@@ -150,6 +153,7 @@
 		3584F0EF1BEB48CC00AB20B2 /* ComposeReportsHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeReportsHeaderView.swift; sourceTree = "<group>"; };
 		3584F0F11BEB48DD00AB20B2 /* ComposeReportsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeReportsHeaderView.xib; sourceTree = "<group>"; };
 		3591D00F1BEA085500AE4884 /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
+		35A349891BF5E6C100CD0DEB /* MessageDetailCommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDetailCommentTableViewCell.swift; sourceTree = "<group>"; };
 		35D6EA361BEBA2D20084559B /* AddRecipientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipientViewController.swift; sourceTree = "<group>"; };
 		35DDBEB81BF3700F00791F79 /* ReplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplayViewController.swift; sourceTree = "<group>"; };
 		35DDBEBA1BF3951D00791F79 /* CreateReplyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateReplyModel.swift; sourceTree = "<group>"; };
@@ -294,6 +298,7 @@
 				35D6EA361BEBA2D20084559B /* AddRecipientViewController.swift */,
 				356558DB1BEA4A41001E31D5 /* ComposerRecepientsViewController.swift */,
 				35DDBEB81BF3700F00791F79 /* ReplayViewController.swift */,
+				35610F5C1BF4BAB6007BE698 /* MessageDetailViewController.swift */,
 			);
 			name = "Messages Flow";
 			sourceTree = "<group>";
@@ -632,6 +637,7 @@
 				3563B99F1BD12CCB009BE696 /* TitleTableViewCell.swift */,
 				3563B9971BD117BE009BE696 /* UserTableViewCell.swift */,
 				40C5612E1BEBBF82005BAAED /* ResizableTableViewCell.swift */,
+				35A349891BF5E6C100CD0DEB /* MessageDetailCommentTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -814,11 +820,13 @@
 				4056D5841BE8E7AC0076B970 /* AuthorModel.swift in Sources */,
 				355FF06E1BDF697B0070B600 /* SearchNewsQueryModel.swift in Sources */,
 				3591D0101BEA085500AE4884 /* KeychainWrapper.swift in Sources */,
+				35610F5D1BF4BAB6007BE698 /* MessageDetailViewController.swift in Sources */,
 				3563B99A1BD11B43009BE696 /* NewsDetailViewController.swift in Sources */,
 				4056D57D1BE8D1C80076B970 /* BaseViewController.swift in Sources */,
 				405A298A1BE6B21A0024ADA9 /* JSONValueConvertible.swift in Sources */,
 				405A298E1BE6B21A0024ADA9 /* PropertyDescriptor.swift in Sources */,
 				35EE4E971BE89CBD00740A03 /* NewMessageModel.swift in Sources */,
+				35A3498A1BF5E6C100CD0DEB /* MessageDetailCommentTableViewCell.swift in Sources */,
 				356558DC1BEA4A41001E31D5 /* ComposerRecepientsViewController.swift in Sources */,
 				40440DBC1BDBCD0E00FADF6E /* CollectionViewLeftAlignedFlowLayout.swift in Sources */,
 				405A298D1BE6B21A0024ADA9 /* Mappable.swift in Sources */,
