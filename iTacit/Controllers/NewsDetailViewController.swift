@@ -29,7 +29,7 @@ class NewsDetailViewController: BaseViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         self.tableView.contentInset = UIEdgeInsetsMake(0, 0, 30, 0)
 
-		userModel.userId = newsModel?.authorId ?? ""
+		userModel.id = newsModel?.authorId ?? ""
 
 		newsModel?.load({ [weak self] (success) -> Void in
             self?.tableView.reloadRowsAtIndexPaths([NSIndexPath(forRow: 2, inSection: 0)], withRowAnimation: .Automatic)

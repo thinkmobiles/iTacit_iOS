@@ -30,11 +30,19 @@ class ListModel<Element: BaseModel where Element: Mappable>: BaseModel, Mappable
 	}
 
 	var searchQuery: SearchQuery?
+	var JSONObject: [String: AnyObject]?
 
 	func load(completion: CompletionHandler? = nil) {
 		performRequest({ [unowned self] (builder) -> Void in
+			var JSON = [String: AnyObject]()
 			if let searchQueryString = self.searchQuery?.stringQuery {
-				builder.body = .JSON(JSON: ["query": searchQueryString])
+				JSON["query"] = searchQueryString
+			}
+			if let JSONObject = self.JSONObject {
+				JSON = JSON + JSONObject
+			}
+			if !JSON.isEmpty {
+				builder.body = .JSON(JSON: JSON)
 			}
 			builder.path = self.path
 			builder.method = .POST

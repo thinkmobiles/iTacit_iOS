@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		293D30E21666773A722BAD04 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293D3D8D5FB143EB07670E7E /* MessageModel.swift */; };
+		293D3D16DC673B329BDD8E7E /* MessageListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293D3EDD221DE1D0BEFA736D /* MessageListModel.swift */; };
 		350644C31BD7783300D51D5C /* ListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350644C21BD7783300D51D5C /* ListHeaderView.swift */; };
 		350644C61BD7788400D51D5C /* ListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 350644C51BD7788400D51D5C /* ListHeaderView.xib */; };
 		350644C81BD784A800D51D5C /* DateHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350644C71BD784A800D51D5C /* DateHeaderView.swift */; };
@@ -123,6 +125,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		293D3D8D5FB143EB07670E7E /* MessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
+		293D3EDD221DE1D0BEFA736D /* MessageListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageListModel.swift; sourceTree = "<group>"; };
 		350644C21BD7783300D51D5C /* ListHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListHeaderView.swift; sourceTree = "<group>"; };
 		350644C51BD7788400D51D5C /* ListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListHeaderView.xib; sourceTree = "<group>"; };
 		350644C71BD784A800D51D5C /* DateHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHeaderView.swift; sourceTree = "<group>"; };
@@ -355,6 +359,8 @@
 				35FF25E61BECFDF400B1D734 /* PermissionGroupsModel.swift */,
 				35FF25E81BECFE6300B1D734 /* PermissionGroupsListModel.swift */,
 				35DDBEBA1BF3951D00791F79 /* CreateReplyModel.swift */,
+				293D3D8D5FB143EB07670E7E /* MessageModel.swift */,
+				293D3EDD221DE1D0BEFA736D /* MessageListModel.swift */,
 			);
 			name = "Messages Flow Models";
 			sourceTree = "<group>";
@@ -852,6 +858,8 @@
 				350644C31BD7783300D51D5C /* ListHeaderView.swift in Sources */,
 				4056D57B1BE8B4F30076B970 /* Fonts.swift in Sources */,
 				407A7DA81BE77D75006A9DB0 /* ListModel.swift in Sources */,
+				293D30E21666773A722BAD04 /* MessageModel.swift in Sources */,
+				293D3D16DC673B329BDD8E7E /* MessageListModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

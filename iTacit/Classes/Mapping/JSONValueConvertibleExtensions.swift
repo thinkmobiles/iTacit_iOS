@@ -40,6 +40,23 @@ extension Double: JSONValueConvertible {
 	}
 }
 
+extension Bool: JSONValueConvertible {
+
+	static func convertFromJSONValue(value: AnyObject) throws -> Bool {
+		if let number = value as? NSNumber {
+			return number.boolValue
+		} else if let string = value as? NSString {
+			return string.boolValue
+		}
+		throw JSONValueConvertibleError.FailedToConvertValue(value: value, type: Bool.self)
+	}
+
+	func JSONValue() throws -> AnyObject {
+		return NSNumber(bool: self)
+	}
+
+}
+
 extension String: JSONValueConvertible {
 
 	static func convertFromJSONValue(value: AnyObject) throws -> String {
@@ -61,7 +78,7 @@ extension NSDate: JSONValueConvertible {
 	class var ISO8601DateFormatter: NSDateFormatter {
 		let formatter = NSDateFormatter()
 		formatter.locale = NSLocale(localeIdentifier: "en_US_POSIX")
-		formatter.dateFormat = "YYYY-MM-dd'T'HH:mm:ssZZZ"
+		formatter.dateFormat = "YYYY-MM-dd'T'HH:mm:sszzz"
 		return formatter
 	}
 
@@ -70,7 +87,7 @@ extension NSDate: JSONValueConvertible {
 			return self.init(timeIntervalSince1970: date.timeIntervalSince1970)
 		}
 
-		throw JSONValueConvertibleError.FailedToConvertValue(value: value, type: String.self)
+		throw JSONValueConvertibleError.FailedToConvertValue(value: value, type: NSDate.self)
 	}
 
 	func JSONValue() throws -> AnyObject {
@@ -85,7 +102,7 @@ extension NSURL: JSONValueConvertible {
 			return URL
 		}
 
-		throw JSONValueConvertibleError.FailedToConvertValue(value: value, type: String.self)
+		throw JSONValueConvertibleError.FailedToConvertValue(value: value, type: NSURL.self)
 	}
 
 	func JSONValue() throws -> AnyObject {

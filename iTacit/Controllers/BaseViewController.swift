@@ -67,4 +67,5 @@ class BaseViewController: UIViewController {
     func keyboardWillHideWithSize(size: CGSize, animationDuration: NSTimeInterval, animationOptions: UIViewAnimationOptions) {
         
     }
+
 }

@@ -15,6 +15,7 @@ class UserProfileModel: BaseModel, Mappable {
         return "/mobile/1.0/employee/profile"
     }
     
+    var id = ""
     var userId = ""
     var lastName = ""
     var firstName = ""
@@ -34,7 +35,7 @@ class UserProfileModel: BaseModel, Mappable {
         performRequest({ (builder) -> Void in
             builder.path = self.path
             builder.method = .POST
-			builder.body = .JSON(JSON: ["id":  self.userId])
+			builder.body = .JSON(JSON: ["id":  self.id])
 			builder.contentType = .ApplicationJSON
         }, successHandler: { [weak self] (data, request, response) -> Void in
             self?.defaultSuccessHandler(data, request: request, response: response, completion: completion)
@@ -48,18 +49,20 @@ class UserProfileModel: BaseModel, Mappable {
     func setValue<T>(value: T, forKey key: String) throws {
         try validateKey(key, typeOfValue: T.self)
         switch key {
-        case "userId": userId <<- value
-        case "lastName": lastName <<- value
-        case "firstName": firstName <<- value
-        case "imageUrl": imageUrl <<- value
-        case "role": role <<- value
-        case "businessUnit": businessUnit <<- value
-        default: break
+            case "id": id <<- value
+            case "userId": userId <<- value
+            case "lastName": lastName <<- value
+            case "firstName": firstName <<- value
+            case "imageUrl": imageUrl <<- value
+            case "role": role <<- value
+            case "businessUnit": businessUnit <<- value
+            default: break
         }
     }
     
     class var mapping: [PropertyDescriptor] {
-        return [PropertyDescriptor(propertyName: "userId", JSONKey: "id"),
+        return [PropertyDescriptor(propertyName: "id"),
+                PropertyDescriptor(propertyName: "userId"),
 			PropertyDescriptor(propertyName: "lastName", JSONKey: "nameLast"),
             PropertyDescriptor(propertyName: "firstName", JSONKey: "nameFirst"),
             PropertyDescriptor(propertyName: "imageUrl"),

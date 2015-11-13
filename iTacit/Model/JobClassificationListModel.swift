@@ -13,8 +13,9 @@ class JobClassificationListModel<T: JobClassificationModel>: ListModel<T> {
     override var path: String {
         return "/mobile/1.0/organization/jobClassification"
     }
-    
-    required init() {
-        super.init()
-    }
+
+	required init() {
+		super.init()
+	}
+
 }
