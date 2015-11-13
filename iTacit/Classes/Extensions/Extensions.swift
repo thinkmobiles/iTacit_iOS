@@ -27,6 +27,20 @@ extension UIView {
 		maskLayer.path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: radii).CGPath
 		layer.mask = maskLayer
 	}
+
+	var borderColor: UIColor? {
+		get {
+			if let borderColor = layer.borderColor {
+				return UIColor(CGColor: borderColor)
+			} else {
+				return nil
+			}
+		}
+		set {
+			layer.borderColor = newValue?.CGColor ?? UIColor.clearColor().CGColor
+		}
+	}
+	
 }
 
 // MARK: - UIColor+Hex

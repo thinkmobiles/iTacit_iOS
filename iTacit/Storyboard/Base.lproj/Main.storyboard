@@ -47,6 +47,9 @@
             <string>OpenSans</string>
             <string>OpenSans</string>
             <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
+            <string>OpenSans</string>
         </mutableArray>
     </customFonts>
     <scenes>
@@ -1330,25 +1333,68 @@
                                     <constraint firstAttribute="height" constant="52" id="PJK-xj-FgU"/>
                                 </constraints>
                                 <inset key="scrollIndicatorInsets" minX="0.0" minY="0.0" maxX="7" maxY="0.0"/>
-                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="0.0" minimumInteritemSpacing="7" id="oqi-Gg-f71">
+                                <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="7" minimumInteritemSpacing="7" id="oqi-Gg-f71">
                                     <size key="itemSize" width="65" height="39"/>
                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="7" minY="0.0" maxX="7" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MessageGroupCollectionViewCell" id="bYQ-Bp-eoa">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MessageCategoryCollectionViewCell" id="bYQ-Bp-eoa" customClass="MessageCategoryCollectionViewCell" customModule="iTacit" customModuleProvider="target">
                                         <rect key="frame" x="7" y="7" width="65" height="39"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                                             <rect key="frame" x="0.0" y="0.0" width="65" height="39"/>
                                             <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ALL" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bc5-cv-gIf">
+                                                    <rect key="frame" x="0.0" y="4" width="65" height="17"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
+                                                    <color key="textColor" red="0.6588235294117647" green="0.6588235294117647" blue="0.6588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="666" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p9m-uK-qxq">
+                                                    <rect key="frame" x="0.0" y="17" width="65" height="18"/>
+                                                    <animations/>
+                                                    <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="13"/>
+                                                    <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
                                             <animations/>
                                             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </view>
                                         <animations/>
+                                        <constraints>
+                                            <constraint firstItem="bc5-cv-gIf" firstAttribute="leading" secondItem="bYQ-Bp-eoa" secondAttribute="leading" id="341-ih-Vck"/>
+                                            <constraint firstAttribute="trailing" secondItem="p9m-uK-qxq" secondAttribute="trailing" id="8fm-kO-f9u"/>
+                                            <constraint firstAttribute="trailing" secondItem="bc5-cv-gIf" secondAttribute="trailing" id="9iS-I7-NYe"/>
+                                            <constraint firstItem="bc5-cv-gIf" firstAttribute="top" secondItem="bYQ-Bp-eoa" secondAttribute="top" constant="4" id="DJo-OR-6cI"/>
+                                            <constraint firstAttribute="bottom" secondItem="p9m-uK-qxq" secondAttribute="bottom" constant="4" id="Xxa-JS-bON"/>
+                                            <constraint firstItem="p9m-uK-qxq" firstAttribute="leading" secondItem="bYQ-Bp-eoa" secondAttribute="leading" id="aEa-6x-4Sx"/>
+                                        </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="color" keyPath="borderColor">
+                                                <color key="value" red="0.6588235294117647" green="0.6588235294117647" blue="0.6588235294117647" alpha="1" colorSpace="calibratedRGB"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="8"/>
+                                            </userDefinedRuntimeAttribute>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.borderWidth">
+                                                <real key="value" value="0.5"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
+                                        <connections>
+                                            <outlet property="countLabel" destination="p9m-uK-qxq" id="Pxb-rN-jy2"/>
+                                            <outlet property="nameLabel" destination="bc5-cv-gIf" id="GYK-H8-atQ"/>
+                                        </connections>
                                     </collectionViewCell>
                                 </cells>
+                                <connections>
+                                    <outlet property="dataSource" destination="xNy-t3-6KO" id="Cfw-pI-C4i"/>
+                                    <outlet property="delegate" destination="xNy-t3-6KO" id="Ny4-ya-KTj"/>
+                                </connections>
                             </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="138" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="xSe-wn-sfp">
                                 <rect key="frame" x="0.0" y="112" width="600" height="488"/>
@@ -1517,6 +1563,13 @@
                                     <constraint firstAttribute="height" constant="1" id="QvH-PO-922"/>
                                 </constraints>
                             </view>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="I NEED TO ACT ON" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rwR-IB-DhP">
+                                <rect key="frame" x="253" y="47" width="95" height="15"/>
+                                <animations/>
+                                <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="11"/>
+                                <color key="textColor" red="0.31372549019607843" green="0.31372549019607843" blue="0.3411764705882353" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
                         </subviews>
                         <animations/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1534,13 +1587,18 @@
                             <constraint firstItem="oLN-It-j38" firstAttribute="leading" secondItem="3zR-Vs-DAH" secondAttribute="leading" id="W6o-hM-ag4"/>
                             <constraint firstAttribute="trailing" secondItem="JNI-a1-6yx" secondAttribute="trailing" id="bhc-PR-cdi"/>
                             <constraint firstItem="xSe-wn-sfp" firstAttribute="leading" secondItem="3zR-Vs-DAH" secondAttribute="leading" id="fHt-qt-xsg"/>
+                            <constraint firstItem="rwR-IB-DhP" firstAttribute="centerX" secondItem="3zR-Vs-DAH" secondAttribute="centerX" id="gcx-oM-Yfu"/>
                             <constraint firstItem="xSe-wn-sfp" firstAttribute="top" secondItem="Ccb-jK-Iyx" secondAttribute="bottom" id="oOR-8z-Q9p"/>
                             <constraint firstAttribute="trailing" secondItem="vzA-bU-Xhh" secondAttribute="trailing" id="pm3-le-0L7"/>
+                            <constraint firstItem="rwR-IB-DhP" firstAttribute="top" secondItem="8DG-zl-26e" secondAttribute="bottom" constant="-6" id="ueY-NB-BNH"/>
                             <constraint firstAttribute="trailing" secondItem="Ccb-jK-Iyx" secondAttribute="trailing" id="v89-LE-KzJ"/>
                             <constraint firstAttribute="trailing" secondItem="xSe-wn-sfp" secondAttribute="trailing" id="wrG-lH-Oi4"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="categoryFullNameLabel" destination="rwR-IB-DhP" id="bVr-9v-aHb"/>
+                        <outlet property="collectionView" destination="oLN-It-j38" id="Q50-YH-hoY"/>
+                        <outlet property="screenTitleLabel" destination="8DG-zl-26e" id="Trn-1Q-oLA"/>
                         <outlet property="tableView" destination="xSe-wn-sfp" id="iVf-EI-sI1"/>
                     </connections>
                 </viewController>
