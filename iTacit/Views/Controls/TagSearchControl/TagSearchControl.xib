@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TagSearchControl" customModule="iTacit" customModuleProvider="target" propertyAccessControl="none">
@@ -13,6 +13,7 @@
                 <outlet property="searchButton" destination="veR-vc-eJl" id="8xK-qq-KXi"/>
                 <outlet property="searchButtonLeadingConstraint" destination="VXP-mH-06Z" id="MIH-T9-aZu"/>
                 <outlet property="tagTextField" destination="dGg-QI-POo" id="19M-nm-LT5"/>
+                <outlet property="topSeparatorView" destination="Q0Q-q5-DTH" id="3gr-o8-dIK"/>
                 <outlet property="trailingConstraint" destination="FVH-7M-23g" id="cPZ-2e-fVj"/>
             </connections>
         </placeholder>
@@ -41,7 +42,6 @@
                             <animations/>
                             <constraints>
                                 <constraint firstAttribute="width" constant="26" id="3kl-BI-iU1"/>
-                                <constraint firstAttribute="height" constant="39" id="56C-NR-rnV"/>
                             </constraints>
                             <state key="normal" image="btn_close"/>
                             <connections>
@@ -52,7 +52,6 @@
                             <rect key="frame" x="0.0" y="0.0" width="35" height="39"/>
                             <animations/>
                             <constraints>
-                                <constraint firstAttribute="height" constant="39" id="GTa-aq-Nge"/>
                                 <constraint firstAttribute="width" constant="35" id="LjX-9r-css"/>
                             </constraints>
                             <inset key="contentEdgeInsets" minX="14" minY="0.0" maxX="0.0" maxY="0.0"/>
@@ -76,11 +75,13 @@
                         <constraint firstItem="okI-q9-0Od" firstAttribute="leading" secondItem="dGg-QI-POo" secondAttribute="trailing" id="0xu-c0-hIw"/>
                         <constraint firstAttribute="trailing" secondItem="okI-q9-0Od" secondAttribute="trailing" id="2Gf-JP-pJ1"/>
                         <constraint firstAttribute="bottom" secondItem="dGg-QI-POo" secondAttribute="bottom" id="9jE-Pt-McD"/>
+                        <constraint firstAttribute="bottom" secondItem="okI-q9-0Od" secondAttribute="bottom" id="9s8-g8-K8W"/>
                         <constraint firstItem="dGg-QI-POo" firstAttribute="top" secondItem="iaL-oW-bjQ" secondAttribute="top" id="NIP-Bn-Voh"/>
                         <constraint firstItem="veR-vc-eJl" firstAttribute="leading" secondItem="iaL-oW-bjQ" secondAttribute="leading" id="VXP-mH-06Z"/>
-                        <constraint firstAttribute="bottom" secondItem="okI-q9-0Od" secondAttribute="bottom" id="XGA-tR-uQ0"/>
                         <constraint firstItem="dGg-QI-POo" firstAttribute="leading" secondItem="veR-vc-eJl" secondAttribute="trailing" constant="8" id="bfl-AU-2y7"/>
                         <constraint firstItem="veR-vc-eJl" firstAttribute="top" secondItem="iaL-oW-bjQ" secondAttribute="top" id="dc3-Xq-bS8"/>
+                        <constraint firstAttribute="bottom" secondItem="veR-vc-eJl" secondAttribute="bottom" id="g1M-56-4ik"/>
+                        <constraint firstItem="okI-q9-0Od" firstAttribute="top" secondItem="iaL-oW-bjQ" secondAttribute="top" id="uBh-Rm-uE4"/>
                     </constraints>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kej-aT-bpq" userLabel="Bottom Line View">

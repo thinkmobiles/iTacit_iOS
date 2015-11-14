@@ -90,6 +90,7 @@ class MessageTableViewCell: UITableViewCell {
 
 	func setMessageBody(body: NSAttributedString) {
 		let paragraph = NSMutableParagraphStyle()
+		paragraph.lineBreakMode = .ByTruncatingTail
 		paragraph.lineHeightMultiple = Constants.bodyLabelLineHeightMultiple
 		let mutableBody = NSMutableAttributedString(attributedString: body)
 		mutableBody.addAttribute(NSParagraphStyleAttributeName, value: paragraph, range: NSMakeRange(0, (body.string as NSString).length))

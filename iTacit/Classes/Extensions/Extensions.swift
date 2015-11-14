@@ -14,7 +14,7 @@ extension UIView {
     
     func addEdgePinnedSubview(view: UIView) {
         view.frame = bounds
-        addSubview(view)
+		insertSubview(view, atIndex: 0)
         view.translatesAutoresizingMaskIntoConstraints = false
         let bindings = ["view": view]
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-0.0-[view]-0.0-|", options: NSLayoutFormatOptions(), metrics: nil, views: bindings))

@@ -152,6 +152,10 @@ extension NewsViewController: TagSearchControlDelegate {
 		reloadData()
 	}
 
+	func tagsSearchControlShouldBecameActive(tagsSearchControl: TagSearchControl) -> Bool {
+		return true
+	}
+
 }
 
 // MARK: UIScrollViewDelegate

@@ -12,6 +12,7 @@ protocol TagSearchControlDelegate: class {
 
 	func tagsSearchControlSearchButtonPressed(tagsSearchControl: TagSearchControl)
 	func tagsSearchControlDidClear(tagsSearchControl: TagSearchControl)
+	func tagsSearchControlShouldBecameActive(tagsSearchControl: TagSearchControl) -> Bool
 
 }
 
@@ -30,7 +31,9 @@ class TagSearchControl: UIControl {
 	@IBOutlet weak var autocompletionTableView: UITableView!
 	@IBOutlet weak var autocompletionTableViewHeightConstraint: NSLayoutConstraint!
 	@IBOutlet weak var trailingConstraint: NSLayoutConstraint!
+	@IBOutlet weak var topSeparatorView: UIView!
 
+	var allowActivation = true
 	var autocompletionDataSource = [SuggestedItem]()
 	let numberOfVisibleCells = 3
 
@@ -71,9 +74,19 @@ class TagSearchControl: UIControl {
 	}
 
 	var isEditing = false
+
 	var showClearButton = false {
 		didSet {
 			updateClearButtonvisibility()
+		}
+	}
+
+	var topSeparatorHidden: Bool {
+		get {
+			return topSeparatorView.hidden
+		}
+		set {
+			topSeparatorView.hidden = newValue
 		}
 	}
 
@@ -102,7 +115,10 @@ class TagSearchControl: UIControl {
 	// MARK: - IBActions
 
 	@IBAction func activateSearch() {
-		beginEditing()
+		let shouldBecomeActive = delegate?.tagsSearchControlShouldBecameActive(self) ?? true
+		if shouldBecomeActive {
+			beginEditing()
+		}
 	}
 
 	@IBAction func clear() {
@@ -166,7 +182,7 @@ class TagSearchControl: UIControl {
 extension TagSearchControl: TagTextFieldDelegate {
 
 	func tagedTextFieldShouldBeginEditing(textField: TagTextField) -> Bool {
-		return tags.isEmpty
+		return tags.isEmpty && allowActivation
 	}
 
 	func tagedTextFieldDidReturn(textField: TagTextField) {

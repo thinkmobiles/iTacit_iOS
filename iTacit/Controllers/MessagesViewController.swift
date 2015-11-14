@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MessagesViewController: UIViewController {
+class MessagesViewController: BaseViewController {
 
 	private struct Constants {
 		static let estimatedRowHeight = CGFloat(113)
@@ -16,36 +16,64 @@ class MessagesViewController: UIViewController {
 
 	@IBOutlet weak var screenTitleLabel: UILabel!
 	@IBOutlet weak var categoryFullNameLabel: UILabel!
+	@IBOutlet weak var tagSearchControl: TagSearchControl!
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var collectionView: UICollectionView!
+	@IBOutlet weak var cancelSearchButton: UIButton!
+	@IBOutlet weak var tagSearchControlTopConstraint: NSLayoutConstraint!
+
+	private var searchControlActive = false
 
 	var messageCategories = [MessageCategoryModel]()
     let messageList = MessageListModel()
 	let searchQuery = MessageSearchQueryModel()
+
+	// MARK: - LifeCycle
 
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setUpTableView()
 		setUpMessageGroupList()
 		messageList.searchQuery = searchQuery
+		setUpSearchControl()
 		reloadData()
 	}
 
-	func setUpTableView() {
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		addKeyboardObservers()
+		clearSelection()
+	}
+
+	override func viewWillDisappear(animated: Bool) {
+		super.viewWillDisappear(animated)
+		removeKeyboardObservers()
+	}
+
+	// MARK: - Private
+
+	private func setUpTableView() {
 		tableView.tableFooterView = UIView()
 		tableView.estimatedRowHeight = Constants.estimatedRowHeight
 		tableView.rowHeight = UITableViewAutomaticDimension
 	}
 
-	func setUpMessageGroupList() {
+	private func setUpMessageGroupList() {
 		messageCategories = [MessageCategoryModel(category: .All),
 							 MessageCategoryModel(category: .ActOn),
 							 MessageCategoryModel(category: .Waiting),
 							 MessageCategoryModel(category: .ToMe),
 							 MessageCategoryModel(category: .FromMe)]
+		categoryFullNameLabel.text = messageCategories[0].category.fullName
 	}
 
-	func reloadData() {
+	private func setUpSearchControl() {
+		tagSearchControl.delegate = self
+		tagSearchControl.tagTextField.edgeInsets = UIEdgeInsets(top: 3, left: 0, bottom: 3, right: 0)
+		tagSearchControl.allowActivation = false
+	}
+
+	private func reloadData() {
 		messageList.load { [weak self] success in
 			guard let strongSelf = self else {
 				return
@@ -59,6 +87,75 @@ class MessagesViewController: UIViewController {
 		}
 	}
 
+	private func clearSelection() {
+		if let selectedIndexPath = tableView.indexPathForSelectedRow {
+			tableView.deselectRowAtIndexPath(selectedIndexPath, animated: false)
+		}
+	}
+
+	private func activateSearchControl() {
+		guard !searchControlActive else {
+			return
+		}
+
+		searchControlActive = true
+
+		view.layoutIfNeeded()
+		UIView.animateKeyframesWithDuration(0.25, delay: 0.0, options: .CalculationModeLinear, animations: { [unowned self] in
+			UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.8) { [unowned self] in
+				self.tagSearchControlTopConstraint.constant += CGRectGetHeight(self.tagSearchControl.frame)
+				self.view.layoutIfNeeded()
+			}
+
+			UIView.addKeyframeWithRelativeStartTime(0.8, relativeDuration: 0.2) { [unowned self] in
+				self.tagSearchControl.topSeparatorView.alpha = 1.0
+				self.cancelSearchButton.alpha = 1.0
+			}
+		}) { [unowned self] finished in
+			self.tagSearchControl.allowActivation = true
+			self.tagSearchControl.beginEditing()
+		}
+	}
+
+	private func disactivateSearchControl() {
+		guard searchControlActive else {
+			return
+		}
+
+		searchControlActive = false
+		tagSearchControl.allowActivation = false
+		tagSearchControl.clear()
+
+		view.layoutIfNeeded()
+		UIView.animateKeyframesWithDuration(0.25, delay: 0.0, options: .CalculationModeLinear, animations: { [unowned self] in
+			UIView.addKeyframeWithRelativeStartTime(0.0, relativeDuration: 0.2) { [unowned self] in
+				self.tagSearchControl.topSeparatorView.alpha = 0.0
+				self.cancelSearchButton.alpha = 0.0
+			}
+
+			UIView.addKeyframeWithRelativeStartTime(0.2, relativeDuration: 0.8) { [unowned self] in
+				self.tagSearchControlTopConstraint.constant -= CGRectGetHeight(self.tagSearchControl.frame)
+				self.view.layoutIfNeeded()
+			}
+		}, completion: nil)
+	}
+
+	// MARK: - Keyboard
+
+	override func keyboardWillShowWithSize(size: CGSize, animationDuration: NSTimeInterval, animationOptions: UIViewAnimationOptions) {
+		tableView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: size.height, right: 0)
+	}
+
+	override func keyboardWillHideWithSize(size: CGSize, animationDuration: NSTimeInterval, animationOptions: UIViewAnimationOptions) {
+		tableView.contentInset = UIEdgeInsetsZero
+	}
+
+	// MARK: - IBActions
+
+	@IBAction func cancelSearchAction() {
+		disactivateSearchControl()
+	}
+
 }
 
 // MARK: - UITableViewDataSource
@@ -70,7 +167,7 @@ extension MessagesViewController: UITableViewDataSource {
 	}
 
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-		let cell = tableView.dequeueReusableCellWithIdentifier("MessageTableViewCell", forIndexPath: indexPath) as! MessageTableViewCell
+		let cell = tableView.dequeueReusableCellWithIdentifier(MessageTableViewCell.reuseIdentifier, forIndexPath: indexPath) as! MessageTableViewCell
 		let message = messageList[indexPath.item]
 		cell.configureWithMessage(message)
 		return cell
@@ -111,6 +208,25 @@ extension MessagesViewController: UICollectionViewDelegate {
 		searchQuery.category = categoryModel.category
 		messageList.lastTask?.cancel()
 		reloadData()
+	}
+
+}
+
+// MARK: - TagSearchControlDelegate
+
+extension MessagesViewController: TagSearchControlDelegate {
+
+	func tagsSearchControlSearchButtonPressed(tagsSearchControl: TagSearchControl) {
+
+	}
+
+	func tagsSearchControlDidClear(tagsSearchControl: TagSearchControl) {
+
+	}
+
+	func tagsSearchControlShouldBecameActive(tagsSearchControl: TagSearchControl) -> Bool {
+		activateSearchControl()
+		return false
 	}
 
 }
