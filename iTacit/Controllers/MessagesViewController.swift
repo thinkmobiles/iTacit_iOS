@@ -23,6 +23,7 @@ class MessagesViewController: BaseViewController {
 	@IBOutlet weak var tagSearchControlTopConstraint: NSLayoutConstraint!
 
 	private var searchControlActive = false
+	private var searchTimer: NSTimer?
 
 	var messageCategories = [MessageCategoryModel]()
     let messageList = MessageListModel()
@@ -73,7 +74,7 @@ class MessagesViewController: BaseViewController {
 		tagSearchControl.allowActivation = false
 	}
 
-	private func reloadData() {
+	func reloadData() {
 		messageList.load { [weak self] success in
 			guard let strongSelf = self else {
 				return
@@ -156,6 +157,12 @@ class MessagesViewController: BaseViewController {
 		disactivateSearchControl()
 	}
 
+	@IBAction func didChangeSearchString(sender: TagSearchControl) {
+		searchQuery.string = sender.searchText.characters.count >= 3 ? tagSearchControl.searchText: ""
+		searchTimer?.invalidate()
+		searchTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("reloadData"), userInfo: nil, repeats: false)
+	}
+
 }
 
 // MARK: - UITableViewDataSource
@@ -217,11 +224,14 @@ extension MessagesViewController: UICollectionViewDelegate {
 extension MessagesViewController: TagSearchControlDelegate {
 
 	func tagsSearchControlSearchButtonPressed(tagsSearchControl: TagSearchControl) {
-
+		searchTimer?.invalidate()
+		reloadData()
 	}
 
 	func tagsSearchControlDidClear(tagsSearchControl: TagSearchControl) {
-
+		searchTimer?.invalidate()
+		searchQuery.string = ""
+		reloadData()
 	}
 
 	func tagsSearchControlShouldBecameActive(tagsSearchControl: TagSearchControl) -> Bool {
