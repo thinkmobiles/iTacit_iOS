@@ -10,6 +10,7 @@
 		293D30E21666773A722BAD04 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293D3D8D5FB143EB07670E7E /* MessageModel.swift */; };
 		293D30F05DBB57474A9AF330 /* MessageCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293D32093613973975BFCCC2 /* MessageCategoryModel.swift */; };
 		293D3169AA27E45448B8D05C /* MessageSearchQueryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293D3388661F1E0C3B0C7FF9 /* MessageSearchQueryModel.swift */; };
+		293D3469EA6DBA92C0C662D7 /* SwipableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293D35E78A8D075A70117B0B /* SwipableTableViewCell.swift */; };
 		293D3854460CEF2AB74371C6 /* MessageCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293D3FA48E72707523A5E49C /* MessageCategory.swift */; };
 		293D3D16DC673B329BDD8E7E /* MessageListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293D3EDD221DE1D0BEFA736D /* MessageListModel.swift */; };
 		350644C31BD7783300D51D5C /* ListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350644C21BD7783300D51D5C /* ListHeaderView.swift */; };
@@ -131,6 +132,7 @@
 /* Begin PBXFileReference section */
 		293D32093613973975BFCCC2 /* MessageCategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCategoryModel.swift; sourceTree = "<group>"; };
 		293D3388661F1E0C3B0C7FF9 /* MessageSearchQueryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSearchQueryModel.swift; sourceTree = "<group>"; };
+		293D35E78A8D075A70117B0B /* SwipableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipableTableViewCell.swift; sourceTree = "<group>"; };
 		293D3D8D5FB143EB07670E7E /* MessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		293D3EDD221DE1D0BEFA736D /* MessageListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageListModel.swift; sourceTree = "<group>"; };
 		293D3FA48E72707523A5E49C /* MessageCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCategory.swift; sourceTree = "<group>"; };
@@ -655,6 +657,7 @@
 				3563B9971BD117BE009BE696 /* UserTableViewCell.swift */,
 				40C5612E1BEBBF82005BAAED /* ResizableTableViewCell.swift */,
 				4012FFB01BF608CE002B1711 /* MessageTableViewCell.swift */,
+				293D35E78A8D075A70117B0B /* SwipableTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -876,6 +879,7 @@
 				293D3169AA27E45448B8D05C /* MessageSearchQueryModel.swift in Sources */,
 				293D3854460CEF2AB74371C6 /* MessageCategory.swift in Sources */,
 				293D30F05DBB57474A9AF330 /* MessageCategoryModel.swift in Sources */,
+				293D3469EA6DBA92C0C662D7 /* SwipableTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
