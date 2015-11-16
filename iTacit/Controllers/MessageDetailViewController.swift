@@ -30,6 +30,7 @@ class MessageDetailViewController: BaseViewController {
     @IBOutlet weak var replyToAllButton: UIButton!
     @IBOutlet weak var replyToUserButton: UIButton!
     @IBOutlet weak var showMoreTextView: ShowMoreTextView!
+    @IBOutlet weak var confirmationButton: UIButton!
     
     var replyToUserName: String {
         get {
@@ -40,17 +41,21 @@ class MessageDetailViewController: BaseViewController {
         }
     }
 
-	var message: MessageModel!
+    var message: MessageModel!
+    static let readToDateFormatter: NSDateFormatter = {
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MMM.dd"
+        return dateFormatter
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         prepareTableViewHeight()
-        prepareUI()
-        
         showMoreTextView.maximumNumberOfLines = 3
         showMoreTextView.shouldTrim = true
         showMoreTextView.attributedTrimText = NSMutableAttributedString(string: "...")
+        prepareUI()
     }
     
     override func didReceiveMemoryWarning() {
@@ -72,10 +77,29 @@ class MessageDetailViewController: BaseViewController {
     // MARK: - Private
     
     private func prepareUI() {
-        titleLabel.sizeToFit()
+        if let sender = message.sender {
+            replyToUserName = sender.firstName
+            titleLabel.text = sender.firstName + " " + sender.lastName
+            titleLabel.sizeToFit()
+        }
+        
+        switch message.readRequirementType {
+        case .NotRequired:
+            setConfirmed()
+        case .RequiredTo(let date):
+            headerConfirmToDate.text = LocalizedString("Please confirm By ") + MessageDetailViewController.readToDateFormatter.stringFromDate(date)
+            confirmViewTitle.text = LocalizedString("I HAVE READ THIS")
+            confirmViewTitle.textColor = AppColors.blue
+            confirmViewImage.image = nil
+            confirmViewImage.layer.cornerRadius = 9.0
+            confirmViewImage.layer.borderColor = AppColors.blue.CGColor
+            confirmViewImage.layer.borderWidth = 0.5
+        }
+        
+        timeAgoLabel.text = message.sendDate?.timeAgoStringRepresentation()
+        headerTitle.text = message.subject
         confirmationView.layer.borderColor = AppColors.gray.CGColor
         replyToAllButton.setTitle(" " + LocalizedString("All"), forState: .Normal)
-        replyToUserName = "sdfs"
     }
     
     private func prepareTableViewHeight() {
@@ -87,13 +111,11 @@ class MessageDetailViewController: BaseViewController {
     }
     
     private func setConfirmed() {
-        confirmViewTitle.text = LocalizedString("I HAVE READ THIS")
-        confirmViewTitle.textColor = AppColors.blue
-        confirmViewImage.image = nil
-        confirmViewImage.layer.cornerRadius = 9.0
-        confirmViewImage.layer.borderColor = AppColors.blue.CGColor
-        confirmViewImage.layer.borderWidth = 0.5
+        confirmationButton.hidden = true
         headerConfirmToDate.text = ""
+        confirmViewImage.image = UIImage(assetsIndetifier: AssetsIndetifier.ConfirmedIcon)
+        confirmViewTitle.text = LocalizedString("Confirmed read on ") /*+ MessageDetailViewController.readToDateFormatter.stringFromDate(date)*/
+        confirmViewImage.layer.borderColor = AppColors.lightGray.CGColor
     }
     
 }
