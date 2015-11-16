@@ -13,7 +13,7 @@ class MessageListModel<T: MessageModel>: ListModel<T> {
 
 	required init() {
 		super.init()
-		JSONObject = ["fields": "DEFAULT|sender"]
+		JSONObject = ["fields": "DEFAULT|sender", "sort": "sendDateTime:D"]
 	}
 
 }

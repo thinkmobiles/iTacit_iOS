@@ -27,6 +27,8 @@ class BaseModel: NSObject {
 
 	var pendingRequests = [NSURLRequest: (SuccessHandler?, FailureHandler?)]()
 
+	var lastTask: NSURLSessionTask?
+
 	required override init() {
 		super.init()
 		NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("didLoginNotification:"), name: Notifications.DidLoginNotification, object: nil)
@@ -37,7 +39,7 @@ class BaseModel: NSObject {
 	}
 
 	func performRequest(request: NSURLRequest, successHandler: SuccessHandler?, failureHandler: FailureHandler?) {
-		let task = NSURLSession.sharedSession().dataTaskWithRequest(request) { [weak self] (data, response, error) -> Void in
+		lastTask = NSURLSession.sharedSession().dataTaskWithRequest(request) { [weak self] (data, response, error) -> Void in
 			dispatch_async(dispatch_get_main_queue()) { () -> Void in
 				guard let HTTPResponse = response as? NSHTTPURLResponse else {
 					failureHandler?(error: error, request: request, response: nil)
@@ -58,7 +60,7 @@ class BaseModel: NSObject {
 				}
 			}
 		}
-		task.resume()
+		lastTask?.resume()
 	}
 
 	func performRequest(requestBuilderClosure: (builder: URLRequestBuilder) -> Void, requiresToken: Bool = true, successHandler: SuccessHandler?, failureHandler: FailureHandler?) {

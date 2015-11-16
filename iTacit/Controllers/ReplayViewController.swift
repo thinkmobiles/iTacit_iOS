@@ -29,8 +29,6 @@ class ReplayViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-
-        // Do any additional setup after loading the view.
         addKeyboardObservers()
         prepareUI()
     }
@@ -39,11 +37,6 @@ class ReplayViewController: BaseViewController {
         removeKeyboardObservers()
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
-    
     // MARK: - Keyboard
     
     override func keyboardWillShowWithSize(size: CGSize, animationDuration: NSTimeInterval, animationOptions: UIViewAnimationOptions) {
@@ -58,12 +51,12 @@ class ReplayViewController: BaseViewController {
         bottomConstraint.constant = Constants.defaultBottomHeight
     }
     
-    //// MARK: - Private
-    
+    // MARK: - Private
+
     func prepareUI() {
         switch replayType {
-        case .ToAll:prepareAppearenceWithUser(nil)
-        case .ToUser(let user): prepareAppearenceWithUser(user)
+            case .ToAll: prepareAppearenceWithUser(nil)
+            case .ToUser(let user): prepareAppearenceWithUser(user)
         }
     }
     
@@ -78,15 +71,5 @@ class ReplayViewController: BaseViewController {
             spacingImageLabel.constant = 0
         }
     }
-
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
+	
 }

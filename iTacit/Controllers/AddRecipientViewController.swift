@@ -233,5 +233,9 @@ extension AddRecipientViewController: TagSearchControlDelegate {
 		searchString = ""
         reloadData()
     }
+
+	func tagsSearchControlShouldBecameActive(tagsSearchControl: TagSearchControl) -> Bool {
+		return true
+	}
     
 }

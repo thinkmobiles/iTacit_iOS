@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		293D30E21666773A722BAD04 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293D3D8D5FB143EB07670E7E /* MessageModel.swift */; };
+		293D30F05DBB57474A9AF330 /* MessageCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293D32093613973975BFCCC2 /* MessageCategoryModel.swift */; };
+		293D3169AA27E45448B8D05C /* MessageSearchQueryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293D3388661F1E0C3B0C7FF9 /* MessageSearchQueryModel.swift */; };
+		293D3469EA6DBA92C0C662D7 /* SwipableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293D35E78A8D075A70117B0B /* SwipableTableViewCell.swift */; };
+		293D3854460CEF2AB74371C6 /* MessageCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293D3FA48E72707523A5E49C /* MessageCategory.swift */; };
 		293D3D16DC673B329BDD8E7E /* MessageListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293D3EDD221DE1D0BEFA736D /* MessageListModel.swift */; };
 		350644C31BD7783300D51D5C /* ListHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350644C21BD7783300D51D5C /* ListHeaderView.swift */; };
 		350644C61BD7788400D51D5C /* ListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 350644C51BD7788400D51D5C /* ListHeaderView.xib */; };
@@ -51,6 +55,9 @@
 		3DEFA79F1BD5056E00596A2B /* DatePickerTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFA79E1BD5056E00596A2B /* DatePickerTableViewCell.swift */; };
 		3DEFA7A11BD50B7100596A2B /* CategoryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DEFA7A01BD50B7100596A2B /* CategoryTableViewCell.swift */; };
 		400327D51BE817FC00D2BEAE /* UserProfileModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 400327D41BE817FC00D2BEAE /* UserProfileModel.swift */; };
+		4012FFAF1BF5D4CE002B1711 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4012FFAE1BF5D4CE002B1711 /* SeparatorView.swift */; };
+		4012FFB11BF608CE002B1711 /* MessageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4012FFB01BF608CE002B1711 /* MessageTableViewCell.swift */; };
+		4012FFB31BF62EA1002B1711 /* MessageCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4012FFB21BF62EA1002B1711 /* MessageCategoryCollectionViewCell.swift */; };
 		4014E4EC1BD0FD4F00837B3E /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4014E4EB1BD0FD4F00837B3E /* NewsTableViewCell.swift */; };
 		402B633E1BEDFC2300372201 /* TimeAgoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402B633D1BEDFC2300372201 /* TimeAgoExtension.swift */; };
 		40440DB21BDBCC9C00FADF6E /* InputCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40440DAD1BDBCC9C00FADF6E /* InputCollectionViewCell.swift */; };
@@ -126,8 +133,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		293D32093613973975BFCCC2 /* MessageCategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCategoryModel.swift; sourceTree = "<group>"; };
+		293D3388661F1E0C3B0C7FF9 /* MessageSearchQueryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSearchQueryModel.swift; sourceTree = "<group>"; };
+		293D35E78A8D075A70117B0B /* SwipableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipableTableViewCell.swift; sourceTree = "<group>"; };
 		293D3D8D5FB143EB07670E7E /* MessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		293D3EDD221DE1D0BEFA736D /* MessageListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageListModel.swift; sourceTree = "<group>"; };
+		293D3FA48E72707523A5E49C /* MessageCategory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCategory.swift; sourceTree = "<group>"; };
 		350644C21BD7783300D51D5C /* ListHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ListHeaderView.swift; sourceTree = "<group>"; };
 		350644C51BD7788400D51D5C /* ListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListHeaderView.xib; sourceTree = "<group>"; };
 		350644C71BD784A800D51D5C /* DateHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHeaderView.swift; sourceTree = "<group>"; };
@@ -176,6 +187,9 @@
 		3DEFA79E1BD5056E00596A2B /* DatePickerTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DatePickerTableViewCell.swift; sourceTree = "<group>"; };
 		3DEFA7A01BD50B7100596A2B /* CategoryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryTableViewCell.swift; sourceTree = "<group>"; };
 		400327D41BE817FC00D2BEAE /* UserProfileModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileModel.swift; sourceTree = "<group>"; };
+		4012FFAE1BF5D4CE002B1711 /* SeparatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
+		4012FFB01BF608CE002B1711 /* MessageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageTableViewCell.swift; sourceTree = "<group>"; };
+		4012FFB21BF62EA1002B1711 /* MessageCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		4014E4EB1BD0FD4F00837B3E /* NewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
 		402B633D1BEDFC2300372201 /* TimeAgoExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeAgoExtension.swift; sourceTree = "<group>"; };
 		40440DAD1BDBCC9C00FADF6E /* InputCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -363,6 +377,9 @@
 				35DDBEBA1BF3951D00791F79 /* CreateReplyModel.swift */,
 				293D3D8D5FB143EB07670E7E /* MessageModel.swift */,
 				293D3EDD221DE1D0BEFA736D /* MessageListModel.swift */,
+				293D3388661F1E0C3B0C7FF9 /* MessageSearchQueryModel.swift */,
+				293D3FA48E72707523A5E49C /* MessageCategory.swift */,
+				293D32093613973975BFCCC2 /* MessageCategoryModel.swift */,
 			);
 			name = "Messages Flow Models";
 			sourceTree = "<group>";
@@ -383,6 +400,7 @@
 			children = (
 				40440DAC1BDBCC9C00FADF6E /* InputCollectionViewCell */,
 				40440DAF1BDBCC9C00FADF6E /* TextCollectionViewCell */,
+				4012FFB21BF62EA1002B1711 /* MessageCategoryCollectionViewCell.swift */,
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
@@ -657,6 +675,7 @@
 				40C5612C1BEBA024005BAAED /* PlaceholderedTextView.swift */,
 				40440DBD1BDBCDDE00FADF6E /* ExtendedTextField.swift */,
 				40EA82461BCFCD690029228F /* TabsContainerView.swift */,
+				4012FFAE1BF5D4CE002B1711 /* SeparatorView.swift */,
 			);
 			path = DirectSubclasses;
 			sourceTree = "<group>";
@@ -779,6 +798,7 @@
 				408C22CD1BF0C75400DA25A3 /* UserProfileTableViewCell.swift in Sources */,
 				405A29931BE6B2710024ADA9 /* TokenModel.swift in Sources */,
 				407A7DAA1BE77D85006A9DB0 /* NewsListModel.swift in Sources */,
+				4012FFB11BF608CE002B1711 /* MessageTableViewCell.swift in Sources */,
 				40440DB91BDBCCA200FADF6E /* AutocompletionTableViewCell.swift in Sources */,
 				3584F0F01BEB48CC00AB20B2 /* ComposeReportsHeaderView.swift in Sources */,
 				407A7DA41BE778BD006A9DB0 /* ServerErrorModel.swift in Sources */,
@@ -832,6 +852,7 @@
 				35610F5D1BF4BAB6007BE698 /* MessageDetailViewController.swift in Sources */,
 				3563B99A1BD11B43009BE696 /* NewsDetailViewController.swift in Sources */,
 				4056D57D1BE8D1C80076B970 /* BaseViewController.swift in Sources */,
+				4012FFB31BF62EA1002B1711 /* MessageCategoryCollectionViewCell.swift in Sources */,
 				405A298A1BE6B21A0024ADA9 /* JSONValueConvertible.swift in Sources */,
 				405A298E1BE6B21A0024ADA9 /* PropertyDescriptor.swift in Sources */,
 				35EE4E971BE89CBD00740A03 /* NewMessageModel.swift in Sources */,
@@ -846,6 +867,7 @@
 				40EA82581BCFD09A0029228F /* TrainingViewController.swift in Sources */,
 				4056D5881BE8E8E50076B970 /* SearchStringModel.swift in Sources */,
 				3563B9A41BD12FAE009BE696 /* HashtagAndTimeTableViewCell.swift in Sources */,
+				4012FFAF1BF5D4CE002B1711 /* SeparatorView.swift in Sources */,
 				3DD1FF321BE39FC0005C4339 /* NewsCategoryModel.swift in Sources */,
 				4056D5771BE89B290076B970 /* ImageCacheManager.swift in Sources */,
 				35DDBEBB1BF3951D00791F79 /* CreateReplyModel.swift in Sources */,
@@ -864,6 +886,10 @@
 				407A7DA81BE77D75006A9DB0 /* ListModel.swift in Sources */,
 				293D30E21666773A722BAD04 /* MessageModel.swift in Sources */,
 				293D3D16DC673B329BDD8E7E /* MessageListModel.swift in Sources */,
+				293D3169AA27E45448B8D05C /* MessageSearchQueryModel.swift in Sources */,
+				293D3854460CEF2AB74371C6 /* MessageCategory.swift in Sources */,
+				293D30F05DBB57474A9AF330 /* MessageCategoryModel.swift in Sources */,
+				293D3469EA6DBA92C0C662D7 /* SwipableTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

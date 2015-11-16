@@ -14,7 +14,7 @@ extension UIView {
     
     func addEdgePinnedSubview(view: UIView) {
         view.frame = bounds
-        addSubview(view)
+		insertSubview(view, atIndex: 0)
         view.translatesAutoresizingMaskIntoConstraints = false
         let bindings = ["view": view]
         addConstraints(NSLayoutConstraint.constraintsWithVisualFormat("|-0.0-[view]-0.0-|", options: NSLayoutFormatOptions(), metrics: nil, views: bindings))
@@ -27,6 +27,20 @@ extension UIView {
 		maskLayer.path = UIBezierPath(roundedRect: bounds, byRoundingCorners: corners, cornerRadii: radii).CGPath
 		layer.mask = maskLayer
 	}
+
+	var borderColor: UIColor? {
+		get {
+			if let borderColor = layer.borderColor {
+				return UIColor(CGColor: borderColor)
+			} else {
+				return nil
+			}
+		}
+		set {
+			layer.borderColor = newValue?.CGColor ?? UIColor.clearColor().CGColor
+		}
+	}
+	
 }
 
 // MARK: - UIColor+Hex

@@ -106,7 +106,7 @@ extension ComposerRecipientsTableViewCell: UITableViewDataSource {
 		cell.fullName = userProfile.fullName
 		cell.status = userProfile.status
 
-		if let imageURL = userProfile.imageUrl {
+		if let imageURL = userProfile.imageURL {
 			cell.imageDownloadTask?.cancel()
 			cell.imageDownloadTask = ImageCacheManager.sharedInstance.imageForURL(imageURL, completion: { (image) -> Void in
 				cell.profileImage = image
@@ -115,7 +115,7 @@ extension ComposerRecipientsTableViewCell: UITableViewDataSource {
 			cell.profileImageView.image = nil
 		}
 
-		let contains = tagTextField.tags.contains { ($0.attributes?[Constants.userIdKey] ?? "") == userProfile.userId }
+		let contains = tagTextField.tags.contains { ($0.attributes?[Constants.userIdKey] ?? "") == userProfile.id }
 
 		cell.selected = contains
 		if contains {
@@ -133,13 +133,13 @@ extension ComposerRecipientsTableViewCell: UITableViewDelegate {
 
 	func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
 		let userProfile = autocompletionDataSource[indexPath.row]
-		tagTextField.insertTag(userProfile.fullName, attributes: [Constants.userIdKey: userProfile.userId])
+		tagTextField.insertTag(userProfile.fullName, attributes: [Constants.userIdKey: userProfile.id])
 		hideAutocompletionTableView()
 	}
 
 	func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
 		let userProfile = autocompletionDataSource[indexPath.row]
-		let index = tagTextField.tags.indexOf { ($0.attributes?[Constants.userIdKey] ?? "") == userProfile.userId }
+		let index = tagTextField.tags.indexOf { ($0.attributes?[Constants.userIdKey] ?? "") == userProfile.id }
 		if let index = index {
 			tagTextField.removeTag(tagTextField.tags[index])
 		}
