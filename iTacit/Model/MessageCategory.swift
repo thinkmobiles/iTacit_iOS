@@ -12,6 +12,7 @@ enum MessageCategory: String {
 	case Waiting = "WAITING"
 	case ToMe = "TO ME"
 	case FromMe = "FROM ME"
+	case Archive = "ARCHIVE"
 
 	var fullName: String {
 		switch self {

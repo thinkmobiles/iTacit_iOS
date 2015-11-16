@@ -62,6 +62,8 @@ class TagTextField: UIControl {
 		}
 	}
 
+	private var hasSpaceForInputCell = false
+
 	var mode = Mode.Collapsed
 
 	var tags = [TagModel]() {
@@ -236,7 +238,7 @@ class TagTextField: UIControl {
 		var x = layout.sectionInsets.left
 		var maxWidth = CGFloat(0)
 		for item in 0..<array.count {
-			let size = textCellSizeForText(array[item])
+			let size = sizeForTextInTextCell(array[item])
 			if x + size.width > rightEdge {
 				y +=  (layout.lineSpacing + size.height)
 				x = layout.sectionInsets.left
@@ -256,9 +258,15 @@ class TagTextField: UIControl {
 			return
 		}
 		let collectionViewHeight = CGRectGetHeight(collectionView.frame)
-		let tagStirngs = tags.map { $0.string }
+		var tagStirngs = tags.map { $0.string }
 		if contentSizeForArray(tagStirngs).height <= collectionViewHeight {
 			tagsShortArray = tags
+			if !text.isEmpty {
+				tagStirngs.append(String(text.characters.dropLast()))
+				hasSpaceForInputCell = contentSizeForArray(tagStirngs).height <= collectionViewHeight
+			} else {
+				hasSpaceForInputCell = true
+			}
 			return
 		}
 		var i = 0
@@ -274,12 +282,21 @@ class TagTextField: UIControl {
 		tagsShortArrayAppendix = "+\((tags.count - (i + 1)))..."
 	}
 
-	private func textCellSizeForText(text: String) -> CGSize {
+	private func sizeForTextInTextCell(text: String) -> CGSize {
 		let maxWidth = CGRectGetWidth(collectionView.frame) - collectionViewLayout.sectionInsets.left - collectionViewLayout.sectionInsets.right
 		let height = collectionViewLayout.itemSize.height
 		sizingTextCell.text = text
 		let size = sizingTextCell.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
 		return CGSize(width: min(maxWidth, size.width), height: height)
+	}
+
+	private func sizeForTextInInputCell(text: String) -> CGSize {
+		let maxWidth = CGRectGetWidth(collectionView.frame) - collectionViewLayout.sectionInsets.left - collectionViewLayout.sectionInsets.right
+		let height = collectionViewLayout.itemSize.height
+		sizingInputCell.text = text + " "
+		let size = sizingInputCell.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
+		let width = min(maxWidth, max(Constants.minInputCellWidth, size.width))
+		return CGSize(width: width, height: height)
 	}
 
 	private func deleteSelectedCellIfNeeded() {
@@ -313,7 +330,7 @@ extension TagTextField: UICollectionViewDataSource {
 
 	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
 		switch mode {
-			case .Collapsed: return tagsArray.count
+			case .Collapsed: return hasSpaceForInputCell ? tagsArray.count + 1 : tagsArray.count
 			case .Editing: return tagsArray.count + 1
 		}
 	}
@@ -362,15 +379,9 @@ extension TagTextField: CollectionViewDelegateLeftAlignedFlowLayout {
 
 	func collectionView(collectionView: UICollectionView, layout: CollectionViewLeftAlignedFlowLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
 		if indexPath.row < tagsArray.count {
-			return textCellSizeForText(tagsArray[indexPath.row].string)
+			return sizeForTextInTextCell(tagsArray[indexPath.row].string)
 		} else {
-			let maxWidth = CGRectGetWidth(collectionView.frame) - layout.sectionInsets.left - layout.sectionInsets.right
-			let height = layout.itemSize.height
-			sizingInputCell.text = text
-			let size = sizingInputCell.systemLayoutSizeFittingSize(UILayoutFittingCompressedSize)
-			let magicNumber = CGFloat(2)
-			let width = min(maxWidth, max(Constants.minInputCellWidth, size.width + magicNumber))
-			return CGSize(width: width, height: height)
+			return sizeForTextInInputCell(text)
 		}
 
 	}

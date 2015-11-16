@@ -42,6 +42,18 @@ class MessageModel: BaseModel {
 		}
 	}
 
+	func archive(completion: CompletionHandler? = nil) {
+		performRequest({ [unowned self] (builder) -> Void in
+			builder.path = "/mobile/1.0/messaging/archive/\(self.id)"
+			builder.method = .PUT
+			builder.contentType = .ApplicationJSON
+		}, successHandler: { (data, request, response) -> Void in
+			completion?(success: true)
+		}) { (error, request, response) -> Void in
+			completion?(success: false)
+		}
+	}
+
 }
 
 extension MessageModel {
@@ -87,28 +99,8 @@ extension MessageModel: Mappable {
 				PropertyDescriptor(propertyName: "sendDate", JSONKey: "sendDateTime"),
 				PropertyDescriptor(propertyName: "readRequired", JSONKey: "readRequiredYn"),
 				PropertyDescriptor(propertyName: "readRequiredDate"),
-				TransformablePropertyDescriptor(propertyName: "body", valueTransformer: HTMLToAttributedStringTransformer.self),
-				TransformablePropertyDescriptor(propertyName: "sender", valueTransformer: SenderTransformer.self)]
-	}
-
-}
-
-extension MessageModel {
-
-	class SenderTransformer: JSONValueTransformer {
-
-		class func transformFromJSONValue(value: AnyObject) throws -> Any {
-			if let senderJSON = value as? [String: AnyObject] {
-				let usersList: UserProfileListModel = try JSONMapper.map(senderJSON)
-				return usersList.objects.first
-			}
-			throw ValueTransformerError.FailedToTransformValue(value: value)
-		}
-
-		class func transformToJSONValue(value: Any) throws -> AnyObject {
-			return "\(value)"
-		}
-
+				PropertyDescriptor(propertyName: "sender"),
+				TransformablePropertyDescriptor(propertyName: "body", valueTransformer: HTMLToAttributedStringTransformer.self)]
 	}
 
 }

@@ -64,7 +64,8 @@ class MessagesViewController: BaseViewController {
 							 MessageCategoryModel(category: .ActOn),
 							 MessageCategoryModel(category: .Waiting),
 							 MessageCategoryModel(category: .ToMe),
-							 MessageCategoryModel(category: .FromMe)]
+							 MessageCategoryModel(category: .FromMe),
+							 MessageCategoryModel(category: .Archive)]
 		categoryFullNameLabel.text = messageCategories[0].category.fullName
 	}
 
@@ -256,6 +257,7 @@ extension MessagesViewController: MessageTableViewCellDelegate {
 
 	func messageTableViewCellDidPressArchiveButton(cell: MessageTableViewCell) {
 		if let indexPath = tableView.indexPathForCell(cell) {
+			messageList[indexPath.item].archive()
 			print("Archive: \(indexPath.item)")
 		}
 	}
