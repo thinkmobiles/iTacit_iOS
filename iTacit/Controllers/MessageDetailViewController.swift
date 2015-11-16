@@ -39,6 +39,8 @@ class MessageDetailViewController: BaseViewController {
             replyToUserButton.setTitle(" " + newValue, forState: .Normal)
         }
     }
+
+	var message: MessageModel!
     
     override func viewDidLoad() {
         super.viewDidLoad()

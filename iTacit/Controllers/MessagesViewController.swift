@@ -163,6 +163,14 @@ class MessagesViewController: BaseViewController {
 		searchTimer = NSTimer.scheduledTimerWithTimeInterval(1.0, target: self, selector: Selector("reloadData"), userInfo: nil, repeats: false)
 	}
 
+	// MARK: - Navigation 
+
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if let selectedIndexPath = tableView.indexPathForSelectedRow,  messageDetailViewController = segue.destinationViewController as? MessageDetailViewController {
+			messageDetailViewController.message = messageList[selectedIndexPath.row]
+		}
+	}
+
 }
 
 // MARK: - UITableViewDataSource
