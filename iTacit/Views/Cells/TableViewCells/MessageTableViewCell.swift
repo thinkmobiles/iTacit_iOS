@@ -8,7 +8,13 @@
 
 import UIKit
 
-class MessageTableViewCell: UITableViewCell {
+protocol MessageTableViewCellDelegate: class {
+
+	func messageTableViewCellDidPressArchiveButton(cell: MessageTableViewCell)
+
+}
+
+class MessageTableViewCell: SwipeableTableViewCell {
 
 	private struct Constants {
 		static let bodyLabelBottomSpaceDefault = CGFloat(10)
@@ -36,6 +42,8 @@ class MessageTableViewCell: UITableViewCell {
 	@IBOutlet weak var readRequriemantButton: UIButton!
 	@IBOutlet weak var bodyLabelBottomConstraint: NSLayoutConstraint!
 	@IBOutlet weak var dateLabelTrailingConstraint: NSLayoutConstraint!
+
+	weak var delegate: MessageTableViewCellDelegate?
 
 	var imageDownloadTask: NSURLSessionTask?
 
@@ -106,6 +114,12 @@ class MessageTableViewCell: UITableViewCell {
 		} else {
 			userImageView.image = nil
 		}
+	}
+
+	// MARK: - IBActions
+
+	@IBAction func archiveAction() {
+		delegate?.messageTableViewCellDidPressArchiveButton(self)
 	}
 
 }
