@@ -26,14 +26,29 @@ class MessageDetailViewController: BaseViewController {
     @IBOutlet weak var confirmViewImage: UIImageView!
     @IBOutlet weak var confirmViewTitle: UILabel!
     @IBOutlet weak var headerTitle: UILabel!
-    @IBOutlet weak var headerBody: UILabel!
     @IBOutlet weak var headerConfirmToDate: UILabel!
+    @IBOutlet weak var replyToAllButton: UIButton!
+    @IBOutlet weak var replyToUserButton: UIButton!
+    @IBOutlet weak var showMoreTextView: ShowMoreTextView!
+    
+    var replyToUserName: String {
+        get {
+            return replyToUserButton.titleLabel?.text ?? ""
+        }
+        set {
+            replyToUserButton.setTitle(" " + newValue, forState: .Normal)
+        }
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         prepareTableViewHeight()
         prepareUI()
+        
+        showMoreTextView.maximumNumberOfLines = 3
+        showMoreTextView.shouldTrim = true
+        showMoreTextView.attributedTrimText = NSMutableAttributedString(string: "...")
     }
     
     override func didReceiveMemoryWarning() {
@@ -57,7 +72,8 @@ class MessageDetailViewController: BaseViewController {
     private func prepareUI() {
         titleLabel.sizeToFit()
         confirmationView.layer.borderColor = AppColors.gray.CGColor
-        headerBody.lineBreakMode = NSLineBreakMode.ByClipping
+        replyToAllButton.setTitle(" " + LocalizedString("All"), forState: .Normal)
+        replyToUserName = "sdfs"
     }
     
     private func prepareTableViewHeight() {
@@ -78,16 +94,6 @@ class MessageDetailViewController: BaseViewController {
         headerConfirmToDate.text = ""
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
-    }
-    */
-
 }
 
 extension MessageDetailViewController: UITableViewDelegate {
