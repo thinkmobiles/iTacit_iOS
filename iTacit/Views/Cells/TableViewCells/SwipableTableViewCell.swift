@@ -15,7 +15,7 @@ class SwipableTableViewCell: UITableViewCell {
 
 	@IBOutlet weak var swipableContainerView: UIView!
 	@IBOutlet weak var buttonsContatinerView: UIView!
-	@IBOutlet weak var swipableContainerViewLeadingConstraint: UIView!
+	@IBOutlet weak var swipableContainerViewLeadingConstraint: NSLayoutConstraint!
 
 	private var _buttonsHidden = true
 	var buttonHidden: Bool {
@@ -46,19 +46,19 @@ class SwipableTableViewCell: UITableViewCell {
 	}
 
 	func dragContainer(sender: UIPanGestureRecognizer) {
-//		let translation = sender.translationInView(swipableContainerView)
-//		let velocity = sender.velocityInView(swipableContainerView)
-//		let containerWidth = CGRectGetWidth(swipableContainerView.frame)
-//		switch sender.state {
-//			case .Changed:
-//				swipableContainerViewLeadingConstraint.constant = min(containerWidth, max(0.0, buttonHidden ? translation.x: containerWidth + translation.x))
-//			case .Ended, .Cancelled:
-//				let a = buttonHidden, b = abs(velocity.x) > Constants.minVelocity
-//				let c = abs(translation.x) > (containerWidth * Constants.translationCoefficient)
-//				buttonHidden = !a && b || !a && !b && c || a && !b && !c
-//			default:
-//				break;
-//		}
+		let translation = sender.translationInView(swipableContainerView)
+		let velocity = sender.velocityInView(swipableContainerView)
+		let buttonsContainerWidth = CGRectGetWidth(swipableContainerView.frame)
+		switch sender.state {
+			case .Changed:
+				swipableContainerViewLeadingConstraint.constant = max(-buttonsContainerWidth, min(0.0, buttonHidden ? translation.x: buttonsContainerWidth - translation.x))
+			case .Ended, .Cancelled:
+				let a = buttonHidden, b = abs(velocity.x) > Constants.minVelocity
+				let c = abs(translation.x) > (buttonsContainerWidth * Constants.translationCoefficient)
+				buttonHidden = !a && b || !a && !b && c || a && !b && !c
+			default:
+				break;
+		}
 	}
 
 	private func addGesture() {
