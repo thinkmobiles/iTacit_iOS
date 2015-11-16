@@ -185,6 +185,7 @@ extension MessagesViewController: UITableViewDataSource {
 		let cell = tableView.dequeueReusableCellWithIdentifier(MessageTableViewCell.reuseIdentifier, forIndexPath: indexPath) as! MessageTableViewCell
 		let message = messageList[indexPath.item]
 		cell.configureWithMessage(message)
+		cell.delegate = self
 		return cell
 	}
 
@@ -245,6 +246,18 @@ extension MessagesViewController: TagSearchControlDelegate {
 	func tagsSearchControlShouldBecameActive(tagsSearchControl: TagSearchControl) -> Bool {
 		activateSearchControl()
 		return false
+	}
+
+}
+
+// MARK: - MessageTableViewCellDelegate
+
+extension MessagesViewController: MessageTableViewCellDelegate {
+
+	func messageTableViewCellDidPressArchiveButton(cell: MessageTableViewCell) {
+		if let indexPath = tableView.indexPathForCell(cell) {
+			print("Archive: \(indexPath.item)")
+		}
 	}
 
 }
