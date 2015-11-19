@@ -115,4 +115,8 @@ extension ReplayViewController: UITextViewDelegate {
     func textViewDidChange(textView: UITextView) {
         sendButton.enabled = !textView.text.isEmptyOrWhitespaces
     }
+    
+    func didSeleReplyToUser(replyModel: ReplyModel) {
+        
+    }
 }

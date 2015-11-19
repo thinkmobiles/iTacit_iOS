@@ -205,4 +205,7 @@ extension MessageDetailViewController: MessageDetailCellDelegate {
         tableView.endUpdates()
     }
     
+    func didSeleReplyToUser(replyModel: ReplyModel) {
+        
+    }
 }
