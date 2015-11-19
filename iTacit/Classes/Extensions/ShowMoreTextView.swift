@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol ShowMoreTextViewDelegate: class {
+    func needsToReloadTableView();
+}
+
 class ShowMoreTextView: UITextView {
+    
+    weak var showMoreDelegate: ShowMoreTextViewDelegate?
 
     override init(frame: CGRect, textContainer: NSTextContainer?) {
         super.init(frame: frame, textContainer: textContainer)
@@ -65,8 +71,6 @@ class ShowMoreTextView: UITextView {
         }
     }
     var trimTextRangePadding: UIEdgeInsets = UIEdgeInsetsZero
-    var appendTrimTextPrefix: Bool = true
-    var trimTextPrefix: String = ""
     private var originalAttributedText: NSAttributedString!
     private var originalText: String!
     
@@ -100,14 +104,10 @@ class ShowMoreTextView: UITextView {
         textContainer.size = CGSizeMake(bounds.size.width, CGFloat.max)
         
         let range = rangeToReplaceWithTrimText()
-        if range.location != NSNotFound {
-            let prefix = appendTrimTextPrefix ? trimTextPrefix : ""
-            
+        if range.location != NSNotFound {            
             if let text = trimText?.mutableCopy() as? NSMutableString {
-                text.insertString("\(prefix) ", atIndex: 0)
                 textStorage.replaceCharactersInRange(range, withString: text as String)
             } else if let text = attributedTrimText?.mutableCopy() as? NSMutableAttributedString {
-                text.insertAttributedString(NSAttributedString(string: "\(prefix) "), atIndex: 0)
                 text.addAttribute(NSForegroundColorAttributeName, value: AppColors.blue, range: NSMakeRange(0, text.length))
                 textStorage.replaceCharactersInRange(range, withAttributedString: text)
             }
@@ -117,6 +117,7 @@ class ShowMoreTextView: UITextView {
     }
     
     func resetText() {
+        let beforeNumberOfLines = textContainer.maximumNumberOfLines
         textContainer.maximumNumberOfLines = 0
         if originalText != nil {
             textStorage.replaceCharactersInRange(NSMakeRange(0, text.characters.count), withString: originalText)
@@ -125,6 +126,10 @@ class ShowMoreTextView: UITextView {
         }
         
         invalidateIntrinsicContentSize()
+        
+        if beforeNumberOfLines != 0 {
+            showMoreDelegate?.needsToReloadTableView()
+        }
     }
     
     override func intrinsicContentSize() -> CGSize {
@@ -153,12 +158,6 @@ class ShowMoreTextView: UITextView {
         }
     }
     
-    private var _trimTextPrefixLength: Int {
-        get {
-            return appendTrimTextPrefix ? trimTextPrefix.characters.count + 1 : 1
-        }
-    }
-    
     private var _originalTextLength: Int {
         get {
             if originalText != nil {
@@ -178,7 +177,7 @@ class ShowMoreTextView: UITextView {
         if NSMaxRange(rangeToReplace) == _originalTextLength {
             rangeToReplace = emptyRange
         } else {
-            rangeToReplace.location = NSMaxRange(rangeToReplace) - _trimText!.length - _trimTextPrefixLength
+            rangeToReplace.location = NSMaxRange(rangeToReplace) - _trimText!.length
             if rangeToReplace.location < 0 {
                 rangeToReplace = emptyRange
             } else {
@@ -192,7 +191,7 @@ class ShowMoreTextView: UITextView {
     private func trimTextRange() -> NSRange {
         var trimTextRange = rangeToReplaceWithTrimText()
         if trimTextRange.location != NSNotFound {
-            trimTextRange.length = _trimTextPrefixLength + _trimText!.length
+            trimTextRange.length = _trimText!.length
         }
         
         return trimTextRange
@@ -228,4 +227,3 @@ extension NSLayoutManager {
     }
     
 }
-

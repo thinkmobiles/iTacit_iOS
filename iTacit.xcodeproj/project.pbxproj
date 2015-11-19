@@ -19,6 +19,7 @@
 		3516FFA31BE7940000865EB9 /* ComposerReadDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516FFA21BE7940000865EB9 /* ComposerReadDateTableViewCell.swift */; };
 		351E8EC81BE3700F00690669 /* ComposerTopicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E8EC71BE3700F00690669 /* ComposerTopicTableViewCell.swift */; };
 		351E8ECC1BE3C2AC00690669 /* ComposerBodyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E8ECB1BE3C2AC00690669 /* ComposerBodyTableViewCell.swift */; };
+		352B52951BFB47910060C34B /* ReplyListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352B52941BFB47910060C34B /* ReplyListModel.swift */; };
 		3532472F1BEC9DA000733B1A /* AddRecipientHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3532472E1BEC9DA000733B1A /* AddRecipientHeaderView.swift */; };
 		353247311BEC9DAC00733B1A /* AddRecipientHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 353247301BEC9DAC00733B1A /* AddRecipientHeaderView.xib */; };
 		353C04FB1BE2490F00C92352 /* LocalizationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 353C04FA1BE2490F00C92352 /* LocalizationService.swift */; };
@@ -39,11 +40,13 @@
 		3584F0F21BEB48DD00AB20B2 /* ComposeReportsHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3584F0F11BEB48DD00AB20B2 /* ComposeReportsHeaderView.xib */; };
 		3591D0101BEA085500AE4884 /* KeychainWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3591D00F1BEA085500AE4884 /* KeychainWrapper.swift */; };
 		35A3498A1BF5E6C100CD0DEB /* MessageDetailCommentTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35A349891BF5E6C100CD0DEB /* MessageDetailCommentTableViewCell.swift */; };
+		35AF6F1E1BFB518D00600B6F /* SearchReplyListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35AF6F1D1BFB518D00600B6F /* SearchReplyListModel.swift */; };
 		35D6EA371BEBA2D20084559B /* AddRecipientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6EA361BEBA2D20084559B /* AddRecipientViewController.swift */; };
 		35DDBEB91BF3700F00791F79 /* ReplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DDBEB81BF3700F00791F79 /* ReplayViewController.swift */; };
 		35DDBEBB1BF3951D00791F79 /* CreateReplyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DDBEBA1BF3951D00791F79 /* CreateReplyModel.swift */; };
 		35EE4E971BE89CBD00740A03 /* NewMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE4E961BE89CBD00740A03 /* NewMessageModel.swift */; };
 		35EE4E991BE8DDD400740A03 /* CategoriesListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE4E981BE8DDD400740A03 /* CategoriesListModel.swift */; };
+		35FAAE931BFB2DAD0006B915 /* ReplyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FAAE921BFB2DAD0006B915 /* ReplyModel.swift */; };
 		35FF25DF1BECF62600B1D734 /* BusinessUnitModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FF25DE1BECF62600B1D734 /* BusinessUnitModel.swift */; };
 		35FF25E11BECF93C00B1D734 /* BusinessUnitListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FF25E01BECF93C00B1D734 /* BusinessUnitListModel.swift */; };
 		35FF25E31BECFAB300B1D734 /* JobClassificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FF25E21BECFAB300B1D734 /* JobClassificationModel.swift */; };
@@ -152,6 +155,7 @@
 		351E8EC41BE36FC800690669 /* ComposerRecipientsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerRecipientsTableViewCell.swift; sourceTree = "<group>"; };
 		351E8EC71BE3700F00690669 /* ComposerTopicTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerTopicTableViewCell.swift; sourceTree = "<group>"; };
 		351E8ECB1BE3C2AC00690669 /* ComposerBodyTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerBodyTableViewCell.swift; sourceTree = "<group>"; };
+		352B52941BFB47910060C34B /* ReplyListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyListModel.swift; sourceTree = "<group>"; };
 		3532472E1BEC9DA000733B1A /* AddRecipientHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipientHeaderView.swift; sourceTree = "<group>"; };
 		353247301BEC9DAC00733B1A /* AddRecipientHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = AddRecipientHeaderView.xib; sourceTree = "<group>"; };
 		353C04FA1BE2490F00C92352 /* LocalizationService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationService.swift; sourceTree = "<group>"; };
@@ -175,11 +179,13 @@
 		3584F0F11BEB48DD00AB20B2 /* ComposeReportsHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ComposeReportsHeaderView.xib; sourceTree = "<group>"; };
 		3591D00F1BEA085500AE4884 /* KeychainWrapper.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = KeychainWrapper.swift; sourceTree = "<group>"; };
 		35A349891BF5E6C100CD0DEB /* MessageDetailCommentTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageDetailCommentTableViewCell.swift; sourceTree = "<group>"; };
+		35AF6F1D1BFB518D00600B6F /* SearchReplyListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SearchReplyListModel.swift; sourceTree = "<group>"; };
 		35D6EA361BEBA2D20084559B /* AddRecipientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipientViewController.swift; sourceTree = "<group>"; };
 		35DDBEB81BF3700F00791F79 /* ReplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplayViewController.swift; sourceTree = "<group>"; };
 		35DDBEBA1BF3951D00791F79 /* CreateReplyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateReplyModel.swift; sourceTree = "<group>"; };
 		35EE4E961BE89CBD00740A03 /* NewMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageModel.swift; sourceTree = "<group>"; };
 		35EE4E981BE8DDD400740A03 /* CategoriesListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesListModel.swift; sourceTree = "<group>"; };
+		35FAAE921BFB2DAD0006B915 /* ReplyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyModel.swift; sourceTree = "<group>"; };
 		35FF25DE1BECF62600B1D734 /* BusinessUnitModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessUnitModel.swift; sourceTree = "<group>"; };
 		35FF25E01BECF93C00B1D734 /* BusinessUnitListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BusinessUnitListModel.swift; sourceTree = "<group>"; };
 		35FF25E21BECFAB300B1D734 /* JobClassificationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = JobClassificationModel.swift; sourceTree = "<group>"; };
@@ -399,6 +405,9 @@
 				293D3FA48E72707523A5E49C /* MessageCategory.swift */,
 				293D32093613973975BFCCC2 /* MessageCategoryModel.swift */,
 				4015F8761BFB88ED0030927E /* RecipientsCountModel.swift */,
+				35FAAE921BFB2DAD0006B915 /* ReplyModel.swift */,
+				352B52941BFB47910060C34B /* ReplyListModel.swift */,
+				35AF6F1D1BFB518D00600B6F /* SearchReplyListModel.swift */,
 			);
 			name = "Messages Flow Models";
 			sourceTree = "<group>";
@@ -830,6 +839,7 @@
 				40EA82561BCFD07B0029228F /* MessagesViewController.swift in Sources */,
 				4056D57E1BE8D1F00076B970 /* ComposerRecipientsTableViewCell.swift in Sources */,
 				353C05051BE25D0800C92352 /* MainTabBarController.swift in Sources */,
+				352B52951BFB47910060C34B /* ReplyListModel.swift in Sources */,
 				35FF25E31BECFAB300B1D734 /* JobClassificationModel.swift in Sources */,
 				40EA824E1BCFCDEC0029228F /* TabBarControllerSegue.swift in Sources */,
 				405A29891BE6B21A0024ADA9 /* JSONMapper.swift in Sources */,
@@ -883,6 +893,7 @@
 				35A3498A1BF5E6C100CD0DEB /* MessageDetailCommentTableViewCell.swift in Sources */,
 				356558DC1BEA4A41001E31D5 /* ComposerRecepientsViewController.swift in Sources */,
 				40440DBC1BDBCD0E00FADF6E /* CollectionViewLeftAlignedFlowLayout.swift in Sources */,
+				35AF6F1E1BFB518D00600B6F /* SearchReplyListModel.swift in Sources */,
 				405A298D1BE6B21A0024ADA9 /* Mappable.swift in Sources */,
 				3532472F1BEC9DA000733B1A /* AddRecipientHeaderView.swift in Sources */,
 				4015F8701BFB23720030927E /* RoleModel.swift in Sources */,
@@ -913,6 +924,7 @@
 				35690C6B1BF9D5F3006055EB /* MessageTableViewCell.swift in Sources */,
 				293D30E21666773A722BAD04 /* MessageModel.swift in Sources */,
 				293D3D16DC673B329BDD8E7E /* MessageListModel.swift in Sources */,
+				35FAAE931BFB2DAD0006B915 /* ReplyModel.swift in Sources */,
 				293D3169AA27E45448B8D05C /* MessageSearchQueryModel.swift in Sources */,
 				293D3854460CEF2AB74371C6 /* MessageCategory.swift in Sources */,
 				293D30F05DBB57474A9AF330 /* MessageCategoryModel.swift in Sources */,

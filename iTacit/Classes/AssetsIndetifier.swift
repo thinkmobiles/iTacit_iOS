@@ -17,6 +17,9 @@ enum AssetsIndetifier: String {
 	case UnselectedIcon = "check_filter"
 	case CloseIcon = "btn_close"
     case ConfirmedIcon = "ic_user_compl"
+    case MailIcon = "ic_mail"
+    case PrivateIcon = "ic_private"
+    case BtnSendIcon = "btn_send"
 }
 
 extension UIImage {
