@@ -138,16 +138,16 @@ extension NewMessageModel.Recipient: CustomStringConvertible {
 
 	var description: String {
 		switch self {
-			case .MyDirectReports: return "MY DIRECT REPORTS"
-			case .MyIndirectReports: return "MY INDIRECT REPORTS"
-			case .MyCoWorkers: return "MY CO-WORKERS"
-			case .MyJobClassification: return "MY JOB CLASSIFICATION"
-			case .MyBusinessUnits: return "MY BUSINESS UNIT"
+			case .MyDirectReports: return LocalizedString("MY DIRECT REPORTS")
+			case .MyIndirectReports: return LocalizedString("MY DIRECT AND INDIRECT REPORTS")
+			case .MyCoWorkers: return LocalizedString("MY CO-WORKERS")
+			case .MyJobClassification: return LocalizedString("MY JOB CLASSIFICATION")
+			case .MyBusinessUnits: return LocalizedString("MY BUSINESS UNIT")
 			case .Employee(let userProfile): return "EMPLOYEE: " + userProfile.id
-			case .JobClassification(let jobClassification): return "JOB CLASSIFICATION: " + jobClassification.id
-			case .BusinessUnit(let businessUnit): return "BUSINESS UNIT: " + businessUnit.id
-			case .Role(let role): return "ROLE: " + role.id
-			case .PermissionGroup(let permissionGroup): return "PERMISSION GROUP: " + permissionGroup.id
+			case .JobClassification(let jobClassification): return jobClassification.name
+			case .BusinessUnit(let businessUnit): return businessUnit.name
+			case .Role(let role): return role.name
+			case .PermissionGroup(let permissionGroup): return permissionGroup.name
 		}
 	}
 

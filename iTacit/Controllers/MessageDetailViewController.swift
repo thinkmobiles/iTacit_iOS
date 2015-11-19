@@ -34,7 +34,8 @@ class MessageDetailViewController: BaseViewController {
     @IBOutlet weak var showMoreTextView: ShowMoreTextView!
     @IBOutlet weak var confirmationButton: UIButton!
     @IBOutlet weak var confirmationButtonHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var replyCountLabel: UILabel!
+	@IBOutlet weak var repicientsButton: UIButton!
+	@IBOutlet weak var confirmedRecipientsButton: UIButton!
     
     var replyToUserName: String {
         get {
@@ -55,6 +56,9 @@ class MessageDetailViewController: BaseViewController {
     var repliesList = ReplyListModel()
     let searchQuery = SearchReplyListModel()
     var needsToReloadCell = false
+	let recipientList = RecipientListModel()
+
+	// MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +66,7 @@ class MessageDetailViewController: BaseViewController {
         tableView.estimatedRowHeight = Constants.CellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
 
+		recipientList.searchQuery = RecipientSearchQuery(messageId: message.id)
         repliesList.searchQuery = searchQuery
         searchQuery.string = message.id
         showMoreTextView.maximumNumberOfLines = 3
@@ -70,10 +75,7 @@ class MessageDetailViewController: BaseViewController {
         
         loadReplies()
         prepareUI()
-    }
-    
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
+		loadRecipients()
     }
     
     // MARK: - IBAction
@@ -99,6 +101,18 @@ class MessageDetailViewController: BaseViewController {
             strongSelf.tableView.reloadData()
         }
     }
+
+	private func loadRecipients() {
+		recipientList.load { [weak self] (success) -> Void in
+			guard let strongSelf = self else {
+				return
+			}
+
+			strongSelf.repicientsButton.setTitle("  \(strongSelf.recipientList.count)", forState: .Normal)
+			let confirmedRecipients = strongSelf.recipientList.objects.filter( { $0.hasConfirmed } )
+			strongSelf.confirmedRecipientsButton.setTitle("  \(confirmedRecipients.count)", forState: .Normal)
+		}
+	}
     
     private func prepareUI() {
         tableViewHeightConstraint.constant = view.frame.height - headerView.frame.height - 64.0
@@ -106,7 +120,7 @@ class MessageDetailViewController: BaseViewController {
         if let sender = message.sender {
             replyToUserName = sender.firstName
             titleLabel.text = sender.fullName
-            titleLabel.sizeToFit()
+
         }
         
         switch message.readRequirementType {
@@ -128,7 +142,6 @@ class MessageDetailViewController: BaseViewController {
             showMoreTextView.attributedText = NSAttributedString(string: trimmedBody)
         }
         
-        replyCountLabel.text = String(message.replyCount) ?? "0"
         timeAgoLabel.text = message.sendDate?.timeAgoStringRepresentation()
         headerTitle.text = message.subject
         confirmationView.layer.borderColor = AppColors.gray.CGColor
@@ -143,6 +156,12 @@ class MessageDetailViewController: BaseViewController {
         confirmViewImage.layer.borderColor = UIColor.clearColor().CGColor
         confirmViewImage.layer.cornerRadius = 0
     }
+
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if let recipientsViewController = segue.destinationViewController as? RecipientsViewController {
+			recipientsViewController.recipientList = recipientList
+		}
+	}
     
 }
 

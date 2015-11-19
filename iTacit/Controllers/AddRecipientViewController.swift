@@ -45,7 +45,7 @@ class AddRecipientViewController: BaseViewController {
 		}
 	}
 
-	var recipients = Array<NewMessageModel.Recipient>()
+	var recipients: [NewMessageModel.Recipient] = []
 
 	// MARK: - Lifecycle
     
@@ -131,6 +131,14 @@ class AddRecipientViewController: BaseViewController {
 		tableView.contentInset = UIEdgeInsetsZero
 	}
 
+	// MARK: - Navigation
+
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if let recipientsViewController = segue.destinationViewController as? RecipientsViewController {
+			recipientsViewController.recipients = recipients
+			recipientsViewController.path = .AdvancedLookUpFullList
+		}
+	}
 }
 
 // MARK: - UITableViewDataSource

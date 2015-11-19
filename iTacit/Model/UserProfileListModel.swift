@@ -8,7 +8,8 @@
 
 import UIKit
 
-class UserProfileListModel<T: UserProfileModel>: ListModel<T> {
+
+class UserProfileListModel<T: UserProfileModel>: PageListModel<T> {
 
 	override var path: String {
 		return "/mobile/1.0/employee/profile"
@@ -17,4 +18,5 @@ class UserProfileListModel<T: UserProfileModel>: ListModel<T> {
 	required init() {
 		super.init()
 	}
+
 }

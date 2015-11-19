@@ -83,6 +83,10 @@
                             <constraint firstAttribute="height" constant="0.5" id="QfJ-5a-cM0"/>
                         </constraints>
                     </view>
+                    <imageView hidden="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_user_compl" translatesAutoresizingMaskIntoConstraints="NO" id="LXw-cH-adn">
+                        <rect key="frame" x="285" y="10" width="17" height="17"/>
+                        <animations/>
+                    </imageView>
                 </subviews>
                 <animations/>
                 <constraints>
@@ -94,13 +98,16 @@
                     <constraint firstItem="vlX-E4-5gn" firstAttribute="leading" secondItem="gA6-iB-zqU" secondAttribute="trailing" constant="8" id="e4d-a4-PC3"/>
                     <constraint firstAttribute="trailing" secondItem="u3o-D8-I8f" secondAttribute="trailing" id="eKp-OQ-z1x"/>
                     <constraint firstItem="u3o-D8-I8f" firstAttribute="leading" secondItem="vlX-E4-5gn" secondAttribute="trailing" constant="8" id="eWd-xa-W7Y"/>
+                    <constraint firstAttribute="trailing" secondItem="LXw-cH-adn" secondAttribute="trailing" constant="18" id="ib5-da-X0C"/>
                     <constraint firstItem="gA6-iB-zqU" firstAttribute="leading" secondItem="H2p-sc-9uM" secondAttribute="leading" constant="18" id="lhw-CE-t6V"/>
                     <constraint firstItem="vlX-E4-5gn" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="nnn-zx-vHe"/>
+                    <constraint firstItem="LXw-cH-adn" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="pGw-rY-NAg"/>
                     <constraint firstItem="gA6-iB-zqU" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="qRf-Q3-b9A"/>
                 </constraints>
             </tableViewCellContentView>
             <animations/>
             <connections>
+                <outlet property="confirmedImageView" destination="LXw-cH-adn" id="Mvo-dz-IDC"/>
                 <outlet property="fullNameLabel" destination="KSF-1A-ZXr" id="QRz-02-jLw"/>
                 <outlet property="imageViewLeadingConstraint" destination="lhw-CE-t6V" id="QsA-6L-KPm"/>
                 <outlet property="profileImageView" destination="gA6-iB-zqU" id="vkN-C7-EgL"/>
@@ -115,5 +122,6 @@
     <resources>
         <image name="check_filter" width="20" height="20"/>
         <image name="check_filter_act" width="20" height="20"/>
+        <image name="ic_user_compl" width="17" height="17"/>
     </resources>
 </document>

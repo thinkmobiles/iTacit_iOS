@@ -11,7 +11,7 @@ import Foundation
 class SearchReplyListModel: SearchStringModel {
     
     override var stringQuery: String {
-        return "parentMessageId" + string
+        return "parentMessageId:" + string
     }
     
 }

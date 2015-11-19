@@ -11,7 +11,7 @@ import UIKit
 class PageListModel<Element: BaseModel where Element: Mappable>: ListModel<Element> {
 
 	class var requestRowCount: Int {
-		return 25
+		return 50
 	}
 
 	required init() {
@@ -32,6 +32,9 @@ class PageListModel<Element: BaseModel where Element: Mappable>: ListModel<Eleme
 			var JSON: [String: AnyObject] = ["startIndex": startIndex, "rowCount": PageListModel.requestRowCount]
 			if let searchQueryString = self.searchQuery?.stringQuery {
 				JSON["query"] = searchQueryString
+			}
+			if let JSONObject = self.JSONObject {
+				JSON = JSON + JSONObject
 			}
 			builder.path = self.path
 			builder.method = .POST

@@ -18,20 +18,7 @@ class RecipientsCountModel: BaseModel {
 
 	func load(recipients: [NewMessageModel.Recipient], completion: CompletionHandler? = nil) {
 		count = 0
-		let nonUserRecipients = recipients.filter { (element) -> Bool in
-			if case .Employee(_) = element {
-				return false
-			} else {
-				return true
-			}
-		}
-		guard !nonUserRecipients.isEmpty else {
-			count = recipients.count
-			completion?(success: false)
-			return
-		}
-
-		let JSONValues = nonUserRecipients.map { try! $0.JSONValue() }
+		let JSONValues = recipients.map { try! $0.JSONValue() }
 		performRequest({ [unowned self] (builder) -> Void in
 			builder.path = self.path
 			builder.method = .POST
@@ -42,7 +29,6 @@ class RecipientsCountModel: BaseModel {
 				return
 			}
 			stronSelf.defaultSuccessHandler(data, request: request, response: response, completion: nil)
-			stronSelf.count += (recipients.count - nonUserRecipients.count)
 			completion?(success: true)
 		}) { (error, request, response) -> Void in
 			completion?(success: false)

@@ -27,6 +27,7 @@ class UserProfileTableViewCell: UITableViewCell {
 		case Default
 		case Selectable
 		case Deletable
+		case Confirmed
 	}
 
 	@IBOutlet weak var profileImageView: UIImageView!
@@ -36,6 +37,7 @@ class UserProfileTableViewCell: UITableViewCell {
 	@IBOutlet weak var rightButtonWidthConstraint: NSLayoutConstraint!
 	@IBOutlet weak var separatorView: UIView!
 	@IBOutlet weak var imageViewLeadingConstraint: NSLayoutConstraint!
+	@IBOutlet weak var confirmedImageView: UIImageView!
 
 	weak var delegate: UserProfileTableViewCellDelegate?
 
@@ -80,6 +82,7 @@ class UserProfileTableViewCell: UITableViewCell {
 				case .Default: setUpDefault()
 				case .Selectable: setUpSelectable()
 				case .Deletable: setUpDeletable()
+				case .Confirmed: setUpConfirmed()
 			}
 		}
 	}
@@ -126,10 +129,32 @@ class UserProfileTableViewCell: UITableViewCell {
 		}
     }
 
+	// MARK: - Public 
+
+	func configureWithUserProfile(userProfile: UserProfileModel) {
+		configureWithFullName(userProfile.fullName, status: userProfile.status, imageURL: userProfile.imageURL)
+	}
+
+	func configureWithFullName(fullName: String, status: String, imageURL: NSURL?) {
+		self.fullName = fullName
+		self.status = status
+
+		if let imageURL = imageURL {
+			imageDownloadTask?.cancel()
+			profileImage = nil
+			imageDownloadTask = ImageCacheManager.sharedInstance.imageForURL(imageURL, completion: { [weak self] (image) -> Void in
+				self?.profileImage = image
+				})
+		} else {
+			profileImage = nil
+		}
+	}
+
 	// MARK: - Private
 
 	private func setUpDefault() {
 		rightButtonWidthConstraint.constant = 0
+		confirmedImageView.hidden = true
 	}
 
 	private func setUpSelectable() {
@@ -143,6 +168,12 @@ class UserProfileTableViewCell: UITableViewCell {
 		rightButton.setImage(UIImage(assetsIndetifier: .CloseIcon), forState: .Normal)
 		rightButtonWidthConstraint.constant = Constants.rightButtonWidth
 		rightButton.userInteractionEnabled = true
+	}
+
+	private func setUpConfirmed() {
+		rightButton.hidden = true
+		confirmedImageView.hidden = false
+		rightButtonWidthConstraint.constant = Constants.rightButtonWidth
 	}
 
 	// MARK: - IBActions

@@ -105,17 +105,18 @@ extension ComposerRecipientsTableViewCell: UITableViewDataSource {
 		cell.style = .Selectable
 		cell.imageOffset = Constants.userProfileCellImageOffset
 		let userProfile = autocompletionDataSource[indexPath.row]
-		cell.fullName = userProfile.fullName
-		cell.status = userProfile.status
-
-		if let imageURL = userProfile.imageURL {
-			cell.imageDownloadTask?.cancel()
-			cell.imageDownloadTask = ImageCacheManager.sharedInstance.imageForURL(imageURL, completion: { (image) -> Void in
-				cell.profileImage = image
-			})
-		} else {
-			cell.profileImageView.image = nil
-		}
+		cell.configureWithUserProfile(userProfile)
+//		cell.fullName = userProfile.fullName
+//		cell.status = userProfile.status
+//
+//		if let imageURL = userProfile.imageURL {
+//			cell.imageDownloadTask?.cancel()
+//			cell.imageDownloadTask = ImageCacheManager.sharedInstance.imageForURL(imageURL, completion: { (image) -> Void in
+//				cell.profileImage = image
+//			})
+//		} else {
+//			cell.profileImageView.image = nil
+//		}
 
 		let contains = tagTextField.tags.contains { ($0.attributes?[Constants.userIdKey] ?? "") == userProfile.id }
 

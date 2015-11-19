@@ -79,14 +79,12 @@
                     </userDefinedRuntimeAttributes>
                 </view>
                 <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hYg-84-sas">
-                    <rect key="frame" x="275" y="0.0" width="40" height="40"/>
+                    <rect key="frame" x="280" y="0.0" width="40" height="40"/>
                     <subviews>
-                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyP-1J-oRH">
-                            <rect key="frame" x="9" y="9" width="22" height="22"/>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eyP-1J-oRH">
+                            <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                             <animations/>
-                            <constraints>
-                                <constraint firstAttribute="width" secondItem="eyP-1J-oRH" secondAttribute="height" multiplier="1:1" id="GDy-MN-fV3"/>
-                            </constraints>
+                            <inset key="contentEdgeInsets" minX="0.0" minY="0.0" maxX="17" maxY="0.0"/>
                             <state key="normal" image="btn_close"/>
                             <connections>
                                 <action selector="closeButtonAction:" destination="-1" eventType="touchUpInside" id="B66-F9-nkN"/>
@@ -97,12 +95,14 @@
                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="hYg-84-sas" secondAttribute="height" multiplier="1:1" id="3Cm-NS-7zu"/>
-                        <constraint firstItem="eyP-1J-oRH" firstAttribute="centerY" secondItem="hYg-84-sas" secondAttribute="centerY" id="das-kH-k7r"/>
-                        <constraint firstItem="eyP-1J-oRH" firstAttribute="centerX" secondItem="hYg-84-sas" secondAttribute="centerX" id="gqy-Y6-Y7s"/>
+                        <constraint firstAttribute="bottom" secondItem="eyP-1J-oRH" secondAttribute="bottom" id="De6-QF-Jn8"/>
+                        <constraint firstItem="eyP-1J-oRH" firstAttribute="leading" secondItem="hYg-84-sas" secondAttribute="leading" id="ShU-mq-IMn"/>
+                        <constraint firstAttribute="trailing" secondItem="eyP-1J-oRH" secondAttribute="trailing" id="YEf-t0-N1P"/>
+                        <constraint firstItem="eyP-1J-oRH" firstAttribute="top" secondItem="hYg-84-sas" secondAttribute="top" id="eFh-sN-M2M"/>
                     </constraints>
                 </view>
                 <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="PON-Y0-BVX">
-                    <rect key="frame" x="0.0" y="0.0" width="275" height="40"/>
+                    <rect key="frame" x="0.0" y="0.0" width="280" height="40"/>
                     <animations/>
                     <connections>
                         <action selector="expandButtonAction:" destination="-1" eventType="touchUpInside" id="YyT-17-yEG"/>
@@ -125,7 +125,7 @@
                 <constraint firstItem="wc4-d6-uAb" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" id="mwv-9S-3wn"/>
                 <constraint firstItem="DZm-Rt-Rrf" firstAttribute="leading" secondItem="Juc-nl-cwo" secondAttribute="trailing" constant="12" id="srL-6S-wV2"/>
                 <constraint firstAttribute="bottom" secondItem="PON-Y0-BVX" secondAttribute="bottom" id="tND-2x-C4J"/>
-                <constraint firstAttribute="trailing" secondItem="hYg-84-sas" secondAttribute="trailing" constant="5" id="yEf-DJ-pu0"/>
+                <constraint firstAttribute="trailing" secondItem="hYg-84-sas" secondAttribute="trailing" id="yEf-DJ-pu0"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>
             <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
