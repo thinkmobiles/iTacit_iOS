@@ -9,8 +9,9 @@
 import UIKit
 
 protocol MessageDetailCellDelegate: class {
+
     func didSelectExpandButton()
-    func didSeleReplyToUser(replyModel: ReplyModel)
+
 }
 
 class MessageDetailCommentTableViewCell: UITableViewCell {
@@ -32,7 +33,6 @@ class MessageDetailCommentTableViewCell: UITableViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
         bodyTextView.showMoreDelegate = self
     }
     
@@ -77,7 +77,7 @@ class MessageDetailCommentTableViewCell: UITableViewCell {
         confirmImage.image = reply.readConfirmed ? UIImage(assetsIndetifier: .ConfirmedIcon) :  nil
         
         //TODO: add phone icon below
-        repliedViaImage.image = reply.replyMethodEmail ? UIImage(assetsIndetifier: .MailIcon) : UIImage(assetsIndetifier: .BtnSendIcon)
+        repliedViaImage.image = reply.replyMethodEmail ? UIImage(assetsIndetifier: .MailIcon) : UIImage(assetsIndetifier: .PhoneIcone)
         securityImage.image = reply.replyPrivate ? UIImage(assetsIndetifier: .PrivateIcon) : nil
         securityImageWidthConstraint.constant = reply.replyPrivate ? securityImageWidthConstraint.constant : 0
     }

@@ -139,6 +139,14 @@ class AddRecipientViewController: BaseViewController {
 			recipientsViewController.path = .AdvancedLookUpFullList
 		}
 	}
+
+	@IBAction func returnFromRecipientsViewController(segue: UIStoryboardSegue) {
+		if let recipientsViewController = segue.sourceViewController as? RecipientsViewController {
+			recipients = recipientsViewController.recipients
+			reloadData()
+			updateRecipientsCount()
+		}
+	}
 }
 
 // MARK: - UITableViewDataSource

@@ -36,6 +36,7 @@ class RecipientsViewController: BaseViewController {
 		title = LocalizedString("Recipients") + " (0)"
 		if let recipientList = recipientList {
 			path = recipientList.recipientListPath
+			navigationItem.rightBarButtonItem = nil
 		} else if let path = path {
 			recipientList = RecipientListModel<RecipientModel>(path: path)
 		}
@@ -51,7 +52,7 @@ class RecipientsViewController: BaseViewController {
 		numberOfLoadedElements = 0
 		recipientList?.load { [weak self] (success) -> Void in
 			self?.title = LocalizedString("Recipients") + " (\(self?.recipientList?.count ?? 0))"
-			self?.tableView.reloadData()
+			self?.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
 		}
 	}
 
@@ -91,7 +92,20 @@ extension RecipientsViewController: UITableViewDataSource {
 extension RecipientsViewController: UserProfileTableViewCellDelegate {
 
 	func userProfileTableViewCellDidPressDeleteButton(cell: UserProfileTableViewCell) {
-
+		if let indexPath = tableView.indexPathForCell(cell), recipient = recipientList?[indexPath.row] {
+			let index = recipients.indexOf { (element) -> Bool in
+				if case .Employee(let user) = element where user.id == recipient.id {
+					return true
+				} else {
+					return false
+				}
+			}
+			if let index = index {
+				recipients.removeAtIndex(index)
+				recipientList?.setRecipients(recipients)
+				reloadData()
+			}
+		}
 	}
 
 }

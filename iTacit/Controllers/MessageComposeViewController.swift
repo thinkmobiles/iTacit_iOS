@@ -125,6 +125,7 @@ class MessageComposeViewController: BaseViewController {
 	@IBAction func returnFromAddRecipientsViewController(segue: UIStoryboardSegue) {
 		if let addRecipientViewController = segue.sourceViewController as? AddRecipientViewController {
 			message.recipients = addRecipientViewController.recipients
+			recipientsTableViewCell?.setTagsFromRecipients(message.recipients)
 			print("Recipients: \(message.recipients)")
 		}
 	}

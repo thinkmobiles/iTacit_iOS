@@ -28,7 +28,7 @@ class ReplayViewController: BaseViewController {
     
     var replayType: ReplayType = .ToAll
     var replyMessageModel = MessageCreateReplyModel()
-    var message: MessageModel!
+    var messageId = ""
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -49,14 +49,16 @@ class ReplayViewController: BaseViewController {
     // MARK: - IBAction
     
     @IBAction func sendButtonAction(sender: UIBarButtonItem) {
+		navigationItem.rightBarButtonItem?.enabled = false
         if !prepareReply() {
             return
         }
         
-        replyMessageModel.sendReply { [unowned self] (success) -> Void in
+        replyMessageModel.sendReply { [weak self] (success) -> Void in
             if success {
-                self.navigationController?.popViewControllerAnimated(true)
+                self?.navigationController?.popViewControllerAnimated(true)
             }
+			self?.navigationItem.rightBarButtonItem?.enabled = true
         }
     }
     
@@ -78,11 +80,11 @@ class ReplayViewController: BaseViewController {
     
     func prepareReply() -> Bool {
         replyMessageModel.senderID = ""
-        replyMessageModel.messageId = message.id
+        replyMessageModel.messageId = messageId
         replyMessageModel.body = NSAttributedString(string: bodyTextView.text)
         switch replayType {
-        case .ToAll: replyMessageModel.privateReply = false
-        case .ToUser(_): replyMessageModel.privateReply = true
+			case .ToAll: replyMessageModel.privateReply = false
+			case .ToUser(_): replyMessageModel.privateReply = true
         }
         
         return true

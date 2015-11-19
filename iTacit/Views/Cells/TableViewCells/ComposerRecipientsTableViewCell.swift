@@ -65,6 +65,17 @@ class ComposerRecipientsTableViewCell: UITableViewCell {
 
 	// MARK: - Public
 
+	func setTagsFromRecipients(recipients: [NewMessageModel.Recipient]) {
+		var tags = [TagModel]()
+		recipients.forEach { (recipient) -> () in
+			if case .Employee(let user) = recipient {
+				tags.append(TagModel(string: user.fullName, attributes: [Constants.userIdKey: user.id]))
+			}
+		}
+		tagTextField.tags = tags
+		tagTextField.reloadData()
+	}
+
 	// MARK: - IBActions
 
 	@IBAction func moreAction() {
@@ -106,20 +117,8 @@ extension ComposerRecipientsTableViewCell: UITableViewDataSource {
 		cell.imageOffset = Constants.userProfileCellImageOffset
 		let userProfile = autocompletionDataSource[indexPath.row]
 		cell.configureWithUserProfile(userProfile)
-//		cell.fullName = userProfile.fullName
-//		cell.status = userProfile.status
-//
-//		if let imageURL = userProfile.imageURL {
-//			cell.imageDownloadTask?.cancel()
-//			cell.imageDownloadTask = ImageCacheManager.sharedInstance.imageForURL(imageURL, completion: { (image) -> Void in
-//				cell.profileImage = image
-//			})
-//		} else {
-//			cell.profileImageView.image = nil
-//		}
 
 		let contains = tagTextField.tags.contains { ($0.attributes?[Constants.userIdKey] ?? "") == userProfile.id }
-
 		cell.selected = contains
 		if contains {
 			tableView.selectRowAtIndexPath(indexPath, animated: false, scrollPosition: .None)

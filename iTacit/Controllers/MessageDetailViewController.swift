@@ -18,6 +18,8 @@ class MessageDetailViewController: BaseViewController {
         static let DefaultNumberOfRows: CGFloat = 3
         static let bodyLabelLineHeightMultiple = CGFloat(0.85)
         static let ReplyViewControllerID = "ReplayViewController"
+		static let replayToUserSegue = "ReplayToUserSegue"
+		static let replyOnReplySegue = "ReplyOnReplySegue"
     }
 
     @IBOutlet weak var headerView: UIView!
@@ -73,11 +75,15 @@ class MessageDetailViewController: BaseViewController {
         showMoreTextView.maximumNumberOfLines = 3
         showMoreTextView.shouldTrim = true
         showMoreTextView.attributedTrimText = NSMutableAttributedString(string: "...")
-        
-        loadReplies()
+
         prepareUI()
 		loadRecipients()
     }
+
+	override func viewWillAppear(animated: Bool) {
+		super.viewWillAppear(animated)
+		loadReplies()
+	}
     
     // MARK: - IBAction
     
@@ -92,15 +98,12 @@ class MessageDetailViewController: BaseViewController {
     @IBAction func replyToAllAction(sender: UIButton) {
         let replyViewController =  storyboard?.instantiateViewControllerWithIdentifier(Constants.ReplyViewControllerID) as! ReplayViewController
         replyViewController.replayType = .ToAll
-        replyViewController.message = message
+        replyViewController.messageId = message.id
         navigationController?.pushViewController(replyViewController, animated: true)
     }
     
     @IBAction func replyToUserAction(sender: UIButton) {
-        let replyViewController =  storyboard?.instantiateViewControllerWithIdentifier(Constants.ReplyViewControllerID) as! ReplayViewController
-        replyViewController.replayType = .ToUser(user: message.sender!)
-        replyViewController.message = message
-        navigationController?.pushViewController(replyViewController, animated: true)
+
     }
     
     // MARK: - Private
@@ -173,7 +176,21 @@ class MessageDetailViewController: BaseViewController {
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if let recipientsViewController = segue.destinationViewController as? RecipientsViewController {
 			recipientsViewController.recipientList = recipientList
+		} else if let replayViewController = segue.destinationViewController as? ReplayViewController, identifier = segue.identifier {
+			switch identifier {
+				case Constants.replayToUserSegue:
+					replayViewController.messageId = message.id
+					replayViewController.replayType = .ToUser(user: message.sender!)
+				case Constants.replyOnReplySegue:
+					if let indexPath = tableView.indexPathForSelectedRow {
+						replayViewController.messageId = repliesList[indexPath.row].id
+						replayViewController.replayType = .ToUser(user: repliesList[indexPath.row].sender!)
+					}
+				default: break
+			}
+
 		}
+
 	}
     
 }
@@ -196,14 +213,14 @@ extension MessageDetailViewController: UITableViewDelegate {
         }
     }
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return repliesList.count
-    }
-    
 }
 
 extension MessageDetailViewController: UITableViewDataSource {
-    
+
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return repliesList.count
+	}
+
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier(Constants.CellId) as! MessageDetailCommentTableViewCell
         let replyModel = repliesList[indexPath.item]
@@ -224,7 +241,4 @@ extension MessageDetailViewController: MessageDetailCellDelegate {
         tableView.endUpdates()
     }
 
-    func didSeleReplyToUser(replyModel: ReplyModel) {
-        
-    }
 }

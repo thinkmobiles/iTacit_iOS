@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9059" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LNH-vp-fUK">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="9060" systemVersion="15B42" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="LNH-vp-fUK">
     <dependencies>
         <deployment identifier="iOS"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9049"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="9051"/>
         <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
     </dependencies>
     <customFonts key="customFonts">
@@ -976,7 +976,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZFm-Bs-tVW" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="3136" y="333"/>
+            <point key="canvasLocation" x="3194" y="333"/>
         </scene>
         <!--Message Detail View Controller-->
         <scene sceneID="Syt-yQ-jOJ">
@@ -1016,6 +1016,7 @@
                                                         </state>
                                                         <connections>
                                                             <action selector="replyToUserAction:" destination="iIc-iO-ZqJ" eventType="touchUpInside" id="KPR-hd-SQh"/>
+                                                            <segue destination="xkC-vH-Wqf" kind="show" identifier="ReplayToUserSegue" id="r1o-e1-0lN"/>
                                                         </connections>
                                                     </button>
                                                     <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="DV1-Nj-y2l">
@@ -1156,7 +1157,7 @@
                                             <constraint firstItem="5sH-AM-DpT" firstAttribute="top" secondItem="Bfd-qY-uCP" secondAttribute="bottom" constant="3" id="z7l-MK-zvf"/>
                                         </constraints>
                                     </view>
-                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="135" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9bh-vq-C9p">
+                                    <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" showsSelectionImmediatelyOnTouchBegin="NO" rowHeight="135" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="9bh-vq-C9p">
                                         <rect key="frame" x="0.0" y="127" width="600" height="380"/>
                                         <animations/>
                                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
@@ -1220,6 +1221,7 @@
                                                             </state>
                                                             <connections>
                                                                 <action selector="replyButtonAction:" destination="zkO-3e-DGj" eventType="touchUpInside" id="XE6-uo-q7e"/>
+                                                                <segue destination="xkC-vH-Wqf" kind="show" identifier="ReplyOnReplySegue" id="ZGC-hX-UaQ"/>
                                                             </connections>
                                                         </button>
                                                         <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="ic_user_compl_small" translatesAutoresizingMaskIntoConstraints="NO" id="b6D-Dg-85o">
@@ -1372,17 +1374,17 @@
                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             <subviews>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CCc-rD-het">
-                                    <rect key="frame" x="0.0" y="0.0" width="244" height="18"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="244" height="21"/>
                                     <animations/>
                                     <constraints>
-                                        <constraint firstAttribute="height" constant="18" id="KZv-v9-EOd"/>
+                                        <constraint firstAttribute="height" constant="21" id="KZv-v9-EOd"/>
                                     </constraints>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="17"/>
                                     <color key="textColor" red="0.20000000000000001" green="0.20000000000000001" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="i8R-Yx-QsY">
-                                    <rect key="frame" x="0.0" y="18" width="244" height="18"/>
+                                    <rect key="frame" x="0.0" y="20" width="244" height="16"/>
                                     <animations/>
                                     <fontDescription key="fontDescription" name="OpenSans" family="Open Sans" pointSize="12"/>
                                     <color key="textColor" red="0.67843137254901964" green="0.67843137254901964" blue="0.67843137254901964" alpha="1" colorSpace="calibratedRGB"/>
@@ -1397,7 +1399,7 @@
                                 <constraint firstItem="CCc-rD-het" firstAttribute="leading" secondItem="9dd-Ue-aeM" secondAttribute="leading" id="8S9-nf-5L2"/>
                                 <constraint firstAttribute="trailing" secondItem="i8R-Yx-QsY" secondAttribute="trailing" id="F8J-E7-xGP"/>
                                 <constraint firstItem="CCc-rD-het" firstAttribute="top" secondItem="9dd-Ue-aeM" secondAttribute="top" id="RgN-nl-MER"/>
-                                <constraint firstItem="i8R-Yx-QsY" firstAttribute="top" secondItem="CCc-rD-het" secondAttribute="bottom" id="w4t-CY-iE0"/>
+                                <constraint firstItem="i8R-Yx-QsY" firstAttribute="top" secondItem="CCc-rD-het" secondAttribute="bottom" constant="-1" id="w4t-CY-iE0"/>
                                 <constraint firstAttribute="bottom" secondItem="i8R-Yx-QsY" secondAttribute="bottom" id="wZq-tB-Bvu"/>
                             </constraints>
                         </view>
@@ -1754,7 +1756,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="obg-WU-p4j" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="zEO-ue-Lae" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3136" y="-1037"/>
+            <point key="canvasLocation" x="3194" y="-1037"/>
         </scene>
         <!--Messages View Controller-->
         <scene sceneID="Fmq-xs-1si">
@@ -2375,7 +2377,7 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PUO-j4-u7M" userLabel="First Responder" sceneMemberID="firstResponder"/>
                 <exit id="sj3-1T-bMH" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3136" y="-360"/>
+            <point key="canvasLocation" x="3194" y="-360"/>
         </scene>
         <!--Recipients View Controller-->
         <scene sceneID="SwU-Ys-ith">
@@ -2408,13 +2410,21 @@
                             <constraint firstAttribute="trailing" secondItem="9R2-5i-2jo" secondAttribute="trailing" id="rc0-mm-gxm"/>
                         </constraints>
                     </view>
+                    <navigationItem key="navigationItem" id="n0s-SV-e0c">
+                        <barButtonItem key="rightBarButtonItem" title="DONE" id="jX3-ob-pvW">
+                            <connections>
+                                <segue destination="8Gy-gO-SwQ" kind="unwind" unwindAction="returnFromRecipientsViewController:" id="ZKg-M8-di7"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="9R2-5i-2jo" id="YeZ-1e-Zey"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6r6-gc-vBe" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <exit id="8Gy-gO-SwQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="3876" y="-360"/>
+            <point key="canvasLocation" x="4009" y="-360"/>
         </scene>
         <!--Training View Controller-->
         <scene sceneID="5hZ-wF-e8j">
@@ -2476,6 +2486,7 @@
         <image name="ic_user_compl_small" width="14" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="ZGC-hX-UaQ"/>
         <segue reference="UeV-Y7-Zzk"/>
     </inferredMetricsTieBreakers>
 </document>

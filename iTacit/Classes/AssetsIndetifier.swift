@@ -20,6 +20,7 @@ enum AssetsIndetifier: String {
     case MailIcon = "ic_mail"
     case PrivateIcon = "ic_private"
     case BtnSendIcon = "btn_send"
+	case PhoneIcone = "ic_iphone"
 }
 
 extension UIImage {
