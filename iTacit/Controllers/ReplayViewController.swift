@@ -26,17 +26,39 @@ class ReplayViewController: BaseViewController {
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     var replayType: ReplayType = .ToAll
-
+    var replyMessageModel = MessageCreateReplyModel()
+    var message: MessageModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addKeyboardObservers()
         prepareUI()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        bodyTextView.becomeFirstResponder()
+    }
+    
     deinit {
         removeKeyboardObservers()
     }
 
+    // MARK: - IBAction
+    
+    @IBAction func sendButtonAction(sender: UIBarButtonItem) {
+        if !prepareReply() {
+            return
+        }
+        
+        replyMessageModel.sendReply { [unowned self] (success) -> Void in
+            if success {
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+        }
+    }
+    
     // MARK: - Keyboard
     
     override func keyboardWillShowWithSize(size: CGSize, animationDuration: NSTimeInterval, animationOptions: UIViewAnimationOptions) {
@@ -52,6 +74,22 @@ class ReplayViewController: BaseViewController {
     }
     
     // MARK: - Private
+    
+    func prepareReply() -> Bool {
+//        var messageId = ""
+//        var senderID = ""
+//        var privateReply = false
+//        var body: NSAttributedString?
+        replyMessageModel.senderID = "1"
+        replyMessageModel.messageId = message.id
+        replyMessageModel.body = NSAttributedString(string: bodyTextView.text)
+        switch replayType {
+        case .ToAll: replyMessageModel.privateReply = false
+        case .ToUser(_): replyMessageModel.privateReply = true
+        }
+        
+        return true
+    }
 
     func prepareUI() {
         switch replayType {

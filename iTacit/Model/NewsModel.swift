@@ -135,14 +135,10 @@ class YnStringToBoolTransformer: JSONValueTransformer {
     }
     
     class func transformToJSONValue(value: Any) throws -> AnyObject {
-        if let booleanString = value as? String {
-            if booleanString == "Y" {
-                return true
-            } else {
-                return false
-            }
+        if value as! Bool == true {
+            return "Y"
+        } else {
+            return "N"
         }
-        
-        throw ValueTransformerError.FailedToTransformValue(value: value)
     }
 }
