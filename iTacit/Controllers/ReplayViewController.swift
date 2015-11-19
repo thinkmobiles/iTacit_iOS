@@ -19,6 +19,7 @@ class ReplayViewController: BaseViewController {
         static let defaultBottomHeight: CGFloat = 8.0
     }
     
+    @IBOutlet weak var sendButton: UIBarButtonItem!
     @IBOutlet weak var replyDescription: UILabel!
     @IBOutlet weak var bodyTextView: UITextView!
     @IBOutlet weak var imageWidthConstraint: NSLayoutConstraint!
@@ -76,11 +77,7 @@ class ReplayViewController: BaseViewController {
     // MARK: - Private
     
     func prepareReply() -> Bool {
-//        var messageId = ""
-//        var senderID = ""
-//        var privateReply = false
-//        var body: NSAttributedString?
-        replyMessageModel.senderID = "1"
+        replyMessageModel.senderID = ""
         replyMessageModel.messageId = message.id
         replyMessageModel.body = NSAttributedString(string: bodyTextView.text)
         switch replayType {
@@ -92,6 +89,8 @@ class ReplayViewController: BaseViewController {
     }
 
     func prepareUI() {
+        sendButton.enabled = false
+
         switch replayType {
             case .ToAll: prepareAppearenceWithUser(nil)
             case .ToUser(let user): prepareAppearenceWithUser(user)
@@ -101,7 +100,7 @@ class ReplayViewController: BaseViewController {
     func prepareAppearenceWithUser(userModel: UserProfileModel?) {
         if let user = userModel {
             replyDescription.text = LocalizedString("This is private reply to ") + user.firstName
-            navigationItem.title = LocalizedString("Reply to") + user.firstName
+            navigationItem.title = LocalizedString("Reply to ") + user.firstName
         } else {
             navigationItem.title = LocalizedString("Reply to All")
             replyDescription.text = LocalizedString("This reply will be seen by all recipients")
@@ -110,4 +109,10 @@ class ReplayViewController: BaseViewController {
         }
     }
 	
+}
+
+extension ReplayViewController: UITextViewDelegate {
+    func textViewDidChange(textView: UITextView) {
+        sendButton.enabled = !textView.text.isEmptyOrWhitespaces
+    }
 }

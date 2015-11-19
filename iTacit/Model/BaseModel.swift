@@ -45,6 +45,10 @@ class BaseModel: NSObject {
 					failureHandler?(error: error, request: request, response: nil)
 					return
 				}
+                
+                if let body = request.HTTPBody {
+                    print(String(data: body, encoding: NSUTF8StringEncoding))
+                }
 
 				if 0...299 ~= HTTPResponse.statusCode {
 					successHandler?(data: data, request: request, response: HTTPResponse)

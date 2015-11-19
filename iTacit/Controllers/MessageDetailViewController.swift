@@ -80,7 +80,11 @@ class MessageDetailViewController: BaseViewController {
     // MARK: - IBAction
     
     @IBAction func confirmedReadAction(sender: UIButton) {
-        setConfirmed()
+        message.confirm { [unowned self] (success) -> Void in
+            if success {
+                self.setConfirmed()
+            }
+        }
     }
     
     @IBAction func replyToAllAction(sender: UIButton) {

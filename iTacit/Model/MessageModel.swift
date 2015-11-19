@@ -24,6 +24,18 @@ class MessageModel: BaseMessageModel {
 			completion?(success: false)
 		}
 	}
+    
+    func confirm(completion: CompletionHandler? = nil) {
+        performRequest({ [unowned self] (builder) -> Void in
+            builder.path = "/mobile/1.0/messaging/readConfirm/\(self.id)"
+            builder.method = .PUT
+            builder.contentType = .ApplicationJSON
+            }, successHandler: { (data, request, response) -> Void in
+                completion?(success: true)
+            }) { (error, request, response) -> Void in
+                completion?(success: false)
+        }
+    }
 
 	// MARK: - KeyValueCodable
 
