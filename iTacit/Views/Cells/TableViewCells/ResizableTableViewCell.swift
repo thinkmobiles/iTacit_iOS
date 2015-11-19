@@ -8,10 +8,10 @@
 
 import UIKit
 
-protocol ResizableTableViewCellDelegate: class {
+@objc protocol ResizableTableViewCellDelegate: class {
 
-	func tableVeiwCellNeedsUpdateSize(cell: UITableViewCell)
-
+	func tableViewCellNeedsUpdateSize(cell: UITableViewCell)
+	optional func tableViewCell(cell: ResizableTableViewCell, didChangeText text: String)
 }
 
 class ResizableTableViewCell: UITableViewCell, UITextViewDelegate {
@@ -44,8 +44,9 @@ class ResizableTableViewCell: UITableViewCell, UITextViewDelegate {
 		let textHeight = textView.sizeThatFits(targetSize).height
 		let height = CGRectGetHeight(textView.frame)
 		if height != textHeight {
-			delegate?.tableVeiwCellNeedsUpdateSize(self)
+			delegate?.tableViewCellNeedsUpdateSize(self)
 		}
+		delegate?.tableViewCell?(self, didChangeText: textView.text)
 	}
 	
 }

@@ -117,7 +117,7 @@ class HTMLToAttributedStringTransformer: JSONValueTransformer {
 	}
 
 	class func transformToJSONValue(value: Any) throws -> AnyObject {
-		return "\(value)"
+		return (value as? NSAttributedString)?.string ?? ""
 	}
 
 }
