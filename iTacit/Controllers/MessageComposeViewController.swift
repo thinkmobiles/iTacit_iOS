@@ -28,7 +28,7 @@ class MessageComposeViewController: BaseViewController {
 
 	private var reuseIdetifiersDataSource = [ComposerRecipientsTableViewCell.reuseIdentifier, ComposerTopicTableViewCell.reuseIdentifier, ComposerBodyTableViewCell.reuseIdentifier]
 
-    private var messageModel = NewMessageModel()
+    private var message = NewMessageModel()
 	private var userProfileList = UserProfileListModel()
 
 	// MARK: - Lifecycle
@@ -38,13 +38,14 @@ class MessageComposeViewController: BaseViewController {
 		tableView.tableFooterView = UIView()
 		tableView.layoutMargins = UIEdgeInsetsZero
 		userProfileList.searchQuery = SearchStringModel(string: "")
+		NSNotificationCenter.defaultCenter().addObserver(self, selector: Selector("didUpdateRecipientsNotification:"), name: NewMessageModel.Notifications.DidUpdateRecipients, object: nil)
     }
     
     override func viewWillAppear(animated: Bool) {
         super.viewWillAppear(animated)
         addKeyboardObservers()
     }
-    
+
     override func viewWillDisappear(animated: Bool) {
         super.viewWillDisappear(animated)
         removeKeyboardObservers()
@@ -54,6 +55,10 @@ class MessageComposeViewController: BaseViewController {
 		super.viewDidLayoutSubviews()
 		let radius = CGRectGetMidY(floatingCalendarButton.bounds)
 		floatingCalendarButton.roundCorners([.TopLeft, .BottomLeft], radii: CGSize(width: radius, height: radius))
+	}
+
+	deinit {
+		NSNotificationCenter.defaultCenter().removeObserver(self, name: NewMessageModel.Notifications.DidUpdateRecipients, object: nil)
 	}
 
 	// MARK: - Private
@@ -75,10 +80,36 @@ class MessageComposeViewController: BaseViewController {
 		recipientsTableViewCell?.updateDataSource(userProfileList.objects)
 	}
 
+	private func updateSendButtonState() {
+		do {
+			try message.validate()
+			navigationItem.rightBarButtonItem?.enabled = true
+		} catch {
+			navigationItem.rightBarButtonItem?.enabled = false
+		}
+	}
+
+	// MARK: - Notifications
+
+	func didUpdateRecipientsNotification(notification: NSNotification) {
+		updateSendButtonState()
+	}
+
     // MARK: - IBActions
     
     @IBAction func sendMessageAction(sender: UIBarButtonItem) {
-
+		sender.enabled = false
+		do {
+			try message.send { [weak self] success -> Void in
+				if success {
+					self?.navigationController?.popViewControllerAnimated(true)
+				} else {
+					sender.enabled = true
+				}
+			}
+		} catch {
+			print("Failed send message because of error: \(error)")
+		}
     }
     
     @IBAction func showDatePickerAction() {
@@ -90,6 +121,13 @@ class MessageComposeViewController: BaseViewController {
 			readDateTableViewCell?.showDatePicker()
 		}
     }
+
+	@IBAction func returnFromAddRecipientsViewController(segue: UIStoryboardSegue) {
+		if let addRecipientViewController = segue.sourceViewController as? AddRecipientViewController {
+			message.recipients = addRecipientViewController.recipients
+			print("Recipients: \(message.recipients)")
+		}
+	}
     
     // MARK: Keyboard
     
@@ -115,11 +153,11 @@ class MessageComposeViewController: BaseViewController {
 		}, completion: nil)
 	}
 
-	// MARK: - Navigation 
+	// MARK: - Navigation
 
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
 		if let addRecipientViewController = segue.destinationViewController as? AddRecipientViewController {
-			addRecipientViewController.searchString = recipientsTableViewCell?.searchString ?? ""
+			addRecipientViewController.recipients = message.recipients
 		}
 	}
 
@@ -152,6 +190,7 @@ extension MessageComposeViewController: UITableViewDataSource {
 		}
 		return cell
     }
+	
 }
 
 // MARK: - UITableViewDelegate
@@ -174,16 +213,27 @@ extension MessageComposeViewController: UITableViewDelegate {
 		}
 		return Constants.defaultCellHeight
 	}
+
 }
 
 // MARK: - ResizableTableViewCellDelegate
 
 extension MessageComposeViewController: ResizableTableViewCellDelegate {
 
-	func tableVeiwCellNeedsUpdateSize(cell: UITableViewCell) {
+	func tableViewCellNeedsUpdateSize(cell: UITableViewCell) {
 		tableView.beginUpdates()
 		tableView.endUpdates()
 	}
+
+	func tableViewCell(cell: ResizableTableViewCell, didChangeText text: String) {
+		if let topicTableViewCell = topicTableViewCell where topicTableViewCell == cell {
+			message.subject = topicTableViewCell.topic
+		} else if let bodyTableViewCell = bodyTableViewCell where bodyTableViewCell == cell {
+			message.body = NSAttributedString(string: bodyTableViewCell.string)
+		}
+		updateSendButtonState()
+	}
+
 }
 
 // MARK: - ComposerRecipientsTableViewCellDelegate
@@ -208,6 +258,23 @@ extension MessageComposeViewController: ComposerRecipientsTableViewCellDelegate 
 		tableView.beginUpdates()
 		tableView.endUpdates()
 	}
+
+	func composerRecipientsTableViewCell(cell: ComposerRecipientsTableViewCell, didAddUser userProfile: UserProfileModel) {
+		message.recipients.append(NewMessageModel.Recipient.Employee(userProfile: userProfile))
+	}
+
+	func composerRecipientsTableViewCell(cell: ComposerRecipientsTableViewCell, didRemoveUserWithId userId: String) {
+		let index = message.recipients.indexOf { (recipient) -> Bool in
+			if case .Employee(let userProfile) = recipient {
+				return userProfile.id == userId
+			}
+			return false
+		}
+		if let index = index {
+			message.recipients.removeAtIndex(index)
+		}
+	}
+
 }
 
 // MARK: - ComposerReadDateTableViewCellDelegate
@@ -216,11 +283,11 @@ extension MessageComposeViewController: ComposerReadDateTableViewCellDelegate {
 
 	func composerReadDateTableViewCellDidPressDeleteButton(cell: ComposerReadDateTableViewCell) {
 		deleteReadDateCell()
-		messageModel.readDate = nil
+		message.readRequirementType = .NotRequired
 	}
 
 	func composerReadDateTableViewCell(cell: ComposerReadDateTableViewCell, didPickDate date: NSDate) {
-		messageModel.readDate = date
+		message.readRequirementType = .RequiredTo(date: date)
 	}
 
 }

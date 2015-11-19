@@ -84,16 +84,16 @@ class MessageDetailViewController: BaseViewController {
         }
         
         switch message.readRequirementType {
-        case .NotRequired:
-            setConfirmed()
-        case .RequiredTo(let date):
-            headerConfirmToDate.text = LocalizedString("Please confirm By ") + MessageDetailViewController.readToDateFormatter.stringFromDate(date)
-            confirmViewTitle.text = LocalizedString("I HAVE READ THIS")
-            confirmViewTitle.textColor = AppColors.blue
-            confirmViewImage.image = nil
-            confirmViewImage.layer.cornerRadius = 9.0
-            confirmViewImage.layer.borderColor = AppColors.blue.CGColor
-            confirmViewImage.layer.borderWidth = 0.5
+			case .NotRequired:
+				setConfirmed()
+			case .RequiredTo(let date):
+				headerConfirmToDate.text = LocalizedString("Please confirm By ") + MessageDetailViewController.readToDateFormatter.stringFromDate(date)
+				confirmViewTitle.text = LocalizedString("I HAVE READ THIS")
+				confirmViewTitle.textColor = AppColors.blue
+				confirmViewImage.image = nil
+				confirmViewImage.layer.cornerRadius = 9.0
+				confirmViewImage.layer.borderColor = AppColors.blue.CGColor
+				confirmViewImage.layer.borderWidth = 0.5
         }
         
         timeAgoLabel.text = message.sendDate?.timeAgoStringRepresentation()

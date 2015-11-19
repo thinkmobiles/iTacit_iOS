@@ -58,6 +58,10 @@
 		4012FFAF1BF5D4CE002B1711 /* SeparatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4012FFAE1BF5D4CE002B1711 /* SeparatorView.swift */; };
 		4012FFB31BF62EA1002B1711 /* MessageCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4012FFB21BF62EA1002B1711 /* MessageCategoryCollectionViewCell.swift */; };
 		4014E4EC1BD0FD4F00837B3E /* NewsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4014E4EB1BD0FD4F00837B3E /* NewsTableViewCell.swift */; };
+		4015F8701BFB23720030927E /* RoleModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015F86F1BFB23720030927E /* RoleModel.swift */; };
+		4015F8721BFB27BB0030927E /* RoleListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015F8711BFB27BB0030927E /* RoleListModel.swift */; };
+		4015F8741BFB40C60030927E /* BaseMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015F8731BFB40C60030927E /* BaseMessageModel.swift */; };
+		4015F8771BFB88ED0030927E /* RecipientsCountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015F8761BFB88ED0030927E /* RecipientsCountModel.swift */; };
 		402B633E1BEDFC2300372201 /* TimeAgoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402B633D1BEDFC2300372201 /* TimeAgoExtension.swift */; };
 		40440DB21BDBCC9C00FADF6E /* InputCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40440DAD1BDBCC9C00FADF6E /* InputCollectionViewCell.swift */; };
 		40440DB31BDBCC9C00FADF6E /* InputCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40440DAE1BDBCC9C00FADF6E /* InputCollectionViewCell.xib */; };
@@ -190,6 +194,10 @@
 		4012FFAE1BF5D4CE002B1711 /* SeparatorView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SeparatorView.swift; sourceTree = "<group>"; };
 		4012FFB21BF62EA1002B1711 /* MessageCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		4014E4EB1BD0FD4F00837B3E /* NewsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsTableViewCell.swift; sourceTree = "<group>"; };
+		4015F86F1BFB23720030927E /* RoleModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoleModel.swift; sourceTree = "<group>"; };
+		4015F8711BFB27BB0030927E /* RoleListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoleListModel.swift; sourceTree = "<group>"; };
+		4015F8731BFB40C60030927E /* BaseMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseMessageModel.swift; sourceTree = "<group>"; };
+		4015F8761BFB88ED0030927E /* RecipientsCountModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientsCountModel.swift; sourceTree = "<group>"; };
 		402B633D1BEDFC2300372201 /* TimeAgoExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeAgoExtension.swift; sourceTree = "<group>"; };
 		40440DAD1BDBCC9C00FADF6E /* InputCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputCollectionViewCell.swift; sourceTree = "<group>"; };
 		40440DAE1BDBCC9C00FADF6E /* InputCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -300,6 +308,21 @@
 			name = MailComposerTableViewCells;
 			sourceTree = "<group>";
 		};
+		4015F8751BFB410B0030927E /* Organization Models */ = {
+			isa = PBXGroup;
+			children = (
+				35FF25DE1BECF62600B1D734 /* BusinessUnitModel.swift */,
+				35FF25E01BECF93C00B1D734 /* BusinessUnitListModel.swift */,
+				35FF25E21BECFAB300B1D734 /* JobClassificationModel.swift */,
+				35FF25E41BECFBDC00B1D734 /* JobClassificationListModel.swift */,
+				35FF25E61BECFDF400B1D734 /* PermissionGroupsModel.swift */,
+				35FF25E81BECFE6300B1D734 /* PermissionGroupsListModel.swift */,
+				4015F86F1BFB23720030927E /* RoleModel.swift */,
+				4015F8711BFB27BB0030927E /* RoleListModel.swift */,
+			);
+			name = "Organization Models";
+			sourceTree = "<group>";
+		};
 		401938571BF33D810030212F /* News Flow */ = {
 			isa = PBXGroup;
 			children = (
@@ -314,11 +337,11 @@
 			isa = PBXGroup;
 			children = (
 				40EA82551BCFD07B0029228F /* MessagesViewController.swift */,
+				35610F5C1BF4BAB6007BE698 /* MessageDetailViewController.swift */,
 				351E8EC01BE36B1500690669 /* MessageComposeViewController.swift */,
 				35D6EA361BEBA2D20084559B /* AddRecipientViewController.swift */,
 				356558DB1BEA4A41001E31D5 /* ComposerRecepientsViewController.swift */,
 				35DDBEB81BF3700F00791F79 /* ReplayViewController.swift */,
-				35610F5C1BF4BAB6007BE698 /* MessageDetailViewController.swift */,
 			);
 			name = "Messages Flow";
 			sourceTree = "<group>";
@@ -367,19 +390,15 @@
 		4019385D1BF3609E0030212F /* Messages Flow Models */ = {
 			isa = PBXGroup;
 			children = (
+				4015F8731BFB40C60030927E /* BaseMessageModel.swift */,
 				35EE4E961BE89CBD00740A03 /* NewMessageModel.swift */,
-				35FF25DE1BECF62600B1D734 /* BusinessUnitModel.swift */,
-				35FF25E01BECF93C00B1D734 /* BusinessUnitListModel.swift */,
-				35FF25E21BECFAB300B1D734 /* JobClassificationModel.swift */,
-				35FF25E41BECFBDC00B1D734 /* JobClassificationListModel.swift */,
-				35FF25E61BECFDF400B1D734 /* PermissionGroupsModel.swift */,
-				35FF25E81BECFE6300B1D734 /* PermissionGroupsListModel.swift */,
-				35DDBEBA1BF3951D00791F79 /* CreateReplyModel.swift */,
 				293D3D8D5FB143EB07670E7E /* MessageModel.swift */,
 				293D3EDD221DE1D0BEFA736D /* MessageListModel.swift */,
+				35DDBEBA1BF3951D00791F79 /* CreateReplyModel.swift */,
 				293D3388661F1E0C3B0C7FF9 /* MessageSearchQueryModel.swift */,
 				293D3FA48E72707523A5E49C /* MessageCategory.swift */,
 				293D32093613973975BFCCC2 /* MessageCategoryModel.swift */,
+				4015F8761BFB88ED0030927E /* RecipientsCountModel.swift */,
 			);
 			name = "Messages Flow Models";
 			sourceTree = "<group>";
@@ -538,6 +557,7 @@
 				4019385E1BF361070030212F /* Base Models */,
 				4019385C1BF354FB0030212F /* News Flow Models */,
 				4019385D1BF3609E0030212F /* Messages Flow Models */,
+				4015F8751BFB410B0030927E /* Organization Models */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -814,6 +834,7 @@
 				40EA824E1BCFCDEC0029228F /* TabBarControllerSegue.swift in Sources */,
 				405A29891BE6B21A0024ADA9 /* JSONMapper.swift in Sources */,
 				3DEFA79D1BD5040A00596A2B /* FilterNewsViewController.swift in Sources */,
+				4015F8721BFB27BB0030927E /* RoleListModel.swift in Sources */,
 				405A29901BE6B21A0024ADA9 /* RequestBuilder.swift in Sources */,
 				35EE4E991BE8DDD400740A03 /* CategoriesListModel.swift in Sources */,
 				40440DBE1BDBCDDE00FADF6E /* ExtendedTextField.swift in Sources */,
@@ -828,6 +849,7 @@
 				40440DB21BDBCC9C00FADF6E /* InputCollectionViewCell.swift in Sources */,
 				35FF25DF1BECF62600B1D734 /* BusinessUnitModel.swift in Sources */,
 				351E8EC81BE3700F00690669 /* ComposerTopicTableViewCell.swift in Sources */,
+				4015F8741BFB40C60030927E /* BaseMessageModel.swift in Sources */,
 				4056D5861BE8E8B20076B970 /* SearchCategoryQueryModel.swift in Sources */,
 				40EA82471BCFCD690029228F /* TabsContainerView.swift in Sources */,
 				405A29951BE6B2800024ADA9 /* BaseModel.swift in Sources */,
@@ -853,6 +875,7 @@
 				35610F5D1BF4BAB6007BE698 /* MessageDetailViewController.swift in Sources */,
 				3563B99A1BD11B43009BE696 /* NewsDetailViewController.swift in Sources */,
 				4056D57D1BE8D1C80076B970 /* BaseViewController.swift in Sources */,
+				4015F8771BFB88ED0030927E /* RecipientsCountModel.swift in Sources */,
 				4012FFB31BF62EA1002B1711 /* MessageCategoryCollectionViewCell.swift in Sources */,
 				405A298A1BE6B21A0024ADA9 /* JSONValueConvertible.swift in Sources */,
 				405A298E1BE6B21A0024ADA9 /* PropertyDescriptor.swift in Sources */,
@@ -862,6 +885,7 @@
 				40440DBC1BDBCD0E00FADF6E /* CollectionViewLeftAlignedFlowLayout.swift in Sources */,
 				405A298D1BE6B21A0024ADA9 /* Mappable.swift in Sources */,
 				3532472F1BEC9DA000733B1A /* AddRecipientHeaderView.swift in Sources */,
+				4015F8701BFB23720030927E /* RoleModel.swift in Sources */,
 				35FF25E71BECFDF400B1D734 /* PermissionGroupsModel.swift in Sources */,
 				40EA824B1BCFCD720029228F /* TabBarButton.swift in Sources */,
 				405A298F1BE6B21A0024ADA9 /* ValueTransformer.swift in Sources */,

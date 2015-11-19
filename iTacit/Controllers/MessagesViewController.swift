@@ -44,6 +44,7 @@ class MessagesViewController: BaseViewController {
 		super.viewWillAppear(animated)
 		addKeyboardObservers()
 		clearSelection()
+		reloadData()
 	}
 
 	override func viewWillDisappear(animated: Bool) {
@@ -80,12 +81,16 @@ class MessagesViewController: BaseViewController {
 			guard let strongSelf = self else {
 				return
 			}
-			let index = strongSelf.messageCategories.indexOf { $0.category == strongSelf.searchQuery.category }
-			if let index = index {
-				strongSelf.messageCategories[index].count = strongSelf.messageList.count
-				strongSelf.collectionView.reloadItemsAtIndexPaths([NSIndexPath(forItem: index, inSection: 0)])
-			}
+			strongSelf.setCountForCurrentCategory(strongSelf.messageList.count)
 			strongSelf.tableView.reloadData()
+		}
+	}
+
+	private func setCountForCurrentCategory(count: Int) {
+		let index = messageCategories.indexOf { $0.category == searchQuery.category }
+		if let index = index {
+			messageCategories[index].count = count
+			collectionView.reloadItemsAtIndexPaths([NSIndexPath(forItem: index, inSection: 0)])
 		}
 	}
 
@@ -184,6 +189,7 @@ extension MessagesViewController: UITableViewDataSource {
 
 	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
 		let cell = tableView.dequeueReusableCellWithIdentifier(MessageTableViewCell.reuseIdentifier, forIndexPath: indexPath) as! MessageTableViewCell
+		cell.swipeEnabled = (searchQuery.category != .Archive)
 		let message = messageList[indexPath.item]
 		cell.configureWithMessage(message)
 		cell.delegate = self
@@ -257,8 +263,11 @@ extension MessagesViewController: MessageTableViewCellDelegate {
 
 	func messageTableViewCellDidPressArchiveButton(cell: MessageTableViewCell) {
 		if let indexPath = tableView.indexPathForCell(cell) {
-			messageList[indexPath.item].archive()
-			print("Archive: \(indexPath.item)")
+			let message = messageList[indexPath.row]
+			message.archive()
+			messageList.objects.removeAtIndex(indexPath.row)
+			tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
+			setCountForCurrentCategory(messageList.count)
 		}
 	}
 

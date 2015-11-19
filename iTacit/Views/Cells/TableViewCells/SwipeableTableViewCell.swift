@@ -33,6 +33,16 @@ class SwipeableTableViewCell: UITableViewCell {
 		}
 	}
 
+	var swipeEnabled: Bool {
+		get {
+			return panGesture.enabled
+		}
+		set {
+			panGesture.enabled = newValue
+			tapGesture.enabled = newValue
+		}
+	}
+
 	// MARK: - Lifecycle
 
 	override func awakeFromNib() {

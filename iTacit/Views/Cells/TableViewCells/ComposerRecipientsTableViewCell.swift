@@ -14,6 +14,8 @@ protocol ComposerRecipientsTableViewCellDelegate: class {
 	func composerRecipientsTableViewCell(cell: ComposerRecipientsTableViewCell, didChangeSearchString searchString: String)
 	func composerRecipientsTableViewCellDidBeginSearch(cell: ComposerRecipientsTableViewCell)
 	func composerRecipientsTableViewCellNeedsUpdateSize(cell: ComposerRecipientsTableViewCell)
+	func composerRecipientsTableViewCell(cell: ComposerRecipientsTableViewCell, didAddUser userProfile: UserProfileModel)
+	func composerRecipientsTableViewCell(cell: ComposerRecipientsTableViewCell, didRemoveUserWithId userId: String)
 
 }
 
@@ -135,6 +137,7 @@ extension ComposerRecipientsTableViewCell: UITableViewDelegate {
 		let userProfile = autocompletionDataSource[indexPath.row]
 		tagTextField.insertTag(userProfile.fullName, attributes: [Constants.userIdKey: userProfile.id])
 		hideAutocompletionTableView()
+		delegate?.composerRecipientsTableViewCell(self, didAddUser: userProfile)
 	}
 
 	func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
@@ -143,11 +146,12 @@ extension ComposerRecipientsTableViewCell: UITableViewDelegate {
 		if let index = index {
 			tagTextField.removeTag(tagTextField.tags[index])
 		}
+		delegate?.composerRecipientsTableViewCell(self, didRemoveUserWithId: userProfile.id)
 	}
 	
 }
 
-//MARK: - Autocompletable
+// MARK: - Autocompletable
 
 extension ComposerRecipientsTableViewCell: Autocompletable {
 
@@ -160,6 +164,8 @@ extension ComposerRecipientsTableViewCell: Autocompletable {
 	}
 
 }
+
+// MARK: - TagTextFieldDelegate
 
 extension ComposerRecipientsTableViewCell: TagTextFieldDelegate {
 
@@ -184,7 +190,11 @@ extension ComposerRecipientsTableViewCell: TagTextFieldDelegate {
 		return true
 	}
 
-	func tagedTextField(textField: TagTextField, didDeleteTag tag: TagModel) {}
+	func tagedTextField(textField: TagTextField, didDeleteTag tag: TagModel) {
+		if let userId = tag.attributes?[Constants.userIdKey] {
+			delegate?.composerRecipientsTableViewCell(self, didRemoveUserWithId: userId)
+		}
+	}
 
 	func tagedTextField(textField: TagTextField, didChangeContentSize contentSize: CGSize) {
 		if contentSize.height <= Constants.maxHeight {
