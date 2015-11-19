@@ -20,17 +20,17 @@ class MessageCreateReplyModel: ReplyModel {
             builder.method = .POST
             builder.body = .MappableObject(object: self)
             builder.contentType = .ApplicationJSON
-            }, successHandler: { (data, request, response) -> Void in
-                completion?(success: true)
-            }) { (error, request, response) -> Void in
-                completion?(success: false)
+        }, successHandler: { (data, request, response) -> Void in
+            completion?(success: true)
+        }) { (error, request, response) -> Void in
+            completion?(success: false)
         }
     }
     
     // MARK: - KeyValueCodable
     
     override func setValue<T>(value: T, forKey key: String) throws {
-        try validateKey(key, typeOfValue: T.self)
+        try super.setValue(value, forKey: key)
         switch key {
         case "messageId": messageId <<- value
         case "senderID": senderID <<- value
@@ -43,7 +43,6 @@ class MessageCreateReplyModel: ReplyModel {
 
     override class var mapping: [PropertyDescriptor] {
         return [PropertyDescriptor(propertyName: "messageId"),
-            PropertyDescriptor(propertyName: "senderID"),
             TransformablePropertyDescriptor(propertyName: "privateReply", JSONKey: "privateYn", valueTransformer: YnStringToBoolTransformer.self),
         TransformablePropertyDescriptor(propertyName: "body", valueTransformer: HTMLToAttributedStringTransformer.self)]
     }
