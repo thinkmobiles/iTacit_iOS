@@ -121,3 +121,28 @@ class HTMLToAttributedStringTransformer: JSONValueTransformer {
 	}
 
 }
+
+class YnStringToBoolTransformer: JSONValueTransformer {
+    class func transformFromJSONValue(value: AnyObject) throws -> Any {
+        if let booleanString = value as? String {
+            if booleanString == "Y" {
+                return true
+            } else {
+                return false
+            }
+        }
+        throw ValueTransformerError.FailedToTransformValue(value: value)
+    }
+    
+    class func transformToJSONValue(value: Any) throws -> AnyObject {
+        if let booleanString = value as? String {
+            if booleanString == "Y" {
+                return true
+            } else {
+                return false
+            }
+        }
+        
+        throw ValueTransformerError.FailedToTransformValue(value: value)
+    }
+}

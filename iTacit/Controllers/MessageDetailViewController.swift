@@ -16,8 +16,10 @@ class MessageDetailViewController: BaseViewController {
         static let Iphone_3_5: CGFloat = 480.0
         static let NumberOfRowsFor_3_5: CGFloat = 2
         static let DefaultNumberOfRows: CGFloat = 3
+        static let bodyLabelLineHeightMultiple = CGFloat(0.85)
     }
 
+    @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var timeAgoLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
@@ -31,6 +33,8 @@ class MessageDetailViewController: BaseViewController {
     @IBOutlet weak var replyToUserButton: UIButton!
     @IBOutlet weak var showMoreTextView: ShowMoreTextView!
     @IBOutlet weak var confirmationButton: UIButton!
+    @IBOutlet weak var confirmationButtonHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var replyCountLabel: UILabel!
     
     var replyToUserName: String {
         get {
@@ -41,20 +45,30 @@ class MessageDetailViewController: BaseViewController {
         }
     }
 
-    var message: MessageModel!
     static let readToDateFormatter: NSDateFormatter = {
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MMM.dd"
         return dateFormatter
     }()
+
+    var message: MessageModel!
+    var repliesList = ReplyListModel()
+    let searchQuery = SearchReplyListModel()
+    var needsToReloadCell = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        tableView.estimatedRowHeight = Constants.CellHeight
+        tableView.rowHeight = UITableViewAutomaticDimension
 
-        prepareTableViewHeight()
+        repliesList.searchQuery = searchQuery
+        searchQuery.string = message.id
         showMoreTextView.maximumNumberOfLines = 3
         showMoreTextView.shouldTrim = true
         showMoreTextView.attributedTrimText = NSMutableAttributedString(string: "...")
+        
+        loadReplies()
         prepareUI()
     }
     
@@ -76,10 +90,22 @@ class MessageDetailViewController: BaseViewController {
     
     // MARK: - Private
     
+    private func loadReplies() {
+        repliesList.load { [weak self] (success) -> Void in
+            guard let strongSelf = self else {
+                return
+            }
+            
+            strongSelf.tableView.reloadData()
+        }
+    }
+    
     private func prepareUI() {
+        tableViewHeightConstraint.constant = view.frame.height - headerView.frame.height - 64.0
+
         if let sender = message.sender {
             replyToUserName = sender.firstName
-            titleLabel.text = sender.firstName + " " + sender.lastName
+            titleLabel.text = sender.fullName
             titleLabel.sizeToFit()
         }
         
@@ -96,18 +122,17 @@ class MessageDetailViewController: BaseViewController {
             confirmViewImage.layer.borderWidth = 0.5
         }
         
+        if let body = message.body {
+            let trimmedBody = body.string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
+
+            showMoreTextView.attributedText = NSAttributedString(string: trimmedBody)
+        }
+        
+        replyCountLabel.text = String(message.replyCount) ?? "0"
         timeAgoLabel.text = message.sendDate?.timeAgoStringRepresentation()
         headerTitle.text = message.subject
         confirmationView.layer.borderColor = AppColors.gray.CGColor
         replyToAllButton.setTitle(" " + LocalizedString("All"), forState: .Normal)
-    }
-    
-    private func prepareTableViewHeight() {
-        if UIScreen.mainScreen().bounds.height == Constants.Iphone_3_5 {
-            tableViewHeightConstraint.constant = Constants.CellHeight * Constants.NumberOfRowsFor_3_5
-        } else {
-            tableViewHeightConstraint.constant = Constants.CellHeight * Constants.DefaultNumberOfRows
-        }
     }
     
     private func setConfirmed() {
@@ -115,19 +140,24 @@ class MessageDetailViewController: BaseViewController {
         headerConfirmToDate.text = ""
         confirmViewImage.image = UIImage(assetsIndetifier: AssetsIndetifier.ConfirmedIcon)
         confirmViewTitle.text = LocalizedString("Confirmed read on ") /*+ MessageDetailViewController.readToDateFormatter.stringFromDate(date)*/
-        confirmViewImage.layer.borderColor = AppColors.lightGray.CGColor
+        confirmViewImage.layer.borderColor = UIColor.clearColor().CGColor
+        confirmViewImage.layer.cornerRadius = 0
     }
     
 }
 
 extension MessageDetailViewController: UITableViewDelegate {
     
-    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        if needsToReloadCell {
+            tableView.beginUpdates()
+            tableView.endUpdates()
+            needsToReloadCell = false
+        }
     }
     
-    func tableView(tableView: UITableView, heightForRowAtIndexPath indexPath: NSIndexPath) -> CGFloat {
-        return Constants.CellHeight
+    func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return repliesList.count
     }
     
 }
@@ -135,9 +165,23 @@ extension MessageDetailViewController: UITableViewDelegate {
 extension MessageDetailViewController: UITableViewDataSource {
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.CellId)
+        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.CellId) as! MessageDetailCommentTableViewCell
+        let replyModel = repliesList[indexPath.item]
         
-        return cell!
+        cell.configureWithReplyModel(replyModel)
+        cell.delegate = self
+        
+        return cell
+    }
+    
+}
+
+extension MessageDetailViewController: MessageDetailCellDelegate {
+    
+    func didSelectExpandButton() {
+        needsToReloadCell = true
+        tableView.beginUpdates()
+        tableView.endUpdates()
     }
     
 }
