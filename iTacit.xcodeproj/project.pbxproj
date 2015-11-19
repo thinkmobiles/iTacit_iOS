@@ -43,6 +43,7 @@
 		35D6EA371BEBA2D20084559B /* AddRecipientViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35D6EA361BEBA2D20084559B /* AddRecipientViewController.swift */; };
 		35DDBEB91BF3700F00791F79 /* ReplayViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DDBEB81BF3700F00791F79 /* ReplayViewController.swift */; };
 		35DDBEBB1BF3951D00791F79 /* CreateReplyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35DDBEBA1BF3951D00791F79 /* CreateReplyModel.swift */; };
+		35E775D51BFDE9AA000A0BA7 /* MessageCreateReplyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35E775D41BFDE9AA000A0BA7 /* MessageCreateReplyModel.swift */; };
 		35EE4E971BE89CBD00740A03 /* NewMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE4E961BE89CBD00740A03 /* NewMessageModel.swift */; };
 		35EE4E991BE8DDD400740A03 /* CategoriesListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35EE4E981BE8DDD400740A03 /* CategoriesListModel.swift */; };
 		35FAAE931BFB2DAD0006B915 /* ReplyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 35FAAE921BFB2DAD0006B915 /* ReplyModel.swift */; };
@@ -185,6 +186,7 @@
 		35D6EA361BEBA2D20084559B /* AddRecipientViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AddRecipientViewController.swift; sourceTree = "<group>"; };
 		35DDBEB81BF3700F00791F79 /* ReplayViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplayViewController.swift; sourceTree = "<group>"; };
 		35DDBEBA1BF3951D00791F79 /* CreateReplyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CreateReplyModel.swift; sourceTree = "<group>"; };
+		35E775D41BFDE9AA000A0BA7 /* MessageCreateReplyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCreateReplyModel.swift; sourceTree = "<group>"; };
 		35EE4E961BE89CBD00740A03 /* NewMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewMessageModel.swift; sourceTree = "<group>"; };
 		35EE4E981BE8DDD400740A03 /* CategoriesListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoriesListModel.swift; sourceTree = "<group>"; };
 		35FAAE921BFB2DAD0006B915 /* ReplyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ReplyModel.swift; sourceTree = "<group>"; };
@@ -417,6 +419,7 @@
 				4028C2F21BFE1024007A2939 /* RecipientModel.swift */,
 				4028C2F41BFE132E007A2939 /* RecipientListModel.swift */,
 				4028C2F61BFE1FAF007A2939 /* RecipientSearchQuery.swift */,
+				35E775D41BFDE9AA000A0BA7 /* MessageCreateReplyModel.swift */,
 			);
 			name = "Messages Flow Models";
 			sourceTree = "<group>";
@@ -899,6 +902,7 @@
 				4012FFB31BF62EA1002B1711 /* MessageCategoryCollectionViewCell.swift in Sources */,
 				405A298A1BE6B21A0024ADA9 /* JSONValueConvertible.swift in Sources */,
 				405A298E1BE6B21A0024ADA9 /* PropertyDescriptor.swift in Sources */,
+				35E775D51BFDE9AA000A0BA7 /* MessageCreateReplyModel.swift in Sources */,
 				35EE4E971BE89CBD00740A03 /* NewMessageModel.swift in Sources */,
 				35A3498A1BF5E6C100CD0DEB /* MessageDetailCommentTableViewCell.swift in Sources */,
 				40440DBC1BDBCD0E00FADF6E /* CollectionViewLeftAlignedFlowLayout.swift in Sources */,

@@ -17,6 +17,7 @@ class MessageDetailViewController: BaseViewController {
         static let NumberOfRowsFor_3_5: CGFloat = 2
         static let DefaultNumberOfRows: CGFloat = 3
         static let bodyLabelLineHeightMultiple = CGFloat(0.85)
+        static let ReplyViewControllerID = "ReplayViewController"
     }
 
     @IBOutlet weak var headerView: UIView!
@@ -81,13 +82,25 @@ class MessageDetailViewController: BaseViewController {
     // MARK: - IBAction
     
     @IBAction func confirmedReadAction(sender: UIButton) {
-        setConfirmed()
+        message.confirm { [unowned self] (success) -> Void in
+            if success {
+                self.setConfirmed()
+            }
+        }
     }
     
     @IBAction func replyToAllAction(sender: UIButton) {
+        let replyViewController =  storyboard?.instantiateViewControllerWithIdentifier(Constants.ReplyViewControllerID) as! ReplayViewController
+        replyViewController.replayType = .ToAll
+        replyViewController.message = message
+        navigationController?.pushViewController(replyViewController, animated: true)
     }
     
     @IBAction func replyToUserAction(sender: UIButton) {
+        let replyViewController =  storyboard?.instantiateViewControllerWithIdentifier(Constants.ReplyViewControllerID) as! ReplayViewController
+        replyViewController.replayType = .ToUser(user: message.sender!)
+        replyViewController.message = message
+        navigationController?.pushViewController(replyViewController, animated: true)
     }
     
     // MARK: - Private
@@ -167,6 +180,14 @@ class MessageDetailViewController: BaseViewController {
 
 extension MessageDetailViewController: UITableViewDelegate {
     
+    func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 0.01
+    }
+    
+    func tableView(tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return UIView()
+    }
+    
     func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
         if needsToReloadCell {
             tableView.beginUpdates()
@@ -202,5 +223,8 @@ extension MessageDetailViewController: MessageDetailCellDelegate {
         tableView.beginUpdates()
         tableView.endUpdates()
     }
-    
+
+    func didSeleReplyToUser(replyModel: ReplyModel) {
+        
+    }
 }

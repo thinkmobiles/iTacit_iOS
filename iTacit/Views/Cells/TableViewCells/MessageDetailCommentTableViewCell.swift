@@ -10,6 +10,7 @@ import UIKit
 
 protocol MessageDetailCellDelegate: class {
     func didSelectExpandButton()
+    func didSeleReplyToUser(replyModel: ReplyModel)
 }
 
 class MessageDetailCommentTableViewCell: UITableViewCell {
@@ -47,7 +48,7 @@ class MessageDetailCommentTableViewCell: UITableViewCell {
     }
     
     var imageDownloadTask: NSURLSessionTask?
-
+    var model: ReplyModel?
     // MARK: - IBAction
     
     @IBAction func replyButtonAction(sender: UIButton) {
@@ -56,6 +57,8 @@ class MessageDetailCommentTableViewCell: UITableViewCell {
     // MARK: - Public
     
     func configureWithReplyModel(reply: ReplyModel) {
+        model = reply
+        
         if let sender = reply.sender {
             setUserImageWithURL(sender.imageURL)
             credentialLabel.text = sender.fullName
@@ -95,9 +98,6 @@ class MessageDetailCommentTableViewCell: UITableViewCell {
 
 extension MessageDetailCommentTableViewCell: ShowMoreTextViewDelegate {
     func needsToReloadTableView() {
-        
-        if delegate != nil {
-            delegate?.didSelectExpandButton()
-        }
+        delegate?.didSelectExpandButton()
     }
 }

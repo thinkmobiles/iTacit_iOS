@@ -19,6 +19,7 @@ class ReplayViewController: BaseViewController {
         static let defaultBottomHeight: CGFloat = 8.0
     }
     
+    @IBOutlet weak var sendButton: UIBarButtonItem!
     @IBOutlet weak var replyDescription: UILabel!
     @IBOutlet weak var bodyTextView: UITextView!
     @IBOutlet weak var imageWidthConstraint: NSLayoutConstraint!
@@ -26,17 +27,39 @@ class ReplayViewController: BaseViewController {
     @IBOutlet weak var bottomConstraint: NSLayoutConstraint!
     
     var replayType: ReplayType = .ToAll
-
+    var replyMessageModel = MessageCreateReplyModel()
+    var message: MessageModel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addKeyboardObservers()
         prepareUI()
     }
     
+    override func viewWillAppear(animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        bodyTextView.becomeFirstResponder()
+    }
+    
     deinit {
         removeKeyboardObservers()
     }
 
+    // MARK: - IBAction
+    
+    @IBAction func sendButtonAction(sender: UIBarButtonItem) {
+        if !prepareReply() {
+            return
+        }
+        
+        replyMessageModel.sendReply { [unowned self] (success) -> Void in
+            if success {
+                self.navigationController?.popViewControllerAnimated(true)
+            }
+        }
+    }
+    
     // MARK: - Keyboard
     
     override func keyboardWillShowWithSize(size: CGSize, animationDuration: NSTimeInterval, animationOptions: UIViewAnimationOptions) {
@@ -52,8 +75,22 @@ class ReplayViewController: BaseViewController {
     }
     
     // MARK: - Private
+    
+    func prepareReply() -> Bool {
+        replyMessageModel.senderID = ""
+        replyMessageModel.messageId = message.id
+        replyMessageModel.body = NSAttributedString(string: bodyTextView.text)
+        switch replayType {
+        case .ToAll: replyMessageModel.privateReply = false
+        case .ToUser(_): replyMessageModel.privateReply = true
+        }
+        
+        return true
+    }
 
     func prepareUI() {
+        sendButton.enabled = false
+
         switch replayType {
             case .ToAll: prepareAppearenceWithUser(nil)
             case .ToUser(let user): prepareAppearenceWithUser(user)
@@ -63,7 +100,7 @@ class ReplayViewController: BaseViewController {
     func prepareAppearenceWithUser(userModel: UserProfileModel?) {
         if let user = userModel {
             replyDescription.text = LocalizedString("This is private reply to ") + user.firstName
-            navigationItem.title = LocalizedString("Reply to") + user.firstName
+            navigationItem.title = LocalizedString("Reply to ") + user.firstName
         } else {
             navigationItem.title = LocalizedString("Reply to All")
             replyDescription.text = LocalizedString("This reply will be seen by all recipients")
@@ -72,4 +109,14 @@ class ReplayViewController: BaseViewController {
         }
     }
 	
+}
+
+extension ReplayViewController: UITextViewDelegate {
+    func textViewDidChange(textView: UITextView) {
+        sendButton.enabled = !textView.text.isEmptyOrWhitespaces
+    }
+    
+    func didSeleReplyToUser(replyModel: ReplyModel) {
+        
+    }
 }

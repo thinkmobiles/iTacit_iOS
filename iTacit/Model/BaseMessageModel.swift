@@ -16,11 +16,12 @@ class BaseMessageModel: BaseModel, Mappable {
 
 	var subject = ""
 	var body: NSAttributedString?
+    private var readRequired = false
 	private var readRequiredDate: NSDate?
 
 	var readRequirementType: ReadRequirementType {
 		get {
-			if let date = readRequiredDate {
+			if let date = readRequiredDate where readRequired {
 				return .RequiredTo(date: date)
 			} else {
 				return .NotRequired
@@ -44,6 +45,7 @@ class BaseMessageModel: BaseModel, Mappable {
 			case "subject": subject <<- value
 			case "body": body <<- value
 			case "readRequiredDate": readRequiredDate <<- value
+            case "readRequired": readRequired <<- value
 			default: break
 		}
 	}
@@ -53,7 +55,7 @@ class BaseMessageModel: BaseModel, Mappable {
 	class var mapping: [PropertyDescriptor] {
 		return [PropertyDescriptor(propertyName: "subject"),
 			PropertyDescriptor(propertyName: "readRequiredDate"),
-			TransformablePropertyDescriptor(propertyName: "body", valueTransformer: HTMLToAttributedStringTransformer.self)]
+			TransformablePropertyDescriptor(propertyName: "body", valueTransformer: HTMLToAttributedStringTransformer.self),TransformablePropertyDescriptor(propertyName: "readRequired", JSONKey: "readRequiredYn", valueTransformer: YnStringToBoolTransformer.self)]
 	}
 
 }

@@ -8,8 +8,8 @@
 
 import Foundation
 
-class ReplyModel: BaseModel {
-        
+class ReplyModel: BaseModel, Mappable {
+    
     var id = ""
     var parentMessageId = ""
     var sendDateTime: NSDate?
@@ -32,11 +32,8 @@ class ReplyModel: BaseModel {
         }
     }
     
-}
-
-// MARK: - KeyValueCodable
-
-extension ReplyModel: KeyValueCodable {
+    // MARK: - KeyValueCodable
+    
     
     func setValue<T>(value: T, forKey key: String) throws {
         try validateKey(key, typeOfValue: T.self)
@@ -55,11 +52,7 @@ extension ReplyModel: KeyValueCodable {
         }
     }
     
-}
-
-// MARK: - Mappable
-
-extension ReplyModel: Mappable {
+    // MARK: - Mappable
     
     class var mapping: [PropertyDescriptor] {
         return [PropertyDescriptor(propertyName: "id"),
@@ -73,5 +66,4 @@ extension ReplyModel: Mappable {
             PropertyDescriptor(propertyName: "sender"),
             TransformablePropertyDescriptor(propertyName: "body", valueTransformer: HTMLToAttributedStringTransformer.self)]
     }
-    
 }
