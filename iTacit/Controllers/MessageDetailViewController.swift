@@ -20,8 +20,10 @@ class MessageDetailViewController: BaseViewController {
         static let ReplyViewControllerID = "ReplayViewController"
 		static let replayToUserSegue = "ReplayToUserSegue"
 		static let replyOnReplySegue = "ReplyOnReplySegue"
+        static let replyAllSegue = "ReplyAllSegue"
     }
 
+    @IBOutlet weak var scrollView: UIScrollView!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var titleLabel: UILabel!
     @IBOutlet weak var timeAgoLabel: UILabel!
@@ -68,7 +70,8 @@ class MessageDetailViewController: BaseViewController {
         
         tableView.estimatedRowHeight = Constants.CellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
-
+        tableView.backgroundColor = AppColors.dirtyWhite
+        
 		recipientList.searchQuery = RecipientSearchQuery(messageId: message.id)
         repliesList.searchQuery = searchQuery
         searchQuery.string = message.id
@@ -93,17 +96,6 @@ class MessageDetailViewController: BaseViewController {
                 self.setConfirmed()
             }
         }
-    }
-    
-    @IBAction func replyToAllAction(sender: UIButton) {
-        let replyViewController =  storyboard?.instantiateViewControllerWithIdentifier(Constants.ReplyViewControllerID) as! ReplayViewController
-        replyViewController.replayType = .ToAll
-        replyViewController.messageId = message.id
-        navigationController?.pushViewController(replyViewController, animated: true)
-    }
-    
-    @IBAction func replyToUserAction(sender: UIButton) {
-
     }
     
     // MARK: - Private
@@ -132,7 +124,7 @@ class MessageDetailViewController: BaseViewController {
     
     private func prepareUI() {
         tableViewHeightConstraint.constant = view.frame.height - headerView.frame.height - 64.0
-
+        
         if let sender = message.sender {
             replyToUserName = sender.firstName
             titleLabel.text = sender.fullName
@@ -186,6 +178,11 @@ class MessageDetailViewController: BaseViewController {
 						replayViewController.messageId = repliesList[indexPath.row].id
 						replayViewController.replayType = .ToUser(user: repliesList[indexPath.row].sender!)
 					}
+                case Constants.replyAllSegue:
+                    if let indexPath = tableView.indexPathForSelectedRow {
+                    replayViewController.messageId = repliesList[indexPath.row].id
+                        replayViewController.replayType = .ToAll
+                    }
 				default: break
 			}
 
@@ -225,10 +222,26 @@ extension MessageDetailViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCellWithIdentifier(Constants.CellId) as! MessageDetailCommentTableViewCell
         let replyModel = repliesList[indexPath.item]
         
+        let confirmedRecipients = recipientList.objects.filter( { $0.hasConfirmed } )
+        replyModel.readConfirmed = confirmedRecipients.filter { $0.employeeId == replyModel.sender?.id}.count > 0
         cell.configureWithReplyModel(replyModel)
         cell.delegate = self
         
         return cell
+    }
+    
+}
+
+extension MessageDetailViewController: UIScrollViewDelegate {
+    
+    func scrollViewDidScroll(scrollView: UIScrollView) {
+        if scrollView == self.scrollView {
+            if scrollView.contentOffset.y  <= 0 {
+               scrollView.backgroundColor = UIColor.whiteColor()
+            } else {
+                scrollView.backgroundColor = AppColors.dirtyWhite
+            }
+        }
     }
     
 }
