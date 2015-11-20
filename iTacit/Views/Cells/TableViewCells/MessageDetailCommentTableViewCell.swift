@@ -29,20 +29,18 @@ class MessageDetailCommentTableViewCell: UITableViewCell {
     @IBOutlet weak var securityImageWidthConstraint: NSLayoutConstraint!
     
     weak var delegate: MessageDetailCellDelegate?
-
-    override func awakeFromNib() {
-        super.awakeFromNib()
-        bodyTextView.showMoreDelegate = self
-        backgroundColor = AppColors.dirtyWhite
-    }
-
-    override func setSelected(selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-    }
     
     var imageDownloadTask: NSURLSessionTask?
     var model: ReplyModel?
-    
+
+	override func awakeFromNib() {
+		super.awakeFromNib()
+		bodyTextView.showMoreDelegate = self
+		bodyTextView.textContainer.lineFragmentPadding = 0
+		bodyTextView.textContainerInset = UIEdgeInsetsZero
+		backgroundColor = AppColors.dirtyWhite
+	}
+
     // MARK: - IBAction
     
     @IBAction func replyButtonAction(sender: UIButton) {
@@ -61,7 +59,7 @@ class MessageDetailCommentTableViewCell: UITableViewCell {
         if let sender = reply.sender {
             setUserImageWithURL(sender.imageURL)
             credentialLabel.text = sender.fullName
-            replyButton.setTitle(" to \(sender.firstName)", forState: .Normal)
+            replyButton.setTitle(" " + LocalizedString("to") + " " + "\(sender.firstName)", forState: .Normal)
             descriptionLabel.text = sender.role
         }
         if let body = reply.body {
@@ -74,8 +72,7 @@ class MessageDetailCommentTableViewCell: UITableViewCell {
 
         timeAgoLabel.text = reply.sendDateTime?.timeAgoStringRepresentation()
         confirmImage.image = reply.readConfirmed ? UIImage(assetsIndetifier: .ConfirmedIcon) :  nil
-        
-        //TODO: add phone icon below
+
         repliedViaImage.image = reply.replyMethodEmail ? UIImage(assetsIndetifier: .MailIcon) : UIImage(assetsIndetifier: .PhoneIcone)
         securityImage.image = reply.replyPrivate ? UIImage(assetsIndetifier: .PrivateIcon) : nil
         securityImageWidthConstraint.constant = reply.replyPrivate ? securityImageWidthConstraint.constant : 0
@@ -88,7 +85,7 @@ class MessageDetailCommentTableViewCell: UITableViewCell {
         if let imageURL = imageURL {
             imageDownloadTask = ImageCacheManager.sharedInstance.imageForURL(imageURL, completion: { [weak self] (image) -> Void in
                 self?.userImage.image = image
-                })
+			})
         } else {
             userImage.image = nil
         }

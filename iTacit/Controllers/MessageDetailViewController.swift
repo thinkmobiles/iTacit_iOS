@@ -21,6 +21,8 @@ class MessageDetailViewController: BaseViewController {
 		static let replayToUserSegue = "ReplayToUserSegue"
 		static let replyOnReplySegue = "ReplyOnReplySegue"
         static let replyAllSegue = "ReplyAllSegue"
+		static let confirmationLabelHeight = CGFloat(14)
+		static let topLayoutHeight = CGFloat(64.0)
     }
 
     @IBOutlet weak var scrollView: UIScrollView!
@@ -29,16 +31,13 @@ class MessageDetailViewController: BaseViewController {
     @IBOutlet weak var timeAgoLabel: UILabel!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var tableViewHeightConstraint: NSLayoutConstraint!
-    @IBOutlet weak var confirmationView: UIView!
-    @IBOutlet weak var confirmViewImage: UIImageView!
-    @IBOutlet weak var confirmViewTitle: UILabel!
     @IBOutlet weak var headerTitle: UILabel!
     @IBOutlet weak var headerConfirmToDate: UILabel!
     @IBOutlet weak var replyToAllButton: UIButton!
     @IBOutlet weak var replyToUserButton: UIButton!
     @IBOutlet weak var showMoreTextView: ShowMoreTextView!
     @IBOutlet weak var confirmationButton: UIButton!
-    @IBOutlet weak var confirmationButtonHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var confirmationLabelHeightConstraint: NSLayoutConstraint!
 	@IBOutlet weak var repicientsButton: UIButton!
 	@IBOutlet weak var confirmedRecipientsButton: UIButton!
     
@@ -47,7 +46,7 @@ class MessageDetailViewController: BaseViewController {
             return replyToUserButton.titleLabel?.text ?? ""
         }
         set {
-            replyToUserButton.setTitle(" " + newValue, forState: .Normal)
+            replyToUserButton.setTitle(" " + LocalizedString("to") + " " + newValue, forState: .Normal)
         }
     }
 
@@ -74,8 +73,9 @@ class MessageDetailViewController: BaseViewController {
 		recipientList.searchQuery = RecipientSearchQuery(messageId: message.id)
         repliesList.searchQuery = searchQuery
         searchQuery.string = message.id
-        showMoreTextView.maximumNumberOfLines = 3
         showMoreTextView.shouldTrim = true
+		showMoreTextView.textContainer.lineFragmentPadding = 0
+		showMoreTextView.textContainerInset = UIEdgeInsetsZero
         showMoreTextView.attributedTrimText = NSMutableAttributedString(string: "...")
 
         prepareUI()
@@ -128,7 +128,7 @@ class MessageDetailViewController: BaseViewController {
 	}
     
     private func prepareUI() {
-        tableViewHeightConstraint.constant = view.frame.height - headerView.frame.height - 64.0
+        tableViewHeightConstraint.constant = CGRectGetHeight(view.frame) - CGRectGetHeight(headerView.frame) - Constants.topLayoutHeight
         
         if let sender = message.sender {
             replyToUserName = sender.firstName
@@ -138,36 +138,38 @@ class MessageDetailViewController: BaseViewController {
         
         switch message.readRequirementType {
 			case .NotRequired:
-				setConfirmed()
+				confirmationLabelHeightConstraint.constant = 0
+				confirmationButton.hidden = true
 			case .RequiredTo(let date):
+				confirmationButton.hidden = false
+				confirmationLabelHeightConstraint.constant = Constants.confirmationLabelHeight
+				confirmationButton.layer.borderWidth = 1.0
+				confirmationButton.userInteractionEnabled = true
+				confirmationButton.setTitle("  " + LocalizedString("I HAVE READ THIS"), forState: .Normal)
+				confirmationButton.setImage(UIImage(assetsIndetifier: .UnconfirmedIcon).imageWithRenderingMode(.AlwaysTemplate), forState: .Normal)
 				headerConfirmToDate.text = LocalizedString("Please confirm By ") + MessageDetailViewController.readToDateFormatter.stringFromDate(date)
-				confirmViewTitle.text = LocalizedString("I HAVE READ THIS")
-				confirmViewTitle.textColor = AppColors.blue
-				confirmViewImage.image = nil
-				confirmViewImage.layer.cornerRadius = 9.0
-				confirmViewImage.layer.borderColor = AppColors.blue.CGColor
-				confirmViewImage.layer.borderWidth = 0.5
+				confirmationButton.setTitleColor(AppColors.blue, forState: .Normal)
         }
         
         if let body = message.body {
             let trimmedBody = body.string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-
             showMoreTextView.attributedText = NSAttributedString(string: trimmedBody)
         }
         
         timeAgoLabel.text = message.sendDate?.timeAgoStringRepresentation()
         headerTitle.text = message.subject
-        confirmationView.layer.borderColor = AppColors.gray.CGColor
         replyToAllButton.setTitle(" " + LocalizedString("All"), forState: .Normal)
     }
     
     private func setConfirmed() {
-        confirmationButton.hidden = true
-        headerConfirmToDate.text = ""
-        confirmViewImage.image = UIImage(assetsIndetifier: AssetsIndetifier.ConfirmedIcon)
-        confirmViewTitle.text = LocalizedString("Confirmed read on ") /*+ MessageDetailViewController.readToDateFormatter.stringFromDate(date)*/
-        confirmViewImage.layer.borderColor = UIColor.clearColor().CGColor
-        confirmViewImage.layer.cornerRadius = 0
+		confirmationLabelHeightConstraint.constant = 0
+		confirmationButton.layer.borderWidth = 0.5
+		confirmationButton.userInteractionEnabled = false
+		let titleText = "  " + LocalizedString("Confirmed read on ") + MessageDetailViewController.readToDateFormatter.stringFromDate(NSDate())
+		confirmationButton.setTitle(titleText, forState: .Normal)
+		confirmationButton.setImage(UIImage(assetsIndetifier: .ConfirmedIcon), forState: .Normal)
+		confirmationButton.setTitleColor(AppColors.gray, forState: .Normal)
+		headerConfirmToDate.text = ""
     }
 
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
