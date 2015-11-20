@@ -10,7 +10,7 @@ import UIKit
 
 let ImageCache = NSCache()
 
-class NewsViewController: UIViewController {
+class NewsViewController: PagingViewController {
 
     @IBOutlet weak var newsTitle: UILabel!
 	@IBOutlet weak var tableView: UITableView!
@@ -22,7 +22,6 @@ class NewsViewController: UIViewController {
 
 	private let newsList = NewsListModel()
 	private var searchTimer: NSTimer?
-    private var numberOfLoadedElements = 0
 
 	// MARK: - LifeCycle
 
@@ -47,15 +46,6 @@ class NewsViewController: UIViewController {
 		}
 	}
 
-	private func reloadData() {
-		print("Search query: \(newsList.searchQuery?.stringQuery)")
-		numberOfLoadedElements = 0
-		newsList.load { [weak self] (success) -> Void in
-			self?.tableView.reloadData()
-			self?.updateAutocompletionList()
-		}
-	}
-
 	private func updateAutocompletionList() {
 		tagSearchControl.updateDataSource(autocompletionListForText(tagSearchControl.searchText))
 	}
@@ -67,6 +57,34 @@ class NewsViewController: UIViewController {
 
 	func performSearch(sender: NSTimer) {
 		reloadData()
+	}
+
+	// MARK: - Data reloading
+
+	override var numberOfItems: Int {
+		return newsList.count
+	}
+
+	override var rowHeight: CGFloat {
+		return tableView.rowHeight
+	}
+
+	override func loadMoreItems() {
+		newsList.loadMore { [weak self] (success) -> Void in
+			self?.didLoadData()
+		}
+	}
+
+	override  func reloadData() {
+		super.reloadData()
+		newsList.load { [weak self] (success) -> Void in
+			self?.didLoadData()
+		}
+	}
+
+	private func didLoadData() {
+		tableView.reloadData()
+		updateAutocompletionList()
 	}
 
 	// MARK: Navigation
@@ -90,6 +108,10 @@ class NewsViewController: UIViewController {
 			tagSearchControl.tags = filterNewsViewController.tags
 			tagSearchControl.showClearButton = (searchModel.startDate != nil) || (searchModel.endDate != nil)
 			reloadData()
+			guard #available(iOS 9, *) else {
+				navigationController?.popViewControllerAnimated(true)
+				return
+			}
 		}
 	}
 	
@@ -158,20 +180,20 @@ extension NewsViewController: TagSearchControlDelegate {
 
 }
 
-// MARK: UIScrollViewDelegate
-
-extension NewsViewController: UIScrollViewDelegate {
-    
-    func scrollViewDidScroll(scrollView: UIScrollView) {
-		let delta = scrollView.contentSize.height - scrollView.contentOffset.y
-		let leftCellsHeight = CGFloat((NewsListModel.requestRowCount / 2)) * tableView.rowHeight
-		if delta <= leftCellsHeight && numberOfLoadedElements < newsList.count {
-            numberOfLoadedElements = newsList.count
-            newsList.loadMore { [weak self] (success) -> Void in
-                self?.tableView.reloadData()
-                self?.updateAutocompletionList()
-            }
-        }
-    }
-    
-}
+//// MARK: UIScrollViewDelegate
+//
+//extension NewsViewController: UIScrollViewDelegate {
+//    
+//    func scrollViewDidScroll(scrollView: UIScrollView) {
+//		let delta = scrollView.contentSize.height - scrollView.contentOffset.y
+//		let leftCellsHeight = CGFloat((NewsListModel.requestRowCount / 2)) * tableView.rowHeight
+//		if delta <= leftCellsHeight && numberOfLoadedElements < newsList.count {
+//            numberOfLoadedElements = newsList.count
+//            newsList.loadMore { [weak self] (success) -> Void in
+//                self?.tableView.reloadData()
+//                self?.updateAutocompletionList()
+//            }
+//        }
+//    }
+//    
+//}

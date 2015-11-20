@@ -8,7 +8,7 @@
 
 import UIKit
 
-class MessagesViewController: BaseViewController {
+class MessagesViewController: PagingViewController {
 
 	private struct Constants {
 		static let estimatedRowHeight = CGFloat(113)
@@ -76,16 +76,6 @@ class MessagesViewController: BaseViewController {
 		tagSearchControl.allowActivation = false
 	}
 
-	func reloadData() {
-		messageList.load { [weak self] success in
-			guard let strongSelf = self else {
-				return
-			}
-			strongSelf.setCountForCurrentCategory(strongSelf.messageList.count)
-			strongSelf.tableView.reloadData()
-		}
-	}
-
 	private func setCountForCurrentCategory(count: Int) {
 		let index = messageCategories.indexOf { $0.category == searchQuery.category }
 		if let index = index {
@@ -145,6 +135,34 @@ class MessagesViewController: BaseViewController {
 				self.view.layoutIfNeeded()
 			}
 		}, completion: nil)
+	}
+
+	// MARK: - Data reloading
+
+	override var numberOfItems: Int {
+		return messageList.count
+	}
+
+	override var rowHeight: CGFloat {
+		return Constants.estimatedRowHeight
+	}
+
+	override func reloadData() {
+		super.reloadData()
+		messageList.load { [weak self] success in
+			self?.didLoadData()
+		}
+	}
+
+	override func loadMoreItems() {
+		messageList.loadMore { [weak self] (success) -> Void in
+			self?.didLoadData()
+		}
+	}
+
+	private func didLoadData() {
+		setCountForCurrentCategory(messageList.count)
+		tableView.reloadData()
 	}
 
 	// MARK: - Keyboard

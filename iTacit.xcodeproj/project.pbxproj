@@ -70,6 +70,7 @@
 		4028C2F51BFE132E007A2939 /* RecipientListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4028C2F41BFE132E007A2939 /* RecipientListModel.swift */; };
 		4028C2F71BFE1FAF007A2939 /* RecipientSearchQuery.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4028C2F61BFE1FAF007A2939 /* RecipientSearchQuery.swift */; };
 		402B633E1BEDFC2300372201 /* TimeAgoExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402B633D1BEDFC2300372201 /* TimeAgoExtension.swift */; };
+		402F3D401BFF1640003C00C0 /* PagingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402F3D3F1BFF1640003C00C0 /* PagingViewController.swift */; };
 		40440DB21BDBCC9C00FADF6E /* InputCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40440DAD1BDBCC9C00FADF6E /* InputCollectionViewCell.swift */; };
 		40440DB31BDBCC9C00FADF6E /* InputCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40440DAE1BDBCC9C00FADF6E /* InputCollectionViewCell.xib */; };
 		40440DB41BDBCC9C00FADF6E /* TextCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40440DB01BDBCC9C00FADF6E /* TextCollectionViewCell.swift */; };
@@ -213,6 +214,7 @@
 		4028C2F41BFE132E007A2939 /* RecipientListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientListModel.swift; sourceTree = "<group>"; };
 		4028C2F61BFE1FAF007A2939 /* RecipientSearchQuery.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientSearchQuery.swift; sourceTree = "<group>"; };
 		402B633D1BEDFC2300372201 /* TimeAgoExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TimeAgoExtension.swift; sourceTree = "<group>"; };
+		402F3D3F1BFF1640003C00C0 /* PagingViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PagingViewController.swift; sourceTree = "<group>"; };
 		40440DAD1BDBCC9C00FADF6E /* InputCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputCollectionViewCell.swift; sourceTree = "<group>"; };
 		40440DAE1BDBCC9C00FADF6E /* InputCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputCollectionViewCell.xib; sourceTree = "<group>"; };
 		40440DB01BDBCC9C00FADF6E /* TextCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -558,6 +560,7 @@
 			isa = PBXGroup;
 			children = (
 				351E8EC21BE36E8C00690669 /* BaseViewController.swift */,
+				402F3D3F1BFF1640003C00C0 /* PagingViewController.swift */,
 				4019385B1BF33DE70030212F /* Tab Bar Controller */,
 				4019385A1BF33DAF0030212F /* Dashboard */,
 				401938571BF33D810030212F /* News Flow */,
@@ -861,6 +864,7 @@
 				405A29901BE6B21A0024ADA9 /* RequestBuilder.swift in Sources */,
 				35EE4E991BE8DDD400740A03 /* CategoriesListModel.swift in Sources */,
 				40440DBE1BDBCDDE00FADF6E /* ExtendedTextField.swift in Sources */,
+				402F3D401BFF1640003C00C0 /* PagingViewController.swift in Sources */,
 				4014E4EC1BD0FD4F00837B3E /* NewsTableViewCell.swift in Sources */,
 				40EA82501BCFCE120029228F /* TabBarController.swift in Sources */,
 				351E8ECC1BE3C2AC00690669 /* ComposerBodyTableViewCell.swift in Sources */,

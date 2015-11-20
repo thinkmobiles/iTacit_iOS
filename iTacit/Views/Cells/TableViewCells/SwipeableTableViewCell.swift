@@ -96,13 +96,13 @@ class SwipeableTableViewCell: UITableViewCell {
 		let translation = sender.translationInView(swipableContainerView)
 		let velocity = sender.velocityInView(swipableContainerView)
 		let buttonsContainerWidth = CGRectGetWidth(buttonsContainerView.frame)
+		let shift = min(max(-buttonsContainerWidth, buttonsHidden ? translation.x : (-buttonsContainerWidth + translation.x)), 0.0)
 		switch sender.state {
 			case .Changed:
-				let shift = min(max(-buttonsContainerWidth, buttonsHidden ? translation.x : (-buttonsContainerWidth + translation.x)), 0.0)
 				swipableContainerViewLeadingConstraint.constant = shift
 			case .Ended, .Cancelled:
-				let a = buttonsHidden, b = abs(velocity.x) > Constants.minVelocity
-				let c = abs(translation.x) > (buttonsContainerWidth * Constants.translationCoefficient)
+				let a = buttonsHidden, b = (abs(velocity.x) > Constants.minVelocity && shift != 0 )
+				let c = abs(shift) > (buttonsContainerWidth * Constants.translationCoefficient)
 				let hideButtons = !a && b || !a && !b && c || a && !b && !c
 				if hideButtons {
 					hideButtonsAnimated(true)
