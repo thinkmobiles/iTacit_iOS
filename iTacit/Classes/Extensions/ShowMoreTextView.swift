@@ -12,6 +12,8 @@ protocol ShowMoreTextViewDelegate: class {
     func needsToReloadTableView();
 }
 
+@IBDesignable
+
 class ShowMoreTextView: UITextView {
     
     weak var showMoreDelegate: ShowMoreTextViewDelegate?
@@ -49,8 +51,8 @@ class ShowMoreTextView: UITextView {
         self.attributedTrimText = attributedTrimText
         self.shouldTrim = shouldTrim
     }
-    
-    var maximumNumberOfLines: Int = 0 {
+    @IBInspectable
+    var maximumNumberOfLines: Int = 2 {
         didSet {
             setNeedsLayout()
         }
@@ -65,7 +67,7 @@ class ShowMoreTextView: UITextView {
             setNeedsLayout()
         }
     }
-    var shouldTrim: Bool = false {
+    var shouldTrim: Bool = true {
         didSet {
             setNeedsLayout()
         }

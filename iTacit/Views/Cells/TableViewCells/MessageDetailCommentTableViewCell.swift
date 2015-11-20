@@ -25,7 +25,6 @@ class MessageDetailCommentTableViewCell: UITableViewCell {
     @IBOutlet weak var securityImage: UIImageView!
     @IBOutlet weak var repliedViaImage: UIImageView!
     @IBOutlet weak var repliedViaLabel: UILabel!
-    @IBOutlet weak var replyToLabel: UILabel!
     @IBOutlet weak var bodyTextView: ShowMoreTextView!
     @IBOutlet weak var securityImageWidthConstraint: NSLayoutConstraint!
     
@@ -34,13 +33,7 @@ class MessageDetailCommentTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         bodyTextView.showMoreDelegate = self
-    }
-    
-    override func prepareForReuse() {
-        bodyTextView.scrollEnabled = false
-        bodyTextView.maximumNumberOfLines = 1
-        bodyTextView.shouldTrim = true
-        bodyTextView.attributedTrimText = NSMutableAttributedString(string: "...")
+        backgroundColor = AppColors.dirtyWhite
     }
 
     override func setSelected(selected: Bool, animated: Bool) {
@@ -49,6 +42,7 @@ class MessageDetailCommentTableViewCell: UITableViewCell {
     
     var imageDownloadTask: NSURLSessionTask?
     var model: ReplyModel?
+    
     // MARK: - IBAction
     
     @IBAction func replyButtonAction(sender: UIButton) {
@@ -59,10 +53,15 @@ class MessageDetailCommentTableViewCell: UITableViewCell {
     func configureWithReplyModel(reply: ReplyModel) {
         model = reply
         
+        bodyTextView.scrollEnabled = false
+        bodyTextView.maximumNumberOfLines = 2
+        bodyTextView.shouldTrim = true
+        bodyTextView.attributedTrimText = NSMutableAttributedString(string: "...")
+        
         if let sender = reply.sender {
             setUserImageWithURL(sender.imageURL)
             credentialLabel.text = sender.fullName
-            replyToLabel.text = sender.firstName
+            replyButton.setTitle(" to \(sender.firstName)", forState: .Normal)
             descriptionLabel.text = sender.role
         }
         if let body = reply.body {
