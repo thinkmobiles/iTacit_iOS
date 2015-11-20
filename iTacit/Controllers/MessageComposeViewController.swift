@@ -108,6 +108,7 @@ class MessageComposeViewController: BaseViewController {
 				}
 			}
 		} catch {
+			sender.enabled = true
 			print("Failed send message because of error: \(error)")
 		}
     }
@@ -121,12 +122,18 @@ class MessageComposeViewController: BaseViewController {
 			readDateTableViewCell?.showDatePicker()
 		}
     }
+	
+	@IBAction func tapGestureAction(sender: UITapGestureRecognizer) {
+		let location = sender.locationInView(tableView)
+		if location.y > tableView.contentSize.height {
+			bodyTableViewCell?.textView.becomeFirstResponder()
+		}
+	}
 
 	@IBAction func returnFromAddRecipientsViewController(segue: UIStoryboardSegue) {
 		if let addRecipientViewController = segue.sourceViewController as? AddRecipientViewController {
 			message.recipients = addRecipientViewController.recipients
 			recipientsTableViewCell?.setTagsFromRecipients(message.recipients)
-			print("Recipients: \(message.recipients)")
 		}
 	}
     
@@ -289,6 +296,17 @@ extension MessageComposeViewController: ComposerReadDateTableViewCellDelegate {
 
 	func composerReadDateTableViewCell(cell: ComposerReadDateTableViewCell, didPickDate date: NSDate) {
 		message.readRequirementType = .RequiredTo(date: date)
+	}
+
+}
+
+// MARK: - UIGestureRecognizerDelegate
+
+extension MessageComposeViewController: UIGestureRecognizerDelegate {
+
+	func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+		let location = gestureRecognizer.locationInView(tableView)
+		return location.y > tableView.contentSize.height
 	}
 
 }

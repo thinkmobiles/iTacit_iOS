@@ -68,4 +68,5 @@ class PageListModel<Element: BaseModel where Element: Mappable>: ListModel<Eleme
 			completion?(success: false)
 		}
 	}
+	
 }

@@ -61,7 +61,6 @@ class AddRecipientViewController: BaseViewController {
     }
 
 	deinit {
-		print("\(self) is Tod")
 		removeKeyboardObservers()
 	}
     
@@ -117,7 +116,14 @@ class AddRecipientViewController: BaseViewController {
 				return
 			}
 			strongSelf.recipientsCountLabel.text = String(strongSelf.recipientsCountModel.count)
-			strongSelf.tagSearchControl.showClearButton = !(!success && (strongSelf.recipientsCountModel.count == strongSelf.recipients.count))
+			let userRecipients = strongSelf.recipients.filter({ element -> Bool in
+				if case .Employee(_) = element {
+					return true
+				} else {
+					return false
+				}
+			})
+			strongSelf.tagSearchControl.showClearButton = strongSelf.recipients.count != userRecipients.count
 		}
 	}
 

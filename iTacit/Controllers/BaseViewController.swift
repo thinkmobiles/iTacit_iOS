@@ -69,3 +69,15 @@ class BaseViewController: UIViewController {
     }
 
 }
+
+class NavigationController: UINavigationController {
+
+	override func viewControllerForUnwindSegueAction(action: Selector, fromViewController: UIViewController, withSender sender: AnyObject?) -> UIViewController? {
+		if fromViewController is FilterNewsViewController {
+			return (viewControllers.first as? MainTabBarController)?.currentViewController
+		} else {
+			return super.viewControllerForUnwindSegueAction(action, fromViewController: fromViewController, withSender: sender)
+		}
+	}
+}
+

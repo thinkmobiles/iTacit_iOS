@@ -5,7 +5,7 @@
 
 import Foundation
 
-class MessageListModel<T: MessageModel>: ListModel<T> {
+class MessageListModel<T: MessageModel>: PageListModel<T> {
 
 	override var path: String {
 		return "/mobile/1.0/messaging/message"
