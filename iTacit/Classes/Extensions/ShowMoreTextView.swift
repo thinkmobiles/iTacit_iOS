@@ -76,6 +76,8 @@ class ShowMoreTextView: UITextView {
             setNeedsLayout()
         }
     }
+    var isExpanded: Bool = false
+    
     var trimTextRangePadding: UIEdgeInsets = UIEdgeInsetsZero
     private var originalAttributedText: NSAttributedString!
     private var originalText: String!
@@ -152,6 +154,7 @@ class ShowMoreTextView: UITextView {
         if needsTrim() && pointInTrimTextRange(point) {
             shouldTrim = false
             maximumNumberOfLines = 0
+            isExpanded = true
         }
         
         return super.hitTest(point, withEvent: event)
@@ -182,12 +185,14 @@ class ShowMoreTextView: UITextView {
         
         var rangeToReplace = layoutManager.characterRangeThatFits(textContainer)
         if NSMaxRange(rangeToReplace) == _originalTextLength {
+            isExpanded = true
             rangeToReplace = emptyRange
         } else {
             rangeToReplace.location = NSMaxRange(rangeToReplace) - _trimText!.length
             if rangeToReplace.location < 0 {
                 rangeToReplace = emptyRange
             } else {
+                isExpanded = false
                 rangeToReplace.length = textStorage.length - rangeToReplace.location
             }
         }

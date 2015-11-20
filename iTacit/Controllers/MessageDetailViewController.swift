@@ -91,6 +91,10 @@ class MessageDetailViewController: BaseViewController {
     // MARK: - IBAction
     
     @IBAction func confirmedReadAction(sender: UIButton) {
+        print(showMoreTextView.isExpanded)
+        if !showMoreTextView.isExpanded {
+            return
+        }
         message.confirm { [unowned self] (success) -> Void in
             if success {
                 self.setConfirmed()
