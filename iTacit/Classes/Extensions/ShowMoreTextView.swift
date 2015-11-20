@@ -16,6 +16,10 @@ protocol ShowMoreTextViewDelegate: class {
 
 class ShowMoreTextView: UITextView {
     
+    private struct Constants {
+        static let IncremetValuForExpandRect: CGFloat = 20.0
+    }
+    
     weak var showMoreDelegate: ShowMoreTextViewDelegate?
 
     override init(frame: CGRect, textContainer: NSTextContainer?) {
@@ -144,6 +148,7 @@ class ShowMoreTextView: UITextView {
     }
     
     override func hitTest(point: CGPoint, withEvent event: UIEvent?) -> UIView? {
+        
         if needsTrim() && pointInTrimTextRange(point) {
             shouldTrim = false
             maximumNumberOfLines = 0
@@ -202,6 +207,7 @@ class ShowMoreTextView: UITextView {
     private func pointInTrimTextRange(point: CGPoint) -> Bool {
         let offset = CGPointMake(textContainerInset.left, textContainerInset.top)
         var boundingRect = layoutManager.boundingRectForCharacterRange(trimTextRange(), inTextContainer: textContainer, textContainerOffset: offset)
+        boundingRect = CGRectMake(boundingRect.origin.x - Constants.IncremetValuForExpandRect, boundingRect.origin.y - Constants.IncremetValuForExpandRect, CGRectGetMaxX(boundingRect) + Constants.IncremetValuForExpandRect, CGRectGetMaxY(boundingRect) + Constants.IncremetValuForExpandRect)
         boundingRect = CGRectOffset(boundingRect, textContainerInset.left, textContainerInset.top)
         boundingRect = CGRectInset(boundingRect, -(trimTextRangePadding.left + trimTextRangePadding.right), -(trimTextRangePadding.top + trimTextRangePadding.bottom))
         
