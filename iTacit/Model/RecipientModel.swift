@@ -53,7 +53,7 @@ class RecipientModel: BaseModel, Mappable {
 			PropertyDescriptor(propertyName: "nameFull"),
 			PropertyDescriptor(propertyName: "imageURL", JSONKey: "imageUrl"),
 			PropertyDescriptor(propertyName: "role", JSONKey: "roleName"),
-			PropertyDescriptor(propertyName: "businessUnit", JSONKey:"businessUnit"),
+			PropertyDescriptor(propertyName: "businessUnit", JSONKey:"businessUnitName"),
 			PropertyDescriptor(propertyName: "confirmationReadDate", JSONKey: "readConfirmedDateTime"),
 			TransformablePropertyDescriptor(propertyName: "hasConfirmed", JSONKey: "readConfirmedYn", valueTransformer: YnStringToBoolTransformer.self)]
 	}

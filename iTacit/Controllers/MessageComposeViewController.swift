@@ -299,3 +299,14 @@ extension MessageComposeViewController: ComposerReadDateTableViewCellDelegate {
 	}
 
 }
+
+// MARK: - UIGestureRecognizerDelegate
+
+extension MessageComposeViewController: UIGestureRecognizerDelegate {
+
+	func gestureRecognizerShouldBegin(gestureRecognizer: UIGestureRecognizer) -> Bool {
+		let location = gestureRecognizer.locationInView(tableView)
+		return location.y > tableView.contentSize.height
+	}
+
+}
