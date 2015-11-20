@@ -127,6 +127,7 @@ class ShowMoreTextView: UITextView {
     func resetText() {
         let beforeNumberOfLines = textContainer.maximumNumberOfLines
         textContainer.maximumNumberOfLines = 0
+        isExpanded = true
         if originalText != nil {
             textStorage.replaceCharactersInRange(NSMakeRange(0, text.characters.count), withString: originalText)
         } else if originalAttributedText != nil {

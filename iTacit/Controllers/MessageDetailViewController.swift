@@ -71,7 +71,6 @@ class MessageDetailViewController: BaseViewController {
         tableView.estimatedRowHeight = Constants.CellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.backgroundColor = AppColors.dirtyWhite
-        
 		recipientList.searchQuery = RecipientSearchQuery(messageId: message.id)
         repliesList.searchQuery = searchQuery
         searchQuery.string = message.id
@@ -93,6 +92,8 @@ class MessageDetailViewController: BaseViewController {
     @IBAction func confirmedReadAction(sender: UIButton) {
         print(showMoreTextView.isExpanded)
         if !showMoreTextView.isExpanded {
+            showMoreTextView.maximumNumberOfLines = 0
+            showMoreTextView.shouldTrim = false
             return
         }
         message.confirm { [unowned self] (success) -> Void in
