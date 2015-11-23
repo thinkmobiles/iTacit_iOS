@@ -66,7 +66,7 @@ class MessageDetailViewController: BaseViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         tableView.estimatedRowHeight = Constants.CellHeight
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.backgroundColor = AppColors.dirtyWhite
@@ -86,7 +86,7 @@ class MessageDetailViewController: BaseViewController {
 		super.viewWillAppear(animated)
 		loadReplies()
 	}
-    
+
     // MARK: - IBAction
     
     @IBAction func confirmedReadAction(sender: UIButton) {
@@ -181,13 +181,15 @@ class MessageDetailViewController: BaseViewController {
 					replayViewController.messageId = message.id
 					replayViewController.replayType = .ToUser(user: message.sender!)
 				case Constants.replyOnReplySegue:
-					if let indexPath = tableView.indexPathForSelectedRow {
-						replayViewController.messageId = repliesList[indexPath.row].id
-						replayViewController.replayType = .ToUser(user: repliesList[indexPath.row].sender!)
+					if let cell = (sender  as? UIView)?.superview?.superview as? UITableViewCell {
+						if let indexPath = tableView.indexPathForCell(cell) {
+							replayViewController.messageId = repliesList[indexPath.row].id
+							replayViewController.replayType = .ToUser(user: repliesList[indexPath.row].sender!)
+						}
 					}
                 case Constants.replyAllSegue:
                     if let indexPath = tableView.indexPathForSelectedRow {
-                    replayViewController.messageId = repliesList[indexPath.row].id
+						replayViewController.messageId = repliesList[indexPath.row].id
                         replayViewController.replayType = .ToAll
                     }
 				default: break

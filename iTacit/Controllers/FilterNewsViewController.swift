@@ -56,6 +56,10 @@ class FilterNewsViewController: BaseViewController {
 		removeKeyboardObservers()
 	}
 
+	override func didBack() {
+		super.didBack()
+	}
+
 	// MARK: - IBActions
 
 	@IBAction func didChangeText(sender: TagTextField) {

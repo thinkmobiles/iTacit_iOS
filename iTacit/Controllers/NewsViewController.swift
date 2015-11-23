@@ -93,7 +93,7 @@ class NewsViewController: PagingViewController {
 		if let selectedIndexPath = tableView.indexPathForSelectedRow, newsDetailViewController = segue.destinationViewController as? NewsDetailViewController {
 			newsDetailViewController.newsModel = newsList[selectedIndexPath.row]
 		} else if let filterNewsViewController = segue.destinationViewController as? FilterNewsViewController {
-			filterNewsViewController.searchModel = (newsList.searchQuery as? SearchNewsQueryModel) ?? SearchNewsQueryModel()
+			filterNewsViewController.searchModel = ((newsList.searchQuery as? SearchNewsQueryModel)?.copy()) ?? SearchNewsQueryModel()
 			filterNewsViewController.tags = tagSearchControl.tags
 		}
 	}
@@ -179,21 +179,3 @@ extension NewsViewController: TagSearchControlDelegate {
 	}
 
 }
-
-//// MARK: UIScrollViewDelegate
-//
-//extension NewsViewController: UIScrollViewDelegate {
-//    
-//    func scrollViewDidScroll(scrollView: UIScrollView) {
-//		let delta = scrollView.contentSize.height - scrollView.contentOffset.y
-//		let leftCellsHeight = CGFloat((NewsListModel.requestRowCount / 2)) * tableView.rowHeight
-//		if delta <= leftCellsHeight && numberOfLoadedElements < newsList.count {
-//            numberOfLoadedElements = newsList.count
-//            newsList.loadMore { [weak self] (success) -> Void in
-//                self?.tableView.reloadData()
-//                self?.updateAutocompletionList()
-//            }
-//        }
-//    }
-//    
-//}

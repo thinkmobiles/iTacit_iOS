@@ -93,7 +93,9 @@ class MessageDetailCommentTableViewCell: UITableViewCell {
 }
 
 extension MessageDetailCommentTableViewCell: ShowMoreTextViewDelegate {
+
     func needsToReloadTableView() {
         delegate?.didSelectExpandButton()
     }
+	
 }

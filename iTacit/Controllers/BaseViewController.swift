@@ -23,8 +23,11 @@ class BaseViewController: UIViewController {
     // MARK: - ButtonAction
     
     func backButtonAction() {
+		didBack()
         navigationController?.popViewControllerAnimated(true)
     }
+
+	func didBack() { }
 
     // MARK: - Keyboard
     

@@ -15,14 +15,6 @@ class SearchNewsQueryModel: SearchStringModel {
     var endDate: NSDate?
     var startDate: NSDate?
 
-//	override init(string: String) {
-//		self.string = string
-//	}
-
-//}
-//
-//extension SearchNewsQueryModel: SearchQuery {
-
 	override var stringQuery: String {
 		var query = "search:" + string
 		if !authorIDs.isEmpty {
@@ -38,6 +30,15 @@ class SearchNewsQueryModel: SearchStringModel {
 			}
 		}
 		return query
+	}
+
+	func copy() -> SearchNewsQueryModel {
+		let copyModel = SearchNewsQueryModel(string: string)
+		copyModel.authorIDs = authorIDs
+		copyModel.categoryIDs = categoryIDs
+		copyModel.endDate = endDate?.copy() as? NSDate
+		copyModel.startDate = startDate?.copy() as? NSDate
+		return copyModel
 	}
 	
 }

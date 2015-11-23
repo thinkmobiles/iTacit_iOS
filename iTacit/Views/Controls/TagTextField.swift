@@ -165,7 +165,8 @@ class TagTextField: UIControl {
 
 	func beginEditing(scrollToBottom: Bool) {
 		let shouldBeginEditing = delegate?.tagedTextFieldShouldBeginEditing(self) ?? true
-		guard shouldBeginEditing else {
+		let isEditing = inputCell?.textField.isFirstResponder() ?? false
+		guard shouldBeginEditing && !isEditing else {
 			return
 		}
 		mode = .Editing

@@ -183,7 +183,7 @@ extension ComposerRecipientsTableViewCell: TagTextFieldDelegate {
 	}
 
 	func tagedTextFieldShouldInserTag(textField: TagTextField, tag: String) -> Bool {
-		return true
+		return false
 	}
 
 	func tagedTextFieldShouldSwitchToCollapsedMode(textField: TagTextField) -> Bool {

@@ -2461,7 +2461,7 @@
         <image name="ic_user_compl_small" width="14" height="14"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="YS6-YM-LyE"/>
         <segue reference="UeV-Y7-Zzk"/>
+        <segue reference="YS6-YM-LyE"/>
     </inferredMetricsTieBreakers>
 </document>
