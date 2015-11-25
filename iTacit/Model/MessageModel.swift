@@ -12,6 +12,19 @@ class MessageModel: BaseMessageModel {
 	var replyCount = 0
 	var sendDate: NSDate?
 	var sender: UserProfileModel?
+	var hasRead = false
+
+	override var readRequirementType: ReadRequirementType {
+		get {
+			switch (super.readRequirementType, hasRead) {
+				case (.RequiredTo(let date), false): return .RequiredTo(date: date)
+				default: return .NotRequired
+			}
+		}
+		set {
+			super.readRequirementType = newValue
+		}
+	}
 
 	func archive(completion: CompletionHandler? = nil) {
 		performRequest({ [unowned self] (builder) -> Void in
@@ -47,6 +60,7 @@ class MessageModel: BaseMessageModel {
 			case "replyCount": replyCount <<- value
 			case "sender": sender <<- value
 			case "sendDate": sendDate <<- value
+			case "hasRead": hasRead <<- value
 			default: break
 		}
 	}
@@ -58,7 +72,8 @@ class MessageModel: BaseMessageModel {
 			PropertyDescriptor(propertyName: "parentMessageId"),
 			PropertyDescriptor(propertyName: "replyCount", JSONKey: "replyCountNew"),
 			PropertyDescriptor(propertyName: "sendDate", JSONKey: "sendDateTime"),
-			PropertyDescriptor(propertyName: "sender")]
+			PropertyDescriptor(propertyName: "sender"),
+			PropertyDescriptor(propertyName: "hasRead", JSONKey: "markedAsRead")]
 	}
 
 }

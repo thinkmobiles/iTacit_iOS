@@ -19,3 +19,10 @@
 "SEARCH" = "SEARCH";
 "CANCEL" = "CANCEL";
 "DONE" = "DONE";
+
+//MyProfileViewController
+"RECEIVE NOTICATIONS" = "RECEIVE NOTICATIONS";
+"Change Picture" = "Change Picture";
+"What do you want to do?" = "What do you want to do?";
+"Cancel" = "Cancel";
+"Upload from Camera Roll" = "Upload from Camera Roll";

@@ -8,8 +8,9 @@
 
 import UIKit
 
-
 class UserProfileListModel<T: UserProfileModel>: PageListModel<T> {
+    
+    typealias CompletionUserHandler = (success: Bool, user: UserProfileModel?) -> Void
 
 	override var path: String {
 		return "/mobile/1.0/employee/profile"
@@ -18,5 +19,11 @@ class UserProfileListModel<T: UserProfileModel>: PageListModel<T> {
 	required init() {
 		super.init()
 	}
+    
+    func loadOwnUserProfile(completion: CompletionUserHandler? = nil) {
+        load { (success) -> Void in
+            completion?(success: success, user: self.objects.first)
+        }
+    }
 
 }

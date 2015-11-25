@@ -11,23 +11,32 @@ import UIKit
 class PageListModel<Element: BaseModel where Element: Mappable>: ListModel<Element> {
 
 	class var requestRowCount: Int {
-		return 50
+		return 10
 	}
 
 	required init() {
 		super.init()
 	}
 
+	private(set) var isLoading = false
+	private(set) var loadedAll = false
+
 	override func load(completion: CompletionHandler? = nil) {
+		loadedAll = false
 		loadWithStartIndex(0, completion: completion)
 	}
 
 	func loadMore(completion: CompletionHandler? = nil) {
+		guard !loadedAll else {
+			completion?(success: false)
+			return
+		}
 		let startIndex = objects.count == 1 ? 2: objects.count
 		loadWithStartIndex(startIndex, completion: completion)
 	}
 
 	private func loadWithStartIndex(startIndex: Int, completion: CompletionHandler?) {
+		isLoading = true
 		performRequest({ [unowned self] (builder) -> Void in
 			var JSON: [String: AnyObject] = ["startIndex": startIndex, "rowCount": PageListModel.requestRowCount]
 			if let searchQueryString = self.searchQuery?.stringQuery {
@@ -46,6 +55,7 @@ class PageListModel<Element: BaseModel where Element: Mappable>: ListModel<Eleme
 					let JSON = try NSJSONSerialization.JSONObjectWithData(data, options: .AllowFragments)
 					if let JSONarray = JSON["responseRows"] as? [[String: AnyObject]] {
 						let newObjects: [Element] = try JSONMapper.map(JSONarray)
+						self?.loadedAll = newObjects.count < PageListModel.requestRowCount
 						if startIndex == 0 {
 							self?.objects = newObjects
 						} else {
@@ -64,8 +74,10 @@ class PageListModel<Element: BaseModel where Element: Mappable>: ListModel<Eleme
 				}
 				completion?(success: false)
 			}
-		}) { (error, request, response) -> Void in
+			self?.isLoading = false
+		}) { [weak self] (error, request, response) -> Void in
 			completion?(success: false)
+			self?.isLoading = false
 		}
 	}
 	

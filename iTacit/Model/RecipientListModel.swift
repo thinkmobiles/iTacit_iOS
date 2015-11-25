@@ -15,7 +15,7 @@ enum RecipientListPath: String {
 
 }
 
-class RecipientListModel<T: RecipientModel>: ListModel<T> {
+class RecipientListModel<T: RecipientModel>: PageListModel<T> {
 
 	override var path: String {
 		return recipientListPath.rawValue
