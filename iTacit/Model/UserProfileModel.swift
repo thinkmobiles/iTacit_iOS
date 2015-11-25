@@ -22,7 +22,9 @@ class UserProfileModel: BaseModel, Mappable {
     var imageURL: NSURL?
     var role = ""
     var businessUnit = ""
-
+    var emailAddress = ""
+    var mobilePhoneNumber = ""
+    
 	var fullName: String {
 		return firstName + " " + lastName
 	}
@@ -56,6 +58,8 @@ class UserProfileModel: BaseModel, Mappable {
             case "imageURL": imageURL <<- value
             case "role": role <<- value
             case "businessUnit": businessUnit <<- value
+            case "emailAddress": emailAddress <<- value
+            case "mobilePhoneNumber": mobilePhoneNumber <<- value
             default: break
         }
     }
@@ -67,6 +71,8 @@ class UserProfileModel: BaseModel, Mappable {
             PropertyDescriptor(propertyName: "firstName", JSONKey: "nameFirst"),
             PropertyDescriptor(propertyName: "imageURL", JSONKey: "imageUrl"),
             PropertyDescriptor(propertyName: "role", JSONKey: "roleName"),
-			PropertyDescriptor(propertyName: "businessUnit", JSONKey:"businessUnitName")]
+			PropertyDescriptor(propertyName: "businessUnit", JSONKey:"businessUnitName"),
+            PropertyDescriptor(propertyName: "emailAddress"),
+            PropertyDescriptor(propertyName: "mobilePhoneNumber")]
     }
 }

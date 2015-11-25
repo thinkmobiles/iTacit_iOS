@@ -2467,15 +2467,15 @@
                                         <action selector="changeImageAction:" destination="r67-y5-QnJ" eventType="touchUpInside" id="d5G-fb-9rg"/>
                                     </connections>
                                 </button>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rog-ol-slx">
-                                    <rect key="frame" x="116" y="30" width="40" height="21"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rog-ol-slx">
+                                    <rect key="frame" x="116" y="30" width="243" height="21"/>
                                     <animations/>
                                     <fontDescription key="fontDescription" name="OpenSans-Semibold" family="Open Sans" pointSize="15"/>
                                     <color key="textColor" red="0.2666666667" green="0.28235294119999998" blue="0.30980392159999998" alpha="1" colorSpace="calibratedRGB"/>
                                     <nil key="highlightedColor"/>
                                 </label>
-                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tET-by-gpO">
-                                    <rect key="frame" x="116" y="56" width="37" height="21"/>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="tET-by-gpO">
+                                    <rect key="frame" x="116" y="56" width="243" height="21"/>
                                     <animations/>
                                     <fontDescription key="fontDescription" name="OpenSans-Light" family="Open Sans" pointSize="15"/>
                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -2491,8 +2491,10 @@
                                 <constraint firstItem="tET-by-gpO" firstAttribute="leading" secondItem="rog-ol-slx" secondAttribute="leading" id="FLp-ni-OxU"/>
                                 <constraint firstItem="vP8-WK-2RE" firstAttribute="centerY" secondItem="cqL-lD-GM3" secondAttribute="centerY" id="G9j-iz-6eD"/>
                                 <constraint firstItem="vP8-WK-2RE" firstAttribute="width" secondItem="cqL-lD-GM3" secondAttribute="width" id="Sgw-68-8Q4"/>
+                                <constraint firstAttribute="trailing" secondItem="tET-by-gpO" secondAttribute="trailing" constant="16" id="XgL-f8-f5D"/>
                                 <constraint firstItem="cqL-lD-GM3" firstAttribute="width" secondItem="cqL-lD-GM3" secondAttribute="height" multiplier="1:1" id="YFp-a2-GoX"/>
                                 <constraint firstItem="tET-by-gpO" firstAttribute="top" secondItem="rog-ol-slx" secondAttribute="bottom" constant="5" id="ab0-Wk-vki"/>
+                                <constraint firstAttribute="trailing" secondItem="rog-ol-slx" secondAttribute="trailing" constant="16" id="ewy-DO-LaP"/>
                                 <constraint firstItem="rog-ol-slx" firstAttribute="leading" secondItem="cqL-lD-GM3" secondAttribute="trailing" constant="25" id="rYA-G8-E7T"/>
                                 <constraint firstItem="vP8-WK-2RE" firstAttribute="height" secondItem="cqL-lD-GM3" secondAttribute="height" id="uGL-RE-vMC"/>
                                 <constraint firstItem="cqL-lD-GM3" firstAttribute="centerY" secondItem="vcf-s0-LUc" secondAttribute="centerY" id="wnk-7c-bgO"/>
@@ -2580,7 +2582,7 @@
                                                     <rect key="frame" x="14" y="14" width="20" height="15"/>
                                                     <animations/>
                                                 </imageView>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" text="email" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hGT-ua-Uz9">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hGT-ua-Uz9">
                                                     <rect key="frame" x="54" y="11" width="311" height="21"/>
                                                     <animations/>
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -2610,7 +2612,7 @@
                                                     <rect key="frame" x="14" y="12" width="20" height="20"/>
                                                     <animations/>
                                                 </imageView>
-                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" text="number" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xyc-b8-2mC">
+                                                <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Xyc-b8-2mC">
                                                     <rect key="frame" x="54" y="11" width="311" height="21"/>
                                                     <animations/>
                                                     <color key="textColor" red="0.40000000000000002" green="0.40000000000000002" blue="0.40000000000000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -2718,6 +2720,8 @@
                         <outlet property="imageButton" destination="cqL-lD-GM3" id="B50-0y-Rap"/>
                         <outlet property="phoneSwitch" destination="cre-bO-Mqq" id="3ZJ-on-npy"/>
                         <outlet property="phoneTextField" destination="Xyc-b8-2mC" id="AC0-Xk-MFH"/>
+                        <outlet property="userDescriptionLabel" destination="tET-by-gpO" id="cRn-Gf-YjP"/>
+                        <outlet property="userFullNameLabel" destination="rog-ol-slx" id="fvd-PL-ts5"/>
                         <outlet property="userImageView" destination="vP8-WK-2RE" id="UQf-X1-tuL"/>
                         <outlet property="userSmallImage" destination="EvA-mv-vcM" id="Sd5-w7-DXp"/>
                     </connections>

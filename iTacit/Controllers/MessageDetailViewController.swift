@@ -178,7 +178,7 @@ class MessageDetailViewController: BaseViewController {
 		confirmationButton.setImage(UIImage(assetsIndetifier: .ConfirmedIcon), forState: .Normal)
 		confirmationButton.setTitleColor(AppColors.gray, forState: .Normal)
 		headerConfirmToDate.text = ""
-        adjustTableViewHeight() 
+        adjustTableViewHeight()
     }
 
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
