@@ -20,7 +20,7 @@ class UserProfileListModel<T: UserProfileModel>: PageListModel<T> {
 		super.init()
 	}
     
-    func getSelfUser(completion: CompletionUserHandler? = nil) {
+    func loadOwnUserProfile(completion: CompletionUserHandler? = nil) {
         load { (success) -> Void in
             completion?(success: success, user: self.objects.first)
         }

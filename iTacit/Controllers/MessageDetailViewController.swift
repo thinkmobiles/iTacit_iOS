@@ -103,9 +103,11 @@ class MessageDetailViewController: BaseViewController {
             showMoreTextView.shouldTrim = false
             return
         }
-        message.confirm { [unowned self] (success) -> Void in
+        message.confirm { [weak self] (success) -> Void in
             if success {
-                self.setConfirmed()
+				self?.message.hasRead = true
+                self?.setConfirmed()
+				self?.markSelfAsReadRecipient()
             }
         }
     }
@@ -138,17 +140,32 @@ class MessageDetailViewController: BaseViewController {
 				strongSelf.loadRecipients()
 			} else {
 				strongSelf.repicientsButton.setTitle("  \(strongSelf.recipientList.count)", forState: .Normal)
-				let confirmedRecipients = strongSelf.recipientList.objects.filter( { $0.hasConfirmed } )
-				strongSelf.confirmedRecipientsButton.setTitle("  \(confirmedRecipients.count)", forState: .Normal)
+				strongSelf.updateReadRecipientCount()
 			}
 		}
+	}
+
+	private func markSelfAsReadRecipient() {
+		guard let userProfile = SharedStorage.sharedInstance.userProfile else {
+			return
+		}
+
+		let index = recipientList.objects.indexOf { $0.employeeId == userProfile.id }
+		if let index = index {
+			recipientList[index].hasConfirmed = true
+		}
+		updateReadRecipientCount()
+	}
+
+	private func updateReadRecipientCount() {
+		let confirmedRecipients = recipientList.objects.filter( { $0.hasConfirmed } )
+		confirmedRecipientsButton.setTitle("  \(confirmedRecipients.count)", forState: .Normal)
 	}
     
     private func prepareUI() {
         if let sender = message.sender {
             replyToUserName = sender.firstName
             titleLabel.text = sender.fullName
-
         }
         
         switch message.readRequirementType {

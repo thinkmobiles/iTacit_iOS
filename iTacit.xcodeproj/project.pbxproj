@@ -17,7 +17,7 @@
 		350644C81BD784A800D51D5C /* DateHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350644C71BD784A800D51D5C /* DateHeaderView.swift */; };
 		350644CA1BD784B300D51D5C /* DateHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 350644C91BD784B300D51D5C /* DateHeaderView.xib */; };
 		3516FFA31BE7940000865EB9 /* ComposerReadDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516FFA21BE7940000865EB9 /* ComposerReadDateTableViewCell.swift */; };
-		351793031C05E065001191E1 /* UserProfileListQueryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351793021C05E065001191E1 /* UserProfileListQueryModel.swift */; };
+		351793031C05E065001191E1 /* OwnUserProfileQueryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351793021C05E065001191E1 /* OwnUserProfileQueryModel.swift */; };
 		351E8EC81BE3700F00690669 /* ComposerTopicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E8EC71BE3700F00690669 /* ComposerTopicTableViewCell.swift */; };
 		351E8ECC1BE3C2AC00690669 /* ComposerBodyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E8ECB1BE3C2AC00690669 /* ComposerBodyTableViewCell.swift */; };
 		352B52951BFB47910060C34B /* ReplyListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 352B52941BFB47910060C34B /* ReplyListModel.swift */; };
@@ -66,6 +66,7 @@
 		4015F8721BFB27BB0030927E /* RoleListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015F8711BFB27BB0030927E /* RoleListModel.swift */; };
 		4015F8741BFB40C60030927E /* BaseMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015F8731BFB40C60030927E /* BaseMessageModel.swift */; };
 		4015F8771BFB88ED0030927E /* RecipientsCountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015F8761BFB88ED0030927E /* RecipientsCountModel.swift */; };
+		4027C0601C06094700E114A1 /* SharedStorage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4027C05F1C06094700E114A1 /* SharedStorage.swift */; };
 		4028C2F11BFDFA2A007A2939 /* RecipientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4028C2F01BFDFA2A007A2939 /* RecipientsViewController.swift */; };
 		4028C2F31BFE1024007A2939 /* RecipientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4028C2F21BFE1024007A2939 /* RecipientModel.swift */; };
 		4028C2F51BFE132E007A2939 /* RecipientListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4028C2F41BFE132E007A2939 /* RecipientListModel.swift */; };
@@ -157,7 +158,7 @@
 		350644C71BD784A800D51D5C /* DateHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHeaderView.swift; sourceTree = "<group>"; };
 		350644C91BD784B300D51D5C /* DateHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateHeaderView.xib; sourceTree = "<group>"; };
 		3516FFA21BE7940000865EB9 /* ComposerReadDateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerReadDateTableViewCell.swift; sourceTree = "<group>"; };
-		351793021C05E065001191E1 /* UserProfileListQueryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UserProfileListQueryModel.swift; sourceTree = "<group>"; };
+		351793021C05E065001191E1 /* OwnUserProfileQueryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnUserProfileQueryModel.swift; sourceTree = "<group>"; };
 		351E8EC01BE36B1500690669 /* MessageComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageComposeViewController.swift; sourceTree = "<group>"; };
 		351E8EC21BE36E8C00690669 /* BaseViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
 		351E8EC41BE36FC800690669 /* ComposerRecipientsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerRecipientsTableViewCell.swift; sourceTree = "<group>"; };
@@ -212,6 +213,7 @@
 		4015F8711BFB27BB0030927E /* RoleListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoleListModel.swift; sourceTree = "<group>"; };
 		4015F8731BFB40C60030927E /* BaseMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseMessageModel.swift; sourceTree = "<group>"; };
 		4015F8761BFB88ED0030927E /* RecipientsCountModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientsCountModel.swift; sourceTree = "<group>"; };
+		4027C05F1C06094700E114A1 /* SharedStorage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SharedStorage.swift; sourceTree = "<group>"; };
 		4028C2F01BFDFA2A007A2939 /* RecipientsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientsViewController.swift; sourceTree = "<group>"; };
 		4028C2F21BFE1024007A2939 /* RecipientModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientModel.swift; sourceTree = "<group>"; };
 		4028C2F41BFE132E007A2939 /* RecipientListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientListModel.swift; sourceTree = "<group>"; };
@@ -374,12 +376,13 @@
 			name = "Training Flow";
 			sourceTree = "<group>";
 		};
-		4019385A1BF33DAF0030212F /* Dashboard */ = {
+		4019385A1BF33DAF0030212F /* Dashboard Flow */ = {
 			isa = PBXGroup;
 			children = (
+				35E560B31C0370B800F26C70 /* MyProfileViewController.swift */,
 				40EA82511BCFD05F0029228F /* DashboardViewController.swift */,
 			);
-			name = Dashboard;
+			name = "Dashboard Flow";
 			sourceTree = "<group>";
 		};
 		4019385B1BF33DE70030212F /* Tab Bar Controller */ = {
@@ -566,11 +569,10 @@
 				351E8EC21BE36E8C00690669 /* BaseViewController.swift */,
 				402F3D3F1BFF1640003C00C0 /* PagingViewController.swift */,
 				4019385B1BF33DE70030212F /* Tab Bar Controller */,
-				4019385A1BF33DAF0030212F /* Dashboard */,
+				4019385A1BF33DAF0030212F /* Dashboard Flow */,
 				401938571BF33D810030212F /* News Flow */,
 				401938581BF33D910030212F /* Messages Flow */,
 				401938591BF33D9A0030212F /* Training Flow */,
-				35E560B31C0370B800F26C70 /* MyProfileViewController.swift */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -583,7 +585,7 @@
 				405A29921BE6B2710024ADA9 /* TokenModel.swift */,
 				400327D41BE817FC00D2BEAE /* UserProfileModel.swift */,
 				408C22CF1BF1070D00DA25A3 /* UserProfileListModel.swift */,
-				351793021C05E065001191E1 /* UserProfileListQueryModel.swift */,
+				351793021C05E065001191E1 /* OwnUserProfileQueryModel.swift */,
 				4019385E1BF361070030212F /* Base Models */,
 				4019385C1BF354FB0030212F /* News Flow Models */,
 				4019385D1BF3609E0030212F /* Messages Flow Models */,
@@ -677,6 +679,7 @@
 			isa = PBXGroup;
 			children = (
 				4056D5761BE89B290076B970 /* ImageCacheManager.swift */,
+				4027C05F1C06094700E114A1 /* SharedStorage.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -875,7 +878,7 @@
 				40EA82501BCFCE120029228F /* TabBarController.swift in Sources */,
 				35E560B41C0370B800F26C70 /* MyProfileViewController.swift in Sources */,
 				351E8ECC1BE3C2AC00690669 /* ComposerBodyTableViewCell.swift in Sources */,
-				351793031C05E065001191E1 /* UserProfileListQueryModel.swift in Sources */,
+				351793031C05E065001191E1 /* OwnUserProfileQueryModel.swift in Sources */,
 				408C22C91BF0B7CC00DA25A3 /* Autocompletable.swift in Sources */,
 				40440DB41BDBCC9C00FADF6E /* TextCollectionViewCell.swift in Sources */,
 				3563B9A21BD12E40009BE696 /* DescriptionTableViewCell.swift in Sources */,
@@ -935,6 +938,7 @@
 				40EA82521BCFD05F0029228F /* DashboardViewController.swift in Sources */,
 				35FF25E91BECFE6300B1D734 /* PermissionGroupsListModel.swift in Sources */,
 				3563B99E1BD1288A009BE696 /* ImageTableViewCell.swift in Sources */,
+				4027C0601C06094700E114A1 /* SharedStorage.swift in Sources */,
 				3DEFA79F1BD5056E00596A2B /* DatePickerTableViewCell.swift in Sources */,
 				402F3D421BFF6546003C00C0 /* ShowMoreTextView.swift in Sources */,
 				4080B7E01BF2333600965749 /* PageListModel.swift in Sources */,

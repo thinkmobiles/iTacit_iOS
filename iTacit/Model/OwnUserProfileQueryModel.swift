@@ -8,7 +8,7 @@
 
 import Foundation
 
-class UserProfileListQueryModel: SearchStringModel {
+class OwnUserProfileQueryModel: SearchStringModel {
     
     override var stringQuery: String {
         return "self:Y"

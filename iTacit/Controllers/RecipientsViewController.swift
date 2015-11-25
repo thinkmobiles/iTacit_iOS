@@ -33,25 +33,29 @@ class RecipientsViewController: BaseViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-		title = LocalizedString("Recipients") + " (0)"
+		tableView.registerNib(UserProfileTableViewCell.nib, forCellReuseIdentifier: UserProfileTableViewCell.reuseIdentifier)
+		tableView.tableFooterView = UIView()
 		if let recipientList = recipientList {
 			path = recipientList.recipientListPath
 			navigationItem.rightBarButtonItem = nil
 		} else if let path = path {
 			recipientList = RecipientListModel<RecipientModel>(path: path)
+			recipientList?.setRecipients(recipients)
+			reloadData()
 		}
-		recipientList?.setRecipients(recipients)
-		tableView.registerNib(UserProfileTableViewCell.nib, forCellReuseIdentifier: UserProfileTableViewCell.reuseIdentifier)
-		tableView.tableFooterView = UIView()
-		reloadData()
+		updateTitle()
     }
 
 	// MARK: - Private
 
+	private func updateTitle() {
+		title = LocalizedString("Recipients") + " (\(recipientList?.count ?? 0))"
+	}
+
 	private func reloadData() {
 		numberOfLoadedElements = 0
 		recipientList?.load { [weak self] (success) -> Void in
-			self?.title = LocalizedString("Recipients") + " (\(self?.recipientList?.count ?? 0))"
+			self?.updateTitle()
 			self?.tableView.reloadSections(NSIndexSet(index: 0), withRowAnimation: .Automatic)
 		}
 	}

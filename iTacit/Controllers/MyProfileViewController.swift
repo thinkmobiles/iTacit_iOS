@@ -28,29 +28,19 @@ class MyProfileViewController: UITableViewController, UINavigationControllerDele
     @IBOutlet weak var userDescriptionLabel: UILabel!
     
     let imagePicker = UIImagePickerController()
-    let profilesList = UserProfileListModel()
-    var user = UserProfileModel()
+    var userProfile = UserProfileModel()
     var imageDownloadTask: NSURLSessionTask?
 
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
         
-        getUser()
+        userProfile = SharedStorage.sharedInstance.userProfile ?? UserProfileModel()
         prepareFooterView()
         addBackButton()
+		updateUI()
     }
-    
-    private func getUser() {
-        profilesList.searchQuery = UserProfileListQueryModel()
-        profilesList.getSelfUser { [unowned self] (success, user) -> Void in
-            if success {
-                self.user = user!
-                self.updateUI()
-            }
-        }
-    }
-    
+
     func addBackButton() {
         let backBarButton = UIBarButtonItem(image: UIImage(assetsIndetifier: .BackButton), style: .Plain, target: self, action: Selector("backButtonAction"))
         navigationItem.leftBarButtonItem = backBarButton
@@ -70,13 +60,15 @@ class MyProfileViewController: UITableViewController, UINavigationControllerDele
         if section == 0 {
             return nil
         }
-        
-        let customLabel = UILabel(frame: CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), Constants.sectionHeaderHeight))
-        customLabel.text = "  " + LocalizedString("RECEIVE NOTICATIONS")
-        customLabel.font = UIFont(name: "OpenSans", size: 10)
-        customLabel.textColor = UIColor ( red: 0.2314, green: 0.2314, blue: 0.2314, alpha: 1.0 )
 
-        return customLabel
+		let headerView = UIView(frame: CGRectMake(0, 0, CGRectGetWidth(tableView.bounds), Constants.sectionHeaderHeight))
+		let offset = CGFloat(6)
+        let customLabel = UILabel(frame: CGRectMake(offset, 0, CGRectGetWidth(tableView.bounds) - offset, Constants.sectionHeaderHeight))
+        customLabel.text = LocalizedString("RECEIVE NOTIFICATIONS")
+        customLabel.font = UIFont.openSansRegular(10)
+        customLabel.textColor = UIColor(hexColor: 0x3B3B3B)
+		headerView.addSubview(customLabel)
+        return headerView
     }
     
     override func tableView(tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
@@ -129,12 +121,12 @@ class MyProfileViewController: UITableViewController, UINavigationControllerDele
     }
     
     private func updateUI() {
-        userFullNameLabel.text = user.fullName
-        userDescriptionLabel.text = user.role
-        emailTextField.text = user.emailAddress
-        phoneTextField.text = user.mobilePhoneNumber
+        userFullNameLabel.text = userProfile.fullName
+        userDescriptionLabel.text = userProfile.role
+        emailTextField.text = userProfile.emailAddress
+        phoneTextField.text = userProfile.mobilePhoneNumber
         
-        setUserImageWithURL(user.imageURL)
+        setUserImageWithURL(userProfile.imageURL)
     }
     
     private func setUserImageWithURL(imageURL: NSURL?) {

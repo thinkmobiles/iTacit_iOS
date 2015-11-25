@@ -54,7 +54,7 @@ class BaseModel: NSObject {
 					var serverError: ServerErrorModel?
 					if let data = data {
 						serverError = (try? JSONMapper.map(data))?.first
-						print(serverError)
+						print("Server Error for URL: \(request.URL?.absoluteString)\nerror: \(serverError)")
 					}
 					failureHandler?(error: serverError, request: request, response: HTTPResponse)
 				}
