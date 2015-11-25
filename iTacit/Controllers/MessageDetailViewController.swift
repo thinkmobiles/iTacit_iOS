@@ -21,6 +21,8 @@ class MessageDetailViewController: BaseViewController {
 		static let replayToUserSegue = "ReplayToUserSegue"
 		static let replyOnReplySegue = "ReplyOnReplySegue"
         static let replyAllSegue = "ReplyAllSegue"
+		static let showAllRecipientsSegue = "ShowAllRecipients"
+		static let showRecipientsThatHaveReadSegue = "ShowRecipientsThatHaveRead"
 		static let confirmationLabelHeight = CGFloat(14)
 		static let topLayoutHeight = CGFloat(64.0)
     }
@@ -96,7 +98,6 @@ class MessageDetailViewController: BaseViewController {
     // MARK: - IBAction
     
     @IBAction func confirmedReadAction(sender: UIButton) {
-        print(showMoreTextView.isExpanded)
         if !showMoreTextView.isExpanded {
             showMoreTextView.maximumNumberOfLines = 0
             showMoreTextView.shouldTrim = false
@@ -117,23 +118,29 @@ class MessageDetailViewController: BaseViewController {
     
     private func loadReplies() {
         repliesList.load { [weak self] (success) -> Void in
-            guard let strongSelf = self else {
-                return
-            }
-            
-            strongSelf.tableView.reloadData()
+            self?.tableView.reloadData()
         }
     }
 
+	private func loadMoreReplies() {
+		repliesList.loadMore({ [weak self] (success) -> Void in
+			self?.tableView.reloadData()
+		})
+	}
+
 	private func loadRecipients() {
-		recipientList.load { [weak self] (success) -> Void in
+		recipientList.loadMore { [weak self] (success) -> Void in
 			guard let strongSelf = self else {
 				return
 			}
 
-			strongSelf.repicientsButton.setTitle("  \(strongSelf.recipientList.count)", forState: .Normal)
-			let confirmedRecipients = strongSelf.recipientList.objects.filter( { $0.hasConfirmed } )
-			strongSelf.confirmedRecipientsButton.setTitle("  \(confirmedRecipients.count)", forState: .Normal)
+			if !strongSelf.recipientList.loadedAll {
+				strongSelf.loadRecipients()
+			} else {
+				strongSelf.repicientsButton.setTitle("  \(strongSelf.recipientList.count)", forState: .Normal)
+				let confirmedRecipients = strongSelf.recipientList.objects.filter( { $0.hasConfirmed } )
+				strongSelf.confirmedRecipientsButton.setTitle("  \(confirmedRecipients.count)", forState: .Normal)
+			}
 		}
 	}
     
@@ -182,9 +189,20 @@ class MessageDetailViewController: BaseViewController {
     }
 
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		guard let identifier = segue.identifier else {
+			return
+		}
 		if let recipientsViewController = segue.destinationViewController as? RecipientsViewController {
-			recipientsViewController.recipientList = recipientList
-		} else if let replayViewController = segue.destinationViewController as? ReplayViewController, identifier = segue.identifier {
+			switch identifier {
+				case Constants.showAllRecipientsSegue:
+					recipientsViewController.recipientList = recipientList
+				case Constants.showRecipientsThatHaveReadSegue:
+					let recipientsThatHaveRead = RecipientListModel(path: recipientList.recipientListPath)
+					recipientsThatHaveRead.objects = recipientList.objects.filter { $0.hasConfirmed }
+					recipientsViewController.recipientList = recipientsThatHaveRead
+				default: break
+			}
+		} else if let replayViewController = segue.destinationViewController as? ReplayViewController {
 			switch identifier {
 				case Constants.replayToUserSegue:
 					replayViewController.messageId = message.id
@@ -210,6 +228,34 @@ class MessageDetailViewController: BaseViewController {
     
 }
 
+// MARK: - UITableViewDataSource
+
+extension MessageDetailViewController: UITableViewDataSource {
+
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return repliesList.count
+	}
+
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCellWithIdentifier(Constants.CellId) as! MessageDetailCommentTableViewCell
+		let replyModel = repliesList[indexPath.item]
+
+		let confirmedRecipients = recipientList.objects.filter( { $0.hasConfirmed } )
+		replyModel.readConfirmed = confirmedRecipients.filter { $0.employeeId == replyModel.sender?.id }.count > 0
+		cell.configureWithReplyModel(replyModel)
+		cell.delegate = self
+
+		if (repliesList.count - indexPath.row) <= (ReplyListModel.requestRowCount / 2) && !repliesList.isLoading && !repliesList.loadedAll {
+			loadMoreReplies()
+		}
+
+		return cell
+	}
+
+}
+
+// MARK: - UITableViewDelegate
+
 extension MessageDetailViewController: UITableViewDelegate {
     
     func tableView(tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
@@ -226,26 +272,6 @@ extension MessageDetailViewController: UITableViewDelegate {
             tableView.endUpdates()
             needsToReloadCell = false
         }
-    }
-    
-}
-
-extension MessageDetailViewController: UITableViewDataSource {
-
-	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-		return repliesList.count
-	}
-
-    func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier(Constants.CellId) as! MessageDetailCommentTableViewCell
-        let replyModel = repliesList[indexPath.item]
-        
-        let confirmedRecipients = recipientList.objects.filter( { $0.hasConfirmed } )
-        replyModel.readConfirmed = confirmedRecipients.filter { $0.employeeId == replyModel.sender?.id}.count > 0
-        cell.configureWithReplyModel(replyModel)
-        cell.delegate = self
-        
-        return cell
     }
     
 }
