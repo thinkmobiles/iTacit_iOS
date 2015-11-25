@@ -64,6 +64,12 @@
 		4015F8721BFB27BB0030927E /* RoleListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015F8711BFB27BB0030927E /* RoleListModel.swift */; };
 		4015F8741BFB40C60030927E /* BaseMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015F8731BFB40C60030927E /* BaseMessageModel.swift */; };
 		4015F8771BFB88ED0030927E /* RecipientsCountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015F8761BFB88ED0030927E /* RecipientsCountModel.swift */; };
+		4018CD671C04571A007648E2 /* iTacitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4018CD661C04571A007648E2 /* iTacitTests.swift */; };
+		4018CD6F1C04575D007648E2 /* GreetingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4018CD6E1C04575D007648E2 /* GreetingTests.swift */; };
+		4018CD711C049816007648E2 /* DashboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4018CD701C049816007648E2 /* DashboardTableViewCell.swift */; };
+		4018CD741C04BB91007648E2 /* RemoteImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4018CD731C04BB91007648E2 /* RemoteImageTableViewCell.swift */; };
+		4018CD761C04C440007648E2 /* ActivityReplyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4018CD751C04C440007648E2 /* ActivityReplyModel.swift */; };
+		4018CD791C04C924007648E2 /* ActivityMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4018CD781C04C924007648E2 /* ActivityMessageModel.swift */; };
 		4028C2F11BFDFA2A007A2939 /* RecipientsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4028C2F01BFDFA2A007A2939 /* RecipientsViewController.swift */; };
 		4028C2F31BFE1024007A2939 /* RecipientModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4028C2F21BFE1024007A2939 /* RecipientModel.swift */; };
 		4028C2F51BFE132E007A2939 /* RecipientListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4028C2F41BFE132E007A2939 /* RecipientListModel.swift */; };
@@ -105,6 +111,8 @@
 		405A29911BE6B21A0024ADA9 /* URLParametersSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A29881BE6B21A0024ADA9 /* URLParametersSerializer.swift */; };
 		405A29931BE6B2710024ADA9 /* TokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A29921BE6B2710024ADA9 /* TokenModel.swift */; };
 		405A29951BE6B2800024ADA9 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A29941BE6B2800024ADA9 /* BaseModel.swift */; };
+		407778AE1C03778E00E02BEA /* Greeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407778AD1C03778E00E02BEA /* Greeting.swift */; };
+		407778B01C037C6500E02BEA /* GreetingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407778AF1C037C6500E02BEA /* GreetingManager.swift */; };
 		4077E6F51BF9FD32006FAFB1 /* SwipeableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4077E6F41BF9FD32006FAFB1 /* SwipeableTableViewCell.swift */; };
 		407A7DA41BE778BD006A9DB0 /* ServerErrorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A7DA31BE778BD006A9DB0 /* ServerErrorModel.swift */; };
 		407A7DA61BE77D67006A9DB0 /* NewsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407A7DA51BE77D67006A9DB0 /* NewsModel.swift */; };
@@ -143,6 +151,16 @@
 		40EA82561BCFD07B0029228F /* MessagesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EA82551BCFD07B0029228F /* MessagesViewController.swift */; };
 		40EA82581BCFD09A0029228F /* TrainingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40EA82571BCFD09A0029228F /* TrainingViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		4018CD691C04571A007648E2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 40EA81F41BCFA3360029228F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 40EA81FB1BCFA3360029228F;
+			remoteInfo = iTacit;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		293D32093613973975BFCCC2 /* MessageCategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCategoryModel.swift; sourceTree = "<group>"; };
@@ -208,6 +226,14 @@
 		4015F8711BFB27BB0030927E /* RoleListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RoleListModel.swift; sourceTree = "<group>"; };
 		4015F8731BFB40C60030927E /* BaseMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseMessageModel.swift; sourceTree = "<group>"; };
 		4015F8761BFB88ED0030927E /* RecipientsCountModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientsCountModel.swift; sourceTree = "<group>"; };
+		4018CD641C045719007648E2 /* iTacitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = iTacitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4018CD661C04571A007648E2 /* iTacitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTacitTests.swift; sourceTree = "<group>"; };
+		4018CD681C04571A007648E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4018CD6E1C04575D007648E2 /* GreetingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreetingTests.swift; sourceTree = "<group>"; };
+		4018CD701C049816007648E2 /* DashboardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardTableViewCell.swift; sourceTree = "<group>"; };
+		4018CD731C04BB91007648E2 /* RemoteImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteImageTableViewCell.swift; sourceTree = "<group>"; };
+		4018CD751C04C440007648E2 /* ActivityReplyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityReplyModel.swift; sourceTree = "<group>"; };
+		4018CD781C04C924007648E2 /* ActivityMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityMessageModel.swift; sourceTree = "<group>"; };
 		4028C2F01BFDFA2A007A2939 /* RecipientsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientsViewController.swift; sourceTree = "<group>"; };
 		4028C2F21BFE1024007A2939 /* RecipientModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientModel.swift; sourceTree = "<group>"; };
 		4028C2F41BFE132E007A2939 /* RecipientListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RecipientListModel.swift; sourceTree = "<group>"; };
@@ -246,6 +272,8 @@
 		405A29881BE6B21A0024ADA9 /* URLParametersSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLParametersSerializer.swift; sourceTree = "<group>"; };
 		405A29921BE6B2710024ADA9 /* TokenModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenModel.swift; sourceTree = "<group>"; };
 		405A29941BE6B2800024ADA9 /* BaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
+		407778AD1C03778E00E02BEA /* Greeting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Greeting.swift; sourceTree = "<group>"; };
+		407778AF1C037C6500E02BEA /* GreetingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreetingManager.swift; sourceTree = "<group>"; };
 		4077E6F41BF9FD32006FAFB1 /* SwipeableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeableTableViewCell.swift; sourceTree = "<group>"; };
 		407A7DA31BE778BD006A9DB0 /* ServerErrorModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ServerErrorModel.swift; sourceTree = "<group>"; };
 		407A7DA51BE77D67006A9DB0 /* NewsModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NewsModel.swift; sourceTree = "<group>"; };
@@ -288,6 +316,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		4018CD611C045719007648E2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		40EA81F91BCFA3360029228F /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -337,6 +372,34 @@
 				4015F8711BFB27BB0030927E /* RoleListModel.swift */,
 			);
 			name = "Organization Models";
+			sourceTree = "<group>";
+		};
+		4018CD651C04571A007648E2 /* iTacitTests */ = {
+			isa = PBXGroup;
+			children = (
+				4018CD6E1C04575D007648E2 /* GreetingTests.swift */,
+				4018CD661C04571A007648E2 /* iTacitTests.swift */,
+				4018CD681C04571A007648E2 /* Info.plist */,
+			);
+			path = iTacitTests;
+			sourceTree = "<group>";
+		};
+		4018CD721C04BB65007648E2 /* Base Cells */ = {
+			isa = PBXGroup;
+			children = (
+				4018CD731C04BB91007648E2 /* RemoteImageTableViewCell.swift */,
+				4077E6F41BF9FD32006FAFB1 /* SwipeableTableViewCell.swift */,
+			);
+			name = "Base Cells";
+			sourceTree = "<group>";
+		};
+		4018CD771C04C8FD007648E2 /* Activity Feed */ = {
+			isa = PBXGroup;
+			children = (
+				4018CD751C04C440007648E2 /* ActivityReplyModel.swift */,
+				4018CD781C04C924007648E2 /* ActivityMessageModel.swift */,
+			);
+			name = "Activity Feed";
 			sourceTree = "<group>";
 		};
 		401938571BF33D810030212F /* News Flow */ = {
@@ -422,6 +485,7 @@
 				4028C2F41BFE132E007A2939 /* RecipientListModel.swift */,
 				4028C2F61BFE1FAF007A2939 /* RecipientSearchQuery.swift */,
 				35E775D41BFDE9AA000A0BA7 /* MessageCreateReplyModel.swift */,
+				4018CD771C04C8FD007648E2 /* Activity Feed */,
 			);
 			name = "Messages Flow Models";
 			sourceTree = "<group>";
@@ -518,6 +582,7 @@
 			isa = PBXGroup;
 			children = (
 				40EA81FE1BCFA3360029228F /* iTacit */,
+				4018CD651C04571A007648E2 /* iTacitTests */,
 				40EA81FD1BCFA3360029228F /* Products */,
 			);
 			sourceTree = "<group>";
@@ -526,6 +591,7 @@
 			isa = PBXGroup;
 			children = (
 				40EA81FC1BCFA3360029228F /* iTacit.app */,
+				4018CD641C045719007648E2 /* iTacitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -573,6 +639,7 @@
 		40EA821B1BCFC40C0029228F /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				407778AD1C03778E00E02BEA /* Greeting.swift */,
 				4056D5891BE903FD0076B970 /* TagModel.swift */,
 				407A7DA31BE778BD006A9DB0 /* ServerErrorModel.swift */,
 				405A29921BE6B2710024ADA9 /* TokenModel.swift */,
@@ -671,6 +738,7 @@
 			isa = PBXGroup;
 			children = (
 				4056D5761BE89B290076B970 /* ImageCacheManager.swift */,
+				407778AF1C037C6500E02BEA /* GreetingManager.swift */,
 			);
 			path = Managers;
 			sourceTree = "<group>";
@@ -695,11 +763,11 @@
 		40EA82421BCFCCEA0029228F /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
-				4077E6F41BF9FD32006FAFB1 /* SwipeableTableViewCell.swift */,
-				35690C691BF9D5F3006055EB /* MessageTableViewCell.swift */,
+				4018CD721C04BB65007648E2 /* Base Cells */,
 				408C22CA1BF0C73A00DA25A3 /* UserProfileTableViewCell */,
 				351E8EC61BE36FCD00690669 /* MailComposerTableViewCells */,
 				40440DB61BDBCCA200FADF6E /* AutocompletionTableViewCell */,
+				35690C691BF9D5F3006055EB /* MessageTableViewCell.swift */,
 				3DEFA7A01BD50B7100596A2B /* CategoryTableViewCell.swift */,
 				3DEFA79E1BD5056E00596A2B /* DatePickerTableViewCell.swift */,
 				3563B9A11BD12E40009BE696 /* DescriptionTableViewCell.swift */,
@@ -710,6 +778,7 @@
 				3563B9971BD117BE009BE696 /* UserTableViewCell.swift */,
 				40C5612E1BEBBF82005BAAED /* ResizableTableViewCell.swift */,
 				35A349891BF5E6C100CD0DEB /* MessageDetailCommentTableViewCell.swift */,
+				4018CD701C049816007648E2 /* DashboardTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -748,6 +817,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		4018CD631C045719007648E2 /* iTacitTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 4018CD6D1C04571A007648E2 /* Build configuration list for PBXNativeTarget "iTacitTests" */;
+			buildPhases = (
+				4018CD601C045719007648E2 /* Sources */,
+				4018CD611C045719007648E2 /* Frameworks */,
+				4018CD621C045719007648E2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4018CD6A1C04571A007648E2 /* PBXTargetDependency */,
+			);
+			name = iTacitTests;
+			productName = iTacitTests;
+			productReference = 4018CD641C045719007648E2 /* iTacitTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		40EA81FB1BCFA3360029228F /* iTacit */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 40EA820E1BCFA3360029228F /* Build configuration list for PBXNativeTarget "iTacit" */;
@@ -771,9 +858,14 @@
 		40EA81F41BCFA3360029228F /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0710;
 				LastUpgradeCheck = 0700;
 				ORGANIZATIONNAME = iTacit;
 				TargetAttributes = {
+					4018CD631C045719007648E2 = {
+						CreatedOnToolsVersion = 7.1.1;
+						TestTargetID = 40EA81FB1BCFA3360029228F;
+					};
 					40EA81FB1BCFA3360029228F = {
 						CreatedOnToolsVersion = 7.0.1;
 					};
@@ -794,11 +886,19 @@
 			projectRoot = "";
 			targets = (
 				40EA81FB1BCFA3360029228F /* iTacit */,
+				4018CD631C045719007648E2 /* iTacitTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		4018CD621C045719007648E2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		40EA81FA1BCFA3360029228F /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -833,6 +933,15 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		4018CD601C045719007648E2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4018CD6F1C04575D007648E2 /* GreetingTests.swift in Sources */,
+				4018CD671C04571A007648E2 /* iTacitTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		40EA81F81BCFA3360029228F /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -844,6 +953,7 @@
 				408C22CD1BF0C75400DA25A3 /* UserProfileTableViewCell.swift in Sources */,
 				405A29931BE6B2710024ADA9 /* TokenModel.swift in Sources */,
 				407A7DAA1BE77D85006A9DB0 /* NewsListModel.swift in Sources */,
+				4018CD741C04BB91007648E2 /* RemoteImageTableViewCell.swift in Sources */,
 				40440DB91BDBCCA200FADF6E /* AutocompletionTableViewCell.swift in Sources */,
 				4028C2F31BFE1024007A2939 /* RecipientModel.swift in Sources */,
 				3584F0F01BEB48CC00AB20B2 /* ComposeReportsHeaderView.swift in Sources */,
@@ -897,11 +1007,14 @@
 				350644C81BD784A800D51D5C /* DateHeaderView.swift in Sources */,
 				4056D58A1BE903FD0076B970 /* TagModel.swift in Sources */,
 				4056D5841BE8E7AC0076B970 /* AuthorModel.swift in Sources */,
+				4018CD761C04C440007648E2 /* ActivityReplyModel.swift in Sources */,
 				355FF06E1BDF697B0070B600 /* SearchNewsQueryModel.swift in Sources */,
 				3591D0101BEA085500AE4884 /* KeychainWrapper.swift in Sources */,
 				35610F5D1BF4BAB6007BE698 /* MessageDetailViewController.swift in Sources */,
+				407778B01C037C6500E02BEA /* GreetingManager.swift in Sources */,
 				3563B99A1BD11B43009BE696 /* NewsDetailViewController.swift in Sources */,
 				4056D57D1BE8D1C80076B970 /* BaseViewController.swift in Sources */,
+				4018CD711C049816007648E2 /* DashboardTableViewCell.swift in Sources */,
 				4015F8771BFB88ED0030927E /* RecipientsCountModel.swift in Sources */,
 				4012FFB31BF62EA1002B1711 /* MessageCategoryCollectionViewCell.swift in Sources */,
 				405A298A1BE6B21A0024ADA9 /* JSONValueConvertible.swift in Sources */,
@@ -915,10 +1028,12 @@
 				3532472F1BEC9DA000733B1A /* AddRecipientHeaderView.swift in Sources */,
 				4015F8701BFB23720030927E /* RoleModel.swift in Sources */,
 				35FF25E71BECFDF400B1D734 /* PermissionGroupsModel.swift in Sources */,
+				407778AE1C03778E00E02BEA /* Greeting.swift in Sources */,
 				40EA824B1BCFCD720029228F /* TabBarButton.swift in Sources */,
 				405A298F1BE6B21A0024ADA9 /* ValueTransformer.swift in Sources */,
 				40EA82581BCFD09A0029228F /* TrainingViewController.swift in Sources */,
 				4056D5881BE8E8E50076B970 /* SearchStringModel.swift in Sources */,
+				4018CD791C04C924007648E2 /* ActivityMessageModel.swift in Sources */,
 				3563B9A41BD12FAE009BE696 /* HashtagAndTimeTableViewCell.swift in Sources */,
 				4012FFAF1BF5D4CE002B1711 /* SeparatorView.swift in Sources */,
 				3DD1FF321BE39FC0005C4339 /* NewsCategoryModel.swift in Sources */,
@@ -953,6 +1068,14 @@
 		};
 /* End PBXSourcesBuildPhase section */
 
+/* Begin PBXTargetDependency section */
+		4018CD6A1C04571A007648E2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 40EA81FB1BCFA3360029228F /* iTacit */;
+			targetProxy = 4018CD691C04571A007648E2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
 /* Begin PBXVariantGroup section */
 		353C05001BE253BF00C92352 /* Localizable.strings */ = {
 			isa = PBXVariantGroup;
@@ -986,6 +1109,32 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		4018CD6B1C04571A007648E2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = iTacitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ITacit.iTacitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iTacit.app/iTacit";
+			};
+			name = Debug;
+		};
+		4018CD6C1C04571A007648E2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				INFOPLIST_FILE = iTacitTests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.1;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = com.ITacit.iTacitTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/iTacit.app/iTacit";
+			};
+			name = Release;
+		};
 		40EA820C1BCFA3360029228F /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1074,6 +1223,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/iTacit/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iTacit.iTacit;
@@ -1088,6 +1238,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/iTacit/Supporting Files/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.iTacit.iTacit;
@@ -1100,6 +1251,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		4018CD6D1C04571A007648E2 /* Build configuration list for PBXNativeTarget "iTacitTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4018CD6B1C04571A007648E2 /* Debug */,
+				4018CD6C1C04571A007648E2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		40EA81F71BCFA3360029228F /* Build configuration list for PBXProject "iTacit" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
