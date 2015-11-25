@@ -8,7 +8,7 @@
 
 import Foundation
 
-class ReplyListModel<T: ReplyModel>: ListModel<T> {
+class ReplyListModel<T: ReplyModel>: PageListModel<T> {
     
     override var path: String {
         return "/mobile/1.0/messaging/reply"
