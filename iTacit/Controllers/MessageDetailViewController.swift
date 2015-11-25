@@ -77,15 +77,21 @@ class MessageDetailViewController: BaseViewController {
 		showMoreTextView.textContainer.lineFragmentPadding = 0
 		showMoreTextView.textContainerInset = UIEdgeInsetsZero
         showMoreTextView.attributedTrimText = NSMutableAttributedString(string: "...")
+        scrollView.backgroundColor = AppColors.dirtyWhite
 
-        prepareUI()
 		loadRecipients()
     }
 
 	override func viewWillAppear(animated: Bool) {
 		super.viewWillAppear(animated)
 		loadReplies()
+        prepareUI()
 	}
+    
+    override func viewDidAppear(animated: Bool) {
+        super.viewDidAppear(animated)
+        adjustTableViewHeight()
+    }
 
     // MARK: - IBAction
     
@@ -104,6 +110,10 @@ class MessageDetailViewController: BaseViewController {
     }
     
     // MARK: - Private
+    
+    private func adjustTableViewHeight() {
+        tableViewHeightConstraint.constant = CGRectGetHeight(view.frame) - CGRectGetHeight(headerView.frame)
+    }
     
     private func loadReplies() {
         repliesList.load { [weak self] (success) -> Void in
@@ -128,8 +138,6 @@ class MessageDetailViewController: BaseViewController {
 	}
     
     private func prepareUI() {
-        tableViewHeightConstraint.constant = CGRectGetHeight(view.frame) - CGRectGetHeight(headerView.frame) - Constants.topLayoutHeight
-        
         if let sender = message.sender {
             replyToUserName = sender.firstName
             titleLabel.text = sender.fullName
@@ -170,6 +178,7 @@ class MessageDetailViewController: BaseViewController {
 		confirmationButton.setImage(UIImage(assetsIndetifier: .ConfirmedIcon), forState: .Normal)
 		confirmationButton.setTitleColor(AppColors.gray, forState: .Normal)
 		headerConfirmToDate.text = ""
+        adjustTableViewHeight() 
     }
 
 	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
