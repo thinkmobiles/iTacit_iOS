@@ -56,7 +56,7 @@ class TokenModel: BaseModel, Mappable {
 	}
 
 	private func relogin() {
-		signInWithUsername("ph", password: "ph")
+		signInWithUsername("testios", password: "test")
 	}
 
 	override func defaultSuccessHandler(data: NSData?, request: NSURLRequest, response: NSHTTPURLResponse?, completion: CompletionHandler?) -> Void {
