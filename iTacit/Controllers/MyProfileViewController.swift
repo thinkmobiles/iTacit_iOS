@@ -24,15 +24,31 @@ class MyProfileViewController: UITableViewController, UINavigationControllerDele
     @IBOutlet weak var userSmallImage: UIImageView!
     @IBOutlet weak var imageButton: UIButton!
     @IBOutlet weak var userImageView: UIImageView!
+    @IBOutlet weak var userFullNameLabel: UILabel!
+    @IBOutlet weak var userDescriptionLabel: UILabel!
     
     let imagePicker = UIImagePickerController()
-    
+    let profilesList = UserProfileListModel()
+    var user = UserProfileModel()
+    var imageDownloadTask: NSURLSessionTask?
+
     override func viewDidLoad() {
         super.viewDidLoad()
         imagePicker.delegate = self
         
+        getUser()
         prepareFooterView()
         addBackButton()
+    }
+    
+    private func getUser() {
+        profilesList.searchQuery = UserProfileListQueryModel()
+        profilesList.getSelfUser { [unowned self] (success, user) -> Void in
+            if success {
+                self.user = user!
+                self.updateUI()
+            }
+        }
     }
     
     func addBackButton() {
@@ -72,10 +88,10 @@ class MyProfileViewController: UITableViewController, UINavigationControllerDele
     }
     
     @IBAction func changeImageAction(sender: UIButton) {
-        let alertController = UIAlertController(title: LocalizedString("Change Picture"), message: "What do you want to do?", preferredStyle: .ActionSheet)
+        let alertController = UIAlertController(title: LocalizedString("Change Picture"), message: LocalizedString("What do you want to do?"), preferredStyle: .ActionSheet)
         
-        let defaultAction = UIAlertAction(title: "Cancel", style: .Default, handler: nil)
-        let uploadAction = UIAlertAction(title: "Upload from Camera Roll", style: .Default, handler: { [unowned self] (action) -> Void in
+        let defaultAction = UIAlertAction(title: LocalizedString("Cancel"), style: .Default, handler: nil)
+        let uploadAction = UIAlertAction(title: LocalizedString("Upload from Camera Roll"), style: .Default, handler: { [unowned self] (action) -> Void in
             self.showImagePicker()
         })
     
@@ -98,9 +114,6 @@ class MyProfileViewController: UITableViewController, UINavigationControllerDele
     }
     
     // MARK: - Private
-
-    
-    // MARK: - Private
     
     func prepareFooterView() {
         let diff = UIScreen.mainScreen().bounds.height - Constants.mainBlockHeight
@@ -114,6 +127,29 @@ class MyProfileViewController: UITableViewController, UINavigationControllerDele
         
         presentViewController(imagePicker, animated: true, completion: nil)
     }
+    
+    private func updateUI() {
+        userFullNameLabel.text = user.fullName
+        userDescriptionLabel.text = user.role
+        emailTextField.text = user.emailAddress
+        phoneTextField.text = user.mobilePhoneNumber
+        
+        setUserImageWithURL(user.imageURL)
+    }
+    
+    private func setUserImageWithURL(imageURL: NSURL?) {
+        imageDownloadTask?.cancel()
+        if let imageURL = imageURL {
+            imageDownloadTask = ImageCacheManager.sharedInstance.imageForURL(imageURL, completion: { [weak self] (image) -> Void in
+                self?.userImageView.image = image
+                self?.userSmallImage.image = image
+                })
+        } else {
+            userImageView.image = nil
+            userSmallImage.image = nil
+        }
+    }
+    
 }
 
 extension MyProfileViewController: UIImagePickerControllerDelegate {
@@ -125,7 +161,6 @@ extension MyProfileViewController: UIImagePickerControllerDelegate {
         }
         
         dismissViewControllerAnimated(true, completion: nil)
-        
     }
     
 }
