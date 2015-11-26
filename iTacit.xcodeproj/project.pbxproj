@@ -68,7 +68,7 @@
 		4015F8771BFB88ED0030927E /* RecipientsCountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4015F8761BFB88ED0030927E /* RecipientsCountModel.swift */; };
 		4018CD671C04571A007648E2 /* iTacitTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4018CD661C04571A007648E2 /* iTacitTests.swift */; };
 		4018CD6F1C04575D007648E2 /* GreetingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4018CD6E1C04575D007648E2 /* GreetingTests.swift */; };
-		4018CD711C049816007648E2 /* DashboardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4018CD701C049816007648E2 /* DashboardTableViewCell.swift */; };
+		4018CD711C049816007648E2 /* ActivityFeedTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4018CD701C049816007648E2 /* ActivityFeedTableViewCell.swift */; };
 		4018CD741C04BB91007648E2 /* RemoteImageTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4018CD731C04BB91007648E2 /* RemoteImageTableViewCell.swift */; };
 		4018CD761C04C440007648E2 /* ActivityReplyModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4018CD751C04C440007648E2 /* ActivityReplyModel.swift */; };
 		4018CD791C04C924007648E2 /* ActivityMessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4018CD781C04C924007648E2 /* ActivityMessageModel.swift */; };
@@ -83,6 +83,7 @@
 		40317D2A1C06FFEB003321F4 /* BannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40317D291C06FFEB003321F4 /* BannerModel.swift */; };
 		40317D2C1C070242003321F4 /* BannerListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40317D2B1C070242003321F4 /* BannerListModel.swift */; };
 		40317D311C0741DD003321F4 /* BannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40317D301C0741DD003321F4 /* BannerViewController.swift */; };
+		40317D331C0750B9003321F4 /* ActivityFeedModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40317D321C0750B9003321F4 /* ActivityFeedModel.swift */; };
 		40440DB21BDBCC9C00FADF6E /* InputCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40440DAD1BDBCC9C00FADF6E /* InputCollectionViewCell.swift */; };
 		40440DB31BDBCC9C00FADF6E /* InputCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40440DAE1BDBCC9C00FADF6E /* InputCollectionViewCell.xib */; };
 		40440DB41BDBCC9C00FADF6E /* TextCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40440DB01BDBCC9C00FADF6E /* TextCollectionViewCell.swift */; };
@@ -238,7 +239,7 @@
 		4018CD661C04571A007648E2 /* iTacitTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = iTacitTests.swift; sourceTree = "<group>"; };
 		4018CD681C04571A007648E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4018CD6E1C04575D007648E2 /* GreetingTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreetingTests.swift; sourceTree = "<group>"; };
-		4018CD701C049816007648E2 /* DashboardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DashboardTableViewCell.swift; sourceTree = "<group>"; };
+		4018CD701C049816007648E2 /* ActivityFeedTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeedTableViewCell.swift; sourceTree = "<group>"; };
 		4018CD731C04BB91007648E2 /* RemoteImageTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RemoteImageTableViewCell.swift; sourceTree = "<group>"; };
 		4018CD751C04C440007648E2 /* ActivityReplyModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityReplyModel.swift; sourceTree = "<group>"; };
 		4018CD781C04C924007648E2 /* ActivityMessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityMessageModel.swift; sourceTree = "<group>"; };
@@ -253,6 +254,7 @@
 		40317D291C06FFEB003321F4 /* BannerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerModel.swift; sourceTree = "<group>"; };
 		40317D2B1C070242003321F4 /* BannerListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerListModel.swift; sourceTree = "<group>"; };
 		40317D301C0741DD003321F4 /* BannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerViewController.swift; sourceTree = "<group>"; };
+		40317D321C0750B9003321F4 /* ActivityFeedModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ActivityFeedModel.swift; sourceTree = "<group>"; };
 		40440DAD1BDBCC9C00FADF6E /* InputCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputCollectionViewCell.swift; sourceTree = "<group>"; };
 		40440DAE1BDBCC9C00FADF6E /* InputCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputCollectionViewCell.xib; sourceTree = "<group>"; };
 		40440DB01BDBCC9C00FADF6E /* TextCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -512,6 +514,7 @@
 				4018CD781C04C924007648E2 /* ActivityMessageModel.swift */,
 				40317D291C06FFEB003321F4 /* BannerModel.swift */,
 				40317D2B1C070242003321F4 /* BannerListModel.swift */,
+				40317D321C0750B9003321F4 /* ActivityFeedModel.swift */,
 			);
 			name = "Dashboard Flow Models";
 			sourceTree = "<group>";
@@ -796,7 +799,7 @@
 				3563B9971BD117BE009BE696 /* UserTableViewCell.swift */,
 				40C5612E1BEBBF82005BAAED /* ResizableTableViewCell.swift */,
 				35A349891BF5E6C100CD0DEB /* MessageDetailCommentTableViewCell.swift */,
-				4018CD701C049816007648E2 /* DashboardTableViewCell.swift */,
+				4018CD701C049816007648E2 /* ActivityFeedTableViewCell.swift */,
 			);
 			path = TableViewCells;
 			sourceTree = "<group>";
@@ -1035,7 +1038,7 @@
 				407778B01C037C6500E02BEA /* GreetingManager.swift in Sources */,
 				3563B99A1BD11B43009BE696 /* NewsDetailViewController.swift in Sources */,
 				4056D57D1BE8D1C80076B970 /* BaseViewController.swift in Sources */,
-				4018CD711C049816007648E2 /* DashboardTableViewCell.swift in Sources */,
+				4018CD711C049816007648E2 /* ActivityFeedTableViewCell.swift in Sources */,
 				4015F8771BFB88ED0030927E /* RecipientsCountModel.swift in Sources */,
 				4012FFB31BF62EA1002B1711 /* MessageCategoryCollectionViewCell.swift in Sources */,
 				405A298A1BE6B21A0024ADA9 /* JSONValueConvertible.swift in Sources */,
@@ -1060,6 +1063,7 @@
 				3DD1FF321BE39FC0005C4339 /* NewsCategoryModel.swift in Sources */,
 				4056D5771BE89B290076B970 /* ImageCacheManager.swift in Sources */,
 				40317D2C1C070242003321F4 /* BannerListModel.swift in Sources */,
+				40317D331C0750B9003321F4 /* ActivityFeedModel.swift in Sources */,
 				35DDBEBB1BF3951D00791F79 /* CreateReplyModel.swift in Sources */,
 				40317D311C0741DD003321F4 /* BannerViewController.swift in Sources */,
 				40EA82521BCFD05F0029228F /* DashboardViewController.swift in Sources */,

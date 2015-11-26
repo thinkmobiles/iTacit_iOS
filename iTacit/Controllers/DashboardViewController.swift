@@ -10,6 +10,10 @@ import UIKit
 
 class DashboardViewController: UIViewController {
 
+	private struct Constants {
+		static let estimatedRowHeight = CGFloat(85)
+	}
+
 	@IBOutlet weak var dashboardTitleLabel: UILabel!
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var feedTitleLabel: UILabel!
@@ -20,17 +24,19 @@ class DashboardViewController: UIViewController {
 		return (pageViewController?.viewControllers?.first as? BannerViewController)?.pageIndex
 	}
 
-	var bannerList = BannerListModel()
+	private var bannerList = BannerListModel()
+	private var activityFeed = ActivityFeedModel()
 
 	// MARK: - Lifecycle
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		feedTitleLabel.text = LocalizedString("RECENT ACTIVITY")
-		tableView.tableFooterView = UIView()
+		setUpTableView()
 		loadOwnUserProfile()
 		updateGreeting()
 		loadBanners()
+		loadActivityFeed()
 	}
 
 	override func viewDidDisappear(animated: Bool) {
@@ -47,12 +53,24 @@ class DashboardViewController: UIViewController {
 
 	// MARK: - Private
 
+	private func setUpTableView() {
+		tableView.tableFooterView = UIView()
+		tableView.estimatedRowHeight = Constants.estimatedRowHeight
+		tableView.rowHeight = UITableViewAutomaticDimension
+	}
+
 	private func loadOwnUserProfile() {
 		let profilesList = UserProfileListModel()
 		profilesList.searchQuery = OwnUserProfileQueryModel()
 		profilesList.loadOwnUserProfile { [weak self] (success, user) -> Void in
 			SharedStorage.sharedInstance.userProfile = user
 			self?.updateGreeting()
+		}
+	}
+
+	private func loadActivityFeed() {
+		activityFeed.load { [weak self] (success) -> Void in
+			self?.tableView.reloadData()
 		}
 	}
 
@@ -154,6 +172,22 @@ extension DashboardViewController: UIPageViewControllerDataSource {
 		}
 		index = (index + 1) % bannerList.count
 		return bannerViewControllerAtIndex(index)
+	}
+
+}
+
+// MARK: - UITableViewDataSource
+
+extension DashboardViewController: UITableViewDataSource {
+
+	func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+		return activityFeed.count
+	}
+
+	func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
+		let cell = tableView.dequeueReusableCellWithIdentifier(ActivityFeedTableViewCell.reuseIdentifier, forIndexPath: indexPath) as! ActivityFeedTableViewCell
+		cell.configureWithActivityFeedItem(activityFeed[indexPath.row])
+		return cell
 	}
 
 }

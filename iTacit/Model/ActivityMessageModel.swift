@@ -18,6 +18,10 @@ class ActivityMessageModel: MessageModel {
 		return NSAttributedString(string: subject, attributes: attributes)
 	}
 
+	var timeString: String {
+		return sendDate?.timeAgoStringRepresentation() ?? ""
+	}
+
 	// MARK: - KeyValueCodable
 
 	override func setValue<T>(value: T, forKey key: String) throws {
@@ -37,3 +41,5 @@ class ActivityMessageModel: MessageModel {
 	}
 
 }
+
+extension ActivityMessageModel: ActivityFeedItemModel { }

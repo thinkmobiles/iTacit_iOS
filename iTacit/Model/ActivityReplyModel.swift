@@ -25,6 +25,10 @@ class ActivityReplyModel: ReplyModel {
 		return attributedString
 	}
 
+	var timeString: String {
+		return sendDateTime?.timeAgoStringRepresentation() ?? ""
+	}
+
 	// MARK: - KeyValueCodable
 
 	override func setValue<T>(value: T, forKey key: String) throws {
@@ -46,3 +50,5 @@ class ActivityReplyModel: ReplyModel {
 	}
 
 }
+
+extension ActivityReplyModel: ActivityFeedItemModel { }
