@@ -22,6 +22,7 @@ enum AssetsIndetifier: String {
     case BtnSendIcon = "btn_send"
 	case PhoneIcone = "ic_iphone"
 	case UnconfirmedIcon = "unconfirmed_icon"
+    case HomeIcone = "ic_home"
 }
 
 extension UIImage {

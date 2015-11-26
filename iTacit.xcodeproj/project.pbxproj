@@ -16,6 +16,12 @@
 		350644C61BD7788400D51D5C /* ListHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 350644C51BD7788400D51D5C /* ListHeaderView.xib */; };
 		350644C81BD784A800D51D5C /* DateHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350644C71BD784A800D51D5C /* DateHeaderView.swift */; };
 		350644CA1BD784B300D51D5C /* DateHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 350644C91BD784B300D51D5C /* DateHeaderView.xib */; };
+		350943641C070FCF0032CD8A /* LoginTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350943631C070FCF0032CD8A /* LoginTableViewController.swift */; };
+		350943681C0732880032CD8A /* LogoTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350943671C0732880032CD8A /* LogoTableViewCell.swift */; };
+		3509436A1C0739430032CD8A /* InputTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 350943691C0739430032CD8A /* InputTableViewCell.swift */; };
+		3509436C1C0744480032CD8A /* RememberMeTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3509436B1C0744480032CD8A /* RememberMeTableViewCell.swift */; };
+		3509436E1C07466C0032CD8A /* SignInTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3509436D1C07466C0032CD8A /* SignInTableViewCell.swift */; };
+		350943701C074E180032CD8A /* LoginUserTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3509436F1C074E180032CD8A /* LoginUserTableViewCell.swift */; };
 		3516FFA31BE7940000865EB9 /* ComposerReadDateTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3516FFA21BE7940000865EB9 /* ComposerReadDateTableViewCell.swift */; };
 		351793031C05E065001191E1 /* OwnUserProfileQueryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351793021C05E065001191E1 /* OwnUserProfileQueryModel.swift */; };
 		351E8EC81BE3700F00690669 /* ComposerTopicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 351E8EC71BE3700F00690669 /* ComposerTopicTableViewCell.swift */; };
@@ -179,6 +185,12 @@
 		350644C51BD7788400D51D5C /* ListHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = ListHeaderView.xib; sourceTree = "<group>"; };
 		350644C71BD784A800D51D5C /* DateHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DateHeaderView.swift; sourceTree = "<group>"; };
 		350644C91BD784B300D51D5C /* DateHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DateHeaderView.xib; sourceTree = "<group>"; };
+		350943631C070FCF0032CD8A /* LoginTableViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginTableViewController.swift; sourceTree = "<group>"; };
+		350943671C0732880032CD8A /* LogoTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogoTableViewCell.swift; sourceTree = "<group>"; };
+		350943691C0739430032CD8A /* InputTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputTableViewCell.swift; sourceTree = "<group>"; };
+		3509436B1C0744480032CD8A /* RememberMeTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RememberMeTableViewCell.swift; sourceTree = "<group>"; };
+		3509436D1C07466C0032CD8A /* SignInTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInTableViewCell.swift; sourceTree = "<group>"; };
+		3509436F1C074E180032CD8A /* LoginUserTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginUserTableViewCell.swift; sourceTree = "<group>"; };
 		3516FFA21BE7940000865EB9 /* ComposerReadDateTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposerReadDateTableViewCell.swift; sourceTree = "<group>"; };
 		351793021C05E065001191E1 /* OwnUserProfileQueryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = OwnUserProfileQueryModel.swift; sourceTree = "<group>"; };
 		351E8EC01BE36B1500690669 /* MessageComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageComposeViewController.swift; sourceTree = "<group>"; };
@@ -360,6 +372,26 @@
 				353247301BEC9DAC00733B1A /* AddRecipientHeaderView.xib */,
 			);
 			path = HeaderViews;
+			sourceTree = "<group>";
+		};
+		350943651C070FD50032CD8A /* Login Flow */ = {
+			isa = PBXGroup;
+			children = (
+				350943631C070FCF0032CD8A /* LoginTableViewController.swift */,
+			);
+			name = "Login Flow";
+			sourceTree = "<group>";
+		};
+		350943661C0731C10032CD8A /* Login Flow */ = {
+			isa = PBXGroup;
+			children = (
+				350943671C0732880032CD8A /* LogoTableViewCell.swift */,
+				350943691C0739430032CD8A /* InputTableViewCell.swift */,
+				3509436B1C0744480032CD8A /* RememberMeTableViewCell.swift */,
+				3509436D1C07466C0032CD8A /* SignInTableViewCell.swift */,
+				3509436F1C074E180032CD8A /* LoginUserTableViewCell.swift */,
+			);
+			name = "Login Flow";
 			sourceTree = "<group>";
 		};
 		351E8EC61BE36FCD00690669 /* MailComposerTableViewCells */ = {
@@ -650,6 +682,7 @@
 				401938571BF33D810030212F /* News Flow */,
 				401938581BF33D910030212F /* Messages Flow */,
 				401938591BF33D9A0030212F /* Training Flow */,
+				350943651C070FD50032CD8A /* Login Flow */,
 			);
 			path = Controllers;
 			sourceTree = "<group>";
@@ -785,6 +818,9 @@
 			isa = PBXGroup;
 			children = (
 				4018CD721C04BB65007648E2 /* Base Cells */,
+				350943661C0731C10032CD8A /* Login Flow */,
+				4077E6F41BF9FD32006FAFB1 /* SwipeableTableViewCell.swift */,
+				35690C691BF9D5F3006055EB /* MessageTableViewCell.swift */,
 				408C22CA1BF0C73A00DA25A3 /* UserProfileTableViewCell */,
 				351E8EC61BE36FCD00690669 /* MailComposerTableViewCells */,
 				40440DB61BDBCCA200FADF6E /* AutocompletionTableViewCell */,
@@ -1015,15 +1051,18 @@
 				40EA82471BCFCD690029228F /* TabsContainerView.swift in Sources */,
 				405A29951BE6B2800024ADA9 /* BaseModel.swift in Sources */,
 				40EA82371BCFC8A40029228F /* AppColors.swift in Sources */,
+				3509436E1C07466C0032CD8A /* SignInTableViewCell.swift in Sources */,
 				40EA82001BCFA3360029228F /* AppDelegate.swift in Sources */,
 				35DDBEB91BF3700F00791F79 /* ReplayViewController.swift in Sources */,
 				353C04FB1BE2490F00C92352 /* LocalizationService.swift in Sources */,
 				40EA823F1BCFCCBE0029228F /* Extensions.swift in Sources */,
+				350943681C0732880032CD8A /* LogoTableViewCell.swift in Sources */,
 				405A29911BE6B21A0024ADA9 /* URLParametersSerializer.swift in Sources */,
 				3DEFA7A11BD50B7100596A2B /* CategoryTableViewCell.swift in Sources */,
 				40EA82541BCFD06F0029228F /* NewsViewController.swift in Sources */,
 				40440DC31BDBCE2F00FADF6E /* TagSearchControl.swift in Sources */,
 				35FF25E51BECFBDC00B1D734 /* JobClassificationListModel.swift in Sources */,
+				3509436C1C0744480032CD8A /* RememberMeTableViewCell.swift in Sources */,
 				35FF25E11BECF93C00B1D734 /* BusinessUnitListModel.swift in Sources */,
 				3516FFA31BE7940000865EB9 /* ComposerReadDateTableViewCell.swift in Sources */,
 				3563B9A01BD12CCB009BE696 /* TitleTableViewCell.swift in Sources */,
@@ -1033,6 +1072,7 @@
 				4056D5841BE8E7AC0076B970 /* AuthorModel.swift in Sources */,
 				4018CD761C04C440007648E2 /* ActivityReplyModel.swift in Sources */,
 				355FF06E1BDF697B0070B600 /* SearchNewsQueryModel.swift in Sources */,
+				350943701C074E180032CD8A /* LoginUserTableViewCell.swift in Sources */,
 				3591D0101BEA085500AE4884 /* KeychainWrapper.swift in Sources */,
 				35610F5D1BF4BAB6007BE698 /* MessageDetailViewController.swift in Sources */,
 				407778B01C037C6500E02BEA /* GreetingManager.swift in Sources */,
@@ -1047,6 +1087,7 @@
 				35EE4E971BE89CBD00740A03 /* NewMessageModel.swift in Sources */,
 				35A3498A1BF5E6C100CD0DEB /* MessageDetailCommentTableViewCell.swift in Sources */,
 				40440DBC1BDBCD0E00FADF6E /* CollectionViewLeftAlignedFlowLayout.swift in Sources */,
+				350943641C070FCF0032CD8A /* LoginTableViewController.swift in Sources */,
 				35AF6F1E1BFB518D00600B6F /* SearchReplyListModel.swift in Sources */,
 				405A298D1BE6B21A0024ADA9 /* Mappable.swift in Sources */,
 				3532472F1BEC9DA000733B1A /* AddRecipientHeaderView.swift in Sources */,
@@ -1060,6 +1101,7 @@
 				4018CD791C04C924007648E2 /* ActivityMessageModel.swift in Sources */,
 				3563B9A41BD12FAE009BE696 /* HashtagAndTimeTableViewCell.swift in Sources */,
 				4012FFAF1BF5D4CE002B1711 /* SeparatorView.swift in Sources */,
+				3509436A1C0739430032CD8A /* InputTableViewCell.swift in Sources */,
 				3DD1FF321BE39FC0005C4339 /* NewsCategoryModel.swift in Sources */,
 				4056D5771BE89B290076B970 /* ImageCacheManager.swift in Sources */,
 				40317D2C1C070242003321F4 /* BannerListModel.swift in Sources */,
