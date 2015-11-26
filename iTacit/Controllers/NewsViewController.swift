@@ -8,8 +8,6 @@
 
 import UIKit
 
-let ImageCache = NSCache()
-
 class NewsViewController: PagingViewController {
 
     @IBOutlet weak var newsTitle: UILabel!

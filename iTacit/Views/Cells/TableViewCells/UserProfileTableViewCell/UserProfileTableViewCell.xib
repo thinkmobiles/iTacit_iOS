@@ -116,7 +116,7 @@
                 <outlet property="confirmedImageView" destination="LXw-cH-adn" id="Mvo-dz-IDC"/>
                 <outlet property="fullNameLabel" destination="KSF-1A-ZXr" id="QRz-02-jLw"/>
                 <outlet property="imageViewLeadingConstraint" destination="lhw-CE-t6V" id="QsA-6L-KPm"/>
-                <outlet property="profileImageView" destination="gA6-iB-zqU" id="vkN-C7-EgL"/>
+                <outlet property="pictureImageView" destination="gA6-iB-zqU" id="F4C-Gl-If5"/>
                 <outlet property="rightButton" destination="u3o-D8-I8f" id="MyG-cW-Z7S"/>
                 <outlet property="rightButtonWidthConstraint" destination="XX1-Cp-Yug" id="UPD-V9-ywe"/>
                 <outlet property="separatorView" destination="ITi-PC-CrY" id="0IT-p1-1Au"/>

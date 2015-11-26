@@ -14,7 +14,7 @@ protocol UserProfileTableViewCellDelegate: class {
 
 }
 
-class UserProfileTableViewCell: UITableViewCell {
+class UserProfileTableViewCell: RemoteImageTableViewCell {
 
 	private struct Constants {
 		static let rightButtonWidth = CGFloat(35)
@@ -30,7 +30,6 @@ class UserProfileTableViewCell: UITableViewCell {
 		case Confirmed
 	}
 
-	@IBOutlet weak var profileImageView: UIImageView!
 	@IBOutlet weak var fullNameLabel: UILabel!
 	@IBOutlet weak var statusLabel: UILabel!
 	@IBOutlet weak var rightButton: UIButton!
@@ -40,15 +39,6 @@ class UserProfileTableViewCell: UITableViewCell {
 	@IBOutlet weak var confirmedImageView: UIImageView!
 
 	weak var delegate: UserProfileTableViewCellDelegate?
-
-	var profileImage: UIImage? {
-		get {
-			return profileImageView.image
-		}
-		set {
-			profileImageView.image = newValue
-		}
-	}
 
 	var fullName: String {
 		get {
@@ -65,14 +55,6 @@ class UserProfileTableViewCell: UITableViewCell {
 		}
 		set {
 			statusLabel.text = newValue
-		}
-	}
-
-	var imageDownloadTask: NSURLSessionTask? {
-		didSet {
-			if let _ = imageDownloadTask {
-				profileImage = nil
-			}
 		}
 	}
 
@@ -138,16 +120,7 @@ class UserProfileTableViewCell: UITableViewCell {
 	func configureWithFullName(fullName: String, status: String, imageURL: NSURL?) {
 		self.fullName = fullName
 		self.status = status
-
-		if let imageURL = imageURL {
-			imageDownloadTask?.cancel()
-			profileImage = nil
-			imageDownloadTask = ImageCacheManager.sharedInstance.imageForURL(imageURL, completion: { [weak self] (image) -> Void in
-				self?.profileImage = image
-				})
-		} else {
-			profileImage = nil
-		}
+		setImageWithURL(imageURL)
 	}
 
 	// MARK: - Private
@@ -177,7 +150,6 @@ class UserProfileTableViewCell: UITableViewCell {
 	}
 
 	// MARK: - IBActions
-
 
 	@IBAction func rightButtonAction() {
 		if case .Deletable = style {
