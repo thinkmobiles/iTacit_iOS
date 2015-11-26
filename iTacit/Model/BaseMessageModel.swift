@@ -55,7 +55,8 @@ class BaseMessageModel: BaseModel, Mappable {
 	class var mapping: [PropertyDescriptor] {
 		return [PropertyDescriptor(propertyName: "subject"),
 			PropertyDescriptor(propertyName: "readRequiredDate"),
-			TransformablePropertyDescriptor(propertyName: "body", valueTransformer: HTMLToAttributedStringTransformer.self),TransformablePropertyDescriptor(propertyName: "readRequired", JSONKey: "readRequiredYn", valueTransformer: YnStringToBoolTransformer.self)]
+			TransformablePropertyDescriptor(propertyName: "body", valueTransformer: HTMLToAttributedStringTransformer.self),
+			TransformablePropertyDescriptor(propertyName: "readRequired", JSONKey: "readRequiredYn", valueTransformer: YnStringToBoolTransformer.self)]
 	}
 
 }

@@ -15,7 +15,7 @@ class RemoteImageTableViewCell: UITableViewCell {
 	var imageDownloadTask: NSURLSessionTask? {
 		didSet {
 			if let _ = imageDownloadTask {
-				pictureImageView = nil
+				pictureImageView.image = nil
 			}
 		}
 	}
