@@ -82,7 +82,7 @@
 		402F3D421BFF6546003C00C0 /* ShowMoreTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 402F3D411BFF6546003C00C0 /* ShowMoreTextView.swift */; };
 		40317D2A1C06FFEB003321F4 /* BannerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40317D291C06FFEB003321F4 /* BannerModel.swift */; };
 		40317D2C1C070242003321F4 /* BannerListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40317D2B1C070242003321F4 /* BannerListModel.swift */; };
-		40317D2F1C070745003321F4 /* BannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40317D2E1C070745003321F4 /* BannerCollectionViewCell.swift */; };
+		40317D311C0741DD003321F4 /* BannerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40317D301C0741DD003321F4 /* BannerViewController.swift */; };
 		40440DB21BDBCC9C00FADF6E /* InputCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40440DAD1BDBCC9C00FADF6E /* InputCollectionViewCell.swift */; };
 		40440DB31BDBCC9C00FADF6E /* InputCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 40440DAE1BDBCC9C00FADF6E /* InputCollectionViewCell.xib */; };
 		40440DB41BDBCC9C00FADF6E /* TextCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 40440DB01BDBCC9C00FADF6E /* TextCollectionViewCell.swift */; };
@@ -252,7 +252,7 @@
 		402F3D411BFF6546003C00C0 /* ShowMoreTextView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ShowMoreTextView.swift; sourceTree = "<group>"; };
 		40317D291C06FFEB003321F4 /* BannerModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerModel.swift; sourceTree = "<group>"; };
 		40317D2B1C070242003321F4 /* BannerListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerListModel.swift; sourceTree = "<group>"; };
-		40317D2E1C070745003321F4 /* BannerCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerCollectionViewCell.swift; sourceTree = "<group>"; };
+		40317D301C0741DD003321F4 /* BannerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BannerViewController.swift; sourceTree = "<group>"; };
 		40440DAD1BDBCC9C00FADF6E /* InputCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = InputCollectionViewCell.swift; sourceTree = "<group>"; };
 		40440DAE1BDBCC9C00FADF6E /* InputCollectionViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = InputCollectionViewCell.xib; sourceTree = "<group>"; };
 		40440DB01BDBCC9C00FADF6E /* TextCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TextCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -441,6 +441,7 @@
 			children = (
 				35E560B31C0370B800F26C70 /* MyProfileViewController.swift */,
 				40EA82511BCFD05F0029228F /* DashboardViewController.swift */,
+				40317D301C0741DD003321F4 /* BannerViewController.swift */,
 			);
 			name = "Dashboard Flow";
 			sourceTree = "<group>";
@@ -521,7 +522,6 @@
 				40440DAC1BDBCC9C00FADF6E /* InputCollectionViewCell */,
 				40440DAF1BDBCC9C00FADF6E /* TextCollectionViewCell */,
 				4012FFB21BF62EA1002B1711 /* MessageCategoryCollectionViewCell.swift */,
-				40317D2E1C070745003321F4 /* BannerCollectionViewCell.swift */,
 			);
 			path = CollectionViewCells;
 			sourceTree = "<group>";
@@ -1057,11 +1057,11 @@
 				4018CD791C04C924007648E2 /* ActivityMessageModel.swift in Sources */,
 				3563B9A41BD12FAE009BE696 /* HashtagAndTimeTableViewCell.swift in Sources */,
 				4012FFAF1BF5D4CE002B1711 /* SeparatorView.swift in Sources */,
-				40317D2F1C070745003321F4 /* BannerCollectionViewCell.swift in Sources */,
 				3DD1FF321BE39FC0005C4339 /* NewsCategoryModel.swift in Sources */,
 				4056D5771BE89B290076B970 /* ImageCacheManager.swift in Sources */,
 				40317D2C1C070242003321F4 /* BannerListModel.swift in Sources */,
 				35DDBEBB1BF3951D00791F79 /* CreateReplyModel.swift in Sources */,
+				40317D311C0741DD003321F4 /* BannerViewController.swift in Sources */,
 				40EA82521BCFD05F0029228F /* DashboardViewController.swift in Sources */,
 				35FF25E91BECFE6300B1D734 /* PermissionGroupsListModel.swift in Sources */,
 				3563B99E1BD1288A009BE696 /* ImageTableViewCell.swift in Sources */,

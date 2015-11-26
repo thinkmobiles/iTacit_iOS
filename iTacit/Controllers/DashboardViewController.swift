@@ -11,13 +11,13 @@ import UIKit
 class DashboardViewController: UIViewController {
 
 	@IBOutlet weak var dashboardTitleLabel: UILabel!
-	@IBOutlet weak var collectionView: UICollectionView!
 	@IBOutlet weak var tableView: UITableView!
 	@IBOutlet weak var feedTitleLabel: UILabel!
 
+	private var pageViewController: UIPageViewController?
 	private var timer: NSTimer?
 	private var currentBunnerIndex: Int? {
-		return collectionView.indexPathsForVisibleItems().first?.item
+		return (pageViewController?.viewControllers?.first as? BannerViewController)?.pageIndex
 	}
 
 	var bannerList = BannerListModel()
@@ -61,9 +61,6 @@ class DashboardViewController: UIViewController {
 			guard let strongSelf = self else {
 				return
 			}
-			strongSelf.bannerList.objects += strongSelf.bannerList.objects
-			strongSelf.bannerList.objects += strongSelf.bannerList.objects
-			strongSelf.collectionView.reloadData()
 			if strongSelf.bannerList.count > 0 {
 				strongSelf.showBannerAtIndex(0)
 			}
@@ -79,17 +76,14 @@ class DashboardViewController: UIViewController {
 	}
 
 	private func loadMoreBanners() {
-		bannerList.loadMore { [weak self] (success) -> Void in
-			self?.collectionView.reloadData()
-		}
+		bannerList.loadMore()
 	}
 
 	private func scheduleTimerWithTimeInterval(timeInterval: NSTimeInterval) {
 		guard bannerList.count > 1 else {
 			return
 		}
-		print("Banner display time: \(timeInterval)")
-		timer = NSTimer.scheduledTimerWithTimeInterval(10, target: self, selector: Selector("showNextBanner"), userInfo: nil, repeats: false)
+		timer = NSTimer.scheduledTimerWithTimeInterval(timeInterval, target: self, selector: Selector("showNextBanner"), userInfo: nil, repeats: false)
 	}
 
 	private func showBannerAtIndex(index: Int) {
@@ -97,7 +91,9 @@ class DashboardViewController: UIViewController {
 		guard index < bannerList.count else {
 			return
 		}
-		collectionView.scrollToItemAtIndexPath(NSIndexPath(forItem: index, inSection: 0), atScrollPosition: .None, animated: true)
+		if let bannerViewController = bannerViewControllerAtIndex(index) {
+			pageViewController?.setViewControllers([bannerViewController], direction: .Forward, animated: true, completion: nil)
+		}
 		scheduleTimerWithTimeInterval(bannerList[index].displayTime)
 	}
 
@@ -109,33 +105,55 @@ class DashboardViewController: UIViewController {
 		showBannerAtIndex(nextIndex)
 	}
 
-}
+	private func bannerViewControllerAtIndex(index: Int) -> BannerViewController? {
+		guard bannerList.count > 0 && bannerList.count > index else {
+			return nil
+		}
 
-// MARK: - UICollectionViewDataSource
-
-extension DashboardViewController: UICollectionViewDataSource {
-
-	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return bannerList.count
+		let bannerViewController = storyboard?.instantiateViewControllerWithIdentifier(BannerViewController.storyboardId) as? BannerViewController
+		bannerViewController?.pageIndex = index
+		bannerViewController?.banner = bannerList[index]
+		return bannerViewController
 	}
 
-	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
-		let cell = collectionView.dequeueReusableCellWithReuseIdentifier(BannerCollectionViewCell.reuseIdentifier, forIndexPath: indexPath) as! BannerCollectionViewCell
-		cell.configureWithBanner(bannerList[indexPath.row])
-		if (bannerList.count - indexPath.row) <= (BannerListModel.requestRowCount / 2) && !bannerList.isLoading && !bannerList.loadedAll {
+	// MARK: - Navigation
+
+	override func prepareForSegue(segue: UIStoryboardSegue, sender: AnyObject?) {
+		if let pageViewController = segue.destinationViewController as? UIPageViewController {
+			pageViewController.dataSource = self
+			self.pageViewController = pageViewController
+		}
+	}
+
+}
+
+// MARK: - UIPageViewControllerDataSource
+
+extension DashboardViewController: UIPageViewControllerDataSource {
+
+	func pageViewController(pageViewController: UIPageViewController, viewControllerBeforeViewController viewController: UIViewController) -> UIViewController? {
+		guard var index = (viewController as? BannerViewController)?.pageIndex else {
+			return nil
+		}
+		guard !(index == 0 && bannerList.count == 1) else {
+			return nil
+		}
+		index = index == 0 ? (bannerList.count - 1) : index - 1
+		return bannerViewControllerAtIndex(index)
+	}
+
+	func pageViewController(pageViewController: UIPageViewController, viewControllerAfterViewController viewController: UIViewController) -> UIViewController? {
+		guard var index = (viewController as? BannerViewController)?.pageIndex else {
+			return nil
+		}
+		guard !(index == 0 && bannerList.count == 1) else {
+			return nil
+		}
+		if (bannerList.count - index) <= (BannerListModel.requestRowCount / 2) && !bannerList.isLoading && !bannerList.loadedAll {
 			loadMoreBanners()
 		}
-		return cell
-	}
-
-}
-
-// MARK: - UICollectionViewDelegateFlowLayout
-
-extension DashboardViewController: UICollectionViewDelegateFlowLayout {
-
-	func collectionView(collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAtIndexPath indexPath: NSIndexPath) -> CGSize {
-		return CGSize(width: CGRectGetWidth(collectionView.frame), height: CGRectGetHeight(collectionView.frame))
+		index = (index + 1) % bannerList.count
+		return bannerViewControllerAtIndex(index)
 	}
 
 }

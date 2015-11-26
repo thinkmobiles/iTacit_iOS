@@ -1,5 +1,5 @@
 //
-//  BannerCollectionViewCell.swift
+//  BannerViewController.swift
 //  iTacit
 //
 //  Created by Sauron Black on 11/26/15.
@@ -8,14 +8,17 @@
 
 import UIKit
 
-class BannerCollectionViewCell: UICollectionViewCell {
+class BannerViewController: UIViewController {
 
-	static let reuseIdentifier = "BannerCollectionViewCell"
+	static let storyboardId = "BannerViewController"
 
 	@IBOutlet weak var imageView: UIImageView!
 	@IBOutlet weak var titleLabel: UILabel!
 	@IBOutlet weak var detailsLabel: UILabel!
-	
+
+	var pageIndex = 0
+	var banner: BannerModel?
+
 	var imageDownloadTask: NSURLSessionTask? {
 		didSet {
 			if let _ = imageDownloadTask {
@@ -24,26 +27,30 @@ class BannerCollectionViewCell: UICollectionViewCell {
 		}
 	}
 
-	func configureWithBanner(banner: BannerModel) {
+	// MARK: - Lifecycle
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+
+		if let banner = banner {
+			configureWithBanner(banner)
+		}
+    }
+
+	// MARK: - Private
+
+	private func configureWithBanner(banner: BannerModel) {
 		setImageWithURL(banner.imageURL)
 		titleLabel.text = banner.title.uppercaseString
 		detailsLabel.text = banner.details?.string.stringByTrimmingCharactersInSet(NSCharacterSet.whitespaceAndNewlineCharacterSet())
-//		if let details = banner.details {
-//			detailsLabel.text = details.string
-//			let detailsString = NSMutableAttributedString(string: details.string)
-//			detailsString.addAttribute(NSForegroundColorAttributeName, value: UIColor.whiteColor(), range: NSMakeRange(0, (details.string as NSString).length))
-//			detailsLabel.attributedText = detailsString
-//		} else {
-//			detailsLabel.attributedText = nil
-//		}
 	}
 
-	func setImageWithURL(imageURL: NSURL?) {
+	private func setImageWithURL(imageURL: NSURL?) {
 		if let imageURL = imageURL {
 			imageDownloadTask?.cancel()
 			imageDownloadTask = ImageCacheManager.sharedInstance.imageForURL(imageURL, completion: { [weak self] (image) -> Void in
 				self?.imageView.image = image
-			})
+				})
 		} else {
 			imageView.image = nil
 		}
