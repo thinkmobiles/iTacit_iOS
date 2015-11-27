@@ -11,7 +11,7 @@ import UIKit
 class PageListModel<Element: BaseModel where Element: Mappable>: ListModel<Element> {
 
 	class var requestRowCount: Int {
-		return 10
+		return 50
 	}
 
 	required init() {

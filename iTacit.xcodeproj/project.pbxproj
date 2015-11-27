@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		293D30E21666773A722BAD04 /* MessageModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293D3D8D5FB143EB07670E7E /* MessageModel.swift */; };
-		293D30F05DBB57474A9AF330 /* MessageCategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293D32093613973975BFCCC2 /* MessageCategoryModel.swift */; };
 		293D3169AA27E45448B8D05C /* MessageSearchQueryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293D3388661F1E0C3B0C7FF9 /* MessageSearchQueryModel.swift */; };
 		293D3854460CEF2AB74371C6 /* MessageCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293D3FA48E72707523A5E49C /* MessageCategory.swift */; };
 		293D3D16DC673B329BDD8E7E /* MessageListModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 293D3EDD221DE1D0BEFA736D /* MessageListModel.swift */; };
@@ -124,6 +123,7 @@
 		405A29911BE6B21A0024ADA9 /* URLParametersSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A29881BE6B21A0024ADA9 /* URLParametersSerializer.swift */; };
 		405A29931BE6B2710024ADA9 /* TokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A29921BE6B2710024ADA9 /* TokenModel.swift */; };
 		405A29951BE6B2800024ADA9 /* BaseModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405A29941BE6B2800024ADA9 /* BaseModel.swift */; };
+		405F72B41C08538100E60BE9 /* MessageSummaryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 405F72B31C08538100E60BE9 /* MessageSummaryModel.swift */; };
 		407778AE1C03778E00E02BEA /* Greeting.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407778AD1C03778E00E02BEA /* Greeting.swift */; };
 		407778B01C037C6500E02BEA /* GreetingManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 407778AF1C037C6500E02BEA /* GreetingManager.swift */; };
 		4077E6F51BF9FD32006FAFB1 /* SwipeableTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4077E6F41BF9FD32006FAFB1 /* SwipeableTableViewCell.swift */; };
@@ -176,7 +176,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		293D32093613973975BFCCC2 /* MessageCategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageCategoryModel.swift; sourceTree = "<group>"; };
 		293D3388661F1E0C3B0C7FF9 /* MessageSearchQueryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSearchQueryModel.swift; sourceTree = "<group>"; };
 		293D3D8D5FB143EB07670E7E /* MessageModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageModel.swift; sourceTree = "<group>"; };
 		293D3EDD221DE1D0BEFA736D /* MessageListModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageListModel.swift; sourceTree = "<group>"; };
@@ -298,6 +297,7 @@
 		405A29881BE6B21A0024ADA9 /* URLParametersSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLParametersSerializer.swift; sourceTree = "<group>"; };
 		405A29921BE6B2710024ADA9 /* TokenModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TokenModel.swift; sourceTree = "<group>"; };
 		405A29941BE6B2800024ADA9 /* BaseModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseModel.swift; sourceTree = "<group>"; };
+		405F72B31C08538100E60BE9 /* MessageSummaryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MessageSummaryModel.swift; sourceTree = "<group>"; };
 		407778AD1C03778E00E02BEA /* Greeting.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Greeting.swift; sourceTree = "<group>"; };
 		407778AF1C037C6500E02BEA /* GreetingManager.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GreetingManager.swift; sourceTree = "<group>"; };
 		4077E6F41BF9FD32006FAFB1 /* SwipeableTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwipeableTableViewCell.swift; sourceTree = "<group>"; };
@@ -434,7 +434,6 @@
 			isa = PBXGroup;
 			children = (
 				4018CD731C04BB91007648E2 /* RemoteImageTableViewCell.swift */,
-				4077E6F41BF9FD32006FAFB1 /* SwipeableTableViewCell.swift */,
 			);
 			name = "Base Cells";
 			sourceTree = "<group>";
@@ -514,8 +513,6 @@
 				293D3EDD221DE1D0BEFA736D /* MessageListModel.swift */,
 				35DDBEBA1BF3951D00791F79 /* CreateReplyModel.swift */,
 				293D3388661F1E0C3B0C7FF9 /* MessageSearchQueryModel.swift */,
-				293D3FA48E72707523A5E49C /* MessageCategory.swift */,
-				293D32093613973975BFCCC2 /* MessageCategoryModel.swift */,
 				4015F8761BFB88ED0030927E /* RecipientsCountModel.swift */,
 				35FAAE921BFB2DAD0006B915 /* ReplyModel.swift */,
 				352B52941BFB47910060C34B /* ReplyListModel.swift */,
@@ -524,6 +521,8 @@
 				4028C2F41BFE132E007A2939 /* RecipientListModel.swift */,
 				4028C2F61BFE1FAF007A2939 /* RecipientSearchQuery.swift */,
 				35E775D41BFDE9AA000A0BA7 /* MessageCreateReplyModel.swift */,
+				293D3FA48E72707523A5E49C /* MessageCategory.swift */,
+				405F72B31C08538100E60BE9 /* MessageSummaryModel.swift */,
 			);
 			name = "Messages Flow Models";
 			sourceTree = "<group>";
@@ -820,7 +819,6 @@
 				4018CD721C04BB65007648E2 /* Base Cells */,
 				350943661C0731C10032CD8A /* Login Flow */,
 				4077E6F41BF9FD32006FAFB1 /* SwipeableTableViewCell.swift */,
-				35690C691BF9D5F3006055EB /* MessageTableViewCell.swift */,
 				408C22CA1BF0C73A00DA25A3 /* UserProfileTableViewCell */,
 				351E8EC61BE36FCD00690669 /* MailComposerTableViewCells */,
 				40440DB61BDBCCA200FADF6E /* AutocompletionTableViewCell */,
@@ -1069,6 +1067,7 @@
 				35D6EA371BEBA2D20084559B /* AddRecipientViewController.swift in Sources */,
 				350644C81BD784A800D51D5C /* DateHeaderView.swift in Sources */,
 				4056D58A1BE903FD0076B970 /* TagModel.swift in Sources */,
+				405F72B41C08538100E60BE9 /* MessageSummaryModel.swift in Sources */,
 				4056D5841BE8E7AC0076B970 /* AuthorModel.swift in Sources */,
 				4018CD761C04C440007648E2 /* ActivityReplyModel.swift in Sources */,
 				355FF06E1BDF697B0070B600 /* SearchNewsQueryModel.swift in Sources */,
@@ -1132,7 +1131,6 @@
 				293D3169AA27E45448B8D05C /* MessageSearchQueryModel.swift in Sources */,
 				293D3854460CEF2AB74371C6 /* MessageCategory.swift in Sources */,
 				4028C2F11BFDFA2A007A2939 /* RecipientsViewController.swift in Sources */,
-				293D30F05DBB57474A9AF330 /* MessageCategoryModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

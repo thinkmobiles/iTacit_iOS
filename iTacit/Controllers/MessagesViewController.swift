@@ -25,7 +25,7 @@ class MessagesViewController: PagingViewController {
 	private var searchControlActive = false
 	private var searchTimer: NSTimer?
 
-	var messageCategories = [MessageCategoryModel]()
+	var messageSummary = MessageSummaryModel()
     let messageList = MessageListModel()
 	let searchQuery = MessageSearchQueryModel()
 
@@ -34,10 +34,9 @@ class MessagesViewController: PagingViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setUpTableView()
-		setUpMessageGroupList()
 		messageList.searchQuery = searchQuery
 		setUpSearchControl()
-		reloadData()
+		categoryFullNameLabel.text = messageSummary[0]?.category.fullName
 	}
 
 	override func viewWillAppear(animated: Bool) {
@@ -60,28 +59,10 @@ class MessagesViewController: PagingViewController {
 		tableView.rowHeight = UITableViewAutomaticDimension
 	}
 
-	private func setUpMessageGroupList() {
-		messageCategories = [MessageCategoryModel(category: .All),
-							 MessageCategoryModel(category: .ActOn),
-							 MessageCategoryModel(category: .Waiting),
-							 MessageCategoryModel(category: .ToMe),
-							 MessageCategoryModel(category: .FromMe),
-							 MessageCategoryModel(category: .Archive)]
-		categoryFullNameLabel.text = messageCategories[0].category.fullName
-	}
-
 	private func setUpSearchControl() {
 		tagSearchControl.delegate = self
 		tagSearchControl.tagTextField.edgeInsets = UIEdgeInsets(top: 3, left: 0, bottom: 3, right: 0)
 		tagSearchControl.allowActivation = false
-	}
-
-	private func setCountForCurrentCategory(count: Int) {
-		let index = messageCategories.indexOf { $0.category == searchQuery.category }
-		if let index = index {
-			messageCategories[index].count = count
-			collectionView.reloadItemsAtIndexPaths([NSIndexPath(forItem: index, inSection: 0)])
-		}
 	}
 
 	private func clearSelection() {
@@ -137,6 +118,12 @@ class MessagesViewController: PagingViewController {
 		}, completion: nil)
 	}
 
+	private func loadMessageSummary() {
+		messageSummary.load { [weak self] success in
+			self?.collectionView.reloadData()
+		}
+	}
+
 	// MARK: - Data reloading
 
 	override var numberOfItems: Int {
@@ -152,6 +139,8 @@ class MessagesViewController: PagingViewController {
 		messageList.load { [weak self] success in
 			self?.didLoadData()
 		}
+		loadMessageSummary()
+
 	}
 
 	override func loadMoreItems() {
@@ -161,7 +150,6 @@ class MessagesViewController: PagingViewController {
 	}
 
 	private func didLoadData() {
-		setCountForCurrentCategory(messageList.count)
 		tableView.reloadData()
 	}
 
@@ -221,17 +209,18 @@ extension MessagesViewController: UITableViewDataSource {
 extension MessagesViewController: UICollectionViewDataSource {
 
 	func collectionView(collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-		return messageCategories.count
+		return messageSummary.count
 	}
 
 	func collectionView(collectionView: UICollectionView, cellForItemAtIndexPath indexPath: NSIndexPath) -> UICollectionViewCell {
 		let cell = collectionView.dequeueReusableCellWithReuseIdentifier(MessageCategoryCollectionViewCell.reuseIdentifeir, forIndexPath: indexPath) as! MessageCategoryCollectionViewCell
-		let categoryModel = messageCategories[indexPath.item]
-		cell.name = categoryModel.category.rawValue
-		cell.count = categoryModel.count
-		if categoryModel.category == searchQuery.category {
-			cell.selected = true
-			collectionView.selectItemAtIndexPath(indexPath, animated: false, scrollPosition: .None)
+		if let messageSummaryItem = messageSummary[indexPath.item] {
+			cell.name = messageSummaryItem.category.rawValue
+			cell.count = messageSummaryItem.count
+			if messageSummaryItem.category == searchQuery.category {
+				cell.selected = true
+				collectionView.selectItemAtIndexPath(indexPath, animated: false, scrollPosition: .None)
+			}
 		}
 		return cell
 	}
@@ -244,11 +233,12 @@ extension MessagesViewController: UICollectionViewDelegate {
 
 	func collectionView(collectionView: UICollectionView, didSelectItemAtIndexPath indexPath: NSIndexPath) {
 		collectionView.scrollToItemAtIndexPath(indexPath, atScrollPosition: .None, animated: false)
-		let categoryModel = messageCategories[indexPath.item]
-		categoryFullNameLabel.text = categoryModel.category.fullName
-		searchQuery.category = categoryModel.category
-		messageList.lastTask?.cancel()
-		reloadData()
+		if let messageSummaryItem = messageSummary[indexPath.item] {
+			categoryFullNameLabel.text = messageSummaryItem.category.fullName
+			searchQuery.category = messageSummaryItem.category
+			messageList.lastTask?.cancel()
+			reloadData()
+		}
 	}
 
 }
@@ -282,10 +272,13 @@ extension MessagesViewController: MessageTableViewCellDelegate {
 	func messageTableViewCellDidPressArchiveButton(cell: MessageTableViewCell) {
 		if let indexPath = tableView.indexPathForCell(cell) {
 			let message = messageList[indexPath.row]
-			message.archive()
+			message.archive { [weak self] success in
+				if success {
+					self?.loadMessageSummary()
+				}
+			}
 			messageList.objects.removeAtIndex(indexPath.row)
 			tableView.deleteRowsAtIndexPaths([indexPath], withRowAnimation: .Automatic)
-			setCountForCurrentCategory(messageList.count)
 		}
 	}
 
